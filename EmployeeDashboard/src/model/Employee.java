@@ -9,8 +9,10 @@ package model;
  * @author AMEY PARANGE
  */
 public class Employee {
-    private String ename;
-    private int empid;
+    static private int empid=0;
+    private String firstname;
+    private String lastname;
+    //private int empid;
     private int age;
     private String gender;
     private String startdate;
@@ -18,22 +20,38 @@ public class Employee {
     private String teaminfo;
     private String postitle;
     private String email;
+    private int mobileno;
 
-    public String getEname() {
-        return ename;
+    public static int getEmpid(){
+        return empid ;
+    }
+    
+    public static void setEmpid(){
+         empid =empid +1;
+    }
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setEname(String ename) {
-        this.ename = ename;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+    public String getLastname() {
+        return lastname;
     }
 
-    public int getEmpid() {
-        return empid;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+    
+    public int getMobileno() {
+        return mobileno;
     }
 
-    public void setEmpid(int empid) {
-        this.empid = empid;
+    public void setMobileno(int mobileno) {
+        this.mobileno = mobileno;
     }
+    
 
     public int getAge() {
         return age;

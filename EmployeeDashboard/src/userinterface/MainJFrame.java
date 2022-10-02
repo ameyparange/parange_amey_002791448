@@ -4,6 +4,10 @@
  */
 package userinterface;
 
+import java.util.ArrayList;
+import model.Employee;
+import model.EmployeeCatalog;
+
 /**
  *
  * @author AMEY PARANGE
@@ -13,8 +17,13 @@ public class MainJFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainJFrame
      */
+    
+    public EmployeeCatalog catalog;
+
     public MainJFrame() {
         initComponents();
+        
+        catalog = new EmployeeCatalog();
     }
 
     /**
@@ -28,20 +37,25 @@ public class MainJFrame extends javax.swing.JFrame {
 
         jSplitPane1 = new javax.swing.JSplitPane();
         javax.swing.JPanel ControlPanel = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btncreate = new javax.swing.JButton();
+        btnempcata = new javax.swing.JButton();
         javax.swing.JPanel Details = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Create");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btncreate.setText("Create");
+        btncreate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btncreateActionPerformed(evt);
             }
         });
 
-        jButton2.setText("View Details");
+        btnempcata.setText("Catalogue");
+        btnempcata.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnempcataActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout ControlPanelLayout = new javax.swing.GroupLayout(ControlPanel);
         ControlPanel.setLayout(ControlPanelLayout);
@@ -49,25 +63,25 @@ public class MainJFrame extends javax.swing.JFrame {
             ControlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ControlPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ControlPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addContainerGap())
+                .addGroup(ControlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btncreate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnempcata, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
-        ControlPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton1, jButton2});
+        ControlPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btncreate, btnempcata});
 
         ControlPanelLayout.setVerticalGroup(
             ControlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ControlPanelLayout.createSequentialGroup()
                 .addGap(93, 93, 93)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
-                .addContainerGap(380, Short.MAX_VALUE))
+                .addComponent(btncreate)
+                .addGap(11, 11, 11)
+                .addComponent(btnempcata)
+                .addContainerGap(381, Short.MAX_VALUE))
         );
+
+        ControlPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btncreate, btnempcata});
 
         jSplitPane1.setLeftComponent(ControlPanel);
 
@@ -104,9 +118,17 @@ public class MainJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btncreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncreateActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        CreateEmp createemp = new CreateEmp(catalog);
+        jSplitPane1.setRightComponent(createemp);
+    }//GEN-LAST:event_btncreateActionPerformed
+
+    private void btnempcataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnempcataActionPerformed
+        // TODO add your handling code here:
+        ViewEmpCatalog vmd = new ViewEmpCatalog(catalog);
+        jSplitPane1.setRightComponent(vmd);
+    }//GEN-LAST:event_btnempcataActionPerformed
 
     /**
      * @param args the command line arguments
@@ -144,8 +166,8 @@ public class MainJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btncreate;
+    private javax.swing.JButton btnempcata;
     private javax.swing.JSplitPane jSplitPane1;
     // End of variables declaration//GEN-END:variables
 }
