@@ -351,7 +351,7 @@ public class CreateEmp extends javax.swing.JPanel {
         boolean er=false;
         if (tfname.isEmpty() || tlname.isEmpty() || tage.isEmpty() || tmobileno.isEmpty() || tlevel.isEmpty()
                 || temailid.isEmpty() || tteaminfo.isEmpty() || tpostitle.isEmpty() || tgender.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Cannot enter emty field",
+            JOptionPane.showMessageDialog(this, "Cannot enter empty field",
                     "Try Again",
                     JOptionPane.ERROR_MESSAGE);
         } else {

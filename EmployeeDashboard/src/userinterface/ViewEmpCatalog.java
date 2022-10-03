@@ -68,6 +68,7 @@ public class ViewEmpCatalog extends javax.swing.JPanel {
         jLabel11 = new javax.swing.JLabel();
         btnedit = new javax.swing.JButton();
         btnupdate = new javax.swing.JButton();
+        btnsearch = new javax.swing.JButton();
 
         jTextField1.setText("jTextField1");
 
@@ -191,6 +192,13 @@ public class ViewEmpCatalog extends javax.swing.JPanel {
             }
         });
 
+        btnsearch.setText("Search");
+        btnsearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnsearchActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -244,11 +252,12 @@ public class ViewEmpCatalog extends javax.swing.JPanel {
                             .addComponent(tfteaminfo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
                             .addComponent(tflevel)
                             .addComponent(tfpostitle))))
-                .addGap(50, 50, 50)
+                .addGap(47, 47, 47)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnupdate)
-                    .addComponent(btnedit))
-                .addContainerGap(25, Short.MAX_VALUE))
+                    .addComponent(btnedit)
+                    .addComponent(btnsearch))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -292,7 +301,8 @@ public class ViewEmpCatalog extends javax.swing.JPanel {
                             .addComponent(jLabel11)
                             .addComponent(tfteaminfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tfage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
+                            .addComponent(jLabel4)
+                            .addComponent(btnsearch))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel10)
@@ -318,7 +328,7 @@ public class ViewEmpCatalog extends javax.swing.JPanel {
                                 .addComponent(btndelete)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnview))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 587, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 607, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -326,7 +336,7 @@ public class ViewEmpCatalog extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -343,14 +353,14 @@ public class ViewEmpCatalog extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 595, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 623, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 538, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 544, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -421,7 +431,7 @@ public class ViewEmpCatalog extends javax.swing.JPanel {
 
     private void btnupdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnupdateActionPerformed
         // TODO add your handling code here:
-        int tempid= Integer.valueOf(tfempid.getText());
+        int tempid = Integer.valueOf(tfempid.getText());
         catalog.deleteemprec(tempid);
         Employee emp = new Employee();
         emp.setEmpid(Integer.valueOf(tfempid.getText()));
@@ -435,12 +445,12 @@ public class ViewEmpCatalog extends javax.swing.JPanel {
         emp.setPostitle(tfpostitle.getText());
         //emp.setGender(listgender.getSelectedValue());
         emp.setGender(tfgender.getText());
-        
+
         catalog.addnewemployee(emp);
         JOptionPane.showMessageDialog(this, "Successfully Employee Profile Created!!!");
         disableViewfield();
         populatecatalog();
-        
+
     }//GEN-LAST:event_btnupdateActionPerformed
 
     private void btneditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditActionPerformed
@@ -448,10 +458,105 @@ public class ViewEmpCatalog extends javax.swing.JPanel {
         enableViewfield();
     }//GEN-LAST:event_btneditActionPerformed
 
-    
+    private void btnsearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsearchActionPerformed
+        // TODO add your handling code here:
+        String query ;
+        Employee emp= new Employee();
+        if (!tfempid.getText().isEmpty()) {
+            query = tfempid.getText();
+            for (Employee emp1 : catalog.getCatalog()) {
+                if (emp1.getEmpid()== Integer.valueOf(query)) {
+                    emp = emp1;
+                }
+            }
+        }  else if (!tffirstname.getText().isEmpty()) {
+            query = tffirstname.getText();
+            for (Employee emp1 : catalog.getCatalog()) {
+                
+                if (emp1.getFirstname().equalsIgnoreCase(query)) {
+                    emp = emp1;
+                }
+            }
+        } else if (!tflastname.getText().isEmpty()) {
+            query = tflastname.getText();
+            for (Employee emp1 : catalog.getCatalog()) {
+                
+                if (emp1.getLastname().equalsIgnoreCase(query)) {
+                    emp = emp1;
+                }
+            }
+        } else if (!tfmobileno.getText().isEmpty()) {
+            query = tfmobileno.getText();
+            for (Employee emp1 : catalog.getCatalog()) {
+                
+                if (emp1.getMobileno()== Integer.valueOf(query)) {
+                    emp = emp1;
+                }
+            }
+        } else if (!tfage.getText().isEmpty()) {
+            query = tfage.getText();
+            for (Employee emp1 : catalog.getCatalog()) {
+                
+                if (emp1.getAge()== Integer.valueOf(query)) {
+                    emp = emp1;
+                }
+            }
+        } else if (!tflevel.getText().isEmpty()) {
+            query = tflevel.getText();
+            for (Employee emp1 : catalog.getCatalog()) {
+                
+                if (emp1.getLevel().equalsIgnoreCase(query)) {
+                    emp = emp1;
+                }
+            }
+        } else if (!tfemailid.getText().isEmpty()) {
+            query = tfemailid.getText();
+            for (Employee emp1 : catalog.getCatalog()) {
+                
+                if (emp1.getEmail().equalsIgnoreCase(query)) {
+                    emp = emp1;
+                }
+            }
+        } else if (!tfteaminfo.getText().isEmpty()) {
+            query = tfteaminfo.getText();
+            for (Employee emp1 : catalog.getCatalog()) {
+                
+                if (emp1.getTeaminfo().equalsIgnoreCase(query)) {
+                    emp = emp1;
+                }
+            }
+        } else if (!tfpostitle.getText().isEmpty()) {
+            query = tfpostitle.getText();
+            for (Employee emp1 : catalog.getCatalog()) {
+                
+                if (emp1.getPostitle().equalsIgnoreCase(query)) {
+                    emp = emp1;
+                }
+            }
+        } else if (!tfgender.getText().isEmpty()) {
+            query = tfgender.getText();
+            for (Employee emp1 : catalog.getCatalog()) {
+                
+                if (emp1.getGender().equalsIgnoreCase(query)) {
+                    emp = emp1;
+                }
+            }
+        }
+        if (emp!=null){
+            JOptionPane.showMessageDialog(this, 
+                "Employee Found!!!");
+        populatecatalog(emp);
+        clearview();}
+        else JOptionPane.showMessageDialog(this, 
+                "Employee does exist!!!");
+
+    }//GEN-LAST:event_btnsearchActionPerformed
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btndelete;
     private javax.swing.JButton btnedit;
+    private javax.swing.JButton btnsearch;
     private javax.swing.JButton btnupdate;
     private javax.swing.JButton btnview;
     private javax.swing.JLabel jLabel1;
@@ -505,6 +610,30 @@ public class ViewEmpCatalog extends javax.swing.JPanel {
         }
 
     }
+    
+     private void populatecatalog(Employee emp) {
+        DefaultTableModel model = (DefaultTableModel) tcatalog.getModel();
+        model.setRowCount(0);
+
+        
+            Object[] row = new Object[10];
+
+            row[0] = emp.getEmpid();
+//emp.getEmpid();
+            row[1] = emp.getFirstname();
+            row[2] = emp.getLastname();
+            row[3] = emp.getAge();
+            row[4] = emp.getGender();
+            row[5] = emp.getMobileno();
+            row[6] = emp.getEmail();
+            row[7] = emp.getLevel();
+            row[8] = emp.getTeaminfo();
+            row[9] = emp.getPostitle();
+            model.addRow(row);
+            //JOptionPane.showMessageDialog(this, "Successfully Employee Profile Created!!!");
+        
+
+    }
 
     public void displayEmpDetails(Employee emp) {
         tfempid.setText(String.valueOf(emp.getEmpid()));
@@ -532,6 +661,7 @@ public class ViewEmpCatalog extends javax.swing.JPanel {
         tfpostitle.setEnabled(false);
         tfgender.setEnabled(false);
     }
+
     private void enableViewfield() {
         tffirstname.setEnabled(true);
         tflastname.setEnabled(true);
@@ -542,5 +672,18 @@ public class ViewEmpCatalog extends javax.swing.JPanel {
         tfteaminfo.setEnabled(true);
         tfpostitle.setEnabled(true);
         tfgender.setEnabled(true);
+    }
+
+    private void clearview() {
+            tfempid.setText("");
+            tffirstname.setText("");
+            tflastname.setText("");
+            tfage.setText("");
+            tfmobileno.setText("");
+            tflevel.setText("");
+            tfemailid.setText("");
+            tfteaminfo.setText("");
+            tfpostitle.setText("");  
+            tfgender.setText("");
     }
 }
