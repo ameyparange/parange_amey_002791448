@@ -355,7 +355,7 @@ public class CreateEmp extends javax.swing.JPanel {
                     "Try Again",
                     JOptionPane.ERROR_MESSAGE);
         } else {
-            Employee emp = new Employee();
+            Employee emp = catalog.addnewemployee();
             if (valstring(tfname) == false || valstring(tlname) == false) {
                 JOptionPane.showMessageDialog(this, "Please Enter Name in Proper format",
                         "Try Again",
@@ -383,16 +383,19 @@ public class CreateEmp extends javax.swing.JPanel {
             if (valemailid(temailid) == false) {
                 JOptionPane.showMessageDialog(this, "Please Enter Valid Email id",
                         "Try Again",
-                        JOptionPane.ERROR_MESSAGE);er=true;
+                        JOptionPane.ERROR_MESSAGE);
+                er=true;
             } else {
                 emp.setEmail(temailid);
             }
+            emp.setLevel(tlevel);
             emp.setTeaminfo(tteaminfo);
             emp.setPostitle(tpostitle);
             emp.setGender(tgender);
             emp.setEmpid();
+            JOptionPane.showMessageDialog(this,tgender);
             if (er!=true){
-            emp = catalog.addnewemployee();
+            
             JOptionPane.showMessageDialog(this, "Successfully Employee Profile Created!!!");
 
             tffirstname.setText("");
