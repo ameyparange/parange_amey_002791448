@@ -31,10 +31,36 @@ public class EmployeeCatalog {
         catalog.add(emp);
         return emp;
     }
+    
+    public void addnewemployee(Employee emp) {
+        
+        catalog.add(emp);
+        //return emp;
+    }
 
-    public void deleteemprec(Employee emp) {
-        catalog.remove(emp);
-
+    public void deleteemprec(int emp) {
+        //catalog.remove(emp);
+        Employee e = new Employee();
+        int i;
+        for( i=0;i<1000;i++){ 
+             e= catalog.get(i);
+            if (e.getEmpid()==emp)
+                break;
+        }
+        
+        catalog.remove(i);
+        
+    }
+    public Employee searchIndexEmp(int idx)
+    {
+        Employee e = new Employee();
+        int i;
+        for( i=0;i<1000;i++){ 
+             e= catalog.get(i);
+            if (e.getEmpid()==idx)
+                break;
+        }
+        return catalog.get(i);
     }
 
 }

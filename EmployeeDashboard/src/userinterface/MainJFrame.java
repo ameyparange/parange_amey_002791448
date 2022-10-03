@@ -42,6 +42,15 @@ public class MainJFrame extends javax.swing.JFrame {
         javax.swing.JPanel Details = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("DashBoard");
+        setMinimumSize(new java.awt.Dimension(850, 620));
+        setPreferredSize(new java.awt.Dimension(850, 620));
+
+        jSplitPane1.setMinimumSize(new java.awt.Dimension(600, 200));
+        jSplitPane1.setPreferredSize(new java.awt.Dimension(600, 200));
+
+        ControlPanel.setMinimumSize(new java.awt.Dimension(151, 200));
+        ControlPanel.setPreferredSize(new java.awt.Dimension(151, 200));
 
         btncreate.setText("Create");
         btncreate.addActionListener(new java.awt.event.ActionListener() {
@@ -78,22 +87,25 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addComponent(btncreate)
                 .addGap(11, 11, 11)
                 .addComponent(btnempcata)
-                .addContainerGap(381, Short.MAX_VALUE))
+                .addContainerGap(386, Short.MAX_VALUE))
         );
 
         ControlPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btncreate, btnempcata});
 
         jSplitPane1.setLeftComponent(ControlPanel);
 
+        Details.setMinimumSize(new java.awt.Dimension(600, 534));
+        Details.setPreferredSize(new java.awt.Dimension(600, 534));
+
         javax.swing.GroupLayout DetailsLayout = new javax.swing.GroupLayout(Details);
         Details.setLayout(DetailsLayout);
         DetailsLayout.setHorizontalGroup(
             DetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 581, Short.MAX_VALUE)
+            .addGap(0, 600, Short.MAX_VALUE)
         );
         DetailsLayout.setVerticalGroup(
             DetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 529, Short.MAX_VALUE)
+            .addGap(0, 534, Short.MAX_VALUE)
         );
 
         jSplitPane1.setRightComponent(Details);
@@ -104,14 +116,14 @@ public class MainJFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jSplitPane1)
+                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jSplitPane1)
+                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -130,34 +142,18 @@ public class MainJFrame extends javax.swing.JFrame {
         jSplitPane1.setRightComponent(vmd);
     }//GEN-LAST:event_btnempcataActionPerformed
 
+   /* public void btnviewActionPerformed(EmployeeCatalog catalog1, int selected_empid){
+         ViewEmpDetails viewempdetails= new ViewEmpDetails(catalog,selected_empid);
+        //jSplitPane1.setRightComponent(createemp);
+        
+        jSplitPane1.setRightComponent(viewempdetails);
+    }*/
+    
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
+                /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MainJFrame().setVisible(true);
@@ -168,6 +164,6 @@ public class MainJFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btncreate;
     private javax.swing.JButton btnempcata;
-    private javax.swing.JSplitPane jSplitPane1;
+    public javax.swing.JSplitPane jSplitPane1;
     // End of variables declaration//GEN-END:variables
 }

@@ -9,25 +9,41 @@ package model;
  * @author AMEY PARANGE
  */
 public class Employee {
-    static private int empid=0;
+    static private int empcount=0;
     private String firstname;
     private String lastname;
-    //private int empid;
+    private int empid;
     private int age;
     private String gender;
-    private String startdate;
+    //private String startdate;
     private String level;
     private String teaminfo;
     private String postitle;
     private String email;
     private int mobileno;
 
-    public static int getEmpid(){
+    public static int getEmpcount(){
+        return empcount ;
+    }
+    
+    public static void setEmpcount(){
+         empcount =empcount +1;
+    }
+    public  int getEmpid(){
         return empid ;
     }
     
-    public static void setEmpid(){
-         empid =empid +1;
+    public  void setEmpid(){
+        setEmpcount();
+        empid=getEmpcount();
+         
+    }
+    public  void setEmpid(int empid){
+        this.empid= empid;     
+    }
+    public int assignEmpcount(){
+        setEmpcount();
+        return getEmpcount();
     }
     public String getFirstname() {
         return firstname;
@@ -68,7 +84,7 @@ public class Employee {
     public void setGender(String gender) {
         this.gender = gender;
     }
-
+/*
     public String getStartdate() {
         return startdate;
     }
@@ -76,7 +92,7 @@ public class Employee {
     public void setStartdate(String startdate) {
         this.startdate = startdate;
     }
-
+*/
     public String getLevel() {
         return level;
     }

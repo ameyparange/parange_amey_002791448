@@ -7,6 +7,8 @@ package userinterface;
 import javax.swing.JOptionPane;
 import model.Employee;
 import model.EmployeeCatalog;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -19,6 +21,7 @@ public class CreateEmp extends javax.swing.JPanel {
      */
     //public Employee emp;
     EmployeeCatalog catalog;
+
     public CreateEmp(EmployeeCatalog catalog) {
         initComponents();
         this.catalog = catalog;
@@ -323,22 +326,6 @@ public class CreateEmp extends javax.swing.JPanel {
 
     private void btnclearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnclearActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnclearActionPerformed
-
-    private void btnsubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsubmitActionPerformed
-        // TODO add your handling code here:
-        Employee emp = catalog.addnewemployee();
-        emp.setFirstname(tffirstname.getText());
-        emp.setLastname(tflastname.getText());
-        emp.setAge(Integer.valueOf(tfage.getText()));
-        emp.setMobileno(Integer.valueOf(tfmobileno.getText()));
-        emp.setLevel(tflevel.getText());
-        emp.setEmail(tfemailid.getText());
-        emp.setTeaminfo(tfteaminfo.getText());
-        emp.setPostitle(tfpostitle.getText());
-        emp.setGender(listgender.getSelectedValue());
-        JOptionPane.showMessageDialog(this, "Successfully Employee Profile Created!!!");
-
         tffirstname.setText("");
         tflastname.setText("");
         tfage.setText("");
@@ -348,6 +335,78 @@ public class CreateEmp extends javax.swing.JPanel {
         tfteaminfo.setText("");
         tfpostitle.setText("");
         listgender.clearSelection();
+    }//GEN-LAST:event_btnclearActionPerformed
+
+    private void btnsubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsubmitActionPerformed
+        // TODO add your handling code here:
+        String tfname = tffirstname.getText();
+        String tlname = tflastname.getText();
+        String tage = tfage.getText();
+        String tmobileno = tfmobileno.getText();
+        String tlevel = tflevel.getText();
+        String temailid = tfemailid.getText();
+        String tteaminfo = tfteaminfo.getText();
+        String tpostitle = tfpostitle.getText();
+        String tgender = listgender.getSelectedValue();
+        boolean er=false;
+        if (tfname.isEmpty() || tlname.isEmpty() || tage.isEmpty() || tmobileno.isEmpty() || tlevel.isEmpty()
+                || temailid.isEmpty() || tteaminfo.isEmpty() || tpostitle.isEmpty() || tgender.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Cannot enter emty field",
+                    "Try Again",
+                    JOptionPane.ERROR_MESSAGE);
+        } else {
+            Employee emp = new Employee();
+            if (valstring(tfname) == false || valstring(tlname) == false) {
+                JOptionPane.showMessageDialog(this, "Please Enter Name in Proper format",
+                        "Try Again",
+                        JOptionPane.ERROR_MESSAGE);
+                er=true;
+            } else {
+                emp.setFirstname(tfname);
+                emp.setLastname(tlname);
+            }
+            if (!valage(tage) || Integer.valueOf(tage) <= 0 || Integer.valueOf(tage) > 200) {
+                JOptionPane.showMessageDialog(this, "Please Enter Valid Age",
+                        "Try Again",
+                        JOptionPane.ERROR_MESSAGE);er=true;
+            } else {
+                emp.setAge(Integer.valueOf(tage));
+            }
+            if (!valnumber(tmobileno)) {
+                JOptionPane.showMessageDialog(this, "Please Enter Valid Mobile Number",
+                        "Try Again",
+                        JOptionPane.ERROR_MESSAGE);er=true;
+            } else {
+                emp.setMobileno(Integer.valueOf(tmobileno));
+            }
+
+            if (valemailid(temailid) == false) {
+                JOptionPane.showMessageDialog(this, "Please Enter Valid Email id",
+                        "Try Again",
+                        JOptionPane.ERROR_MESSAGE);er=true;
+            } else {
+                emp.setEmail(temailid);
+            }
+            emp.setTeaminfo(tteaminfo);
+            emp.setPostitle(tpostitle);
+            emp.setGender(tgender);
+            emp.setEmpid();
+            if (er!=true){
+            emp = catalog.addnewemployee();
+            JOptionPane.showMessageDialog(this, "Successfully Employee Profile Created!!!");
+
+            tffirstname.setText("");
+            tflastname.setText("");
+            tfage.setText("");
+            tfmobileno.setText("");
+            tflevel.setText("");
+            tfemailid.setText("");
+            tfteaminfo.setText("");
+            tfpostitle.setText("");
+            listgender.clearSelection();}
+        }
+
+
     }//GEN-LAST:event_btnsubmitActionPerformed
 
 
@@ -378,4 +437,51 @@ public class CreateEmp extends javax.swing.JPanel {
     private javax.swing.JTextField tfpostitle;
     private javax.swing.JTextField tfteaminfo;
     // End of variables declaration//GEN-END:variables
+
+    public boolean valstring(String s) {
+        int i;
+        for (i = 0; i < s.length(); i++) {
+            if (Character.isAlphabetic(s.charAt(i)) == false) {
+                return false;
+            }
+        }
+        return true;
+
+    }
+    
+    private boolean valage(String tage) {
+        int i;
+        for (i = 0; i < tage.length(); i++) {
+            if (Character.isDigit(tage.charAt(i)) == false) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean valnumber(String tmobileno) {
+        int i;
+        for (i = 0; i < tmobileno.length(); i++) {
+            if (Character.isDigit(tmobileno.charAt(i)) == false) {
+                return false;
+            }
+        }
+        if (i!=10)
+            return false;
+        else return true;
+    }
+
+    private boolean valemailid(String temailid) {
+
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."
+                + "[a-zA-Z0-9_+&*-]+)*@"
+                + "(?:[a-zA-Z0-9-]+\\.)+[a-z"
+                + "A-Z]{2,7}$";
+
+        Pattern pat = Pattern.compile(emailRegex);
+
+        return pat.matcher(temailid).matches();
+
+    }
+
 }
