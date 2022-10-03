@@ -15,7 +15,7 @@ public class Employee {
     private int empid;
     private int age;
     private String gender;
-    //private String startdate;
+    private String startdate;
     private String level;
     private String teaminfo;
     private String postitle;
@@ -84,7 +84,7 @@ public class Employee {
     public void setGender(String gender) {
         this.gender = gender;
     }
-/*
+
     public String getStartdate() {
         return startdate;
     }
@@ -92,7 +92,7 @@ public class Employee {
     public void setStartdate(String startdate) {
         this.startdate = startdate;
     }
-*/
+
     public String getLevel() {
         return level;
     }

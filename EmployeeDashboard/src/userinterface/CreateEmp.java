@@ -267,9 +267,9 @@ public class CreateEmp extends javax.swing.JPanel {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(221, 221, 221)
+                        .addGap(219, 219, 219)
                         .addComponent(btnsubmit)
-                        .addGap(50, 50, 50)
+                        .addGap(18, 18, 18)
                         .addComponent(btnclear))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(20, 20, 20)
@@ -291,11 +291,11 @@ public class CreateEmp extends javax.swing.JPanel {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnsubmit)
                     .addComponent(btnclear))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -314,7 +314,7 @@ public class CreateEmp extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -335,6 +335,7 @@ public class CreateEmp extends javax.swing.JPanel {
         tfteaminfo.setText("");
         tfpostitle.setText("");
         listgender.clearSelection();
+        
     }//GEN-LAST:event_btnclearActionPerformed
 
     private void btnsubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsubmitActionPerformed
@@ -355,7 +356,7 @@ public class CreateEmp extends javax.swing.JPanel {
                     "Try Again",
                     JOptionPane.ERROR_MESSAGE);
         } else {
-            Employee emp = catalog.addnewemployee();
+            Employee emp = new Employee();
             if (valstring(tfname) == false || valstring(tlname) == false) {
                 JOptionPane.showMessageDialog(this, "Please Enter Name in Proper format",
                         "Try Again",
@@ -393,9 +394,9 @@ public class CreateEmp extends javax.swing.JPanel {
             emp.setPostitle(tpostitle);
             emp.setGender(tgender);
             emp.setEmpid();
-            JOptionPane.showMessageDialog(this,tgender);
+            emp.getStartdate();
             if (er!=true){
-            
+            catalog.addnewemployee(emp);
             JOptionPane.showMessageDialog(this, "Successfully Employee Profile Created!!!");
 
             tffirstname.setText("");
@@ -407,6 +408,13 @@ public class CreateEmp extends javax.swing.JPanel {
             tfteaminfo.setText("");
             tfpostitle.setText("");
             listgender.clearSelection();}
+            else {
+               
+                    catalog.deleteemprec(0);
+                    
+                }
+            
+            
         }
 
 
