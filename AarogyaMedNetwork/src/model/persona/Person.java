@@ -10,27 +10,42 @@ import java.util.ArrayList;
  */
 public class Person {
     //Person is a general class for Patient, Doctor, Staff...
-    protected static int personid =1000; //includes Patient, Doctor, Staff...
+    protected static int personcnt =1000; //includes Patient, Doctor, Staff...
+    protected int personid;
     protected String firstname;
     protected String lastname;
     protected String birthdate; //mmddyyyy
+    protected int age;
     protected String gender;    
     protected String email;
-    protected int mobileno;
-    ArrayList<Address> add1  ;
+    protected String mobileno;
+    protected int address_id  ;
 
-    public Person(ArrayList<Address> add1) {
-        this.add1 = add1;
+    public Person() {
+        
     }
 
-    public static int getPersonid() {
+    public static int getPersoncnt() {
+        return personcnt;
+    }
+
+    public static void setPersoncnt(int personcnt) {
+        Person.personcnt = personcnt;
+    }
+    
+    public static void setPersoncnt() {
+        Person.personcnt = personcnt +1;
+    }
+    public  int getPersonid() {
         return personid;
     }
 
-    public static void setPersonid() {
+    public  void setPersonid() {
         personid = personid + 1;
     }
-
+    public  void setPersonid(int ipersonid) {
+        personid = ipersonid;
+    } 
     public String getFirstname() {
         return firstname;
     }
@@ -71,20 +86,28 @@ public class Person {
         this.email = email;
     }
 
-    public int getMobileno() {
+    public String getMobileno() {
         return mobileno;
     }
 
-    public void setMobileno(int mobileno) {
+    public void setMobileno(String mobileno) {
         this.mobileno = mobileno;
     }
 
-    public ArrayList<Address> getAdd1() {
-        return add1;
+    public int getAddressid() {
+        return address_id;
     }
 
-    public void setAdd1(ArrayList<Address> add1) {
-        this.add1 = add1;
+    public void setAddressid(int address_id) {
+        this.address_id = address_id;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
     
 }

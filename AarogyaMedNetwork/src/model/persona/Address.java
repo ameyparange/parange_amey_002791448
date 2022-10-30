@@ -10,8 +10,8 @@ package model.persona;
  */
 public class Address {
     protected static int address_id=1;
-    protected String Address1;
-    protected String Address2;
+    protected String Street;
+    protected String Unit;
     protected String City;
     protected String State;
     protected int zipcode;
@@ -27,20 +27,20 @@ public class Address {
         address_id = address_id + 1;
     }
 
-    public String getAddress1() {
-        return Address1;
+    public String getStreet() {
+        return Street;
     }
 
-    public void setAddress1(String Address1) {
-        this.Address1 = Address1;
+    public void setStreet(String Street) {
+        this.Street = Street;
     }
 
-    public String getAddress2() {
-        return Address2;
+    public String getUnit() {
+        return Unit;
     }
 
-    public void setAddress2(String Address2) {
-        this.Address2 = Address2;
+    public void setUnit(String Unit) {
+        this.Unit = Unit;
     }
 
     public String getCity() {
@@ -66,7 +66,5 @@ public class Address {
     public void setZipcode(int zipcode) {
         this.zipcode = zipcode;
     }
-
-    
     
 }

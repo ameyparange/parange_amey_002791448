@@ -4,6 +4,21 @@
  */
 package userinterface;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.ObjectOutputStream;
+import javax.swing.JFrame;
+import java.sql.*;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import model.patienta.Patient;
+import model.patienta.Patientdirectory;
+import userinterface.patient.PatientRegister;
+import userinterface.patient.PatientView;
+
 /**
  *
  * @author amey8
@@ -13,10 +28,16 @@ public class Homepagemjf extends javax.swing.JFrame {
     /**
      * Creates new form Homepagemjf
      */
+    public Patientdirectory patdir;
+    
     public Homepagemjf() {
         initComponents();
+        patdir = new Patientdirectory();
     }
 
+    //*************JDBC CONNECTION****************************//
+    //Connection con;
+    //PreparedStatement pet;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,18 +49,25 @@ public class Homepagemjf extends javax.swing.JFrame {
 
         jSplitPane1 = new javax.swing.JSplitPane();
         jPRcontent1 = new javax.swing.JPanel();
-        javax.swing.JButton btnSubmit1 = new javax.swing.JButton();
-        javax.swing.JButton btnClear1 = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
         jPLmenu1 = new javax.swing.JPanel();
         javax.swing.JButton btnHome = new javax.swing.JButton();
-        javax.swing.JButton btnHome2 = new javax.swing.JButton();
+        javax.swing.JButton btnLogin = new javax.swing.JButton();
+        javax.swing.JButton btnRegister = new javax.swing.JButton();
+        javax.swing.JButton btnview = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         javax.swing.JLabel jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 204, 204));
         setMinimumSize(new java.awt.Dimension(800, 500));
-        setPreferredSize(new java.awt.Dimension(800, 500));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jSplitPane1.setBackground(new java.awt.Color(153, 255, 255));
         jSplitPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -50,57 +78,15 @@ public class Homepagemjf extends javax.swing.JFrame {
         jPRcontent1.setBackground(new java.awt.Color(204, 204, 255));
         jPRcontent1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 255, 255)));
 
-        btnSubmit1.setBackground(new java.awt.Color(204, 204, 204));
-        btnSubmit1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnSubmit1.setText("Submit");
-        btnSubmit1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnSubmit1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSubmit1ActionPerformed(evt);
-            }
-        });
-
-        btnClear1.setBackground(new java.awt.Color(204, 204, 204));
-        btnClear1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnClear1.setText("Clear");
-        btnClear1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 522, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 155, Short.MAX_VALUE)
-        );
-
         javax.swing.GroupLayout jPRcontent1Layout = new javax.swing.GroupLayout(jPRcontent1);
         jPRcontent1.setLayout(jPRcontent1Layout);
         jPRcontent1Layout.setHorizontalGroup(
             jPRcontent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPRcontent1Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(91, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPRcontent1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnSubmit1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
-                .addComponent(btnClear1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(231, 231, 231))
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         jPRcontent1Layout.setVerticalGroup(
             jPRcontent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPRcontent1Layout.createSequentialGroup()
-                .addGap(68, 68, 68)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPRcontent1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnClear1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSubmit1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(151, Short.MAX_VALUE))
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         jSplitPane1.setRightComponent(jPRcontent1);
@@ -112,11 +98,41 @@ public class Homepagemjf extends javax.swing.JFrame {
         btnHome.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnHome.setText("Home");
         btnHome.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnHome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHomeActionPerformed(evt);
+            }
+        });
 
-        btnHome2.setBackground(new java.awt.Color(204, 204, 204));
-        btnHome2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnHome2.setText("Login");
-        btnHome2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnLogin.setBackground(new java.awt.Color(204, 204, 204));
+        btnLogin.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnLogin.setText("Login");
+        btnLogin.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
+
+        btnRegister.setBackground(new java.awt.Color(204, 204, 204));
+        btnRegister.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnRegister.setText("Register");
+        btnRegister.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnRegister.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegisterActionPerformed(evt);
+            }
+        });
+
+        btnview.setBackground(new java.awt.Color(204, 204, 204));
+        btnview.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnview.setText("View");
+        btnview.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnview.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnviewActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPLmenu1Layout = new javax.swing.GroupLayout(jPLmenu1);
         jPLmenu1.setLayout(jPLmenu1Layout);
@@ -125,8 +141,10 @@ public class Homepagemjf extends javax.swing.JFrame {
             .addGroup(jPLmenu1Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addGroup(jPLmenu1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnview, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnHome2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
         jPLmenu1Layout.setVerticalGroup(
@@ -135,11 +153,28 @@ public class Homepagemjf extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnHome2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(323, Short.MAX_VALUE))
+                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnview, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(201, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(jPLmenu1);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 544, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 398, Short.MAX_VALUE)
+        );
+
+        jSplitPane1.setRightComponent(jPanel1);
 
         jLabel1.setBackground(new java.awt.Color(204, 204, 255));
         jLabel1.setFont(new java.awt.Font("SansSerif", 3, 24)); // NOI18N
@@ -174,14 +209,84 @@ public class Homepagemjf extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSubmit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmit1ActionPerformed
+    private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnSubmit1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
+        // TODO add your handling code here:
+        PatientRegister patreg = new PatientRegister(patdir);
+        jSplitPane1.setRightComponent(patreg);
+        /*
+        PRegister frame = new PRegister(  ); 
+        String s = "yedya";
+        
+        ArrayList<String> al = new ArrayList<String>() ;
+        al.add(s);
+        al.add("tu");
+        try 
+        {
+//do something with your ArrayList 
+       FileOutputStream fos =  new FileOutputStream("temp.txt") ;
+      ObjectOutputStream oos = new ObjectOutputStream(fos); 
+        oos.writeObject(al) ;
+        frame.assignval(al);
+        frame.setVisible(true);
+       oos.close();
+        }
+        catch (Exception e){
+            System.out.println("Errr");}
+        dispose();
+         */
+    }//GEN-LAST:event_btnRegisterActionPerformed
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        // TODO add your handling code here:
+        LoginMain loginmain = new LoginMain();
+        jSplitPane1.setRightComponent(loginmain);
+    }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnHomeActionPerformed
+
+    private void btnviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnviewActionPerformed
+        // TODO add your handling code here:
+        PatientView patview = new PatientView(patdir);
+        jSplitPane1.setRightComponent(patview);
+    }//GEN-LAST:event_btnviewActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_formWindowClosed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        try ( BufferedWriter wr = new BufferedWriter(new FileWriter("files/patient.csv"))) {
+            String line = "person_id,patient_id, firstname, lastname, age, gender,mobileno, email,  address_id";
+            int i=0;
+            String rec;
+            wr.write(line);
+            for (Patient p : patdir.getPatientcatalog()){
+                wr.newLine() ;
+                rec=p.getPersonid()+","+p.getPatient_id()+","+p.getFirstname()+","+p.getLastname()+","+p.getAge()+","+p.getGender()+","+p.getMobileno()+","+p.getEmail();
+                wr.append(rec);
+            }
+             
+            wr.close();
+        }
+    
+    catch (Exception e
+
+    
+        ) {
+            System.out.println("File Not Found1;");
+    }
+    }//GEN-LAST:event_formWindowClosing
+
+/**
+ * @param args the command line arguments
+ */
+public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -192,16 +297,28 @@ public class Homepagemjf extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                }
+
+}
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Homepagemjf.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Homepagemjf.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Homepagemjf.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Homepagemjf.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Homepagemjf.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+} catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Homepagemjf.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+} catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Homepagemjf.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Homepagemjf.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
