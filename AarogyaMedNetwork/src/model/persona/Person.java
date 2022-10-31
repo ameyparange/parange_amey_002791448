@@ -41,7 +41,8 @@ public class Person {
     }
 
     public  void setPersonid() {
-        personid = personid + 1;
+        personid = personcnt;
+        setPersoncnt();
     }
     public  void setPersonid(int ipersonid) {
         personid = ipersonid;

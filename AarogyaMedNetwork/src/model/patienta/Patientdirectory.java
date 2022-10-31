@@ -25,9 +25,7 @@ public class Patientdirectory {
     public Patientdirectory() {
         this.patientcatalog = new ArrayList<Patient>();
         Patient pat;
-        
-        
-            try ( BufferedReader br = new BufferedReader(new FileReader("files/patient.csv"))) {
+                try ( BufferedReader br = new BufferedReader(new FileReader("files/patient.csv"))) {
                 String line;
                 int i = 0,tperson_id=0,tpatientid=0;
                 while ((line = br.readLine()) != null) {
@@ -39,18 +37,19 @@ public class Patientdirectory {
                         System.out.println(line);
                         String[] values = line.split(",");
                         pat = new Patient(Integer.valueOf(values[0]), Integer.valueOf(values[1]), values[2], values[3],
-                                Integer.valueOf(values[4]), values[5], values[7], values[6], 7667// Integer.valueOf(values[8])
+                                Integer.valueOf(values[4]), values[5], values[7], values[6], Integer.valueOf(values[8]),
+                                        values[9], values[10] // Integer.valueOf(values[8])
                         );
                         System.out.println(pat.getFirstname());
                         tperson_id=Integer.valueOf(values[0]);
                         tpatientid=Integer.valueOf(values[1]);
-
+                          
                         this.addnewpatient(pat);
                         
                     }
                     if (tperson_id!=0&&tpatientid!=0)
                     {
-                        Person.setPersoncnt(tperson_id);
+                        Patient.setPersoncnt(tperson_id);
                         Patient.setPatient_cnt(tpatientid);
                     }
                 }
@@ -84,7 +83,7 @@ public class Patientdirectory {
 
     public void deletepatientrec(int pat) {
         //catalog.remove(emp);
-        Patient p = new Patient();
+        Patient p ;
         int i;
         for (i = 0; i < 1000; i++) {
             p = patientcatalog.get(i);
@@ -98,7 +97,7 @@ public class Patientdirectory {
     }
 
     public Patient searchIndexPat(int idx) {
-        Patient p = new Patient();
+        Patient p ;
         int i;
         for (i = 0; i < 1000; i++) {
             p = patientcatalog.get(i);
@@ -108,4 +107,5 @@ public class Patientdirectory {
         }
         return patientcatalog.get(i);
     }
+    
 }

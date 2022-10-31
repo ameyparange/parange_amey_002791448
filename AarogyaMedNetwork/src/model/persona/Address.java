@@ -9,7 +9,8 @@ package model.persona;
  * @author amey8
  */
 public class Address {
-    protected static int address_id=1;
+    protected static int add_cnt= 1;
+    protected int address_id;
     protected String Street;
     protected String Unit;
     protected String City;
@@ -18,14 +19,38 @@ public class Address {
     
     public Address() {
     }
-    
-    public static int getAddress_id() {
+    public Address(int iaddress_id,String iStreet,String iUnit,String iCity,String iState,int izipcode) {
+        this.setAddress_id(iaddress_id);
+        this.setStreet(iStreet);
+        this.setUnit(iUnit);
+        this.setCity(iCity);
+        this.setState(iState);
+        this.setZipcode(izipcode);
+    }
+
+    public static int getAdd_cnt() {
+        return add_cnt;
+    }
+
+    public static void setAdd_cnt() {
+        Address.add_cnt = add_cnt+1;
+    }
+    public static void setAdd_cnt(int iadd_cnt) {
+        Address.add_cnt = add_cnt+1;
+    }
+    public  int getAddress_id() {
         return address_id;
     }
 
-    public static void setAddress_id() {
-        address_id = address_id + 1;
+    public  void setAddress_id() {
+        address_id = getAdd_cnt() + 1;
+        setAdd_cnt();
     }
+    
+    public  void setAddress_id(int iaddress_id) {
+        address_id = iaddress_id;
+    }
+
 
     public String getStreet() {
         return Street;

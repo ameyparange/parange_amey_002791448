@@ -1,3 +1,2 @@
 person_id,patient_id, firstname, lastname, age, gender,mobileno, email,  address_id
- ,100,Amey,Parange,25,Male,44.0,amey8172@gmail.com
- ,101,ad,asf,23,Male,1234567890,asd@gh.hj
+1000,101,Amey,Parange,25,Male,0123456789,amey8172@gmail.com

@@ -14,8 +14,10 @@ import javax.swing.JFrame;
 import java.sql.*;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import model.confidential.Fileload;
 import model.patienta.Patient;
 import model.patienta.Patientdirectory;
+import model.persona.Community;
 import userinterface.patient.PatientRegister;
 import userinterface.patient.PatientView;
 
@@ -29,10 +31,11 @@ public class Homepagemjf extends javax.swing.JFrame {
      * Creates new form Homepagemjf
      */
     public Patientdirectory patdir;
-    
+    public Community community;
     public Homepagemjf() {
         initComponents();
         patdir = new Patientdirectory();
+        community= new Community();
     }
 
     //*************JDBC CONNECTION****************************//
@@ -213,29 +216,9 @@ public class Homepagemjf extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         // TODO add your handling code here:
-        PatientRegister patreg = new PatientRegister(patdir);
+        PatientRegister patreg = new PatientRegister(patdir,community);
         jSplitPane1.setRightComponent(patreg);
-        /*
-        PRegister frame = new PRegister(  ); 
-        String s = "yedya";
         
-        ArrayList<String> al = new ArrayList<String>() ;
-        al.add(s);
-        al.add("tu");
-        try 
-        {
-//do something with your ArrayList 
-       FileOutputStream fos =  new FileOutputStream("temp.txt") ;
-      ObjectOutputStream oos = new ObjectOutputStream(fos); 
-        oos.writeObject(al) ;
-        frame.assignval(al);
-        frame.setVisible(true);
-       oos.close();
-        }
-        catch (Exception e){
-            System.out.println("Errr");}
-        dispose();
-         */
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
@@ -250,7 +233,7 @@ public class Homepagemjf extends javax.swing.JFrame {
 
     private void btnviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnviewActionPerformed
         // TODO add your handling code here:
-        PatientView patview = new PatientView(patdir);
+        PatientView patview = new PatientView(patdir,community);
         jSplitPane1.setRightComponent(patview);
     }//GEN-LAST:event_btnviewActionPerformed
 
@@ -261,7 +244,10 @@ public class Homepagemjf extends javax.swing.JFrame {
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
-        try ( BufferedWriter wr = new BufferedWriter(new FileWriter("files/patient.csv"))) {
+        Fileload fileload = new Fileload();
+        fileload.loadpatientfile( patdir);
+        fileload.loadaddressfile(community);
+        /*try ( BufferedWriter wr = new BufferedWriter(new FileWriter("files/patient.csv")) ) {
             String line = "person_id,patient_id, firstname, lastname, age, gender,mobileno, email,  address_id";
             int i=0;
             String rec;
@@ -280,7 +266,7 @@ public class Homepagemjf extends javax.swing.JFrame {
     
         ) {
             System.out.println("File Not Found1;");
-    }
+    }*/
     }//GEN-LAST:event_formWindowClosing
 
 /**

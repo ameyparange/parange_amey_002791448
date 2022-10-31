@@ -13,10 +13,12 @@ public class Patient extends Person{
     static int patient_cnt=100;
     protected int patient_id;
     protected int age;
+    String username;
+    String password;
     public Patient() {
     }
     public Patient(int ipersonid ,int ipatient_id,String ifirstname,String ilastname,
-            int iage,String igender,String iemail,String imobileno,int iaddress_id ) 
+            int iage,String igender,String iemail,String imobileno,int iaddress_id , String iusername, String ipassword) 
     {
         setPersonid(ipersonid);
         this.setPatient_id(ipatient_id);
@@ -27,6 +29,8 @@ public class Patient extends Person{
         this.setEmail(iemail);
         this.setMobileno(imobileno);
         this.setAddressid(iaddress_id);
+        this.setUsername(iusername);
+        this.setPassword(ipassword);
     }
 
     public static int getPatient_cnt() {
@@ -55,7 +59,7 @@ public class Patient extends Person{
     }
 
     public  void setPersonid() {
-        personid = personid ;
+        personid = getPersoncnt() ;
         setPersoncnt();
     }
     public  void setPersonid(int ipersonid) {
@@ -123,6 +127,22 @@ public class Patient extends Person{
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
     
 }

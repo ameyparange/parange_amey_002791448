@@ -10,6 +10,7 @@ import model.patienta.Patient;
 import model.confidential.Validations;
 import model.patienta.Patientdirectory;
 import model.persona.Address;
+import model.persona.Community;
 
 /**
  *
@@ -20,16 +21,16 @@ public class PatientRegister extends javax.swing.JPanel {
     /**
      * Creates new form PatientRegister
      */
-    
     Patientdirectory patdir;
     Patient currpat;
-    public PatientRegister(Patientdirectory patdir) {
+    Community community;
+
+    public PatientRegister(Patientdirectory patdir, Community community) {
         initComponents();
-        this.patdir=patdir;
-        
+        this.patdir = patdir;
+        this.community = community;
     }
-    
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -39,7 +40,6 @@ public class PatientRegister extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -55,8 +55,6 @@ public class PatientRegister extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         tfmobileno = new javax.swing.JTextField();
         tfemailid = new javax.swing.JTextField();
-        javax.swing.JButton btnsubmit = new javax.swing.JButton();
-        javax.swing.JButton btnclear = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -68,9 +66,15 @@ public class PatientRegister extends javax.swing.JPanel {
         tfstate = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         tfzipcode = new javax.swing.JTextField();
+        javax.swing.JButton btnsubmit = new javax.swing.JButton();
+        javax.swing.JButton btnclear = new javax.swing.JButton();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        tfusername = new javax.swing.JTextField();
+        tfpassword = new javax.swing.JTextField();
 
-        jPanel3.setBackground(new java.awt.Color(204, 204, 255));
-        jPanel3.setBorder(new javax.swing.border.MatteBorder(null));
+        setBackground(new java.awt.Color(204, 204, 255));
 
         jPanel4.setBackground(new java.awt.Color(204, 204, 204));
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), "Personal Details", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 3, 18))); // NOI18N
@@ -134,7 +138,7 @@ public class PatientRegister extends javax.swing.JPanel {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -194,22 +198,6 @@ public class PatientRegister extends javax.swing.JPanel {
                     .addComponent(jLabel7)
                     .addComponent(tfemailid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
-
-        btnsubmit.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnsubmit.setText("Submit");
-        btnsubmit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnsubmitActionPerformed(evt);
-            }
-        });
-
-        btnclear.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnclear.setText("Clear");
-        btnclear.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnclearActionPerformed(evt);
-            }
-        });
 
         jPanel5.setBackground(new java.awt.Color(204, 204, 204));
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), "Address", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 3, 18))); // NOI18N
@@ -280,47 +268,66 @@ public class PatientRegister extends javax.swing.JPanel {
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(tfstate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfzipcode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel12)))
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tfzipcode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel12)))
+                    .addComponent(jLabel11))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(tfcity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(221, 221, 221)
-                .addComponent(btnsubmit)
-                .addGap(18, 18, 18)
-                .addComponent(btnclear)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        btnsubmit.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnsubmit.setText("Submit");
+        btnsubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnsubmitActionPerformed(evt);
+            }
+        });
+
+        btnclear.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnclear.setText("Clear");
+        btnclear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnclearActionPerformed(evt);
+            }
+        });
+
+        jPanel6.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), "Credentials", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 3, 18))); // NOI18N
+
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel13.setText("Username");
+        jLabel13.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel14.setText("Password");
+        jLabel14.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnsubmit)
-                    .addComponent(btnclear))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(tfusername, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfpassword))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jLabel13)
+                .addComponent(tfusername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel14)
+                .addComponent(tfpassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -328,15 +335,41 @@ public class PatientRegister extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(221, 221, 221)
+                .addComponent(btnsubmit)
+                .addGap(18, 18, 18)
+                .addComponent(btnclear)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 94, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnsubmit)
+                    .addComponent(btnclear))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -357,90 +390,117 @@ public class PatientRegister extends javax.swing.JPanel {
         String tstreet = tfstreet.getText();
         String tzipcode = tfzipcode.getText();
         String tstate = tfstate.getText();
+        String tusername = tfusername.getText();
+        String tpassword = tfpassword.getText();
+
         boolean er = false;
 
         Validations val = new Validations();
         try {
-        if (tfname.isEmpty() || tlname.isEmpty() || tage.isEmpty() || tmobileno.isEmpty() || tgender.isEmpty()
-                || temailid.isEmpty() || tunit.isEmpty()
-                || tcity.isEmpty() || tstreet.isEmpty() || tzipcode.isEmpty() || tstate.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Cannot enter empty field",
-                    "Try Again",
-                    JOptionPane.ERROR_MESSAGE);
-        } else {
-            //Employee emp = new Employee();
-            Patient pat = new Patient();
-            Address add = new Address();
-            if (val.valstring(tfname) == false || val.valstring(tlname) == false) {
-                JOptionPane.showMessageDialog(this, "Please Enter Name in Proper format",
+            if (tfname.isEmpty() || tlname.isEmpty() || tage.isEmpty() || tmobileno.isEmpty() || tgender.isEmpty()
+                    || listgender.getSelectedValue().isEmpty() || temailid.isEmpty() || tunit.isEmpty()
+                    || tcity.isEmpty() || tstreet.isEmpty() || tzipcode.isEmpty() || tstate.isEmpty()
+                    || tusername.isEmpty() || tpassword.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Cannot enter empty field",
                         "Try Again",
                         JOptionPane.ERROR_MESSAGE);
-                er = true;
             } else {
-                pat.setFirstname(tfname);
-                pat.setLastname(tlname);
-            }
-            if (!val.valage(tage) || Integer.valueOf(tage) <= 0 || Integer.valueOf(tage) > 200) {
-                JOptionPane.showMessageDialog(this, "Please Enter Valid Age",
-                        "Try Again",
-                        JOptionPane.ERROR_MESSAGE);
-                er = true;
-            } else {
-                pat.setAge(Integer.valueOf(tage));
-                pat.setGender(tgender);
-            }
-            if (!val.valnumber(tmobileno) ) {
-                JOptionPane.showMessageDialog(this, "Please Enter Valid Mobile Number",
-                        "Try Again",
-                        JOptionPane.ERROR_MESSAGE);
-                er = true;
-            } else {
-                pat.setMobileno(tmobileno);
-            }
+                //Employee emp = new Employee();
+                Patient pat = new Patient();
+                Address add = new Address();
+                pat.setPersonid(9999);
+                pat.setPatient_id(9999);
+                add.setAddress_id(9999);
+                if (val.valstring(tfname) == false || val.valstring(tlname) == false) {
+                    JOptionPane.showMessageDialog(this, "Please Enter Name in Proper format",
+                            "Try Again",
+                            JOptionPane.ERROR_MESSAGE);
+                    er = true;
+                } else {
+                    pat.setFirstname(tfname);
+                    pat.setLastname(tlname);
+                }
+                if (!val.valage(tage) || Integer.valueOf(tage) <= 0 || Integer.valueOf(tage) > 200) {
+                    JOptionPane.showMessageDialog(this, "Please Enter Valid Age",
+                            "Try Again",
+                            JOptionPane.ERROR_MESSAGE);
+                    er = true;
+                } else {
+                    pat.setAge(Integer.valueOf(tage));
+                    pat.setGender(tgender);
+                }
+                if (!val.valnumber(tmobileno)) {
+                    JOptionPane.showMessageDialog(this, "Please Enter Valid Mobile Number",
+                            "Try Again",
+                            JOptionPane.ERROR_MESSAGE);
+                    er = true;
+                } else {
+                    pat.setMobileno(tmobileno);
+                }
 
-            if (val.valemailid(temailid) == false ) {
-                JOptionPane.showMessageDialog(this, "Please Enter Valid Email id",
-                        "Try Again",
-                        JOptionPane.ERROR_MESSAGE);
-                er = true;
-            } else {
-                pat.setEmail(temailid);
-            }
-            if (val.valstring(tcity) == false ) {
-                JOptionPane.showMessageDialog(this, "Please Enter City Name in Proper format",
-                        "Try Again",
-                        JOptionPane.ERROR_MESSAGE);
-                er = true;
-            } else {
-                add.setCity(tcity); 
-                add.setUnit(tunit);
-                add.setStreet(tstreet);
-            }
+                if (val.valemailid(temailid) == false) {
+                    JOptionPane.showMessageDialog(this, "Please Enter Valid Email id",
+                            "Try Again",
+                            JOptionPane.ERROR_MESSAGE);
+                    er = true;
+                } else {
+                    pat.setEmail(temailid);
+                }
+                if (val.valstring(tcity) == false) {
+                    JOptionPane.showMessageDialog(this, "Please Enter City Name in Proper format",
+                            "Try Again",
+                            JOptionPane.ERROR_MESSAGE);
+                    er = true;
+                } else {
 
-            if (val.valstring(tstate) == false ) {
-                JOptionPane.showMessageDialog(this, "Please Enter Name in Proper format",
-                        "Try Again",
-                        JOptionPane.ERROR_MESSAGE);
-                er = true;
-            } else {
-                add.setState(tstate); 
-            }
-            if (!val.valnum(tzipcode)) {
-                JOptionPane.showMessageDialog(this, "Please Enter Valid Zipcode",
-                        "Try Again",
-                        JOptionPane.ERROR_MESSAGE);
-                er = true;
-            } else {
-               // pat.setMobileno(Integer.valueOf(tzipcode));
-            }
-            if (er != true) {
-                //catalog.addnewemployee(emp);
-                pat.setPersonid();
-                pat.setPatient_id();
-                System.out.println(pat.getPatient_id());
-                patdir.addnewpatient(pat);
-                JOptionPane.showMessageDialog(this, "Successfully Employee Profile Created!!!");
-                /*
+                    add.setCity(tcity);
+                    add.setUnit(tunit);
+                    add.setStreet(tstreet);
+                }
+
+                if (val.valstring(tstate) == false) {
+                    JOptionPane.showMessageDialog(this, "Please Enter Name in Proper format",
+                            "Try Again",
+                            JOptionPane.ERROR_MESSAGE);
+                    er = true;
+                } else {
+                    add.setState(tstate);
+                }
+                if (!val.valnum(tzipcode)) {
+                    JOptionPane.showMessageDialog(this, "Please Enter Valid Zipcode",
+                            "Try Again",
+                            JOptionPane.ERROR_MESSAGE);
+                    er = true;
+                } else {
+                    add.setZipcode(Integer.valueOf(tzipcode));
+                    // pat.setMobileno(Integer.valueOf(tzipcode));
+                }
+                if (val.valpassword(tpassword, patdir.getPatientcatalog()) == false) {
+                    JOptionPane.showMessageDialog(this, "Please Password in Proper format (a-z,A-Z,_,$,@)",
+                            "Try Again",
+                            JOptionPane.ERROR_MESSAGE);
+                    er = true;
+                } else {
+                    pat.setPassword(tpassword);
+                }
+                if (val.valusername(tusername, patdir.getPatientcatalog()) == false) {
+                    JOptionPane.showMessageDialog(this, "Please username in Proper format (a-z,A-Z,_)",
+                            "Try Again",
+                            JOptionPane.ERROR_MESSAGE);
+                    er = true;
+                } else {
+                    pat.setUsername(tusername);
+                }
+                if (er != true) {
+                    //catalog.addnewemployee(emp);
+                    pat.setPersonid();
+                    pat.setPatient_id();
+                    add.setAddress_id();
+                    pat.setAddressid(add.getAddress_id());
+                    patdir.addnewpatient(pat);
+                    community.addnewaddress(add);
+                    JOptionPane.showMessageDialog(this, "Successfully Employee Profile Created!!!");
+                    /*
                 tffirstname.setText("");
                 tflastname.setText("");
                 tfage.setText("");
@@ -449,17 +509,24 @@ public class PatientRegister extends javax.swing.JPanel {
                 tfemailid.setText("");
                 tfunit.setText("");
                 tfcity.setText("");
-                listgender.clearSelection();*/
-            } else {
+                listgender.clearSelection();
+                tfstate.setText("");
+                tfzipcode.setText("");
+                tfusername.setText("");
+                tfpassword.setText("");*/
+                } else {
 
-                //catalog.deleteemprec(0);
-                patdir.deletepatientrec(100);
+                    //catalog.deleteemprec(0);
+                    patdir.deletepatientrec(9999);
+                    community.deletepatientrec(9999);
+                }
+
             }
-
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Please Enter Valid Values",
+                    "Try Again",
+                    JOptionPane.ERROR_MESSAGE);
         }
-        }catch (Exception e){JOptionPane.showMessageDialog(this, "Please Enter Valid Values",
-                        "Try Again",
-                        JOptionPane.ERROR_MESSAGE);}
     }//GEN-LAST:event_btnsubmitActionPerformed
 
     private void btnclearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnclearActionPerformed
@@ -473,6 +540,10 @@ public class PatientRegister extends javax.swing.JPanel {
         tfunit.setText("");
         tfcity.setText("");
         listgender.clearSelection();
+        tfstate.setText("");
+        tfzipcode.setText("");
+        tfusername.setText("");
+        tfpassword.setText("");
 
     }//GEN-LAST:event_btnclearActionPerformed
 
@@ -485,6 +556,8 @@ public class PatientRegister extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -494,9 +567,9 @@ public class PatientRegister extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<String> listgender;
     private javax.swing.JTextField tfage;
@@ -505,9 +578,11 @@ public class PatientRegister extends javax.swing.JPanel {
     private javax.swing.JTextField tffirstname;
     private javax.swing.JTextField tflastname;
     private javax.swing.JTextField tfmobileno;
+    private javax.swing.JTextField tfpassword;
     private javax.swing.JTextField tfstate;
     private javax.swing.JTextField tfstreet;
     private javax.swing.JTextField tfunit;
+    private javax.swing.JTextField tfusername;
     private javax.swing.JTextField tfzipcode;
     // End of variables declaration//GEN-END:variables
 
