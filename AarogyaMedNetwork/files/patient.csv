@@ -1,2 +1,3 @@
-person_id,patient_id, firstname, lastname, age, gender,mobileno, email,  address_id
-1000,101,Amey,Parange,25,Male,0123456789,amey8172@gmail.com
+person_id,patient_id,firstname,lastname,age,gender,mobileno,email,address_id,username,password
+1,1,Amey,Parange,25,Male,0123456789,amey8172@gmail.com,1,parangea,admin1234
+2,2,Akash,Meena,25,Male,9876543210,akashmeena@gmail.com,2,akashmeena,akashmeena

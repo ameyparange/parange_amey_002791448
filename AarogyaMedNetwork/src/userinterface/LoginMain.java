@@ -3,8 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package userinterface;
+
 import javax.swing.JOptionPane;
 import model.confidential.*;
+
 /**
  *
  * @author amey8
@@ -14,8 +16,15 @@ public class LoginMain extends javax.swing.JPanel {
     /**
      * Creates new form LoginMain
      */
+    Authentication auth;
+
+    public LoginMain(Authentication auth) {
+        initComponents();
+        this.auth = auth;
+    }
     public LoginMain() {
         initComponents();
+        this.auth = auth;
     }
 
     /**
@@ -169,25 +178,21 @@ public class LoginMain extends javax.swing.JPanel {
         // TODO add your handling code here:
         try {
             Credentials cred = new Credentials();
-            Authentication auth = new Authentication();
             cred.setUsername(tfuserid.getText());
             cred.setUsertype(cbloginas.getSelectedItem().toString());
             cred.setPassword(tfpass.getText());
-            if (auth.checkauth(cred)){
-                JOptionPane.showMessageDialog(this, "Logged in as "+tfuserid.getText());
-                
-            }
-            else {
+            if (auth.checkauth(cred)) {
+                JOptionPane.showMessageDialog(this, "Logged in as " + tfuserid.getText());
+
+            } else {
                 JOptionPane.showMessageDialog(this, "Incorrect Credentials",
-                       // "Try Again"
+                        // "Try Again"
                         cred.getUsername(),
                         JOptionPane.ERROR_MESSAGE);
             }
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.println("Warning:Credentials Exception;");
-        
+
         }
     }//GEN-LAST:event_btnSubmit1ActionPerformed
 

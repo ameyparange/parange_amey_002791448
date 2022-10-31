@@ -14,44 +14,44 @@ import model.patienta.Patient;
  * @author amey8
  */
 public class Community {
-    ArrayList<Address> community ;//Address is the house of person
+
+    ArrayList<Address> community;//Address is the house of person
 
     public Community(ArrayList<Address> community) {
         this.community = community;
     }
+
     public Community() {
-        this.community = new  ArrayList<Address>();
+        this.community = new ArrayList<Address>();
         Patient pat;
         Address add;
-                try ( BufferedReader br = new BufferedReader(new FileReader("files/address.csv"))) {
-                String line;
-                int i = 0,taddress_id=0;
-                while ((line = br.readLine()) != null) {
-                    if (i == 0) {
-                        i++;
-                        System.out.println(line);
+        try ( BufferedReader br = new BufferedReader(new FileReader("files/address.csv"))) {
+            String line;
+            int i = 0, taddress_id = 0;
+            while ((line = br.readLine()) != null) {
+                if (i == 0) {
+                    i++;
+                    //System.out.println(line);
 
-                    } else {
-                        System.out.println(line);
-                        String[] values = line.split(",");
-                        
-                        add = new Address(Integer.valueOf(values[0]),values[1],values[2],values[3],values[4],Integer.valueOf(values[5]));
-                        //System.out.println(pat.getFirstname());
-                        taddress_id=Integer.valueOf(values[0]);
-                        this.addnewaddress(add);
-                        
-                        
-                    }
-                    if (taddress_id!=0)
-                    {
-                        Address.setAdd_cnt(taddress_id);
-                    }
+                } else {
+                    //System.out.println(line);
+                    String[] values = line.split(",");
+
+                    add = new Address(Integer.valueOf(values[0]), values[1], values[2], values[3], values[4], values[5]);
+                    //System.out.println(pat.getFirstname());
+                    taddress_id = Integer.valueOf(values[0]);
+                    this.addnewaddress(add);
+
                 }
-            } catch (Exception e) {
-                System.out.println(e+"address.csv");
-
+                if (taddress_id != 0) {
+                    Address.setAdd_cnt(taddress_id);
+                }
             }
-        
+        } catch (Exception e) {
+            System.out.println(e + "address.csv");
+
+        }
+
     }
 
     public ArrayList<Address> getCommunity() {
@@ -61,7 +61,7 @@ public class Community {
     public void setCommunity(ArrayList<Address> community) {
         this.community = community;
     }
-    
+
     public Address addnewaddress() {
         Address add = new Address();
         community.add(add);
@@ -77,7 +77,7 @@ public class Community {
 
     public void deletepatientrec(int pat) {
         //catalog.remove(emp);
-        Address p ;
+        Address p;
         int i;
         for (i = 0; i < 1000; i++) {
             p = community.get(i);
@@ -93,16 +93,16 @@ public class Community {
     public Address searchIndexAddress(int add_id) {
         Address p = new Address();
         int i;
-       
+
         for (i = 0; i < 1000; i++) {
-            
+
             p = community.get(i);
-            
+
             if (p.getAddress_id() == add_id) {
                 break;
             }
         }
-        
+
         return community.get(i);
     }
 }

@@ -15,11 +15,11 @@ public class Address {
     protected String Unit;
     protected String City;
     protected String State;
-    protected int zipcode;
+    protected String zipcode;
     
     public Address() {
     }
-    public Address(int iaddress_id,String iStreet,String iUnit,String iCity,String iState,int izipcode) {
+    public Address(int iaddress_id,String iStreet,String iUnit,String iCity,String iState,String izipcode) {
         this.setAddress_id(iaddress_id);
         this.setStreet(iStreet);
         this.setUnit(iUnit);
@@ -43,7 +43,7 @@ public class Address {
     }
 
     public  void setAddress_id() {
-        address_id = getAdd_cnt() + 1;
+        address_id = getAdd_cnt();
         setAdd_cnt();
     }
     
@@ -84,11 +84,11 @@ public class Address {
         this.State = State;
     }
 
-    public int getZipcode() {
+    public String getZipcode() {
         return zipcode;
     }
 
-    public void setZipcode(int zipcode) {
+    public void setZipcode(String zipcode) {
         this.zipcode = zipcode;
     }
     

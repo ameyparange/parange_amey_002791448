@@ -10,7 +10,7 @@ import model.persona.*;
  */
 public class Patient extends Person{
     
-    static int patient_cnt=100;
+    static int patient_cnt=1;
     protected int patient_id;
     protected int age;
     String username;

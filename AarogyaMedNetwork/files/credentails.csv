@@ -1,7 +1,0 @@
-userid,type,password
-pa,System Admin,admin
-pa,Patient,admin
-pa,Doctor,admin
-pa,Reception,admin
-pa,Hospital Admin,admin
-pa,Community Admin,admin

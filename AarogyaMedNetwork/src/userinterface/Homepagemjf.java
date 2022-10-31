@@ -14,6 +14,7 @@ import javax.swing.JFrame;
 import java.sql.*;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import model.confidential.Authentication;
 import model.confidential.Fileload;
 import model.patienta.Patient;
 import model.patienta.Patientdirectory;
@@ -32,10 +33,12 @@ public class Homepagemjf extends javax.swing.JFrame {
      */
     public Patientdirectory patdir;
     public Community community;
+    public Authentication auth;
     public Homepagemjf() {
         initComponents();
         patdir = new Patientdirectory();
         community= new Community();
+        auth= new Authentication();
     }
 
     //*************JDBC CONNECTION****************************//
@@ -62,7 +65,7 @@ public class Homepagemjf extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 204, 204));
-        setMinimumSize(new java.awt.Dimension(800, 500));
+        setMinimumSize(new java.awt.Dimension(950, 600));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
@@ -161,7 +164,7 @@ public class Homepagemjf extends javax.swing.JFrame {
                 .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnview, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(201, Short.MAX_VALUE))
+                .addContainerGap(207, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(jPLmenu1);
@@ -170,11 +173,11 @@ public class Homepagemjf extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 544, Short.MAX_VALUE)
+            .addGap(0, 547, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 398, Short.MAX_VALUE)
+            .addGap(0, 404, Short.MAX_VALUE)
         );
 
         jSplitPane1.setRightComponent(jPanel1);
@@ -196,7 +199,7 @@ public class Homepagemjf extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 703, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -205,7 +208,7 @@ public class Homepagemjf extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -216,14 +219,14 @@ public class Homepagemjf extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         // TODO add your handling code here:
-        PatientRegister patreg = new PatientRegister(patdir,community);
+        PatientRegister patreg = new PatientRegister(patdir,community,auth);
         jSplitPane1.setRightComponent(patreg);
         
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
-        LoginMain loginmain = new LoginMain();
+        LoginMain loginmain = new LoginMain( auth);
         jSplitPane1.setRightComponent(loginmain);
     }//GEN-LAST:event_btnLoginActionPerformed
 
@@ -247,26 +250,7 @@ public class Homepagemjf extends javax.swing.JFrame {
         Fileload fileload = new Fileload();
         fileload.loadpatientfile( patdir);
         fileload.loadaddressfile(community);
-        /*try ( BufferedWriter wr = new BufferedWriter(new FileWriter("files/patient.csv")) ) {
-            String line = "person_id,patient_id, firstname, lastname, age, gender,mobileno, email,  address_id";
-            int i=0;
-            String rec;
-            wr.write(line);
-            for (Patient p : patdir.getPatientcatalog()){
-                wr.newLine() ;
-                rec=p.getPersonid()+","+p.getPatient_id()+","+p.getFirstname()+","+p.getLastname()+","+p.getAge()+","+p.getGender()+","+p.getMobileno()+","+p.getEmail();
-                wr.append(rec);
-            }
-             
-            wr.close();
-        }
-    
-    catch (Exception e
-
-    
-        ) {
-            System.out.println("File Not Found1;");
-    }*/
+        fileload.loadcredentialsfile(auth);
     }//GEN-LAST:event_formWindowClosing
 
 /**

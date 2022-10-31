@@ -38,7 +38,9 @@ public class Validations {
 
     public boolean valnumber(String tmobileno) {
         int i;
+        
         for (i = 0; i < tmobileno.length(); i++) {
+            
             if (Character.isDigit(tmobileno.charAt(i)) == false) {
                 return false;
             }
@@ -52,7 +54,9 @@ public class Validations {
 
     public boolean valnum(String tmobileno) {
         int i;
+        
         for (i = 0; i < tmobileno.length(); i++) {
+            
             if (Character.isDigit(tmobileno.charAt(i)) == false) {
                 return false;
             }
@@ -76,27 +80,27 @@ public class Validations {
 
     public boolean valusername(String tusername, ArrayList<Patient> patientcatalog) {
 
-        Patient p;
+        
         int i;
         if (tusername.length() < 5 && tusername.length() > 16) {
             return false;
         }
         for (i = 0; i < tusername.length(); i++) {
-            if (Character.isAlphabetic(tusername.charAt(i)) || Character.isDigit(tusername.charAt(i))
-                    || tusername.charAt(i) == '_') {
-
-            } else {
-                return false;
-            }
+            if (!(Character.isAlphabetic(tusername.charAt(i)) || Character.isDigit(tusername.charAt(i))
+                    || tusername.charAt(i) == '_')) {
+                    return false;
+            } 
         }
-        for (i = 0; i < 1000; i++) {
+        i=0;
+        for (Patient p : patientcatalog) {
             p = patientcatalog.get(i);
 
             if (p.getUsername().compareToIgnoreCase(tusername) == 1) {
-                return true;
+                return false;
             }
+            i++;
         }
-        return false;
+        return true;
 
     }
 
@@ -108,15 +112,13 @@ public class Validations {
             return false;
         }
         for (i = 0; i < tpassword.length(); i++) {
-            if (Character.isAlphabetic(tpassword.charAt(i)) || Character.isDigit(tpassword.charAt(i))
-                    || tpassword.charAt(i) == '_' || tpassword.charAt(i) == '@' || tpassword.charAt(i) == '$') {
-
-            } else {
+            if (!(Character.isAlphabetic(tpassword.charAt(i)) || Character.isDigit(tpassword.charAt(i))
+                    || tpassword.charAt(i) == '_' || tpassword.charAt(i) == '@' || tpassword.charAt(i) == '$')) {
                 return false;
-            }
+            } 
         }
 
-        return false;
+        return true;
 
     }
 }

@@ -10,7 +10,7 @@ import java.util.ArrayList;
  */
 public class Person {
     //Person is a general class for Patient, Doctor, Staff...
-    protected static int personcnt =1000; //includes Patient, Doctor, Staff...
+    protected static int personcnt =1; //includes Patient, Doctor, Staff...
     protected int personid;
     protected String firstname;
     protected String lastname;
@@ -30,7 +30,7 @@ public class Person {
     }
 
     public static void setPersoncnt(int personcnt) {
-        Person.personcnt = personcnt;
+        Person.personcnt = personcnt+1;
     }
     
     public static void setPersoncnt() {

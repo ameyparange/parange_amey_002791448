@@ -1,0 +1,23 @@
+person_id,patient_id,firstname,lastname,age,gender,mobileno,email,address_id,username,password
+1,1,Amey,Parange,25,Male,0123456789,amey8172@gmail.com,1,parangea,admin1234
+2,2,Akash,Meena,25,Male,1234567890,adad@gm.com,3,akashmeena,akashmeena
+
+address_id, street, unit, city, state, zipcode
+1,27 Longwood Ave,4,Brookline,MA,02446
+3,29 Longwood Ave,2,Brookline,MA,02446
+3,133 Peterborough St,4,Boston,MA,02215
+
+
+
+userid,type,password,personid
+parangea,System Admin,admin1234,1
+parangea,Patient,admin1234,1
+parangea,Doctor,admin1234,1
+parangea,Reception,admin1234,1
+parangea,Hospital Admin,admin1234,1
+parangea,Community Admin,admin1234,1
+akashmeena,Patient,akashmeena,2
+
+files/credentials.csv
+
+files/credentials.csv

@@ -31,16 +31,16 @@ public class Patientdirectory {
                 while ((line = br.readLine()) != null) {
                     if (i == 0) {
                         i++;
-                        System.out.println(line);
+                        //System.out.println(line);
 
                     } else {
-                        System.out.println(line);
+                        //System.out.println(line);
                         String[] values = line.split(",");
                         pat = new Patient(Integer.valueOf(values[0]), Integer.valueOf(values[1]), values[2], values[3],
                                 Integer.valueOf(values[4]), values[5], values[7], values[6], Integer.valueOf(values[8]),
                                         values[9], values[10] // Integer.valueOf(values[8])
                         );
-                        System.out.println(pat.getFirstname());
+                        //System.out.println(pat.getFirstname());
                         tperson_id=Integer.valueOf(values[0]);
                         tpatientid=Integer.valueOf(values[1]);
                           

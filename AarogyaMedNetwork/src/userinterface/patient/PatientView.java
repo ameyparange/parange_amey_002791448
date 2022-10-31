@@ -21,12 +21,13 @@ public class PatientView extends javax.swing.JPanel {
      */
     Patientdirectory patdir;
     Community community;
-    public PatientView(Patientdirectory patdir,Community community) {
+
+    public PatientView(Patientdirectory patdir, Community community) {
         initComponents();
-        this.patdir=patdir;
-        this.community=community;
+        this.patdir = patdir;
+        this.community = community;
         populatetable();
-        
+
     }
 
     /**
@@ -64,6 +65,8 @@ public class PatientView extends javax.swing.JPanel {
         tpatient = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(204, 204, 255));
+        setMinimumSize(new java.awt.Dimension(750, 450));
+        setPreferredSize(new java.awt.Dimension(750, 450));
 
         jPanel4.setBackground(new java.awt.Color(204, 204, 204));
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "View", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 3, 18))); // NOI18N
@@ -162,7 +165,7 @@ public class PatientView extends javax.swing.JPanel {
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(tfempid, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -182,7 +185,7 @@ public class PatientView extends javax.swing.JPanel {
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(tfemailid, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
                             .addComponent(tfmobileno))))
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -236,6 +239,7 @@ public class PatientView extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
+        tpatient.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         tpatient.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null, null, null},
@@ -256,6 +260,7 @@ public class PatientView extends javax.swing.JPanel {
             }
         });
         tpatient.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        tpatient.setMaximumSize(new java.awt.Dimension(2147483647, 150));
         tpatient.setMinimumSize(new java.awt.Dimension(600, 80));
         tpatient.setPreferredSize(new java.awt.Dimension(600, 80));
         jScrollPane2.setViewportView(tpatient);
@@ -266,15 +271,15 @@ public class PatientView extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 662, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane2)
+                .addGap(16, 16, 16))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -282,11 +287,11 @@ public class PatientView extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(22, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -324,22 +329,22 @@ public class PatientView extends javax.swing.JPanel {
     }//GEN-LAST:event_tflevelActionPerformed
 
     private void populatetable() {
-        DefaultTableModel model = (DefaultTableModel) tpatient.getModel() ;
+        DefaultTableModel model = (DefaultTableModel) tpatient.getModel();
         model.setRowCount(0);
         Address add;
 
-        for (Patient pat: patdir.getPatientcatalog()) {
+        for (Patient pat : patdir.getPatientcatalog()) {
             Object[] row = new Object[13];
-            row[0] = pat.getUsername() ;//username
+            row[0] = pat.getUsername();//username
             row[1] = pat.getFirstname();
             row[2] = pat.getLastname();
             row[3] = pat.getAge();
             row[4] = pat.getGender();
             row[5] = pat.getMobileno();
             row[6] = pat.getEmail();
-            
-            add=community.searchIndexAddress(pat.getAddressid());
-            row[7] = add.getStreet();            
+
+            add = community.searchIndexAddress(pat.getAddressid());
+            row[7] = add.getStreet();
             row[8] = add.getUnit();
             row[9] = add.getCity();
             row[10] = add.getState();
