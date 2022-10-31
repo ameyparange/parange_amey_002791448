@@ -2,10 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package userinterface;
+package userinterface.patient;
 
+import model.confidential.Authentication;
+import model.confidential.Fileload;
 import model.patienta.Patient;
 import model.patienta.Patientdirectory;
+import model.persona.Community;
+import userinterface.Homepagemjf;
+import userinterface.patient.Patientloginview;
 
 /**
  *
@@ -16,21 +21,26 @@ public class Patientjf extends javax.swing.JFrame {
     /**
      * Creates new form Patientjf
      */
-    Patientdirectory patientdir;
-    Patient patient,currpat ;
+    Patientdirectory patdir;
+    Patient patient ;
+    Community community;
+    Authentication auth;
+    int curr_patient_id;
     public Patientjf() {
         initComponents();
-        
     }
-    public void initpatientdir(Patientdirectory patdir,Patient p)
+    public void initpatientdir(Patientdirectory patdir,int patient_id)
     {
-            patientdir=patdir; 
-            currpat =p;
+            this.patdir=patdir; 
+            curr_patient_id =patient_id;
     }
-    public void initvariables(Patient patient)
+    public void initcurrpatient(Patient patient,Community community,Patientdirectory patdir,Authentication auth)
     {
         this.patient  = patient;   
-        System.out.println(patient.getFirstname());
+        this.community=community;
+        this.patdir=patdir;
+        this.auth=auth;
+        jlusername.setText(patient.getUsername());
     }
 
     /**
@@ -47,14 +57,18 @@ public class Patientjf extends javax.swing.JFrame {
         PLeftMenu = new javax.swing.JPanel();
         jLabell = new javax.swing.JLabel();
         jlusername = new javax.swing.JLabel();
-        javax.swing.JButton btnHome = new javax.swing.JButton();
+        javax.swing.JButton btnprofile = new javax.swing.JButton();
         javax.swing.JButton btnAppointment = new javax.swing.JButton();
-        javax.swing.JButton btnRegister = new javax.swing.JButton();
+        javax.swing.JButton btnSignout = new javax.swing.JButton();
         PRightContent = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(950, 600));
-        setPreferredSize(new java.awt.Dimension(950, 600));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel1.setBackground(new java.awt.Color(204, 204, 255));
         jLabel1.setFont(new java.awt.Font("SansSerif", 3, 24)); // NOI18N
@@ -70,25 +84,27 @@ public class Patientjf extends javax.swing.JFrame {
         PLeftMenu.setOpaque(false);
 
         jLabell.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabell.setText("Logged in As");
+        jLabell.setText("Logged in as");
         jLabell.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         jlusername.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jlusername.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        btnHome.setBackground(new java.awt.Color(204, 204, 204));
-        btnHome.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnHome.setText("View Profile");
-        btnHome.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnHome.addActionListener(new java.awt.event.ActionListener() {
+        btnprofile.setBackground(new java.awt.Color(204, 204, 204));
+        btnprofile.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnprofile.setText("View Profile");
+        btnprofile.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnprofile.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnprofile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHomeActionPerformed(evt);
+                btnprofileActionPerformed(evt);
             }
         });
 
         btnAppointment.setBackground(new java.awt.Color(204, 204, 204));
         btnAppointment.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnAppointment.setText("Appointments");
+        btnAppointment.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnAppointment.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnAppointment.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -96,13 +112,14 @@ public class Patientjf extends javax.swing.JFrame {
             }
         });
 
-        btnRegister.setBackground(new java.awt.Color(204, 204, 204));
-        btnRegister.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnRegister.setText("Register");
-        btnRegister.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnRegister.addActionListener(new java.awt.event.ActionListener() {
+        btnSignout.setBackground(new java.awt.Color(204, 204, 204));
+        btnSignout.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnSignout.setText("Sign Out");
+        btnSignout.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnSignout.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnSignout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegisterActionPerformed(evt);
+                btnSignoutActionPerformed(evt);
             }
         });
 
@@ -110,30 +127,31 @@ public class Patientjf extends javax.swing.JFrame {
         PLeftMenu.setLayout(PLeftMenuLayout);
         PLeftMenuLayout.setHorizontalGroup(
             PLeftMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PLeftMenuLayout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PLeftMenuLayout.createSequentialGroup()
+                .addContainerGap(15, Short.MAX_VALUE)
                 .addGroup(PLeftMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabell, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jlusername, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(PLeftMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabell, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jlusername, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(PLeftMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(btnRegister, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnAppointment, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnHome, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(15, Short.MAX_VALUE))
+                        .addComponent(btnSignout, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnAppointment, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+                        .addComponent(btnprofile, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         PLeftMenuLayout.setVerticalGroup(
             PLeftMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PLeftMenuLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabell, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabell)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jlusername, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jlusername, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnprofile, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnSignout, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(222, Short.MAX_VALUE))
         );
 
@@ -175,45 +193,32 @@ public class Patientjf extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
+    private void btnSignoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignoutActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnHomeActionPerformed
+        Homepagemjf home=new Homepagemjf();
+        home.setVisible(rootPaneCheckingEnabled);
+        dispose();
+    }//GEN-LAST:event_btnSignoutActionPerformed
 
     private void btnAppointmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAppointmentActionPerformed
         // TODO add your handling code here:
-        LoginMain loginmain = new LoginMain();
-        jSplitPane1.setRightComponent(loginmain);
+        /* LoginMain loginmain = new LoginMain();
+        jSplitPane1.setRightComponent(loginmain);*/
     }//GEN-LAST:event_btnAppointmentActionPerformed
 
-    private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
+    private void btnprofileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnprofileActionPerformed
         // TODO add your handling code here:
+        Patientloginview profile = new Patientloginview(patient,community,patdir, auth);
+         jSplitPane1.setRightComponent(profile);
+    }//GEN-LAST:event_btnprofileActionPerformed
 
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
-        RegisterMain regmain = new RegisterMain();
-        jSplitPane1.setRightComponent(regmain);
-
-        /*
-        PRegister frame = new PRegister(  );
-        String s = "yedya";
-
-        ArrayList<String> al = new ArrayList<String>() ;
-        al.add(s);
-        al.add("tu");
-        try
-        {
-            //do something with your ArrayList
-            FileOutputStream fos =  new FileOutputStream("temp.txt") ;
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(al) ;
-            frame.assignval(al);
-            frame.setVisible(true);
-            oos.close();
-        }
-        catch (Exception e){
-            System.out.println("Errr");}
-        dispose();
-        */
-    }//GEN-LAST:event_btnRegisterActionPerformed
+        Fileload fileload = new Fileload();
+        fileload.loadpatientfile( patdir);
+        fileload.loadaddressfile(community);
+        fileload.loadcredentialsfile(auth);
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments

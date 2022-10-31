@@ -8,6 +8,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import model.persona.Address;
 
 
 /**
@@ -56,6 +57,34 @@ public class Authentication {
 
         auth.add(cred);
         //return emp;
+    }
+    
+    public void updatecredentials(Credentials cred, String username, String type) {
+        
+        int i = 0;
+        for (Credentials p : auth) {
+            if (p.getUsername().equalsIgnoreCase(username) && p.getUsertype().equalsIgnoreCase(type) ) {
+                deletecredrec(username,type);
+                auth.add(i, cred);
+                break;
+            }
+            i++;
+        }
+
+    }
+    public void deletecredrec(String username, String type) {
+        //catalog.remove(emp);
+        
+        int i=0;
+        for (Credentials c:auth){
+            if (c.getUsername().equalsIgnoreCase(username) && c.getUsertype().equalsIgnoreCase(type) ) {
+                auth.remove(i);
+                        break;
+            }
+            i++;
+        }
+        
+
     }
     
     public boolean checkauth(Credentials cred) {

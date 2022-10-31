@@ -226,7 +226,7 @@ public class Homepagemjf extends javax.swing.JFrame {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
-        LoginMain loginmain = new LoginMain( auth);
+        LoginMain loginmain = new LoginMain( patdir,auth, community);
         jSplitPane1.setRightComponent(loginmain);
     }//GEN-LAST:event_btnLoginActionPerformed
 

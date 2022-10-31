@@ -74,35 +74,43 @@ public class Community {
         community.add(add1);
         //return emp;
     }
-
-    public void deletepatientrec(int pat) {
-        //catalog.remove(emp);
-        Address p;
-        int i;
-        for (i = 0; i < 1000; i++) {
-            p = community.get(i);
-            if (p.getAddress_id() == pat) {
+    
+    public void updateaddress(Address updpat, int address_id) {
+        
+        int i = 0;
+        for (Address p : community) {
+            if (p.getAddress_id() == address_id) {
+                deleteaddressrec(address_id);
+                community.add(i, updpat);
                 break;
             }
+            i++;
         }
 
-        community.remove(i);
+    }
+    public void deleteaddressrec(int pat) {
+        //catalog.remove(emp);
+        
+        int i=0;
+        for (Address c:community){
+            if (c.getAddress_id()==pat ) {
+                community.remove(i);
+                        break;
+            }
+            i++;
+        }
 
     }
 
     public Address searchIndexAddress(int add_id) {
-        Address p = new Address();
-        int i;
-
-        for (i = 0; i < 1000; i++) {
-
-            p = community.get(i);
-
-            if (p.getAddress_id() == add_id) {
-                break;
+        
+        for (Address c:community){
+            if (c.getAddress_id()==add_id ) {
+                return c;
             }
+           
         }
 
-        return community.get(i);
+        return null;
     }
 }

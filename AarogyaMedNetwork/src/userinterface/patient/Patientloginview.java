@@ -4,6 +4,17 @@
  */
 package userinterface.patient;
 
+import javax.swing.JOptionPane;
+import model.confidential.Authentication;
+import model.confidential.Credentials;
+import model.confidential.Fileload;
+import model.confidential.Validations;
+import model.patienta.Patient;
+import model.patienta.Patientdirectory;
+import model.persona.Address;
+import model.persona.Community;
+import userinterface.Homepagemjf;
+
 /**
  *
  * @author amey8
@@ -13,8 +24,18 @@ public class Patientloginview extends javax.swing.JPanel {
     /**
      * Creates new form Patientloginview
      */
-    public Patientloginview() {
+    Patient patient;
+    Community community;
+    Patientdirectory patdir;
+    Authentication auth;
+    public Patientloginview(Patient patient,Community community,Patientdirectory patdir,Authentication auth) {
         initComponents();
+        this.patient=patient;
+        this.community=community;
+        this.patdir=patdir;
+        this.auth=auth;
+        intializefields();
+        btnupdate.setEnabled(false);
     }
 
     /**
@@ -57,6 +78,12 @@ public class Patientloginview extends javax.swing.JPanel {
         jLabel14 = new javax.swing.JLabel();
         tfusername = new javax.swing.JTextField();
         tfpassword = new javax.swing.JTextField();
+        javax.swing.JButton btnviewpass = new javax.swing.JButton();
+        javax.swing.JButton btneditpass = new javax.swing.JButton();
+        btnupdate = new javax.swing.JButton();
+        btnedit = new javax.swing.JButton();
+
+        setBackground(new java.awt.Color(204, 204, 255));
 
         jPanel4.setBackground(new java.awt.Color(204, 204, 204));
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), "Personal Details", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 3, 18))); // NOI18N
@@ -171,12 +198,12 @@ public class Patientloginview extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(tfmobileno, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfmobileno, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfemailid, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tfemailid, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -245,7 +272,7 @@ public class Patientloginview extends javax.swing.JPanel {
                     .addComponent(tfunit, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(tfstreet, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(tfcity, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -308,7 +335,7 @@ public class Patientloginview extends javax.swing.JPanel {
                 .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tfpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26))
+                .addGap(32, 32, 32))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -319,35 +346,94 @@ public class Patientloginview extends javax.swing.JPanel {
                 .addComponent(tfpassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        btnviewpass.setBackground(new java.awt.Color(204, 204, 204));
+        btnviewpass.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        btnviewpass.setText("View Password");
+        btnviewpass.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnviewpass.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnviewpass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnviewpassActionPerformed(evt);
+            }
+        });
+
+        btneditpass.setBackground(new java.awt.Color(204, 204, 204));
+        btneditpass.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        btneditpass.setText("Edit Password");
+        btneditpass.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btneditpass.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btneditpass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btneditpassActionPerformed(evt);
+            }
+        });
+
+        btnupdate.setBackground(new java.awt.Color(204, 204, 204));
+        btnupdate.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnupdate.setText("Update");
+        btnupdate.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnupdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnupdateActionPerformed(evt);
+            }
+        });
+
+        btnedit.setBackground(new java.awt.Color(204, 204, 204));
+        btnedit.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnedit.setText("Edit");
+        btnedit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnedit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btneditActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
+                .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 679, Short.MAX_VALUE)
-                            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(33, 33, 33))
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 685, Short.MAX_VALUE)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(27, 27, 27))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnviewpass)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btneditpass)
+                        .addGap(220, 220, 220))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnedit, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnupdate, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(256, 256, 256))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnviewpass)
+                    .addComponent(btneditpass))
+                .addGap(7, 7, 7)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnupdate, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnedit, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -371,8 +457,192 @@ public class Patientloginview extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfzipcodeActionPerformed
 
+    private void btnviewpassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnviewpassActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnviewpassActionPerformed
+
+    private void btneditpassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditpassActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btneditpassActionPerformed
+
+    private void btnupdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnupdateActionPerformed
+        // TODO add your handling code here:
+        btnedit.setEnabled(true);
+        disableViewfield();
+        //Patient updpat= new Patient();
+        String tfname = tffirstname.getText();
+        String tlname = tflastname.getText();
+        String tage = tfage.getText();
+        String tgender = listgender.getSelectedValue();
+        String tmobileno = tfmobileno.getText();
+        String temailid = tfemailid.getText();
+        String tunit = tfunit.getText();
+        String tcity = tfcity.getText();
+        String tstreet = tfstreet.getText();
+        String tzipcode = tfzipcode.getText();
+        String tstate = tfstate.getText();
+        String tusername = tfusername.getText();
+        String tpassword = tfpassword.getText();
+
+        boolean er = false;
+
+        Validations val = new Validations();
+        try {
+            
+            if (tfname.isEmpty() || tlname.isEmpty() || tage.isEmpty() || tmobileno.isEmpty() || tgender.isEmpty()
+                    || listgender.getSelectedValue().isEmpty() || temailid.isEmpty() || tunit.isEmpty()
+                    || tcity.isEmpty() || tstreet.isEmpty() || tzipcode.isEmpty() || tstate.isEmpty()
+                    || tusername.isEmpty() || tpassword.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Cannot enter empty field",
+                        "Try Again",
+                        JOptionPane.ERROR_MESSAGE);
+            } else {
+                //Employee emp = new Employee();
+                Patient pat = new Patient();
+                Address add = new Address();
+         
+                pat.setPersonid(9999);
+                pat.setPatient_id(9999);
+                add.setAddress_id(9999);
+                
+                if (val.valstring(tfname) == false || val.valstring(tlname) == false) {
+                    JOptionPane.showMessageDialog(this, "Please Enter Name in Proper format",
+                            "Try Again",
+                            JOptionPane.ERROR_MESSAGE);
+                    er = true; 
+                } else {
+                    pat.setFirstname(tfname);
+                    pat.setLastname(tlname);
+                    
+                }
+                if (!val.valage(tage) || Integer.valueOf(tage) <= 0 || Integer.valueOf(tage) > 200) {
+                    JOptionPane.showMessageDialog(this, "Please Enter Valid Age",
+                            "Try Again",
+                            JOptionPane.ERROR_MESSAGE);
+                    er = true;
+                } else {
+                    pat.setAge(Integer.valueOf(tage));
+                    pat.setGender(tgender); 
+                }
+                if (!val.valnumber(tmobileno)) {
+                    JOptionPane.showMessageDialog(this, "Please Enter Valid Mobile Number",
+                            "Try Again",
+                            JOptionPane.ERROR_MESSAGE);
+                    er = true;
+                } else {
+                    pat.setMobileno(tmobileno);
+                }
+
+                if (val.valemailid(temailid) == false) {
+                    JOptionPane.showMessageDialog(this, "Please Enter Valid Email id",
+                            "Try Again",
+                            JOptionPane.ERROR_MESSAGE);
+                    er = true;
+                } else {
+                    pat.setEmail(temailid);
+                }
+                if (val.valstring(tcity) == false) {
+                    JOptionPane.showMessageDialog(this, "Please Enter City Name in Proper format",
+                            "Try Again",
+                            JOptionPane.ERROR_MESSAGE);
+                    er = true;
+                } else {
+
+                    add.setCity(tcity);
+                    add.setUnit(tunit);
+                    add.setStreet(tstreet); 
+                }
+
+                if (val.valstring(tstate) == false) {
+                    JOptionPane.showMessageDialog(this, "Please Enter Name in Proper format",
+                            "Try Again",
+                            JOptionPane.ERROR_MESSAGE);
+                    er = true;
+                } else {
+                    add.setState(tstate); 
+                }
+                if (!val.valnum(tzipcode)) {
+                    JOptionPane.showMessageDialog(this, "Please Enter Valid Zipcode",
+                            "Try Again",
+                            JOptionPane.ERROR_MESSAGE);
+                    er = true;
+                } else {
+                    add.setZipcode(tzipcode);
+                    // pat.setMobileno(Integer.valueOf(tzipcode));
+                }
+                if (val.valpassword(tpassword, patdir.getPatientcatalog()) == false) {
+                    JOptionPane.showMessageDialog(this, "Please Password in Proper format (a-z,A-Z,_,$,@)",
+                            "Try Again",
+                            JOptionPane.ERROR_MESSAGE);
+                    er = true;
+                } else {
+                    pat.setPassword(tpassword);
+                }
+                if (val.valusername(tusername, patdir.getPatientcatalog()) == false) {
+                    JOptionPane.showMessageDialog(this, "Please username in Proper format (a-z,A-Z,_)",
+                            "Try Again",
+                            JOptionPane.ERROR_MESSAGE);
+                    er = true;
+                } else {
+                    pat.setUsername(tusername);
+                }
+                if (er != true) {
+                    
+                    //catalog.addnewemployee(emp);
+                    pat.setPersonid(patient.getPersonid());
+                    pat.setAddressid(patient.getAddressid());
+                    pat.setPatient_id(patient.getPatient_id());
+                    add.setAddress_id(patient.getAddressid());
+                    patdir.updatepatient(pat, patient.getPatient_id());
+                    community.updateaddress(add, patient.getAddressid());
+                    //community.addnewaddress(add);
+                    Credentials cred= new Credentials(tusername, "Patient", tpassword, patient.getPersonid());
+                    auth.updatecredentials(cred, patient.getUsername(), "Patient");
+                    //auth.addnewcredentials(cred);
+                    
+                    JOptionPane.showMessageDialog(this, "Successfully Employee Profile Created!!!");
+                    /*
+                tffirstname.setText("");
+                tflastname.setText("");
+                tfage.setText("");
+                tfmobileno.setText("");
+                tfstreet.setText("");
+                tfemailid.setText("");
+                tfunit.setText("");
+                tfcity.setText("");
+                listgender.clearSelection();
+                tfstate.setText("");
+                tfzipcode.setText("");
+                tfusername.setText("");
+                tfpassword.setText("");*/
+                } else {
+
+                    //catalog.deleteemprec(0);
+                    patdir.deletepatientrec(9999);
+                    community.deleteaddressrec(9999);
+                }
+
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,e+ "Please Enter Valid Values",
+                    "Try Again",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnupdateActionPerformed
+
+    private void btneditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditActionPerformed
+        // TODO add your handling code here:
+        enableViewfield();
+        btnedit.setEnabled(false);
+        btnupdate.setEnabled(true);
+        tfpassword.setText(patient.getPassword());
+    }//GEN-LAST:event_btneditActionPerformed
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnedit;
+    private javax.swing.JButton btnupdate;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -405,4 +675,61 @@ public class Patientloginview extends javax.swing.JPanel {
     private javax.swing.JTextField tfusername;
     private javax.swing.JTextField tfzipcode;
     // End of variables declaration//GEN-END:variables
+
+    public void intializefields()
+    {
+        tffirstname.setText(patient.getFirstname());
+        tflastname.setText(patient.getLastname());
+        tfage.setText(String.valueOf(patient.getAge()));
+        listgender.setSelectedValue(patient.getGender(), true);
+        tfmobileno.setText(patient.getMobileno());
+        tfemailid.setText(patient.getEmail());
+        tfusername.setText(patient.getUsername());
+        //tfpassword.setText(patient.getPassword());
+        tfpassword.setText("*********");
+        Address add = community.searchIndexAddress(patient.getAddressid());
+        
+        tfstreet.setText(add.getStreet());
+        tfunit.setText(add.getUnit());
+        tfcity.setText(add.getCity());
+        tfstate.setText(add.getState());
+        tfzipcode.setText(add.getZipcode());
+        disableViewfield();
+    
+    }
+    private void disableViewfield() {
+       
+        tffirstname.setEnabled(false);
+        tflastname.setEnabled(false);
+        tfage.setEnabled(false);
+        listgender.setEnabled(false);
+        tfmobileno.setEnabled(false);
+        tfemailid.setEnabled(false);
+        tfusername.setEnabled(false);
+        tfpassword.setEnabled(false);
+	tfstreet.setEnabled(false);
+        tfunit.setEnabled(false);
+        tfcity.setEnabled(false);
+        tfstate.setEnabled(false);
+        tfzipcode.setEnabled(false);
+        
+    }
+
+    private void enableViewfield() {
+        tffirstname.setEnabled(true);
+        tffirstname.setEnabled(true);
+        tflastname.setEnabled(true);
+        tfage.setEnabled(true);
+        listgender.setEnabled(true);
+        tfmobileno.setEnabled(true);
+        tfemailid.setEnabled(true);
+        tfusername.setEnabled(true);
+        tfpassword.setEnabled(true);
+	tfstreet.setEnabled(true);
+        tfunit.setEnabled(true);
+        tfcity.setEnabled(true);
+        tfstate.setEnabled(true);
+        tfzipcode.setEnabled(true);
+    }
+
 }

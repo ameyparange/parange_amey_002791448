@@ -4,8 +4,11 @@
  */
 package userinterface;
 
+import userinterface.patient.Patientjf;
 import javax.swing.JOptionPane;
 import model.confidential.*;
+import model.patienta.Patientdirectory;
+import model.persona.Community;
 
 /**
  *
@@ -17,15 +20,15 @@ public class LoginMain extends javax.swing.JPanel {
      * Creates new form LoginMain
      */
     Authentication auth;
-
-    public LoginMain(Authentication auth) {
+    Patientdirectory patdir;
+    Community community;
+    public LoginMain(Patientdirectory patdir,Authentication auth,Community community) {
         initComponents();
         this.auth = auth;
+        this.patdir=patdir;
+        this.community=community;
     }
-    public LoginMain() {
-        initComponents();
-        this.auth = auth;
-    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -183,6 +186,11 @@ public class LoginMain extends javax.swing.JPanel {
             cred.setPassword(tfpass.getText());
             if (auth.checkauth(cred)) {
                 JOptionPane.showMessageDialog(this, "Logged in as " + tfuserid.getText());
+                
+                Patientjf patientjf= new Patientjf();
+                patientjf.initcurrpatient(patdir.searchIndexPat(tfuserid.getText()),community,patdir, auth);
+                patientjf.setVisible(true);
+                (new Homepagemjf()).dispose();
 
             } else {
                 JOptionPane.showMessageDialog(this, "Incorrect Credentials",
