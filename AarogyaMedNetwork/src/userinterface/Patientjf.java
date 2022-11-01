@@ -7,10 +7,13 @@ package userinterface;
 import model.confidential.Authentication;
 import model.confidential.Fileload;
 import model.hospital.Hospitaldirectory;
+import model.patienta.Encounter;
 import model.patienta.Patient;
 import model.patienta.Patientdirectory;
 import model.persona.Community;
+import model.persona.Persondirectory;
 import userinterface.Homepagemjf;
+import userinterface.patient.PatAppView;
 import userinterface.patient.Patientloginview;
 import userinterface.patient.Patientloginview;
 
@@ -28,6 +31,8 @@ public class Patientjf extends javax.swing.JFrame {
     Community community;
     Authentication auth;
     Hospitaldirectory hosdir;
+    Encounter enc;
+    Persondirectory perdir;
     int curr_patient_id;
     public Patientjf() {
         initComponents();
@@ -37,13 +42,16 @@ public class Patientjf extends javax.swing.JFrame {
             this.patdir=patdir; 
             curr_patient_id =patient_id;
     }
-    public void initcurrpatient(Patient patient,Community community,Patientdirectory patdir,Authentication auth,Hospitaldirectory hosdir)
+    public void initcurrpatient(Patient patient,Community community,Patientdirectory patdir,
+            Authentication auth,Hospitaldirectory hosdir,Persondirectory perdir)
     {
         this.patient  = patient;   
         this.community=community;
         this.patdir=patdir;
         this.auth=auth;
         this.hosdir=hosdir;
+        this.enc= new Encounter();
+        this.perdir=perdir;
         jlusername.setText(patient.getUsername());
     }
 
@@ -62,7 +70,7 @@ public class Patientjf extends javax.swing.JFrame {
         jLabell = new javax.swing.JLabel();
         jlusername = new javax.swing.JLabel();
         javax.swing.JButton btnprofile = new javax.swing.JButton();
-        javax.swing.JButton btnAppointment = new javax.swing.JButton();
+        javax.swing.JButton btnappointment = new javax.swing.JButton();
         javax.swing.JButton btnSignout = new javax.swing.JButton();
         PRightContent = new javax.swing.JPanel();
 
@@ -105,14 +113,14 @@ public class Patientjf extends javax.swing.JFrame {
             }
         });
 
-        btnAppointment.setBackground(new java.awt.Color(204, 204, 204));
-        btnAppointment.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnAppointment.setText("Appointments");
-        btnAppointment.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnAppointment.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnAppointment.addActionListener(new java.awt.event.ActionListener() {
+        btnappointment.setBackground(new java.awt.Color(204, 204, 204));
+        btnappointment.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnappointment.setText("Appointments");
+        btnappointment.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnappointment.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnappointment.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAppointmentActionPerformed(evt);
+                btnappointmentActionPerformed(evt);
             }
         });
 
@@ -139,7 +147,7 @@ public class Patientjf extends javax.swing.JFrame {
                         .addComponent(jlusername, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(PLeftMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(btnSignout, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnAppointment, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+                        .addComponent(btnappointment, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
                         .addComponent(btnprofile, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -153,7 +161,7 @@ public class Patientjf extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnprofile, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnappointment, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnSignout, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(222, Short.MAX_VALUE))
@@ -199,20 +207,28 @@ public class Patientjf extends javax.swing.JFrame {
 
     private void btnSignoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignoutActionPerformed
         // TODO add your handling code here:
+        Fileload fileload = new Fileload();
+        fileload.loadpatientfile( patdir);
+        fileload.loadaddressfile(community);
+        fileload.loadcredentialsfile(auth);
+        fileload.loadhospitalfile(hosdir);
+        fileload.loadencounterfile(enc);
+        fileload.loadpersonfile(perdir);
         Homepagemjf home=new Homepagemjf();
         home.setVisible(rootPaneCheckingEnabled);
         dispose();
     }//GEN-LAST:event_btnSignoutActionPerformed
 
-    private void btnAppointmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAppointmentActionPerformed
+    private void btnappointmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnappointmentActionPerformed
         // TODO add your handling code here:
-        /* LoginMain loginmain = new LoginMain();
-        jSplitPane1.setRightComponent(loginmain);*/
-    }//GEN-LAST:event_btnAppointmentActionPerformed
+         PatAppView pav = new PatAppView(enc,patient.getPatient_id());
+        jSplitPane1.setRightComponent(pav);
+        
+    }//GEN-LAST:event_btnappointmentActionPerformed
 
     private void btnprofileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnprofileActionPerformed
         // TODO add your handling code here:
-        Patientloginview profile = new Patientloginview(patient,community,patdir, auth);
+            Patientloginview profile = new Patientloginview(patient,community,patdir, auth,perdir);
          jSplitPane1.setRightComponent(profile);
     }//GEN-LAST:event_btnprofileActionPerformed
 
@@ -223,6 +239,9 @@ public class Patientjf extends javax.swing.JFrame {
         fileload.loadaddressfile(community);
         fileload.loadcredentialsfile(auth);
         fileload.loadhospitalfile(hosdir);
+        fileload.loadencounterfile(enc);
+        fileload.loadpersonfile(perdir);
+        
     }//GEN-LAST:event_formWindowClosing
 
     /**

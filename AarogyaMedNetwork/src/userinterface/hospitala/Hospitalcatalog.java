@@ -613,26 +613,10 @@ public class Hospitalcatalog extends javax.swing.JPanel {
                     add.setAddress_id(hos.getAddressid());
                     hosdir.updatehospital(hos, hos.getHospitalid());
                     community.updateaddress(add, hos.getAddressid());
-                    //community.addnewaddress(add);
-                    //Credentials cred = new Credentials(cred.getUsername(), cred.getUsertype(), tpassword, patient.getPersonid());
-                    //auth.updatecredentials(cred, patient.getUsername(), "Patient");
-                    //auth.addnewcredentials(cred);
+
 
                     JOptionPane.showMessageDialog(this, "Hospital Successfully Updated!!!");
-                    /*
-                    tffirstname.setText("");
-                    tflastname.setText("");
-                    tfage.setText("");
-                    tfmobileno.setText("");
-                    tfstreet.setText("");
-                    tfemailid.setText("");
-                    tfunit.setText("");
-                    tfcity.setText("");
-                    listgender.clearSelection();
-                    tfstate.setText("");
-                    tfzipcode.setText("");
-                    tfusername.setText("");
-                    tfpassword.setText("");*/
+
                     this.populatetable(hos);
                     btnupdate.setEnabled(false);
                     btnedit.setEnabled(true);
@@ -683,13 +667,13 @@ public class Hospitalcatalog extends javax.swing.JPanel {
         }
         if (hos != null) {
             JOptionPane.showMessageDialog(this,
-                    "Employee Found!!!");
+                    "Hospital Found!!!");
             populatetable(hos);
             btnsregister.setEnabled(false);
             btnupdate.setEnabled(false);
         } else
             JOptionPane.showMessageDialog(this,
-                    "Employee does not exist!!!");
+                    "Hospital does not exist!!!");
     }//GEN-LAST:event_btnsearchActionPerformed
 
     private void btnsregisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsregisterActionPerformed

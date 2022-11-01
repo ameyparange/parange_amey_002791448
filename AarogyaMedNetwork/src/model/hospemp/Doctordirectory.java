@@ -25,15 +25,17 @@ public class Doctordirectory {
         Doctor pat;
         try ( BufferedReader br = new BufferedReader(new FileReader("files/doctor.csv"))) {
             String line;
+           // System.out.println("1");
             int i = 0, tperson_id = 0, tdoctorid = 0;
             while ((line = br.readLine()) != null) {
                 if (i == 0) {
                     i++;
                     //System.out.println(line);
-
+                    //System.out.println("2");
                 } else {
-                    //System.out.println(line);
+                    
                     String[] values = line.split(",");
+                    //System.out.println(line);
                     pat = new Doctor(Integer.valueOf(values[0]), Integer.valueOf(values[1]), values[2], values[3],
                             Integer.valueOf(values[4]), values[5], values[7], values[6], Integer.valueOf(values[8]),
                             values[9], values[10],values[11] // Integer.valueOf(values[8])
@@ -43,7 +45,7 @@ public class Doctordirectory {
                     tdoctorid = Integer.valueOf(values[1]);
 
                     
-                    this.addnewdoctor(pat);
+                    addnewdoctor(pat);
                     
 
                 }
@@ -73,7 +75,7 @@ public class Doctordirectory {
     }
 
     public void addnewdoctor(Doctor pat) {
-
+        //System.out.println("d");
         docdir.add(pat);
         //return emp;
     }
@@ -92,6 +94,23 @@ public class Doctordirectory {
         docdir.remove(i);
 
     }
+    
+        public void deletedoctorrec(String pat) {
+        //catalog.remove(emp);
+        Doctor p;
+        int i;
+        for (i = 0; i < 1000; i++) {
+            p = docdir.get(i);
+            if (p.getUsername() == pat) {
+                break;
+            }
+        }
+
+        docdir.remove(i);
+
+    }
+    
+    
 
     public void updatedoctor(Doctor updpat, int doctor_id) {
         Doctor temp = new Doctor();

@@ -23,12 +23,12 @@ public class LoginMain extends javax.swing.JPanel {
     /**
      * Creates new form LoginMain
      */
-    Persondirectory perdir;
+    
     Authentication auth;
     Patientdirectory patdir;
     Community community;
     Hospitaldirectory hosdir;
-
+    Persondirectory perdir;
     public LoginMain(Patientdirectory patdir, Authentication auth, Community community,Hospitaldirectory hosdir,Persondirectory perdir) {
         initComponents();
         this.auth = auth;
@@ -36,8 +36,8 @@ public class LoginMain extends javax.swing.JPanel {
         this.community = community;
         this.hosdir=hosdir;
         this.perdir=perdir;
-        tfuserid.setText("parangea");
-        tfpass.setText("admin1234");
+        //tfuserid.setText("parangea");
+        //tfpass.setText("admin1234");
     }
 
     /**
@@ -80,7 +80,7 @@ public class LoginMain extends javax.swing.JPanel {
         jLabel4.setText("Password");
 
         cbloginas.setMaximumRowCount(4);
-        cbloginas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Patient", "Doctor", "Reception", "System Admin", "Hospital Admin", "Community Admin" }));
+        cbloginas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Patient", "Doctor", "System Admin", "Hospital Admin", "Community Admin" }));
         cbloginas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbloginasActionPerformed(evt);
@@ -199,7 +199,7 @@ public class LoginMain extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Logged in as " + tfuserid.getText());
                 if (cbloginas.getSelectedItem().toString().equalsIgnoreCase("Patient")) {
                     Patientjf patientjf = new Patientjf();
-                    patientjf.initcurrpatient(patdir.searchIndexPat(tfuserid.getText()), community, patdir, auth, hosdir);
+                    patientjf.initcurrpatient(patdir.searchIndexPat(tfuserid.getText()), community, patdir, auth, hosdir, perdir);
                     patientjf.setVisible(true);
                     
                     
@@ -209,7 +209,15 @@ public class LoginMain extends javax.swing.JPanel {
                 Adminhome adminhome = new Adminhome();
                 adminhome.adminhomeinit(community, patdir, auth, cred, hosdir, perdir);
                 adminhome.setVisible(true);
-                (new Homepagemjf()).dispose();
+                
+            }
+            else if (cbloginas.getSelectedItem().toString().equalsIgnoreCase("Doctor")) {
+                //System.out.println(cbloginas.getSelectedItem().toString());
+                DoctorPage dp=new DoctorPage();
+                dp.initdocpage(tfuserid.getText(),patdir, hosdir, perdir,community);
+                
+                dp.setVisible(true);
+                
             }} else {
                 JOptionPane.showMessageDialog(this, "Incorrect Credentials",
                         // "Try Again"

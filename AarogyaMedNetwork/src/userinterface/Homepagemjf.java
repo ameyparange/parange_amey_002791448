@@ -65,7 +65,6 @@ public class Homepagemjf extends javax.swing.JFrame {
         javax.swing.JButton btnHome = new javax.swing.JButton();
         javax.swing.JButton btnLogin = new javax.swing.JButton();
         javax.swing.JButton btnRegister = new javax.swing.JButton();
-        javax.swing.JButton btnview = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         javax.swing.JLabel jLabel1 = new javax.swing.JLabel();
 
@@ -136,16 +135,6 @@ public class Homepagemjf extends javax.swing.JFrame {
             }
         });
 
-        btnview.setBackground(new java.awt.Color(204, 204, 204));
-        btnview.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnview.setText("View");
-        btnview.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnview.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnviewActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPLmenu1Layout = new javax.swing.GroupLayout(jPLmenu1);
         jPLmenu1.setLayout(jPLmenu1Layout);
         jPLmenu1Layout.setHorizontalGroup(
@@ -153,7 +142,6 @@ public class Homepagemjf extends javax.swing.JFrame {
             .addGroup(jPLmenu1Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addGroup(jPLmenu1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnview, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -168,9 +156,7 @@ public class Homepagemjf extends javax.swing.JFrame {
                 .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnview, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(207, Short.MAX_VALUE))
+                .addContainerGap(255, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(jPLmenu1);
@@ -239,12 +225,6 @@ public class Homepagemjf extends javax.swing.JFrame {
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnHomeActionPerformed
-
-    private void btnviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnviewActionPerformed
-        // TODO add your handling code here:
-        PatientView patview = new PatientView(patdir,community);
-        jSplitPane1.setRightComponent(patview);
-    }//GEN-LAST:event_btnviewActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // TODO add your handling code here:

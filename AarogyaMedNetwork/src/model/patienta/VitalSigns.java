@@ -11,21 +11,42 @@ package model.patienta;
 public class VitalSigns {
     
     int patient_id;
+    public static int vscnt=0;
     int vitalsignsid;
-    String heartrate;
+    String comm_name;
+    String pulserate;
     String bloodpressure;
     String sugerlevel;
     String temperature;
     String symtoms;
     String timestamp;
-    public VitalSigns(int patient_id, int vitalsignsid, String heartrate, String bloodpressure, String sugerlevel, String temperature, String symtoms) {
+    public VitalSigns(int patient_id, int vitalsignsid,String timestamp,String comm_name, String pulserate, String bloodpressure, String sugerlevel, String temperature, String symtoms) {
         this.patient_id = patient_id;
         this.vitalsignsid = vitalsignsid;
-        this.heartrate = heartrate;
+        this.pulserate = pulserate;
         this.bloodpressure = bloodpressure;
         this.sugerlevel = sugerlevel;
         this.temperature = temperature;
         this.symtoms = symtoms;
+        this.timestamp=timestamp;
+        this.comm_name=comm_name;
+    }
+    public VitalSigns(int patient_id, int vitalsignsid,String timestamp,String comm_name ) {
+        this.patient_id = patient_id;
+        this.vitalsignsid = vitalsignsid;
+        this.timestamp=timestamp;
+        this.comm_name=comm_name;
+    }
+    public VitalSigns( ) {
+        
+    }
+
+    public String getComm_name() {
+        return comm_name;
+    }
+
+    public void setComm_name(String comm_name) {
+        this.comm_name = comm_name;
     }
 
     public int getPatient_id() {
@@ -36,6 +57,17 @@ public class VitalSigns {
         this.patient_id = patient_id;
     }
 
+    public static int getVscnt() {
+        return vscnt;
+    }
+
+    public static void setVscnt(int vscnt) {
+        VitalSigns.vscnt = vscnt+1;
+    }
+    
+    public static void setVscnt() {
+        VitalSigns.vscnt = vscnt+1;
+    }
     public int getVitalsignsid() {
         return vitalsignsid;
     }
@@ -43,13 +75,18 @@ public class VitalSigns {
     public void setVitalsignsid(int vitalsignsid) {
         this.vitalsignsid = vitalsignsid;
     }
-
-    public String getHeartrate() {
-        return heartrate;
+    
+    public void setVitalsignsid() {
+        this.vitalsignsid = vscnt;
+        setVscnt();
     }
 
-    public void setHeartrate(String heartrate) {
-        this.heartrate = heartrate;
+    public String getPulserate() {
+        return pulserate;
+    }
+
+    public void setPulserate(String pulserate) {
+        this.pulserate = pulserate;
     }
 
     public String getBloodpressure() {
@@ -82,6 +119,14 @@ public class VitalSigns {
 
     public void setSymtoms(String symtoms) {
         this.symtoms = symtoms;
+    }
+
+    public String getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
     }
     
     

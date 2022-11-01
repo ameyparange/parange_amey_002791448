@@ -98,6 +98,36 @@ public class Persondirectory {
         }
 
     }
+    public void updatepersonpat(Patient updpat, int person_id) {
+        Person temp ;
+        int i = 0;
+        for (Person p : persondir) {
+            if (p.getPersonid() == person_id) {
+                deletepersonrec(person_id);
+                temp= addpatient(updpat,updpat.getPat(),"1",updpat.getRec(),updpat.getSadm(),updpat.getHadm());
+                persondir.add(i, updpat);
+                break;
+            }
+            i++;
+        }
+
+    }
+    public void updatepersondoc(Doctor updpat, int person_id) {
+        Person temp ;
+        int i = 0;
+        for (Person p : persondir) {
+            if (p.getPersonid() == person_id) {
+                deletepersonrec(person_id);
+                temp= adddoctor(updpat,updpat.getPat(),"1",updpat.getRec(),updpat.getSadm(),updpat.getHadm());
+                persondir.add(i, updpat);
+                break;
+            }
+            i++;
+        }
+
+    }
+    
+    
 
     public Person searchIndexPer(int idx) {
         Person p;
@@ -139,14 +169,33 @@ public class Persondirectory {
         per.setSadm("0");
         this.addnewperson(per);
     }
-    public void adddoctor(Doctor p,String pat,String doc,String hadm,String sadm){
+    public void adddoctor(Doctor p){
+        Person per= p;
+        per.setPat("0");
+        per.setDoc("1");
+        per.setRec("0");
+        per.setHadm("0");
+        per.setSadm("0");
+        this.addnewperson(per);
+    }
+    public Person addpatient(Patient p,String a,String b,String c,String d,String e){
+        Person per= p;
+        per.setPat(a);
+        per.setDoc(b);
+        per.setRec(c);
+        per.setHadm(d);
+        per.setSadm(e);
+        return per;
+    }
+
+    public Person adddoctor(Doctor p,String pat,String doc,String rec,String hadm,String sadm){
         Person per= p;
         per.setPat(pat);
         per.setDoc(doc);
-        per.setRec(sadm);
+        per.setRec(rec);
         per.setHadm(hadm);
-        per.setSadm("0");
-        this.addnewperson(per);
+        per.setSadm(sadm);
+        return per;
     }
     
     /*

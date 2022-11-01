@@ -2,4 +2,3 @@ person_id,patient_id,firstname,lastname,age,gender,mobileno,email,address_id,use
 1,1,Amey,Parange,25,Male,0123456789,amey8172@gmail.com,1,parangea,admin1234
 2,2,Akash,Meena,25,Male,8876543210,akashmeena@gmail.com,2,akashmeena,akashmeena1
 3,3,Sagar,Renuke,23,Male,9876543101,sagarrenuke@gmail.com,6,sagar,sagarrenuke
-4,4,Kartik,Bawal,24,Male,3214567890,kartikbaw@gmail.com,7,bawal,bawal1234

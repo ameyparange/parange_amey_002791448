@@ -1,5 +1,5 @@
 person_id,firstname,lastname,age,gender,mobileno,email,address_id,username,password,pat,doc,rec,sadm,hadm
-1,Amey,Parange,25,Male,0123456789,amey8172@gmail.com,1,parangea,admin1234,1,1,1,1,1
+1,Amey,Parange,24,Male,0123456789,amey8172@gmail.com,1,parangea,admin1234,null,1,null,null,null
 2,Akash,Meena,25,Male,8876543210,akashmeena@gmail.com,2,akashmeena,akashmeena1,1,0,0,0,0
 3,Sagar,Renuke,23,Male,9876543101,sagarrenuke@gmail.com,6,sagar,sagarrenuke,1,0,0,0,0
 4,Kartik,Bawal,24,Male,3214567890,kartikbaw@gmail.com,7,bawal,bawal1234,1,0,0,0,0

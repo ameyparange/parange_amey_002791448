@@ -48,7 +48,7 @@ public class Community {
                 }
             }
         } catch (Exception e) {
-            System.out.println(e + "address.csv");
+            System.out.println("address.csv");
 
         }
 
@@ -69,7 +69,7 @@ public class Community {
     }
 
     public void addnewaddress(Address add1) {
-        System.out.println(add1.getCity());
+        //System.out.println(add1.getCity());
 
         community.add(add1);
         //return emp;

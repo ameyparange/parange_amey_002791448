@@ -9,6 +9,7 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
+import model.hospemp.Doctor;
 import model.hospital.Hospital;
 import model.hospital.Hospitaldirectory;
 import model.patienta.Patient;
@@ -17,7 +18,9 @@ import model.persona.Address;
 import model.persona.Community;
 import model.persona.Person;
 import model.persona.Persondirectory;
-
+import model.hospemp.Doctordirectory;
+import model.patienta.Encounter;
+import model.patienta.VitalSigns;
 /**
  *
  * @author amey8
@@ -64,6 +67,28 @@ public class Fileload {
                 rec = p.getPersonid() + "," + p.getPatient_id() + "," + p.getFirstname() + "," + p.getLastname() + "," + p.getAge()
                         + "," + p.getGender() + "," + p.getMobileno() + "," + p.getEmail() + "," + p.getAddressid() + "," + p.getUsername()
                         + "," + p.getPassword();
+                wr.append(rec);
+            }
+
+            wr.close();
+        } catch (Exception e) {
+            System.out.println("File patient.csv Not Found");
+        }
+
+    }
+    public void loaddoctorfile(Doctordirectory docdir) {
+
+        String filename = "files/doctor.csv";
+        try ( BufferedWriter wr = new BufferedWriter(new FileWriter(filename))) {
+            String line = "person_id,patient_id,firstname,lastname,age,gender,mobileno,email,address_id,username,password,spec";
+            int i = 0;
+            String rec;
+            wr.write(line);
+            for (Doctor p : docdir.getDocdir()) {
+                wr.newLine();
+                rec = p.getPersonid() + "," + p.getDoctor_id() + "," + p.getFirstname() + "," + p.getLastname() + "," + p.getAge()
+                        + "," + p.getGender() + "," + p.getMobileno() + "," + p.getEmail() + "," + p.getAddressid() + "," + p.getUsername()
+                        + "," + p.getPassword()+","+p.getSpec();
                 wr.append(rec);
             }
 
@@ -130,6 +155,30 @@ public class Fileload {
                 wr.newLine();
                 rec = p.getHospitalid()  + "," + p.getHospitalname() + "," + p.getMobileno() + "," 
                         + p.getEmail() + ","+p.getDesc()+"," + p.getAddressid() ;
+                wr.append(rec);
+            }
+
+            wr.close();
+        } catch (Exception e) {
+            System.out.println("File hospitaldirectory.csv Not Found");
+        }
+
+    }
+    
+    public void loadencounterfile(Encounter enc) {
+
+        String filename = "files/encounter.csv";
+        try ( BufferedWriter wr = new BufferedWriter(new FileWriter(filename))) {
+            String line = "encid,patientid,date,community,pulserate,bloodpressure,sugarlevel,bodytemp,symtoms";
+            int i = 0;
+            String rec;
+            wr.write(line);
+            for (VitalSigns p : enc.getEncounter()) {
+                wr.newLine();
+                
+                rec = p.getPatient_id()  + "," + p.getVitalsignsid() + "," + p.getTimestamp() + "," 
+                        + p.getComm_name() + ","+p.getPulserate()+"," + p.getBloodpressure()+ ","+p.getSugerlevel()+"," + p.getTemperature()
+                        + ","+p.getSymtoms();
                 wr.append(rec);
             }
 

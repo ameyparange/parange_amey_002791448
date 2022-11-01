@@ -13,6 +13,7 @@ import model.patienta.Patient;
 import model.patienta.Patientdirectory;
 import model.persona.Address;
 import model.persona.Community;
+import model.persona.Persondirectory;
 import userinterface.Homepagemjf;
 
 /**
@@ -28,12 +29,14 @@ public class Patientloginview extends javax.swing.JPanel {
     Community community;
     Patientdirectory patdir;
     Authentication auth;
-    public Patientloginview(Patient patient,Community community,Patientdirectory patdir,Authentication auth) {
+    Persondirectory perdir;
+    public Patientloginview(Patient patient,Community community,Patientdirectory patdir,Authentication auth,Persondirectory perdir) {
         initComponents();
         this.patient=patient;
         this.community=community;
         this.patdir=patdir;
         this.auth=auth;
+        this.perdir=perdir;
         intializefields();
         btnupdate.setEnabled(false);
     }
@@ -601,26 +604,15 @@ public class Patientloginview extends javax.swing.JPanel {
                     add.setAddress_id(patient.getAddressid());
                     patdir.updatepatient(pat, patient.getPatient_id());
                     community.updateaddress(add, patient.getAddressid());
+                    perdir.updateperson(perdir.searchIndexPer(patient.getUsername()), patient.getPersonid());  
+                    
                     //community.addnewaddress(add);
                     Credentials cred= new Credentials(tusername, "Patient", tpassword, patient.getPersonid());
                     auth.updatecredentials(cred, patient.getUsername(), "Patient");
                     //auth.addnewcredentials(cred);
                     
                     JOptionPane.showMessageDialog(this, "Successfully Employee Profile Created!!!");
-                    /*
-                tffirstname.setText("");
-                tflastname.setText("");
-                tfage.setText("");
-                tfmobileno.setText("");
-                tfstreet.setText("");
-                tfemailid.setText("");
-                tfunit.setText("");
-                tfcity.setText("");
-                listgender.clearSelection();
-                tfstate.setText("");
-                tfzipcode.setText("");
-                tfusername.setText("");
-                tfpassword.setText("");*/
+                   
                 } else {
 
                     //catalog.deleteemprec(0);

@@ -34,7 +34,7 @@ public class Patientdirectory {
                     //System.out.println(line);
 
                 } else {
-                    //System.out.println(line);
+                    //
                     String[] values = line.split(",");
                     pat = new Patient(Integer.valueOf(values[0]), Integer.valueOf(values[1]), values[2], values[3],
                             Integer.valueOf(values[4]), values[5], values[7], values[6], Integer.valueOf(values[8]),
@@ -88,6 +88,21 @@ public class Patientdirectory {
         for (i = 0; i < 1000; i++) {
             p = patientcatalog.get(i);
             if (p.getPersonid() == pat) {
+                break;
+            }
+        }
+
+        patientcatalog.remove(i);
+
+    }
+    
+    public void deletepatientrec(String pat) {
+        //catalog.remove(emp);
+        Patient p;
+        int i;
+        for (i = 0; i < 1000; i++) {
+            p = patientcatalog.get(i);
+            if (p.getUsername().equalsIgnoreCase(pat) ) {
                 break;
             }
         }

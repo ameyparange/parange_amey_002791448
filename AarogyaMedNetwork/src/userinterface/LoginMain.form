@@ -154,13 +154,12 @@
           <Properties>
             <Property name="maximumRowCount" type="int" value="4"/>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="6">
+              <StringArray count="5">
                 <StringItem index="0" value="Patient"/>
                 <StringItem index="1" value="Doctor"/>
-                <StringItem index="2" value="Reception"/>
-                <StringItem index="3" value="System Admin"/>
-                <StringItem index="4" value="Hospital Admin"/>
-                <StringItem index="5" value="Community Admin"/>
+                <StringItem index="2" value="System Admin"/>
+                <StringItem index="3" value="Hospital Admin"/>
+                <StringItem index="4" value="Community Admin"/>
               </StringArray>
             </Property>
           </Properties>
