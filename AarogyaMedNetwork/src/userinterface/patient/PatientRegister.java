@@ -14,6 +14,7 @@ import model.confidential.Validations;
 import model.patienta.Patientdirectory;
 import model.persona.Address;
 import model.persona.Community;
+import model.persona.Persondirectory;
 
 /**
  *
@@ -24,16 +25,18 @@ public class PatientRegister extends javax.swing.JPanel {
     /**
      * Creates new form PatientRegister
      */
+    Persondirectory perdir;
     Patientdirectory patdir;
     Patient currpat;
     Community community;
     Authentication auth;
 
-    public PatientRegister(Patientdirectory patdir, Community community,Authentication auth) {
+    public PatientRegister(Patientdirectory patdir, Community community,Authentication auth,Persondirectory perdir) {
         initComponents();
         this.patdir = patdir;
         this.community = community;
         this.auth =auth;
+        this.perdir=perdir;
     }
 
     /**
@@ -514,16 +517,24 @@ public class PatientRegister extends javax.swing.JPanel {
                 } else {
                     pat.setPassword(tpassword);
                 }
-                if (val.valusername(tusername, patdir.getPatientcatalog()) == false) {
+                if (val.valusername(tusername, patdir.getPatientcatalog()) == 1) {
+                    
                     JOptionPane.showMessageDialog(this, "Please username in Proper format (a-z,A-Z,_)",
                             "Try Again",
+                            JOptionPane.ERROR_MESSAGE);
+                    er = true;
+                }else if (val.valusername(tusername, patdir.getPatientcatalog()) == 2) {
+                    
+                    JOptionPane.showMessageDialog(this, "Please choose different username",
+                            "UserName already exists,Try Again",
                             JOptionPane.ERROR_MESSAGE);
                     er = true;
                 } else {
                     pat.setUsername(tusername);
                 }
                 if (er != true) {
-                    
+                    if(!perdir.checkpersonexist(pat))
+                    {
                     //catalog.addnewemployee(emp);
                     pat.setPersonid();
                     pat.setPatient_id();
@@ -531,6 +542,7 @@ public class PatientRegister extends javax.swing.JPanel {
                     
                     pat.setAddressid(add.getAddress_id());
                     patdir.addnewpatient(pat);
+                    perdir.addpatient(pat);
                     
                     community.addnewaddress(add);
                     Credentials cred= new Credentials(tusername, "Patient", tpassword, pat.getPersonid()-1);
@@ -539,7 +551,7 @@ public class PatientRegister extends javax.swing.JPanel {
                     file1.loadcredentialsfile(auth);
                     
                     JOptionPane.showMessageDialog(this, "Successfully Employee Profile Created!!!");
-                    /*
+                   
                 tffirstname.setText("");
                 tflastname.setText("");
                 tfage.setText("");
@@ -552,8 +564,17 @@ public class PatientRegister extends javax.swing.JPanel {
                 tfstate.setText("");
                 tfzipcode.setText("");
                 tfusername.setText("");
-                tfpassword.setText("");*/
+                tfpassword.setText("");
                 } else {
+                    JOptionPane.showMessageDialog(this,"Patient already exists",
+                    "Try Again",
+                    JOptionPane.ERROR_MESSAGE);
+                    patdir.deletepatientrec(9999);
+                    community.deleteaddressrec(9999);
+                    }
+                        
+                        }
+                else {
 
                     //catalog.deleteemprec(0);
                     patdir.deletepatientrec(9999);

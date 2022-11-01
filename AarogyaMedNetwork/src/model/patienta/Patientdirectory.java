@@ -44,7 +44,9 @@ public class Patientdirectory {
                     tperson_id = Integer.valueOf(values[0]);
                     tpatientid = Integer.valueOf(values[1]);
 
+                    
                     this.addnewpatient(pat);
+                    
 
                 }
                 if (tperson_id != 0 && tpatientid != 0) {

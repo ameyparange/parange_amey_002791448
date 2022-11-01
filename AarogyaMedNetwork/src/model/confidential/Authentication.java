@@ -25,7 +25,7 @@ public class Authentication {
             String line;
             int i=0;
             
-            System.out.println("2");
+            //System.out.println("2");
             while ((line = br.readLine()) != null) {
                 if (i == 0) {
                         i++;
@@ -33,11 +33,11 @@ public class Authentication {
 
                     } else {
                 String[] values = line.split(",");
-                System.out.println(" 3");
+               // System.out.println(" 3");
                 cred  = new Credentials(values[0],values[1],values[2],Integer.valueOf(values[3]));
-                System.out.println(" 4");
+               // System.out.println(" 4");
                 auth.add(cred);
-                System.out.println(" 1");
+              //  System.out.println(" 1");
             }}
             br.close();
         } catch (Exception e) {

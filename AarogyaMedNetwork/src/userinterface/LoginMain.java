@@ -4,11 +4,15 @@
  */
 package userinterface;
 
-import userinterface.patient.Patientjf;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import model.confidential.*;
+import model.hospital.Hospital;
+import model.hospital.Hospitaldirectory;
 import model.patienta.Patientdirectory;
 import model.persona.Community;
+import model.persona.Persondirectory;
+import userinterface.systemadminhome.Adminhome;
 
 /**
  *
@@ -19,16 +23,22 @@ public class LoginMain extends javax.swing.JPanel {
     /**
      * Creates new form LoginMain
      */
+    Persondirectory perdir;
     Authentication auth;
     Patientdirectory patdir;
     Community community;
-    public LoginMain(Patientdirectory patdir,Authentication auth,Community community) {
+    Hospitaldirectory hosdir;
+
+    public LoginMain(Patientdirectory patdir, Authentication auth, Community community,Hospitaldirectory hosdir,Persondirectory perdir) {
         initComponents();
         this.auth = auth;
-        this.patdir=patdir;
-        this.community=community;
+        this.patdir = patdir;
+        this.community = community;
+        this.hosdir=hosdir;
+        this.perdir=perdir;
+        tfuserid.setText("parangea");
+        tfpass.setText("admin1234");
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -184,15 +194,23 @@ public class LoginMain extends javax.swing.JPanel {
             cred.setUsername(tfuserid.getText());
             cred.setUsertype(cbloginas.getSelectedItem().toString());
             cred.setPassword(tfpass.getText());
+            //System.out.println(cbloginas.getSelectedItem().toString());
             if (auth.checkauth(cred)) {
                 JOptionPane.showMessageDialog(this, "Logged in as " + tfuserid.getText());
-                
-                Patientjf patientjf= new Patientjf();
-                patientjf.initcurrpatient(patdir.searchIndexPat(tfuserid.getText()),community,patdir, auth);
-                patientjf.setVisible(true);
+                if (cbloginas.getSelectedItem().toString().equalsIgnoreCase("Patient")) {
+                    Patientjf patientjf = new Patientjf();
+                    patientjf.initcurrpatient(patdir.searchIndexPat(tfuserid.getText()), community, patdir, auth, hosdir);
+                    patientjf.setVisible(true);
+                    
+                    
+                }
+             else if (cbloginas.getSelectedItem().toString().equalsIgnoreCase("System Admin")) {
+                //System.out.println(cbloginas.getSelectedItem().toString());
+                Adminhome adminhome = new Adminhome();
+                adminhome.adminhomeinit(community, patdir, auth, cred, hosdir);
+                adminhome.setVisible(true);
                 (new Homepagemjf()).dispose();
-
-            } else {
+            }} else {
                 JOptionPane.showMessageDialog(this, "Incorrect Credentials",
                         // "Try Again"
                         cred.getUsername(),
@@ -202,6 +220,7 @@ public class LoginMain extends javax.swing.JPanel {
             System.out.println("Warning:Credentials Exception;");
 
         }
+
     }//GEN-LAST:event_btnSubmit1ActionPerformed
 
 

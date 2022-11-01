@@ -2,14 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package userinterface.patient;
+package userinterface;
 
 import model.confidential.Authentication;
 import model.confidential.Fileload;
+import model.hospital.Hospitaldirectory;
 import model.patienta.Patient;
 import model.patienta.Patientdirectory;
 import model.persona.Community;
 import userinterface.Homepagemjf;
+import userinterface.patient.Patientloginview;
 import userinterface.patient.Patientloginview;
 
 /**
@@ -25,6 +27,7 @@ public class Patientjf extends javax.swing.JFrame {
     Patient patient ;
     Community community;
     Authentication auth;
+    Hospitaldirectory hosdir;
     int curr_patient_id;
     public Patientjf() {
         initComponents();
@@ -34,12 +37,13 @@ public class Patientjf extends javax.swing.JFrame {
             this.patdir=patdir; 
             curr_patient_id =patient_id;
     }
-    public void initcurrpatient(Patient patient,Community community,Patientdirectory patdir,Authentication auth)
+    public void initcurrpatient(Patient patient,Community community,Patientdirectory patdir,Authentication auth,Hospitaldirectory hosdir)
     {
         this.patient  = patient;   
         this.community=community;
         this.patdir=patdir;
         this.auth=auth;
+        this.hosdir=hosdir;
         jlusername.setText(patient.getUsername());
     }
 
@@ -218,6 +222,7 @@ public class Patientjf extends javax.swing.JFrame {
         fileload.loadpatientfile( patdir);
         fileload.loadaddressfile(community);
         fileload.loadcredentialsfile(auth);
+        fileload.loadhospitalfile(hosdir);
     }//GEN-LAST:event_formWindowClosing
 
     /**

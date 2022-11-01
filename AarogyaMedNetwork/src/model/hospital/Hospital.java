@@ -10,16 +10,27 @@ package model.hospital;
  */
 public class Hospital {
     static int hos_cnt=1;
-    int hospital_id;
-    String hospital_name;
+    int hospitalid;
+    String hospitalname;
     String desc;
-    int address_id;
+    String mobileno;
+    String email;
+    int addressid;
 
-    public Hospital(int hospital_id, String hospital_name, String desc, int address_id) {
-        this.hospital_id = hospital_id;
-        this.hospital_name = hospital_name;
+    public Hospital(int hospitalid, String hospital_name, String desc, int address_id) {
+        this.hospitalid = hospitalid;
+        this.hospitalname = hospital_name;
         this.desc = desc;
-        this.address_id = address_id;
+        this.addressid = address_id;
+    }
+
+    public Hospital(int hospitalid, String hospitalname,  String mobileno, String email, String desc,int addressid) {
+        this.hospitalid = hospitalid;
+        this.hospitalname = hospitalname;
+        this.desc = desc;
+        this.mobileno = mobileno;
+        this.email = email;
+        this.addressid = addressid;
     }
 
     public Hospital() {
@@ -32,26 +43,28 @@ public class Hospital {
     public static void setHos_cnt() {
         hos_cnt = hos_cnt+1;
     }
-
-    public int getHospital_id() {
-        return hospital_id;
+    public static void setHos_cnt(int ihos_cnt) {
+        hos_cnt = ihos_cnt+1;
+    }
+    public int getHospitalid() {
+        return hospitalid;
     }
 
-    public void setHospital_id(int ihospital_id) {
-        hospital_id = ihospital_id;
+    public void setHospitalid(int ihospital_id) {
+        hospitalid = ihospital_id;
     }
     
-    public void setHospital_id() {
-        hospital_id = hos_cnt;
+    public void setHospitalid() {
+        hospitalid = hos_cnt;
         setHos_cnt();
     }
 
-    public String getHospital_name() {
-        return hospital_name;
+    public String getHospitalname() {
+        return hospitalname;
     }
 
-    public void setHospital_name(String hospital_name) {
-        this.hospital_name = hospital_name;
+    public void setHospitalname(String hospital_name) {
+        this.hospitalname = hospital_name;
     }
 
     public String getDesc() {
@@ -62,12 +75,28 @@ public class Hospital {
         this.desc = desc;
     }
 
-    public int getAddress_id() {
-        return address_id;
+    public int getAddressid() {
+        return addressid;
     }
 
-    public void setAddress_id(int address_id) {
-        this.address_id = address_id;
+    public void setAddressid(int addressid) {
+        this.addressid = addressid;
+    }
+
+    public String getMobileno() {
+        return mobileno;
+    }
+
+    public void setMobileno(String mobileno) {
+        this.mobileno = mobileno;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
     
 }

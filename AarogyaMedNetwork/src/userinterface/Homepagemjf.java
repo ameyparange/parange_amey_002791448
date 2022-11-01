@@ -16,9 +16,11 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import model.confidential.Authentication;
 import model.confidential.Fileload;
+import model.hospital.Hospitaldirectory;
 import model.patienta.Patient;
 import model.patienta.Patientdirectory;
 import model.persona.Community;
+import model.persona.Persondirectory;
 import userinterface.patient.PatientRegister;
 import userinterface.patient.PatientView;
 
@@ -31,14 +33,18 @@ public class Homepagemjf extends javax.swing.JFrame {
     /**
      * Creates new form Homepagemjf
      */
+    public Persondirectory perdir;
     public Patientdirectory patdir;
     public Community community;
     public Authentication auth;
+    public Hospitaldirectory hosdir;
     public Homepagemjf() {
         initComponents();
         patdir = new Patientdirectory();
         community= new Community();
         auth= new Authentication();
+        hosdir=new Hospitaldirectory();
+        perdir=new Persondirectory();
     }
 
     //*************JDBC CONNECTION****************************//
@@ -219,14 +225,14 @@ public class Homepagemjf extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         // TODO add your handling code here:
-        PatientRegister patreg = new PatientRegister(patdir,community,auth);
+        PatientRegister patreg = new PatientRegister(patdir,community,auth,perdir);
         jSplitPane1.setRightComponent(patreg);
         
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
-        LoginMain loginmain = new LoginMain( patdir,auth, community);
+        LoginMain loginmain = new LoginMain( patdir,auth, community, hosdir,perdir);
         jSplitPane1.setRightComponent(loginmain);
     }//GEN-LAST:event_btnLoginActionPerformed
 
@@ -251,6 +257,8 @@ public class Homepagemjf extends javax.swing.JFrame {
         fileload.loadpatientfile( patdir);
         fileload.loadaddressfile(community);
         fileload.loadcredentialsfile(auth);
+        fileload.loadhospitalfile(hosdir);
+        fileload.loadpersonfile(perdir);
     }//GEN-LAST:event_formWindowClosing
 
 /**

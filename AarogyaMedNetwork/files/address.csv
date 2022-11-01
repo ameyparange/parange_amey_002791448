@@ -1,3 +1,8 @@
 address_id, street, unit, city, state, zipcode
 1,27 Longwood Ave,4,Brookline,MA,02446
 2,133 Peterborough St,2,Boston,MA,02215
+3,25 Longwood Ave,1,Brookline,MA,02446
+4,25 Longwood Ave,1,Brookline,MA,02446
+9,Peterborough,1,Boston,MA,02215
+6,65 Alphanso St,2,Boston,MA,02108
+7,27 Longwood Ave,4,Brookline,MA,02446

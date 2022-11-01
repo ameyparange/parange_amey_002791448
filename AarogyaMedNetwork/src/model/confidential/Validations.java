@@ -25,6 +25,16 @@ public class Validations {
         return true;
 
     }
+    public boolean valhospname(String s) {
+        int i;
+        for (i = 0; i < s.length(); i++) {
+            if (Character.isAlphabetic(s.charAt(i)) == false &&s.charAt(i)!=' ') {
+                return false;
+            }
+        }
+        return true;
+
+    }
 
     public boolean valage(String tage) {
         int i;
@@ -78,29 +88,29 @@ public class Validations {
 
     }
 
-    public boolean valusername(String tusername, ArrayList<Patient> patientcatalog) {
+    public int valusername(String tusername, ArrayList<Patient> patientcatalog) {
 
         
         int i;
-        if (tusername.length() < 5 && tusername.length() > 16) {
-            return false;
+        if (tusername.length() < 5 || tusername.length() > 16) {
+            return 1;
         }
         for (i = 0; i < tusername.length(); i++) {
             if (!(Character.isAlphabetic(tusername.charAt(i)) || Character.isDigit(tusername.charAt(i))
                     || tusername.charAt(i) == '_')) {
-                    return false;
+                    return 1;
             } 
         }
         i=0;
         for (Patient p : patientcatalog) {
             p = patientcatalog.get(i);
 
-            if (p.getUsername().compareToIgnoreCase(tusername) == 1) {
-                return false;
+            if (p.getUsername().compareToIgnoreCase(tusername) == 0) {
+                return 2;
             }
             i++;
         }
-        return true;
+        return 0;
 
     }
 
@@ -108,7 +118,7 @@ public class Validations {
         //ArrayList<Patient> patientcatalog =
         Patient p;
         int i;
-        if (tpassword.length() < 8 && tpassword.length() > 16) {
+        if (tpassword.length() < 8 || tpassword.length() > 16) {
             return false;
         }
         for (i = 0; i < tpassword.length(); i++) {

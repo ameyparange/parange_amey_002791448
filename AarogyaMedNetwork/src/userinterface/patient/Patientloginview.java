@@ -579,9 +579,14 @@ public class Patientloginview extends javax.swing.JPanel {
                 } else {
                     pat.setPassword(tpassword);
                 }
-                if (val.valusername(tusername, patdir.getPatientcatalog()) == false) {
+                if (val.valusername(tusername, patdir.getPatientcatalog()) == 1) {
                     JOptionPane.showMessageDialog(this, "Please username in Proper format (a-z,A-Z,_)",
                             "Try Again",
+                            JOptionPane.ERROR_MESSAGE);
+                    er = true;
+                } else if (val.valusername(tusername, patdir.getPatientcatalog()) == 2) {
+                    JOptionPane.showMessageDialog(this, "Please choose different username",
+                            "UserName already exists,Try Again",
                             JOptionPane.ERROR_MESSAGE);
                     er = true;
                 } else {

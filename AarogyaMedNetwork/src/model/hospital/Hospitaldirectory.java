@@ -4,7 +4,12 @@
  */
 package model.hospital;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
+import model.confidential.Fileload;
 
 /**
  *
@@ -16,7 +21,43 @@ public class Hospitaldirectory {
     public Hospitaldirectory(ArrayList<Hospital> hosdir) {
         this.hosdir = hosdir;
     }
+    public Hospitaldirectory() {
+        this.hosdir= new ArrayList<Hospital>();
+        String filename = "files/hospitaldirectory.csv";
+        Hospital hos;
+        //System.out.println("1");
+        try ( BufferedReader br = new BufferedReader(new FileReader(filename))) {
+            String line;
+            int i = 0, thospital_id = 0;
+            while ((line = br.readLine()) != null) {
+                if (i == 0) {
+                    i++;
+                    //System.out.println(line);
+                   // System.out.println("2");
+                } else {
+                    //System.out.println(line);
+                    String[] values = line.split(",");
+                  //  System.out.println("1");
+                    hos = new Hospital(Integer.valueOf(values[0]),values[1],values[2],values[3],values[4],Integer.valueOf(values[5]));
+                   // System.out.println("2");
+                    //System.out.println(pat.getFirstname());
+                    thospital_id = Integer.valueOf(values[0]);
+                   // System.out.println("1");
+                    this.addnewhospital(hos);
+                  //  System.out.println("2");
 
+                }
+                if (thospital_id != 0 ) {
+                    Hospital.setHos_cnt(thospital_id);
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+
+        }
+        
+    }
+   
     public ArrayList<Hospital> getHosdir() {
         return hosdir;
     }
@@ -39,7 +80,7 @@ public class Hospitaldirectory {
         
         int i = 0;
         for (Hospital p : hosdir) {
-            if (p.getHospital_id() == hospital_id) {
+            if (p.getHospitalid() == hospital_id) {
                 deletehospitalrec(hospital_id);
                 hosdir.add(i, updpat);
                 break;
@@ -53,7 +94,7 @@ public class Hospitaldirectory {
         
         int i=0;
         for (Hospital c:hosdir){
-            if (c.getHospital_id()==pat ) {
+            if (c.getHospitalid()==pat ) {
                 hosdir.remove(i);
                         break;
             }
@@ -65,7 +106,7 @@ public class Hospitaldirectory {
     public Hospital searchIndexhospital(int add_id) {
         
         for (Hospital c:hosdir){
-            if (c.getHospital_id()==add_id ) {
+            if (c.getHospitalid()==add_id ) {
                 return c;
             }
            
