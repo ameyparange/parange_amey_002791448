@@ -7,6 +7,7 @@ package userinterface;
 import model.confidential.Fileload;
 import model.hospemp.Doctor;
 import model.hospemp.Doctordirectory;
+import model.hospital.CommunnityCatalog;
 import model.hospital.Hospitaldirectory;
 import model.patienta.Encounter;
 import model.patienta.Patientdirectory;
@@ -31,12 +32,14 @@ public class DoctorPage extends javax.swing.JFrame {
     Patientdirectory patdir;
     Hospitaldirectory hosdir;
     Persondirectory perdir;
+    
+    CommunnityCatalog c;
     public DoctorPage() {
         initComponents();
         jlusername.setText("Doctor");
         docdir = new Doctordirectory();
          
-        
+        this.c=new CommunnityCatalog();
         enc = new Encounter();
        
     }

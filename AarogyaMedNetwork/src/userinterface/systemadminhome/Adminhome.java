@@ -8,15 +8,18 @@ import model.confidential.Authentication;
 import model.confidential.Credentials;
 import model.confidential.Fileload;
 import model.hospemp.Doctordirectory;
+import model.hospital.CommunnityCatalog;
 import model.hospital.Hospitaldirectory;
 import model.patienta.Patientdirectory;
 import model.persona.Community;
+import model.persona.Person;
 import model.persona.Persondirectory;
 import userinterface.Homepagemjf;
 import userinterface.doctora.Doctoractions;
 import userinterface.hospitala.Hospitalcatalog;
 import userinterface.patient.PatientView;
 import userinterface.PatientActions;
+import userinterface.communitya.CreateCommunity;
 import userinterface.doctora.DoctorCatalog;
 /**
  *
@@ -35,8 +38,10 @@ public class Adminhome extends javax.swing.JFrame {
     Hospitaldirectory hosdir;
     Persondirectory perdir;
     Doctordirectory docdir;
+    CommunnityCatalog c;
     public Adminhome() {
         initComponents();
+        this.c=new CommunnityCatalog();
     }
     
     public void adminhomeinit(Community community,Patientdirectory patdir,Authentication auth,Credentials cred,
@@ -300,12 +305,20 @@ public class Adminhome extends javax.swing.JFrame {
 
     private void btnprofileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnprofileActionPerformed
         // TODO add your handling code here:
-        //Patientloginview profile = new Patientloginview(patient,community,patdir, auth);
-       // jSplitPane1.setRightComponent(profile);
+        AdminProfile profile = new AdminProfile( perdir,perdir.searchIndexPer(cred.getUsername()), community);
+       jSplitPane1.setRightComponent(profile);
     }//GEN-LAST:event_btnprofileActionPerformed
 
     private void btnSignoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignoutActionPerformed
         // TODO add your handling code here:
+        Fileload fileload = new Fileload();
+        fileload.loadpatientfile( patdir);
+        fileload.loadaddressfile(community);
+        
+        fileload.loadhospitalfile(hosdir);
+        fileload.loadpersonfile(perdir);
+        fileload.loaddoctorfile(docdir);
+        fileload.loadcommunityfile(c);
         Homepagemjf home=new Homepagemjf();
         home.setVisible(rootPaneCheckingEnabled);
         this.dispose();
@@ -357,6 +370,9 @@ public class Adminhome extends javax.swing.JFrame {
 
     private void btncommunityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncommunityActionPerformed
         // TODO add your handling code here:
+        CreateCommunity pa=new CreateCommunity(c,cred);
+        
+        jSplitPane1.setRightComponent(pa);
     }//GEN-LAST:event_btncommunityActionPerformed
 
     /**

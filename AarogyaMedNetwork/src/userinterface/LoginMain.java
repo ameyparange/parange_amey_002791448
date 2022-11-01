@@ -13,6 +13,7 @@ import model.patienta.Patientdirectory;
 import model.persona.Community;
 import model.persona.Persondirectory;
 import userinterface.systemadminhome.Adminhome;
+import userinterface.systemadminhome.CommAdminhome;
 
 /**
  *
@@ -211,6 +212,13 @@ public class LoginMain extends javax.swing.JPanel {
                 adminhome.setVisible(true);
                 
             }
+             else if (cbloginas.getSelectedItem().toString().equalsIgnoreCase("Community Admin")) {
+                //System.out.println(cbloginas.getSelectedItem().toString());
+                CommAdminhome adminhome = new CommAdminhome();
+                adminhome.adminhomeinit(community, patdir, auth, cred, hosdir, perdir);
+                adminhome.setVisible(true);
+                
+            }
             else if (cbloginas.getSelectedItem().toString().equalsIgnoreCase("Doctor")) {
                 //System.out.println(cbloginas.getSelectedItem().toString());
                 DoctorPage dp=new DoctorPage();
@@ -225,7 +233,7 @@ public class LoginMain extends javax.swing.JPanel {
                         JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception e) {
-            System.out.println("Warning:Credentials Exception;");
+            System.out.println(e+"Warning:Credentials Exception;");
 
         }
 

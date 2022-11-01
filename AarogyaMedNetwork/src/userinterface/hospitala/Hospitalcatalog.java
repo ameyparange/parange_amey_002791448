@@ -38,6 +38,13 @@ public class Hospitalcatalog extends javax.swing.JPanel {
         this.patdir = patdir;
         this.cred = cred;
         populatetable();
+        if (this.cred.getUsertype().equalsIgnoreCase("Community Admin"))
+        {
+            btnedit.setVisible(false);
+        btnupdate.setVisible(false);
+        btnsregister.setVisible(false);
+        btndelete.setVisible(false);
+        }
     }
 
     /**

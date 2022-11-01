@@ -19,6 +19,8 @@ import model.persona.Community;
 import model.persona.Person;
 import model.persona.Persondirectory;
 import model.hospemp.Doctordirectory;
+import model.hospital.Communnity;
+import model.hospital.CommunnityCatalog;
 import model.patienta.Encounter;
 import model.patienta.VitalSigns;
 /**
@@ -164,7 +166,27 @@ public class Fileload {
         }
 
     }
-    
+     public void loadcommunityfile(CommunnityCatalog cc) {
+
+        String filename = "files/communnity.csv";
+        try ( BufferedWriter wr = new BufferedWriter(new FileWriter(filename))) {
+            String line = "name,city,hos_id";
+            int i = 0;
+            String rec;
+            wr.write(line);
+            //for (Communnity p : CommunnityCatalog.getcc()) {
+            for (Communnity p: cc.getcc()) {   
+                wr.newLine();
+                rec = p.getName()  + "," + p.getCity() + "," + p.getHos_id() ;
+                wr.append(rec);
+            }
+
+            wr.close();
+        } catch (Exception e) {
+            System.out.println("File communnity.csv Not Found");
+        }
+
+    }
     public void loadencounterfile(Encounter enc) {
 
         String filename = "files/encounter.csv";
