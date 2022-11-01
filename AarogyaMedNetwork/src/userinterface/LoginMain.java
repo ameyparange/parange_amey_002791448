@@ -207,7 +207,7 @@ public class LoginMain extends javax.swing.JPanel {
              else if (cbloginas.getSelectedItem().toString().equalsIgnoreCase("System Admin")) {
                 //System.out.println(cbloginas.getSelectedItem().toString());
                 Adminhome adminhome = new Adminhome();
-                adminhome.adminhomeinit(community, patdir, auth, cred, hosdir);
+                adminhome.adminhomeinit(community, patdir, auth, cred, hosdir, perdir);
                 adminhome.setVisible(true);
                 (new Homepagemjf()).dispose();
             }} else {

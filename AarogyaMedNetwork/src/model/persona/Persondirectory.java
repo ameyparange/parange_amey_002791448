@@ -6,6 +6,7 @@ package model.persona;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
+import model.hospemp.Doctor;
 import model.patienta.Patient;
 /**
  *
@@ -138,6 +139,16 @@ public class Persondirectory {
         per.setSadm("0");
         this.addnewperson(per);
     }
+    public void adddoctor(Doctor p,String pat,String doc,String hadm,String sadm){
+        Person per= p;
+        per.setPat(pat);
+        per.setDoc(doc);
+        per.setRec(sadm);
+        per.setHadm(hadm);
+        per.setSadm("0");
+        this.addnewperson(per);
+    }
+    
     /*
     private void addpatient(Patient p){
         Person per= p;
