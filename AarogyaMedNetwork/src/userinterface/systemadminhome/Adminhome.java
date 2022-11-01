@@ -64,11 +64,9 @@ public class Adminhome extends javax.swing.JFrame {
         jLabell = new javax.swing.JLabel();
         jlusername = new javax.swing.JLabel();
         javax.swing.JButton btnprofile = new javax.swing.JButton();
-        javax.swing.JButton btnpersoncata = new javax.swing.JButton();
         javax.swing.JButton btnSignout = new javax.swing.JButton();
         jlusertype = new javax.swing.JLabel();
         javax.swing.JButton btnpatientcata = new javax.swing.JButton();
-        javax.swing.JButton btndoctor = new javax.swing.JButton();
         javax.swing.JButton btnhospitalcata = new javax.swing.JButton();
         javax.swing.JButton btnpersoncata2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -114,17 +112,6 @@ public class Adminhome extends javax.swing.JFrame {
             }
         });
 
-        btnpersoncata.setBackground(new java.awt.Color(204, 204, 204));
-        btnpersoncata.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnpersoncata.setText("PersonCatalog");
-        btnpersoncata.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnpersoncata.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnpersoncata.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnpersoncataActionPerformed(evt);
-            }
-        });
-
         btnSignout.setBackground(new java.awt.Color(204, 204, 204));
         btnSignout.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnSignout.setText("Sign Out");
@@ -147,17 +134,6 @@ public class Adminhome extends javax.swing.JFrame {
         btnpatientcata.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnpatientcataActionPerformed(evt);
-            }
-        });
-
-        btndoctor.setBackground(new java.awt.Color(204, 204, 204));
-        btndoctor.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btndoctor.setText("DoctorCatalog");
-        btndoctor.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btndoctor.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btndoctor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btndoctorActionPerformed(evt);
             }
         });
 
@@ -205,9 +181,7 @@ public class Adminhome extends javax.swing.JFrame {
                             .addComponent(btnSignout, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnpersoncata2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnhospitalcata, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btndoctor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnpatientcata, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnpersoncata, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(btnpatientcata, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -222,14 +196,10 @@ public class Adminhome extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnprofile, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnpersoncata, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnpatientcata, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btndoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnhospitalcata, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
                 .addComponent(btnpersoncata2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnSignout, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -284,12 +254,6 @@ public class Adminhome extends javax.swing.JFrame {
        // jSplitPane1.setRightComponent(profile);
     }//GEN-LAST:event_btnprofileActionPerformed
 
-    private void btnpersoncataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpersoncataActionPerformed
-        // TODO add your handling code here:
-        /* LoginMain loginmain = new LoginMain();
-        jSplitPane1.setRightComponent(loginmain);*/
-    }//GEN-LAST:event_btnpersoncataActionPerformed
-
     private void btnSignoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignoutActionPerformed
         // TODO add your handling code here:
         Homepagemjf home=new Homepagemjf();
@@ -302,10 +266,6 @@ public class Adminhome extends javax.swing.JFrame {
         PatientView p= new PatientView(patdir,community);
         jSplitPane1.setRightComponent(p);
     }//GEN-LAST:event_btnpatientcataActionPerformed
-
-    private void btndoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndoctorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btndoctorActionPerformed
 
     private void btnhospitalcataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnhospitalcataActionPerformed
         // TODO add your handling code here:
