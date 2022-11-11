@@ -43,7 +43,7 @@ public class Adminhome extends javax.swing.JFrame {
         initComponents();
         this.c=new CommunnityCatalog();
     }
-    
+        
     public void adminhomeinit(Community community,Patientdirectory patdir,Authentication auth,Credentials cred,
             Hospitaldirectory hosdir,Persondirectory perdir)
     {
