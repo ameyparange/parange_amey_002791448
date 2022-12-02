@@ -23,7 +23,7 @@ public class Jdbcconnect {
     public void connect(){
         try{
             Class.forName("com.mysql.jdbc.Driver" );
-            this.con = DriverManager.getConnection("jdbc:mysql://localhost/aarogyamednetdb","root","amey@110")   ;   
+            this.con = DriverManager.getConnection("jdbc:mysql://localhost/aarogyamednetdb","root","amey@1105")   ;   
         }
         catch( Exception e) {
             System.out.println(e.toString());
@@ -36,7 +36,7 @@ public class Jdbcconnect {
             String lname="para";
         
         String fname="ame";
-        String age="12";
+        String age="123";
         int mobileno = 12;
         String email= "dads";
         pet = con.prepareStatement("insert into patient(fname,lname,age,mobileno,email) values (?,?,?,?,?)");
