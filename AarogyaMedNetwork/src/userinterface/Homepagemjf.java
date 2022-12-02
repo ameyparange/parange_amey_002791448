@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
 import model.confidential.Authentication;
 import model.confidential.Fileload;
 import model.hospital.Hospitaldirectory;
+import model.jdbc_connect.Jdbcconnect;
 import model.patienta.Patient;
 import model.patienta.Patientdirectory;
 import model.persona.Community;
@@ -65,6 +66,7 @@ public class Homepagemjf extends javax.swing.JFrame {
         javax.swing.JButton btnHome = new javax.swing.JButton();
         javax.swing.JButton btnLogin = new javax.swing.JButton();
         javax.swing.JButton btnRegister = new javax.swing.JButton();
+        javax.swing.JButton btnRegister1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         javax.swing.JLabel jLabel1 = new javax.swing.JLabel();
 
@@ -135,6 +137,16 @@ public class Homepagemjf extends javax.swing.JFrame {
             }
         });
 
+        btnRegister1.setBackground(new java.awt.Color(204, 204, 204));
+        btnRegister1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnRegister1.setText("Connect");
+        btnRegister1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnRegister1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegister1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPLmenu1Layout = new javax.swing.GroupLayout(jPLmenu1);
         jPLmenu1.setLayout(jPLmenu1Layout);
         jPLmenu1Layout.setHorizontalGroup(
@@ -142,6 +154,7 @@ public class Homepagemjf extends javax.swing.JFrame {
             .addGroup(jPLmenu1Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addGroup(jPLmenu1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnRegister1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -156,7 +169,9 @@ public class Homepagemjf extends javax.swing.JFrame {
                 .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(255, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnRegister1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(219, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(jPLmenu1);
@@ -241,6 +256,13 @@ public class Homepagemjf extends javax.swing.JFrame {
         fileload.loadpersonfile(perdir);
     }//GEN-LAST:event_formWindowClosing
 
+    private void btnRegister1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegister1ActionPerformed
+        // TODO add your handling code here:
+        
+        Jdbcconnect jb = new Jdbcconnect();
+        int k = jb.insertrec();
+    }//GEN-LAST:event_btnRegister1ActionPerformed
+
 /**
  * @param args the command line arguments
  */
@@ -279,7 +301,7 @@ public static void main(String args[]) {
 .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
