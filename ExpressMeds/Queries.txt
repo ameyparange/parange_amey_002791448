@@ -1,0 +1,40 @@
+
+CREATE TABLE `expressmeddb`.`enterprise` (
+  `ent_id` INT NOT NULL AUTO_INCREMENT,
+  `ent_type` VARCHAR(50) NULL,
+  `name` VARCHAR(50) NULL,
+  `email` VARCHAR(50) NULL,
+  `location` VARCHAR(50) NULL,
+  PRIMARY KEY (`ent_id`));
+  
+  
+CREATE TABLE `expressmeddb`.`useraccount` (
+  `username` VARCHAR(50) NOT NULL,
+  `per_id` VARCHAR(50) NULL,
+  `password` VARCHAR(50) NULL,
+  `role_name` VARCHAR(45) NULL,
+  PRIMARY KEY (`username`));
+  
+
+CREATE TABLE `expressmeddb`.`organization` (
+  `org_id` INT NOT NULL AUTO_INCREMENT,
+  `ent_id` INT NULL,
+  `org_type` VARCHAR(50) NULL,
+  PRIMARY KEY (`org_id`));
+
+
+CREATE TABLE `expressmeddb`.`role` (
+  `role_id` INT NOT NULL AUTO_INCREMENT,
+  `ent_id` INT NULL,
+  `role_type` VARCHAR(50) NULL,
+  PRIMARY KEY (`role_id`));
+  
+  
+CREATE TABLE `expressmeddb`.`address` (
+  `add_id` INT NOT NULL AUTO_INCREMENT,
+  `street` VARCHAR(100) NULL,
+  `unit` VARCHAR(20) NULL,
+  `city` VARCHAR(50) NULL,
+  `state` VARCHAR(50) NULL,
+  `zipcode` INT NULL,
+  PRIMARY KEY (`add_id`));
