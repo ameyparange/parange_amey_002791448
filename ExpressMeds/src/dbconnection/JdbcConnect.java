@@ -17,6 +17,7 @@ import model.enterprise.role.Role;
 import model.product.Product;
 import model.useraccount.UserAccount;
 import model.Person.Person;
+import model.enterprise.employee.Employee;
 import model.order.OrderItem;
 import model.order.OrderitemCatalog;
 
@@ -1063,6 +1064,34 @@ public int updatedeliverycomplete(int order_id, String sts) {
             System.out.println(e.toString());
 
         }
+    }
+
+    public int updateEmployee(Employee emp) {
+        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            this.connect();
+//
+//            pet = con.prepareStatement("update employee set"
+//                    + "org_name=?,emp_id=? where emp_id=?") ;
+//
+//            pet.setString(1, emp.getOrg_name());
+//            pet.setInt(2, emp.getEmp_id());
+//            pet.setInt(3, p.getWeight());
+//            pet.setInt(4, p.getValidity());
+//            pet.setString(5, p.getDesc());
+//            pet.setInt(6, p.getProduct_id());
+//
+//            System.out.println(pet.toString());
+//            int k = pet.executeUpdate();
+//            con.commit();
+//            return k;
+
+        } 
+        catch (Exception e) {
+            System.out.println(e.toString());
+            return 0;
+        }
+        return 0;
     }
 
 }

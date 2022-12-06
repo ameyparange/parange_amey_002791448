@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package userinterface.supplier;
+package userinterface.retail;
 
+import userinterface.supplier.*;
 import model.Address;
 import dbconnection.JdbcConnect;
 import javax.swing.JOptionPane;
@@ -22,8 +23,8 @@ public class EmployeeRegistration extends javax.swing.JPanel {
     public EmployeeRegistration() {
         initComponents();
         connect = new JdbcConnect();
-        tfenterprise.setText("Supplier");
-
+        tfenterprise.setText("Retailer");
+        insertdata();
     }
 
     private Boolean checkBlankInput() {
@@ -586,7 +587,7 @@ public class EmployeeRegistration extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     void insertdata() {
-        tfenterprise.setText("Supplier");
+        tfenterprise.setText("Reatiler");
         tfenterprise.setEnabled(false);
         
     }

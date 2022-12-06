@@ -2,14 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package userinterface.supplier;
+package userinterface.retail;
 
+import userinterface.retail.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.enterprise.Enterprise;
 import dbconnection.JdbcConnect;
 import model.enterprise.organization.Organization;
-import userinterface.supplier.EmployeeRegistration;
+import userinterface.retail.EmployeeRegistration;
 import model.enterprise.employee.Employee;
 /**
  *
@@ -20,7 +21,7 @@ public class ManageEmployee extends javax.swing.JPanel {
     /**
      * Creates new form ManageEmployee
      */
-    String supp_name;
+    String retail_name;
     Enterprise ent;
     JdbcConnect connect;
 
@@ -451,7 +452,7 @@ public class ManageEmployee extends javax.swing.JPanel {
                 // Prepare Statement
                 
                 String query = "Select e.emp_id, e.org_name, p.fname,p.email,p.mobileno, p.gender FROM employee e "
-                        + "join person p on p.per_id = e.per_id where e.emp_id=? and  e.ent_type='Supplier'";
+                        + "join person p on p.per_id = e.per_id where e.emp_id=? and  e.ent_type='Retail'";
                
                 connect.pet = connect.con.prepareStatement(query);
                  connect.pet.setInt(1, selected_hosid);
@@ -578,7 +579,7 @@ void enablefields() {
 
             connect.pet = connect.con.prepareStatement("select e.emp_id,e.ent_name,e.org_name, p.email,p.mobileno,p.gender from employee e "
                    +"join person p on e.per_id = p.per_id where e.ent_type=?");
-            connect.pet.setString(1, "Supplier");
+            connect.pet.setString(1, "Retailer");
              
             connect.myRs = connect.pet.executeQuery();
 
@@ -589,7 +590,7 @@ void enablefields() {
                 row[0] = connect.myRs.getString("ent_name");
                 row[1] = connect.myRs.getInt("emp_id");
                 row[2] = connect.myRs.getString("org_name");
-                row[3] = connect.myRs.getString("email");//username
+                row[3] = connect.myRs.getString("email");
                 row[4] = connect.myRs.getString("mobileno");
                 row[5] = connect.myRs.getString("gender");
 
