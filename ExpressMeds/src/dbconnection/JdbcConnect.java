@@ -22,7 +22,7 @@ public class JdbcConnect {
     public void connect() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            this.con = DriverManager.getConnection("jdbc:mysql://localhost/expressmeddb", "root", "");
+            this.con = DriverManager.getConnection("jdbc:mysql://localhost/expressmeddb", "root", "amey@1105");
         } catch (Exception e) {
             System.out.println(e.toString());
         }
@@ -121,6 +121,23 @@ public class JdbcConnect {
         }
 
         return 0;
+    }
+    
+        public int insertenterprise(String ent_type, String name, String email, String location ){
+        try{
+            this.connect();
+        pet = con.prepareStatement("insert into enterprise(name,ent_type,email,location) values (?,?,?,?)");
+        pet.setString(1, name);
+        pet.setString(2, ent_type);
+        pet.setString(3, email);
+        pet.setString(4, location);
+        int k= pet.executeUpdate();
+        return k;
+        
+    }catch ( Exception e) {
+            System.out.println(e.toString());
+            return 0;
+        }
     }
 
 }
