@@ -5,15 +5,16 @@
 package userinterface.supplier;
 
 import userinterface.employee.EmployeeRegistration;
+import userinterface.enterprise.EnterpriseRegistration;
 
 /**
  *
- * @author Dell
+ * @author amey8
  */
 public class SupplierPage extends javax.swing.JFrame {
 
     /**
-     * Creates new form SupplierPage
+     * Creates new form SupplierPage1
      */
     public SupplierPage() {
         initComponents();
@@ -33,6 +34,7 @@ public class SupplierPage extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        btnManageEnterprise = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -72,6 +74,15 @@ public class SupplierPage extends javax.swing.JFrame {
             }
         });
 
+        btnManageEnterprise.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btnManageEnterprise.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/supplier/inventory.png"))); // NOI18N
+        btnManageEnterprise.setText("Manage Enterprise");
+        btnManageEnterprise.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageEnterpriseActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -81,19 +92,22 @@ public class SupplierPage extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(60, Short.MAX_VALUE))
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnManageEnterprise, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(104, 104, 104)
+                .addGap(35, 35, 35)
+                .addComponent(btnManageEnterprise)
+                .addGap(43, 43, 43)
                 .addComponent(jButton1)
                 .addGap(77, 77, 77)
                 .addComponent(jButton3)
                 .addGap(81, 81, 81)
                 .addComponent(jButton4)
-                .addContainerGap(360, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(jPanel1);
@@ -113,7 +127,6 @@ public class SupplierPage extends javax.swing.JFrame {
         jLabel4.setText("Click any of the Features");
 
         btnlogout.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        btnlogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/admins/logout.png"))); // NOI18N
         btnlogout.setText("Logout");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -125,7 +138,7 @@ public class SupplierPage extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 579, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnlogout, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -142,7 +155,7 @@ public class SupplierPage extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
-                .addContainerGap(531, Short.MAX_VALUE))
+                .addContainerGap(177, Short.MAX_VALUE))
         );
 
         jSplitPane1.setRightComponent(jPanel2);
@@ -167,24 +180,30 @@ public class SupplierPage extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
-         SupplierInventoryPage supint = new SupplierInventoryPage( );
+
+        SupplierInventoryPage supint = new SupplierInventoryPage( );
         jSplitPane1.setRightComponent(supint);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-       
+
         SupplierCatalog supcat = new SupplierCatalog( );
         jSplitPane1.setRightComponent(supcat);
-        
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-         EmployeeRegistration supempreg = new EmployeeRegistration( );
+        EmployeeRegistration supempreg = new EmployeeRegistration( );
         jSplitPane1.setRightComponent(supempreg);
-        
+
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void btnManageEnterpriseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageEnterpriseActionPerformed
+        // TODO add your handling code here:
+        EnterpriseRegistration entreg = new EnterpriseRegistration( );
+        jSplitPane1.setRightComponent(entreg);
+    }//GEN-LAST:event_btnManageEnterpriseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -223,6 +242,7 @@ public class SupplierPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnManageEnterprise;
     private javax.swing.JButton btnlogout;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
@@ -234,5 +254,4 @@ public class SupplierPage extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSplitPane jSplitPane1;
     // End of variables declaration//GEN-END:variables
-
 }
