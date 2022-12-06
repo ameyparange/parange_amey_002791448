@@ -38,3 +38,48 @@ CREATE TABLE `expressmeddb`.`address` (
   `state` VARCHAR(50) NULL,
   `zipcode` INT NULL,
   PRIMARY KEY (`add_id`));
+
+CREATE TABLE `expressmeddb`.`Inventory` (
+  `inv_id` INT NOT NULL,
+  `product_id` INT NULL,
+  `quantity` INT NULL,
+  
+  PRIMARY KEY (`inv_id`));
+  
+CREATE TABLE `expressmeddb`.`Batch` (
+  `batch_id` INT NOT NULL,
+  `product_id` INT NULL,
+  `mgf_date` date,
+  `quantity` INT NULL,
+  
+  PRIMARY KEY (`batch_id`));
+  
+CREATE TABLE `expressmeddb`.`Order` (
+  `order_id` INT NOT NULL,
+  `username` VARCHAR(50) NULL,
+  `f_ent_id` INT NULL,
+  `orderprice` INT NOT NULL,
+  `ord_date` Date,
+  `priorty` INT NULL,
+  `reason` VARCHAR(100) NULL,
+  
+  PRIMARY KEY (`order_id`));
+
+CREATE TABLE `expressmeddb`.`Order_item` (
+  `order_id` INT NOT NULL,
+  `product_id` INT NULL,
+  `qty` INT NOT NULL,
+  `tot_item_price` INT NULL,
+  
+  PRIMARY KEY (`order_id`));
+
+
+CREATE TABLE `expressmeddb`.`Delivery` (
+  `order_id` INT NOT NULL,
+  `emp_id` INT NULL,
+  `src_location` INT NOT NULL,
+  `dest_location` INT NULL,
+  `Delivery_date` date NULL,
+  
+  PRIMARY KEY (`order_id`));
+
