@@ -758,7 +758,7 @@ public class JdbcConnect {
         int per_id = 0;
         try {
             this.connect();
-            pet = con.prepareStatement("select per_id from into useraccount where username = ?");
+            pet = con.prepareStatement("select per_id from useraccount where username = ?");
             pet.setString(1, username);
 
             myRs = pet.executeQuery();
@@ -779,17 +779,19 @@ public class JdbcConnect {
         }
         return 0;
     }
-
+   
     public Person personDetails(int per_id) {
-        per_id = 0;
+        
         try {
             this.connect();
-            pet = con.prepareStatement("select * from into person where per_id = ?");
+            pet = con.prepareStatement("select fname,lname from person where per_id = ?");
             pet.setInt(1, per_id);
             myRs = pet.executeQuery();
             if (myRs.next()) {
 
-                Person UserDetails = new Person(myRs.getInt("per_id"), myRs.getInt("add_id"), myRs.getString("fname"), myRs.getString("lname"), myRs.getString("email"), myRs.getString("mobileno"), myRs.getString("age"), myRs.getInt("mobileno"), myRs.getString("role"));
+                Person UserDetails = new Person(myRs.getString("fname"), myRs.getString("lname"));
+                System.out.println(UserDetails.getFname());
+                System.out.println(UserDetails.getLname());
                 return UserDetails;
             }
         } catch (Exception e) {
