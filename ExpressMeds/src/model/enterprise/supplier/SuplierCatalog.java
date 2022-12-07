@@ -11,6 +11,15 @@ import model.enterprise.Enterprise;
  *
  * @author nehajoisher
  */
-public class SuuplierCatalog {
-     ArrayList<Enterprise> supp; 
+public class SuplierCatalog {
+     ArrayList<Enterprise> supp;
+
+    public SuplierCatalog(ArrayList<Enterprise> supp) {
+        this.supp = supp;
+    }
+     
+     
+     
+     
+     
 }
