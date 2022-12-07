@@ -5,7 +5,7 @@
 package userinterface.supplier;
 
 import userinterface.employee.EmployeeRegistration;
-import userinterface.enterprise.EnterpriseRegistration;
+
 
 /**
  *
@@ -203,8 +203,8 @@ public class SupplierPage extends javax.swing.JFrame {
 
     private void btnManageEnterpriseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageEnterpriseActionPerformed
         // TODO add your handling code here:
-        EnterpriseRegistration entreg = new EnterpriseRegistration( );
-        jSplitPane1.setRightComponent(entreg);
+//        EnterpriseRegistration entreg = new EnterpriseRegistration( );
+//        jSplitPane1.setRightComponent(entreg);
     }//GEN-LAST:event_btnManageEnterpriseActionPerformed
 
     /**
