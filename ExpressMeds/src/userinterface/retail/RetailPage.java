@@ -15,6 +15,8 @@ public class RetailPage extends javax.swing.JFrame {
      */
     public RetailPage() {
         initComponents();
+        ///dhfhfhfh
+        ///asfasf
     }
 
     /**
