@@ -20,31 +20,7 @@ public class EnterpriseCatalog {
         this.ent = ent;
     }
 public EnterpriseCatalog() {
-    JdbcConnect jdbc = new JdbcConnect();
-    
-    try {
-            jdbc.connect();
-            // Prepare Statement
-
-            String query = "Select * from enterprise";
-            PreparedStatement myStmt = jdbc.con.prepareStatement(query) ;
-
-            // Execute SQL query
-            Enterprise e;
-            // Execute SQL query
-            ResultSet myRs = myStmt.executeQuery();
-            //System.out.println("5");
-            while (myRs.next()) {
-                //System.out.println(myRs.getString("name"));
-                e = new Enterprise(myRs.getInt("ent_id"),myRs.getString("ent_type"),
-                        myRs.getString("name"),myRs.getString("email"),myRs.getInt("add_id"));
-                this.addenterprise(e);
-            }
-
-        } catch (Exception e) {
-            System.out.println(e.toString());
-
-        }
+    this.ent=null;
     //this.ent=jdbc.loadenterprisetab();
     }
     public ArrayList<Enterprise> getEnt() {

@@ -16,12 +16,10 @@ public class Enterprise {
     String email;
     int address_id;
 
-    public Enterprise() {
-        
-    }
+    
 
     public Enterprise(int ent_id, String ent_type, String name, String email, int address_id) {
-        System.out.println("1");
+        
         this.ent_id = ent_id;
         this.ent_type = ent_type;
         this.name = name;
@@ -35,6 +33,14 @@ public class Enterprise {
         this.name = name;
         this.email = email;
         this.address_id = address_id;
+    }
+        
+        public Enterprise( ) {
+        ent_id =0;
+        this.ent_type = "";
+        this.name = "";
+        this.email = "";
+        this.address_id = 0;
     }
     public int getEnt_id() {
         return ent_id;

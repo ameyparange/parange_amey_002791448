@@ -51,7 +51,7 @@ public class JdbcConnect {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             this.con = DriverManager.getConnection("jdbc:mysql://localhost/expressmeddb", "root", "amey@1105");
-
+            this.con.setAutoCommit(false);
         } catch (Exception e) {
             System.out.println(e.toString());
         }
@@ -173,14 +173,14 @@ public class JdbcConnect {
             pet.setString(3, email);
             pet.setString(4, location);
             int k = pet.executeUpdate();
+            con.commit();
             return k;
-            
 
         } catch (Exception e) {
             System.out.println(e.toString());
             return 0;
         }
-        
+
     }
 
     public int insertenterprise(Enterprise ent) {
@@ -193,6 +193,7 @@ public class JdbcConnect {
             pet.setInt(4, ent.getAddress_id());
 
             int k = pet.executeUpdate();
+            con.commit();
             return k;
 
         } catch (Exception e) {
@@ -200,31 +201,138 @@ public class JdbcConnect {
             return 0;
         }
     }
-    
-//    public ArrayList<Enterprise> loadenterprisetab()
-//    {
-//        EnterpriseCatalog entcat=new  EnterpriseCatalog();
-//        System.out.println("1");
-//        try{
-//        String query = "Select * from enterprise";
-//        System.out.println("3");
-//        PreparedStatement myStmt = con.prepareStatement(query);
-//        System.out.println("4");
-//            Enterprise e;
-//            // Execute SQL query
-//            ResultSet myRs = myStmt.executeQuery();
-//            System.out.println("5");
-//            while (myRs.next()) {
-//                System.out.println(myRs.getString("name"));
-//                e = new Enterprise(myRs.getInt("ent_id"),myRs.getString("ent_type"),myRs.getString("name"),myRs.getString("email"),myRs.getInt("add_id"));
-//                entcat.addenterprise(e);
-//            }
-//        }
-//        catch(Exception e)
-//        {   System.out.println("2");
-//            System.out.println(e.toString());}
-//        return entcat;
-//    }
+
+    public int updateenterprise(Enterprise ent) {
+        try {
+            this.connect();
+
+            pet = con.prepareStatement("update enterprise "
+                    + " set name=?,ent_type=?,email=? where ent_id= ? ");
+
+            pet.setString(1, ent.getName());
+            pet.setString(2, ent.getEnt_type());
+            pet.setString(3, ent.getEmail());
+            pet.setInt(4, ent.getEnt_id());
+            System.out.println(pet.toString());
+            int k = pet.executeUpdate();
+            con.commit();
+            return k;
+
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            return 0;
+        }
+
+    }
+
+    public int searchenterpriseadd_id(int ent_id) {
+        this.connect();
+        try {
+            pet = con.prepareStatement("select add_id from enterprise where ent_id=?");
+            pet.setInt(1, ent_id);
+            myRs = pet.executeQuery();
+
+            if (myRs.next()) {
+
+                return myRs.getInt("add_id");
+
+            }
+        } catch (Exception e) {
+            System.out.println("9999");
+            System.out.println(e.toString());
+            return 9999;
+        }
+        return 9999;
+    }
+
+    public Enterprise searchenterpriseon_entid(int ent_id) {
+        Enterprise e;
+        this.connect();
+        try {
+            pet = con.prepareStatement("select * from enterprise where ent_id=?");
+            pet.setInt(1, ent_id);
+            myRs = pet.executeQuery();
+
+            if (myRs.next()) {
+                e = new Enterprise(myRs.getInt("ent_id"), myRs.getString("ent_type"),
+                        myRs.getString("name"), myRs.getString("email"), myRs.getInt("add_id"));
+
+                return e;
+
+            }
+        } catch (Exception et) {
+            System.out.println("9999");
+            System.out.println(et.toString());
+            return new Enterprise();
+        }
+        return new Enterprise();
+    }
+
+    public Enterprise searchenterpriseon_name(String name) {
+        this.connect();
+        Enterprise e;
+        try {
+            pet = con.prepareStatement("select * from enterprise where name=?");
+            pet.setString(1, name);
+            myRs = pet.executeQuery();
+
+            if (myRs.next()) {
+                e = new Enterprise(myRs.getInt("ent_id"), myRs.getString("ent_type"),
+                        myRs.getString("name"), myRs.getString("email"), myRs.getInt("add_id"));
+                return e;
+
+            }
+        } catch (Exception et) {
+            System.out.println("9999");
+            System.out.println(et.toString());
+            return new Enterprise();
+        }
+        return new Enterprise();
+    }
+
+    public Enterprise searchenterpriseon_type(String type) {
+        this.connect();
+        Enterprise e;
+        try {
+            pet = con.prepareStatement("select * from enterprise where ent_type=?");
+            pet.setString(1, type);
+            myRs = pet.executeQuery();
+
+            if (myRs.next()) {
+                e = new Enterprise(myRs.getInt("ent_id"), myRs.getString("ent_type"),
+                        myRs.getString("name"), myRs.getString("email"), myRs.getInt("add_id"));
+                return e;
+
+            }
+        } catch (Exception et) {
+            System.out.println("9999");
+            System.out.println(et.toString());
+            return new Enterprise();
+        }
+        return new Enterprise();
+    }
+
+    public Enterprise searchenterpriseon_city(String city) {
+        this.connect();
+        Enterprise e;
+        try {
+            pet = con.prepareStatement("select e.* from enterprise e join address a on a.add_id = e.add_id where a.city=?");
+            pet.setString(1, city);
+            myRs = pet.executeQuery();
+
+            if (myRs.next()) {
+                e = new Enterprise(myRs.getInt("ent_id"), myRs.getString("ent_type"),
+                        myRs.getString("name"), myRs.getString("email"), myRs.getInt("add_id"));
+                return e;
+
+            }
+        } catch (Exception et) {
+            System.out.println("9999");
+            System.out.println(et.toString());
+            return new Enterprise();
+        }
+        return new Enterprise();
+    }
 
     public int insertaddress(Address add) {
         int add_id = 9999;
@@ -238,16 +346,16 @@ public class JdbcConnect {
             pet.setString(5, add.getZipcode());
 
             int k = pet.executeUpdate();
+            con.commit();
             //return k;
             pet = con.prepareStatement("select max(add_id) add_id from address");
-            
 
             myRs = pet.executeQuery();
 
             if (myRs.next()) {
                 System.out.println(myRs.getInt("add_id"));
                 return myRs.getInt("add_id");
-                
+
             }
         } catch (Exception e) {
             System.out.println(add_id);
@@ -257,4 +365,68 @@ public class JdbcConnect {
         return 999;
     }
 
+    public int updateAddress(Address add) {
+        try {
+            this.connect();
+            //pet = con.prepareStatement("insert into enterprise(name,ent_type,email,add_id) values (?,?,?,?)");
+            pet = con.prepareStatement("update Address set street=?,unit=?,city=?,state=?,zipcode=? where add_id=?");
+
+            pet.setString(1, add.getStreet());
+            pet.setString(2, add.getUnit());
+            pet.setString(3, add.getCity());
+            pet.setString(4, add.getState());
+            pet.setString(5, add.getZipcode());
+            pet.setInt(6, add.getAdd_id());
+
+            System.out.println(pet.toString());
+            int k = pet.executeUpdate();
+            con.commit();
+            System.out.println("Value" + k);
+            return k;
+
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            return 0;
+        }
+    }
+
+    public Address searchAddress(int add_id) {
+        this.connect();
+        Address add;
+        try {
+            pet = con.prepareStatement("select * from address where add_id=?");
+            pet.setInt(1, add_id);
+            myRs = pet.executeQuery();
+
+            if (myRs.next()) {
+                add = new Address(add_id, myRs.getString("street"), myRs.getString("unit"), myRs.getString("city"), myRs.getString("state"), myRs.getString("zipcode"));
+                return add;
+            }
+        } catch (Exception e) {
+            System.out.println("9999");
+            System.out.println(e.toString());
+            return new Address();
+        }
+        return new Address();
+    }
+
+//        public Address searchAddresson_city(String city) {
+//        this.connect();
+//        Address add;
+//        try {
+//            pet = con.prepareStatement("select * from address where city=?");
+//            pet.setString(1, city);
+//            myRs = pet.executeQuery();
+//
+//            if (myRs.next()) {
+//                add = new Address(add_id, myRs.getString("street"), myRs.getString("unit"), myRs.getString("city"), myRs.getString("state"), myRs.getString("zipcode"));
+//                return add;
+//            }
+//        } catch (Exception e) {
+//            System.out.println("9999");
+//            System.out.println(e.toString());
+//            return new Address();
+//        }
+//        return new Address();
+//    }
 }

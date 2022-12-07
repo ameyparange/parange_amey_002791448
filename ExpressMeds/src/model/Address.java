@@ -34,6 +34,11 @@ public class Address {
         this.zipcode = zipcode;
     }
     public Address() {
+                this.Street = "";
+        this.Unit = "";
+        this.City = "";
+        this.State = "";
+        this.zipcode = "";
     }
     
     
