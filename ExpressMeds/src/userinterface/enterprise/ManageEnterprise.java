@@ -27,6 +27,9 @@ public class ManageEnterprise extends javax.swing.JPanel {
         initComponents();
          connect = new JdbcConnect();
         populatetable();
+        disablefields();
+                btnupdate.setEnabled(true);
+        btnedit.setEnabled(false);
     }
 
     /**
@@ -41,8 +44,12 @@ public class ManageEnterprise extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        tfsname = new javax.swing.JTextField();
         btnsearchcat = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        tfstype = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        tfscity = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTenterprise = new javax.swing.JTable();
         btndelete = new javax.swing.JButton();
@@ -71,10 +78,9 @@ public class ManageEnterprise extends javax.swing.JPanel {
         jPanel6 = new javax.swing.JPanel();
         btnedit = new javax.swing.JButton();
         btnupdate = new javax.swing.JButton();
-        btnsearch = new javax.swing.JButton();
-        btnsregister = new javax.swing.JButton();
-        btnclear = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
+        btnrefresh = new javax.swing.JButton();
+        btnsregister = new javax.swing.JButton();
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -90,32 +96,47 @@ public class ManageEnterprise extends javax.swing.JPanel {
         btnsearchcat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/supplier/loupe.png"))); // NOI18N
         btnsearchcat.setText("Search");
 
+        jLabel5.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
+        jLabel5.setText("Type");
+
+        jLabel11.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
+        jLabel11.setText("City");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(206, 206, 206)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(82, 82, 82)
-                    .addComponent(btnsearchcat)
-                    .addContainerGap(207, Short.MAX_VALUE)))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfsname, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfstype, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfscity, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnsearchcat)
+                .addGap(37, 37, 37))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 53, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(13, 13, 13)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(13, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfsname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(tfstype, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel1)
-                        .addComponent(btnsearchcat))
-                    .addContainerGap(13, Short.MAX_VALUE)))
+                        .addComponent(tfscity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel11)
+                        .addComponent(btnsearchcat)))
+                .addGap(13, 13, 13))
         );
 
         jTenterprise.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
@@ -298,7 +319,7 @@ public class ManageEnterprise extends javax.swing.JPanel {
                         .addComponent(labelname1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(31, 31, 31)
                         .addComponent(tfstreet, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -351,54 +372,15 @@ public class ManageEnterprise extends javax.swing.JPanel {
             }
         });
 
-        btnsearch.setBackground(new java.awt.Color(204, 204, 204));
-        btnsearch.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        btnsearch.setText("Search");
-        btnsearch.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnsearch.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnsearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnsearchActionPerformed(evt);
-            }
-        });
-
-        btnsregister.setBackground(new java.awt.Color(204, 204, 204));
-        btnsregister.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        btnsregister.setText("Register");
-        btnsregister.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnsregister.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnsregister.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnsregisterActionPerformed(evt);
-            }
-        });
-
-        btnclear.setBackground(new java.awt.Color(204, 204, 204));
-        btnclear.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        btnclear.setText("Clear");
-        btnclear.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnclear.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnclear.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnclearActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(btnsregister, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap(339, Short.MAX_VALUE)
                 .addComponent(btnedit, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnupdate, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnsearch, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnclear, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
@@ -407,10 +389,7 @@ public class ManageEnterprise extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnedit, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnupdate, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnsearch, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnsregister, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnclear, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnupdate, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
@@ -463,6 +442,28 @@ public class ManageEnterprise extends javax.swing.JPanel {
                 .addGap(36, 36, 36))
         );
 
+        btnrefresh.setBackground(new java.awt.Color(204, 204, 204));
+        btnrefresh.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btnrefresh.setText("Refresh");
+        btnrefresh.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnrefresh.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnrefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnrefreshActionPerformed(evt);
+            }
+        });
+
+        btnsregister.setBackground(new java.awt.Color(204, 204, 204));
+        btnsregister.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btnsregister.setText("Register");
+        btnsregister.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnsregister.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnsregister.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnsregisterActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -470,13 +471,17 @@ public class ManageEnterprise extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 849, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnsregister, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btndelete, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnrefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnview, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -486,15 +491,17 @@ public class ManageEnterprise extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(12, 12, 12)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnview, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btndelete, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                    .addComponent(btndelete, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnrefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnsregister, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -504,7 +511,7 @@ public class ManageEnterprise extends javax.swing.JPanel {
         // TODO add your handling code here:
         
         int row = jTenterprise.getSelectedRow();
-        btnclear.setEnabled(true);
+        btnrefresh.setEnabled(true);
         if (row < 0) {
             JOptionPane.showMessageDialog(this,
                     "No row is selected! Please select one row",
@@ -532,7 +539,7 @@ public class ManageEnterprise extends javax.swing.JPanel {
     private void btnviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnviewActionPerformed
         // TODO add your handling code here:
         int row = jTenterprise.getSelectedRow();
-        btnclear.setEnabled(true);
+        btnrefresh.setEnabled(true);
         if (row < 0) {
             JOptionPane.showMessageDialog(this,
                     "No row is selected! Please select one row",
@@ -546,29 +553,28 @@ public class ManageEnterprise extends javax.swing.JPanel {
             connect.connect();
             // Prepare Statement
 
-            String query = "Select * from enterprise where ent_id=?";
-            PreparedStatement myStmt = connect.con.prepareStatement(query) ;
+            String query = "Select e.ent_id,e.name,e.ent_type,e.email,a.street ,a.unit,a.city,a.state,a.zipcode from enterprise e "
+                    + " join address a on e.add_id = a.add_id"
+                    + " where ent_id=?";
+            connect.pet = connect.con.prepareStatement(query) ;
             connect.pet.setInt(1, selected_hosid);
 
-            ResultSet myRs = myStmt.executeQuery();
+            connect.myRs = connect.pet.executeQuery();
             //System.out.println("5");
-            if (myRs.next()) {
+            if (connect.myRs.next()) {
                 
-            String query1 = "Select * from address where add_id=?";
-            PreparedStatement myStmt1 = connect.con.prepareStatement(query1) ;
-            connect.pet.setInt(1, myRs.getInt("ent_id"));
+  
 
-            ResultSet myRs1 = myStmt1.executeQuery();
-               tfid.setText(String.valueOf(myRs.getInt("ent_id")) );
-               tfname.setText(String.valueOf(myRs.getString("name")) );
-               tftype.setText(String.valueOf(myRs.getString("ent_type")) );
-               tfemailid.setText(String.valueOf(myRs.getString("email")) );
+               tfid.setText(String.valueOf(connect.myRs.getInt("ent_id")) );
+               tfname.setText(String.valueOf(connect.myRs.getString("name")) );
+               tftype.setText(String.valueOf(connect.myRs.getString("ent_type")) );
+               tfemailid.setText(String.valueOf(connect.myRs.getString("email")) );
                
-               tfstreet.setText(String.valueOf(myRs1.getString("street")) );
-               tfunit.setText(String.valueOf(myRs1.getString("unit")) );
-               tfcity.setText(String.valueOf(myRs1.getString("city")) );
-               tfstate.setText(String.valueOf(myRs1.getString("state")) );
-               tfzipcode.setText(String.valueOf(myRs1.getString("zipcode")) );
+               tfstreet.setText(String.valueOf(connect.myRs.getString("street")) );
+               tfunit.setText(String.valueOf(connect.myRs.getString("unit")) );
+               tfcity.setText(String.valueOf(connect.myRs.getString("city")) );
+               tfstate.setText(String.valueOf(connect.myRs.getString("state")) );
+               tfzipcode.setText(String.valueOf(connect.myRs.getString("zipcode")) );
                
 
             }
@@ -580,42 +586,61 @@ public class ManageEnterprise extends javax.swing.JPanel {
     }//GEN-LAST:event_btnviewActionPerformed
 
     private void btneditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditActionPerformed
-
+        tfstreet.setText("");
+        tfunit.setText("");
+        tfcity.setText("");
+        tfstate.setText("");
+        tfzipcode.setText("");
+        tfname.setText("");
+        tfemailid.setText("");
+        tftype.setText("");
+        enablefields();
+        btnupdate.setEnabled(true);
+        btnedit.setEnabled(false);
     }//GEN-LAST:event_btneditActionPerformed
 
     private void btnupdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnupdateActionPerformed
 
     }//GEN-LAST:event_btnupdateActionPerformed
 
-    private void btnsearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsearchActionPerformed
-
-    }//GEN-LAST:event_btnsearchActionPerformed
-
     private void btnsregisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsregisterActionPerformed
                             EnterpriseReg entreg = new EnterpriseReg();
                     //adminpage.setPreferredSize(new Dimension(1070, 600));
                     entreg.setVisible(true);
+                    populatetable();
     }//GEN-LAST:event_btnsregisterActionPerformed
 
-    private void btnclearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnclearActionPerformed
-
-    }//GEN-LAST:event_btnclearActionPerformed
+    private void btnrefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnrefreshActionPerformed
+               tfstreet.setText("");
+        tfunit.setText("");
+        tfcity.setText("");
+        tfstate.setText("");
+        tfzipcode.setText("");
+        tfname.setText("");
+        tfemailid.setText("");
+        tftype.setText("");
+        populatetable();
+        disablefields();
+                btnupdate.setEnabled(true);
+        btnedit.setEnabled(false);
+    }//GEN-LAST:event_btnrefreshActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnclear;
     private javax.swing.JButton btndelete;
     private javax.swing.JButton btnedit;
-    private javax.swing.JButton btnsearch;
+    private javax.swing.JButton btnrefresh;
     private javax.swing.JButton btnsearchcat;
     private javax.swing.JButton btnsregister;
     private javax.swing.JButton btnupdate;
     private javax.swing.JButton btnview;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -628,15 +653,17 @@ public class ManageEnterprise extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTenterprise;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel labelname;
     private javax.swing.JLabel labelname1;
     private javax.swing.JTextField tfcity;
     private javax.swing.JTextField tfemailid;
     private javax.swing.JTextField tfid;
     private javax.swing.JTextField tfname;
+    private javax.swing.JTextField tfscity;
+    private javax.swing.JTextField tfsname;
     private javax.swing.JTextField tfstate;
     private javax.swing.JTextField tfstreet;
+    private javax.swing.JTextField tfstype;
     private javax.swing.JTextField tftype;
     private javax.swing.JTextField tfunit;
     private javax.swing.JTextField tfzipcode;
@@ -675,5 +702,29 @@ void populatetable()
 
         }
     
+}
+
+void enablefields()
+{
+    tfstreet.setEnabled(true);
+        tfunit.setEnabled(true);
+        tfcity.setEnabled(true);
+        tfstate.setEnabled(true);
+        tfzipcode.setEnabled(true);
+        tfname.setEnabled(true);
+        tfemailid.setEnabled(true);
+        tftype.setEnabled(true);
+}
+
+void disablefields()
+{
+    tfstreet.setEnabled(false);
+        tfunit.setEnabled(false);
+        tfcity.setEnabled(false);
+        tfstate.setEnabled(false);
+        tfzipcode.setEnabled(false);
+        tfname.setEnabled(false);
+        tfemailid.setEnabled(false);
+        tftype.setEnabled(false);
 }
 }
