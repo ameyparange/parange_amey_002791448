@@ -6,7 +6,7 @@ package userinterface.admin;
 
 import userinterface.retail.RetailPage;
 import userinterface.supplier.SupplierPage;
-
+import userinterface.delivery;
 /**
  *
  * @author amey8
@@ -64,6 +64,11 @@ public class AdminPage extends javax.swing.JFrame {
 
         btndelivery.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         btndelivery.setText("Delivery");
+        btndelivery.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btndeliveryActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 0, 36)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -173,6 +178,12 @@ SupplierPage supint = new SupplierPage( );
         retailpg.setVisible(true);
 
     }//GEN-LAST:event_btnretailActionPerformed
+
+    private void btndeliveryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndeliveryActionPerformed
+        // TODO add your handling code here:
+        DeliveryPage deliverypg = new DeliveryPage( );
+        deliverypg.setVisible(true);
+    }//GEN-LAST:event_btndeliveryActionPerformed
 
     /**
      * @param args the command line arguments
