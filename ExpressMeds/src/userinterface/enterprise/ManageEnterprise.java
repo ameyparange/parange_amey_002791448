@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import model.Address;
 import model.enterprise.Enterprise;
 import model.enterprise.EnterpriseCatalog;
 import userinterface.admin.AdminPage1;
@@ -23,13 +24,14 @@ public class ManageEnterprise extends javax.swing.JPanel {
      * Creates new form ManageEnterprise1
      */
     JdbcConnect connect;
+
     public ManageEnterprise() {
         initComponents();
-         connect = new JdbcConnect();
+        connect = new JdbcConnect();
         populatetable();
         disablefields();
-                btnupdate.setEnabled(true);
-        btnedit.setEnabled(false);
+        btnupdate.setEnabled(false);
+        btnedit.setEnabled(true);
     }
 
     /**
@@ -45,11 +47,13 @@ public class ManageEnterprise extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         tfsname = new javax.swing.JTextField();
-        btnsearchcat = new javax.swing.JButton();
+        btnsearch = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         tfstype = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         tfscity = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        tfsid = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTenterprise = new javax.swing.JTable();
         btndelete = new javax.swing.JButton();
@@ -92,9 +96,14 @@ public class ManageEnterprise extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
         jLabel1.setText("Name");
 
-        btnsearchcat.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        btnsearchcat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/supplier/loupe.png"))); // NOI18N
-        btnsearchcat.setText("Search");
+        btnsearch.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
+        btnsearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/supplier/loupe.png"))); // NOI18N
+        btnsearch.setText("Search");
+        btnsearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnsearchActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
         jLabel5.setText("Type");
@@ -102,40 +111,50 @@ public class ManageEnterprise extends javax.swing.JPanel {
         jLabel11.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
         jLabel11.setText("City");
 
+        jLabel12.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
+        jLabel12.setText("Ent_id");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfsname, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tfsid, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfstype, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfscity, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnsearchcat)
-                .addGap(37, 37, 37))
+                .addComponent(tfsname, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tfstype, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tfscity, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnsearch)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(13, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfsname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(tfstype, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
+                    .addComponent(tfscity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11)
+                    .addComponent(btnsearch)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(tfscity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel11)
-                        .addComponent(btnsearchcat)))
+                        .addComponent(tfstype, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel5)
+                        .addComponent(tfsname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tfsid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel1))))
                 .addGap(13, 13, 13))
         );
 
@@ -509,7 +528,7 @@ public class ManageEnterprise extends javax.swing.JPanel {
 
     private void btndeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndeleteActionPerformed
         // TODO add your handling code here:
-        
+
         int row = jTenterprise.getSelectedRow();
         btnrefresh.setEnabled(true);
         if (row < 0) {
@@ -522,18 +541,19 @@ public class ManageEnterprise extends javax.swing.JPanel {
 
             int selected_hosid = (int) model.getValueAt(row, 0);
             try {
-            connect.connect();
+                connect.connect();
 
-            connect.pet = connect.con.prepareStatement("DELETE FROM enterprise where ent_id=?");
-            connect.pet.setInt(1, selected_hosid);
-            connect.pet.executeUpdate();
-            populatetable();
-        } catch (Exception e) {
-            System.out.println(e.toString());
+                connect.pet = connect.con.prepareStatement("DELETE FROM enterprise where ent_id=?");
+                connect.pet.setInt(1, selected_hosid);
+                connect.pet.executeUpdate();
+                connect.con.commit();
+                populatetable();
+            } catch (Exception e) {
+                System.out.println(e.toString());
 
+            }
         }
-        }
-        
+
     }//GEN-LAST:event_btndeleteActionPerformed
 
     private void btnviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnviewActionPerformed
@@ -549,94 +569,130 @@ public class ManageEnterprise extends javax.swing.JPanel {
             DefaultTableModel model = (DefaultTableModel) jTenterprise.getModel();
 
             int selected_hosid = (int) model.getValueAt(row, 0);
-        try {
-            connect.connect();
-            // Prepare Statement
+            try {
+                connect.connect();
+                // Prepare Statement
 
-            String query = "Select e.ent_id,e.name,e.ent_type,e.email,a.street ,a.unit,a.city,a.state,a.zipcode from enterprise e "
-                    + " join address a on e.add_id = a.add_id"
-                    + " where ent_id=?";
-            connect.pet = connect.con.prepareStatement(query) ;
-            connect.pet.setInt(1, selected_hosid);
+                String query = "Select e.ent_id,e.name,e.ent_type,e.email,a.street ,a.unit,a.city,a.state,a.zipcode from enterprise e "
+                        + " join address a on e.add_id = a.add_id"
+                        + " where ent_id=?";
+                connect.pet = connect.con.prepareStatement(query);
+                connect.pet.setInt(1, selected_hosid);
 
-            connect.myRs = connect.pet.executeQuery();
-            //System.out.println("5");
-            if (connect.myRs.next()) {
-                
-  
+                connect.myRs = connect.pet.executeQuery();
+                //System.out.println("5");
+                if (connect.myRs.next()) {
 
-               tfid.setText(String.valueOf(connect.myRs.getInt("ent_id")) );
-               tfname.setText(String.valueOf(connect.myRs.getString("name")) );
-               tftype.setText(String.valueOf(connect.myRs.getString("ent_type")) );
-               tfemailid.setText(String.valueOf(connect.myRs.getString("email")) );
-               
-               tfstreet.setText(String.valueOf(connect.myRs.getString("street")) );
-               tfunit.setText(String.valueOf(connect.myRs.getString("unit")) );
-               tfcity.setText(String.valueOf(connect.myRs.getString("city")) );
-               tfstate.setText(String.valueOf(connect.myRs.getString("state")) );
-               tfzipcode.setText(String.valueOf(connect.myRs.getString("zipcode")) );
-               
+                    tfid.setText(String.valueOf(connect.myRs.getInt("ent_id")));
+                    tfname.setText(String.valueOf(connect.myRs.getString("name")));
+                    tftype.setText(String.valueOf(connect.myRs.getString("ent_type")));
+                    tfemailid.setText(String.valueOf(connect.myRs.getString("email")));
+
+                    tfstreet.setText(String.valueOf(connect.myRs.getString("street")));
+                    tfunit.setText(String.valueOf(connect.myRs.getString("unit")));
+                    tfcity.setText(String.valueOf(connect.myRs.getString("city")));
+                    tfstate.setText(String.valueOf(connect.myRs.getString("state")));
+                    tfzipcode.setText(String.valueOf(connect.myRs.getString("zipcode")));
+
+                }
+
+            } catch (Exception e) {
+                System.out.println(e.toString());
 
             }
-
-        } catch (Exception e) {
-            System.out.println(e.toString());
-
-        }}
+        }
     }//GEN-LAST:event_btnviewActionPerformed
 
     private void btneditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditActionPerformed
-        tfstreet.setText("");
-        tfunit.setText("");
-        tfcity.setText("");
-        tfstate.setText("");
-        tfzipcode.setText("");
-        tfname.setText("");
-        tfemailid.setText("");
-        tftype.setText("");
+//        tfstreet.setText("");
+//        tfunit.setText("");
+//        tfcity.setText("");
+//        tfstate.setText("");
+//        tfzipcode.setText("");
+//        tfname.setText("");
+//        tfemailid.setText("");
+//        tftype.setText("");
+//        tfid.setText("");
+//        enablefields();
+//        btnupdate.setEnabled(true);
+//        btnedit.setEnabled(false);
         enablefields();
         btnupdate.setEnabled(true);
         btnedit.setEnabled(false);
+        btnsearch.setEnabled(false);
+        btnsregister.setEnabled(false);
     }//GEN-LAST:event_btneditActionPerformed
 
     private void btnupdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnupdateActionPerformed
+        int add_id;
+        int i;
+        JdbcConnect jdbc = new JdbcConnect();
+        Enterprise ent;
+        Address add;
+        //Address add = new Address(tfstreet.getText(), tfunit.getText(), tfcity.getText(), tfstate.getText(), tfzipcode.getText());
+        add_id = jdbc.searchenterpriseadd_id(Integer.valueOf(tfid.getText()));
+        System.out.println("here" + add_id);
+        ent = new Enterprise(Integer.valueOf(tfid.getText()), tftype.getText(), tfname.getText(), tfemailid.getText(), add_id);
+        i = jdbc.updateenterprise(ent);
+        add = jdbc.searchAddress(add_id);
+        add.setStreet(tfstreet.getText());
+        add.setUnit(tfunit.getText());
+        add.setCity(tfcity.getText());
+        add.setState(tfstate.getText());
+        add.setZipcode(tfzipcode.getText());
+        i = jdbc.updateAddress(add);
+        refresh();
 
     }//GEN-LAST:event_btnupdateActionPerformed
 
     private void btnsregisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsregisterActionPerformed
-                            EnterpriseReg entreg = new EnterpriseReg();
-                    //adminpage.setPreferredSize(new Dimension(1070, 600));
-                    entreg.setVisible(true);
-                    populatetable();
+        EnterpriseReg entreg = new EnterpriseReg();
+        //adminpage.setPreferredSize(new Dimension(1070, 600));
+        entreg.setVisible(true);
+        populatetable();
     }//GEN-LAST:event_btnsregisterActionPerformed
 
     private void btnrefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnrefreshActionPerformed
-               tfstreet.setText("");
-        tfunit.setText("");
-        tfcity.setText("");
-        tfstate.setText("");
-        tfzipcode.setText("");
-        tfname.setText("");
-        tfemailid.setText("");
-        tftype.setText("");
-        populatetable();
-        disablefields();
-                btnupdate.setEnabled(true);
-        btnedit.setEnabled(false);
+        refresh();
     }//GEN-LAST:event_btnrefreshActionPerformed
+
+    private void btnsearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsearchActionPerformed
+        // TODO add your handling code here:\
+        
+        JdbcConnect jdbc = new JdbcConnect();
+        if (!tfsid.getText().isEmpty()) {
+            populatetable(Integer.valueOf(tfsid.getText()) );
+        } else if (!tfsname.getText().isEmpty()) {
+            this.populatetableon_name(tfsname.getText());
+            
+        } else if (!tfstype.getText().isEmpty()) {
+            this.populatetableon_type(tfstype.getText());
+            
+            //e = jdbc.searchenterpriseon_type(tfstype.getText());
+        } else if (!tfscity.getText().isEmpty()) {
+            this.populatetableon_city(tfscity.getText());
+            
+        } else {
+            JOptionPane.showMessageDialog(this,
+                    "Search on Id or Name or City or Type");
+        }
+        
+
+    }//GEN-LAST:event_btnsearchActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btndelete;
     private javax.swing.JButton btnedit;
     private javax.swing.JButton btnrefresh;
-    private javax.swing.JButton btnsearchcat;
+    private javax.swing.JButton btnsearch;
     private javax.swing.JButton btnsregister;
     private javax.swing.JButton btnupdate;
     private javax.swing.JButton btnview;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -660,6 +716,7 @@ public class ManageEnterprise extends javax.swing.JPanel {
     private javax.swing.JTextField tfid;
     private javax.swing.JTextField tfname;
     private javax.swing.JTextField tfscity;
+    private javax.swing.JTextField tfsid;
     private javax.swing.JTextField tfsname;
     private javax.swing.JTextField tfstate;
     private javax.swing.JTextField tfstreet;
@@ -669,44 +726,240 @@ public class ManageEnterprise extends javax.swing.JPanel {
     private javax.swing.JTextField tfzipcode;
     // End of variables declaration//GEN-END:variables
 
-void populatetable()
-{
-    
-    DefaultTableModel model = (DefaultTableModel) jTenterprise.getModel();
+    void populatetable() {
+
+        DefaultTableModel model = (DefaultTableModel) jTenterprise.getModel();
         model.setRowCount(0);
-    
-    
-    try {
+
+        try {
             connect.connect();
             // Prepare Statement
 
-            String query = "Select * from enterprise";
-            PreparedStatement myStmt = connect.con.prepareStatement(query) ;
-
+            String query = "Select e.ent_id,e.name,e.ent_type,e.email,a.street ,a.unit,a.city,a.state,a.zipcode from enterprise e "
+                    + " join address a on e.add_id = a.add_id";
+            PreparedStatement myStmt = connect.con.prepareStatement(query);
 
             ResultSet myRs = myStmt.executeQuery();
             //System.out.println("5");
             while (myRs.next()) {
-                
-                Object[] row = new Object[5];
-            row[0] = myRs.getInt("ent_id");
-            row[1] = myRs.getString("name");//username
-            row[2] = myRs.getString("ent_type");
-            row[3] = myRs.getString("email");
 
-            model.addRow(row);
+                Object[] row = new Object[6];
+                row[0] = myRs.getInt("ent_id");
+                row[1] = myRs.getString("name");//username
+                row[2] = myRs.getString("ent_type");
+                row[3] = myRs.getString("email");
+                row[4] = myRs.getString("city");
+                model.addRow(row);
             }
 
         } catch (Exception e) {
             System.out.println(e.toString());
 
         }
-    
-}
 
-void enablefields()
-{
-    tfstreet.setEnabled(true);
+    }
+
+    void populatetable(Enterprise e) {
+
+        DefaultTableModel model = (DefaultTableModel) jTenterprise.getModel();
+        model.setRowCount(0);
+
+        try {
+            connect.connect();
+            // Prepare Statement
+
+            connect.pet = connect.con.prepareStatement("Select e.ent_id,e.name,e.ent_type,e.email,a.street ,a.unit,a.city,a.state,a.zipcode from enterprise e "
+                    + " join address a on e.add_id = a.add_id where e.ent_id=?");
+           connect.pet.setInt(1, e.getEnt_id());
+            connect.myRs = connect.pet.executeQuery();
+
+            //System.out.println("5");
+            while (connect.myRs.next()) {
+
+                Object[] row = new Object[6];
+                row[0] = connect.myRs.getInt("ent_id");
+                row[1] = connect.myRs.getString("name");//username
+                row[2] = connect.myRs.getString("ent_type");
+                row[3] = connect.myRs.getString("email");
+                row[4] = connect.myRs.getString("city");
+                model.addRow(row);
+            }
+
+        } catch (Exception et) {
+            System.out.println(et.toString());
+
+        }
+
+    } 
+    
+  void populatetable(int ent_id) {
+
+        DefaultTableModel model = (DefaultTableModel) jTenterprise.getModel();
+        model.setRowCount(0);
+           int i=0;
+        try {
+            connect.connect();
+            // Prepare Statement
+
+            connect.pet = connect.con.prepareStatement("Select e.ent_id,e.name,e.ent_type,e.email,a.street ,a.unit,a.city,a.state,a.zipcode from enterprise e "
+                    + " join address a on e.add_id = a.add_id where e.ent_id=?");
+           connect.pet.setInt(1, ent_id);
+            connect.myRs = connect.pet.executeQuery();
+            
+            //System.out.println("5");
+            while (connect.myRs.next()) {
+                i=i+1;
+                Object[] row = new Object[6];
+                row[0] = connect.myRs.getInt("ent_id");
+                row[1] = connect.myRs.getString("name");//username
+                row[2] = connect.myRs.getString("ent_type");
+                row[3] = connect.myRs.getString("email");
+                row[4] = connect.myRs.getString("city");
+                model.addRow(row);
+            }
+
+        } catch (Exception et) {
+            System.out.println(et.toString());
+
+        }
+        if (i!=0){
+            JOptionPane.showMessageDialog(this,
+                    "Enterprise Found!!!");
+        }
+        else {
+        JOptionPane.showMessageDialog(this,
+                    "Enterprise does not exist!!!");
+        }
+
+    } 
+  
+  void populatetableon_name(String name) {
+
+        DefaultTableModel model = (DefaultTableModel) jTenterprise.getModel();
+        model.setRowCount(0);
+           int i=0;
+        try {
+            connect.connect();
+            // Prepare Statement
+
+            connect.pet = connect.con.prepareStatement("Select e.ent_id,e.name,e.ent_type,e.email,a.street ,a.unit,a.city,a.state,a.zipcode from enterprise e "
+                    + " join address a on e.add_id = a.add_id where e.name= ?");
+           connect.pet.setString(1, name);
+            connect.myRs = connect.pet.executeQuery();
+            
+            System.out.println(connect.pet);
+            while (connect.myRs.next()) {
+                i=i+1;
+                Object[] row = new Object[6];
+                row[0] = connect.myRs.getInt("ent_id");
+                row[1] = connect.myRs.getString("name");//username
+                row[2] = connect.myRs.getString("ent_type");
+                row[3] = connect.myRs.getString("email");
+                row[4] = connect.myRs.getString("city");
+                model.addRow(row);
+            }
+
+        } catch (Exception et) {
+            System.out.println(et.toString());
+
+        }
+        if (i!=0){
+            JOptionPane.showMessageDialog(this,
+                    "Enterprise Found!!!");
+        }
+        else {
+        JOptionPane.showMessageDialog(this,
+                    "Enterprise does not exist!!!");
+        }
+
+    }
+
+  
+    void populatetableon_type(String type) {
+
+        DefaultTableModel model = (DefaultTableModel) jTenterprise.getModel();
+        model.setRowCount(0);
+           int i=0;
+        try {
+            connect.connect();
+            // Prepare Statement
+
+            connect.pet = connect.con.prepareStatement("Select e.ent_id,e.name,e.ent_type,e.email,a.street ,a.unit,a.city,a.state,a.zipcode from enterprise e "
+                    + " join address a on e.add_id = a.add_id where e.ent_type=?");
+           connect.pet.setString(1, type);
+            connect.myRs = connect.pet.executeQuery();
+            
+            //System.out.println("5");
+            while (connect.myRs.next()) {
+                i=i+1;
+                Object[] row = new Object[6];
+                row[0] = connect.myRs.getInt("ent_id");
+                row[1] = connect.myRs.getString("name");//username
+                row[2] = connect.myRs.getString("ent_type");
+                row[3] = connect.myRs.getString("email");
+                row[4] = connect.myRs.getString("city");
+                model.addRow(row);
+            }
+
+        } catch (Exception et) {
+            System.out.println(et.toString());
+
+        }
+        if (i!=0){
+            JOptionPane.showMessageDialog(this,
+                    "Enterprise Found!!!");
+        }
+        else {
+        JOptionPane.showMessageDialog(this,
+                    "Enterprise does not exist!!!");
+        }
+
+    }
+    
+    
+    void populatetableon_city(String city) {
+
+        DefaultTableModel model = (DefaultTableModel) jTenterprise.getModel();
+        model.setRowCount(0);
+           int i=0;
+        try {
+            connect.connect();
+            // Prepare Statement
+
+            connect.pet = connect.con.prepareStatement("Select e.ent_id,e.name,e.ent_type,e.email,a.street ,a.unit,a.city,a.state,a.zipcode from enterprise e "
+                    + " join address a on e.add_id = a.add_id where a.city = ? ");
+           connect.pet.setString(1, city);
+            connect.myRs = connect.pet.executeQuery();
+            
+            //System.out.println("5");
+            while (connect.myRs.next()) {
+                i=i+1;
+                Object[] row = new Object[6];
+                row[0] = connect.myRs.getInt("ent_id");
+                row[1] = connect.myRs.getString("name");//username
+                row[2] = connect.myRs.getString("ent_type");
+                row[3] = connect.myRs.getString("email");
+                row[4] = connect.myRs.getString("city");
+                model.addRow(row);
+            }
+
+        } catch (Exception et) {
+            System.out.println(et.toString());
+
+        }
+        if (i!=0){
+            JOptionPane.showMessageDialog(this,
+                    "Enterprise Found!!!");
+        }
+        else {
+        JOptionPane.showMessageDialog(this,
+                    "Enterprise does not exist!!!");
+        }
+
+    }
+    
+    void enablefields() {
+        tfstreet.setEnabled(true);
         tfunit.setEnabled(true);
         tfcity.setEnabled(true);
         tfstate.setEnabled(true);
@@ -714,11 +967,11 @@ void enablefields()
         tfname.setEnabled(true);
         tfemailid.setEnabled(true);
         tftype.setEnabled(true);
-}
+        tfid.setEnabled(false);
+    }
 
-void disablefields()
-{
-    tfstreet.setEnabled(false);
+    void disablefields() {
+        tfstreet.setEnabled(false);
         tfunit.setEnabled(false);
         tfcity.setEnabled(false);
         tfstate.setEnabled(false);
@@ -726,5 +979,28 @@ void disablefields()
         tfname.setEnabled(false);
         tfemailid.setEnabled(false);
         tftype.setEnabled(false);
-}
+        tfid.setEnabled(false);
+    }
+
+    void refresh() {
+        tfscity.setText("");
+        tfsname.setText("");
+        tfstype.setText("");
+        tfsid.setText("");
+        tfstreet.setText("");
+        tfunit.setText("");
+        tfcity.setText("");
+        tfstate.setText("");
+        tfzipcode.setText("");
+        tfname.setText("");
+        tfemailid.setText("");
+        tftype.setText("");
+        tfid.setText("");
+        populatetable();
+        disablefields();
+        btnupdate.setEnabled(false);
+        btnedit.setEnabled(true);
+        btnsearch.setEnabled(true);
+        btnsregister.setEnabled(true);
+    }
 }
