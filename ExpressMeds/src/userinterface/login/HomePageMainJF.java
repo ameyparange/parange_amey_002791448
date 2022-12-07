@@ -12,6 +12,7 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import userinterface.admin.AdminPage;
+import userinterface.admin.AdminPage1;
 import userinterface.customer.CustomerRegistration;
 
 /**
@@ -30,10 +31,13 @@ public class HomePageMainJF extends javax.swing.JFrame {
 
     public HomePageMainJF() {
         initComponents();
-
+        //--------------------Test--------------
+        txtuname.setText("admin");
+        txtpassword.setText("admin");
+        //--------------
         JdbcConnect connect = new JdbcConnect();
-        connect.deleteData();
-        connect.insertrec();
+        //connect.deleteData();
+        //connect.insertrec();
     }
 
     private Boolean checkBlankInput() {
@@ -71,6 +75,7 @@ public class HomePageMainJF extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1050, 607));
 
         jLabel5.setText("Username");
 
@@ -183,13 +188,13 @@ public class HomePageMainJF extends javax.swing.JFrame {
 
             //code to check credentials from database
             try {
-                System.out.println("USERNAMEEEE - HERE - " + username);
-                System.out.println("USERNAMEEEE - HERE" + pass);
+                //System.out.println("USERNAMEEEE - HERE - " + username);
+                //System.out.println("USERNAMEEEE - HERE" + pass);
                 int ans = connect.checkCred(username, pass);
                 if (ans == 1) {
                     JOptionPane.showMessageDialog(this, "Login Successful!");
-                    AdminPage adminpage = new AdminPage();
-                    adminpage.setPreferredSize(new Dimension(1070, 600));
+                    AdminPage1 adminpage = new AdminPage1();
+                    //adminpage.setPreferredSize(new Dimension(1070, 600));
                     adminpage.setVisible(true);
                 } else if (ans == 2) {
                     JOptionPane.showMessageDialog(this, "Password Incorrect!");

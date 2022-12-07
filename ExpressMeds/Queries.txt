@@ -4,7 +4,7 @@ CREATE TABLE `expressmeddb`.`enterprise` (
   `ent_type` VARCHAR(50) NULL,
   `name` VARCHAR(50) NULL,
   `email` VARCHAR(50) NULL,
-  `location` VARCHAR(50) NULL,
+  `add_id` int,
   PRIMARY KEY (`ent_id`));
   
   
@@ -36,7 +36,7 @@ CREATE TABLE `expressmeddb`.`address` (
   `unit` VARCHAR(20) NULL,
   `city` VARCHAR(50) NULL,
   `state` VARCHAR(50) NULL,
-  `zipcode` INT NULL,
+  `zipcode` VARCHAR(20) NULL,
   PRIMARY KEY (`add_id`));
 
 <<<<<<< HEAD
