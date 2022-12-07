@@ -6,7 +6,7 @@ package userinterface.admin;
 
 import userinterface.retail.RetailPage;
 import userinterface.supplier.SupplierPage;
-import userinterface.delivery;
+import userinterface.delivery.DeliveryPage;
 /**
  *
  * @author amey8
