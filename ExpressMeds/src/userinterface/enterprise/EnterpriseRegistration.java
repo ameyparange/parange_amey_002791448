@@ -125,6 +125,11 @@ public class EnterpriseRegistration extends javax.swing.JPanel {
         btnsubmit.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         btnsubmit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/customer/search.png"))); // NOI18N
         btnsubmit.setText("Submit");
+        btnsubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnsubmitActionPerformed(evt);
+            }
+        });
 
         btnclear.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         btnclear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/customer/bin.png"))); // NOI18N
@@ -199,6 +204,10 @@ public class EnterpriseRegistration extends javax.swing.JPanel {
     private void tfenterpriselocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfenterpriselocationActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfenterpriselocationActionPerformed
+
+    private void btnsubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsubmitActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnsubmitActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

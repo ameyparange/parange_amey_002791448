@@ -42,6 +42,8 @@ public class SupplierPage extends javax.swing.JFrame {
         btnlogout = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1050, 607));
+        setPreferredSize(new java.awt.Dimension(1050, 607));
 
         jSplitPane1.setDividerLocation(300);
 
@@ -155,7 +157,7 @@ public class SupplierPage extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
-                .addContainerGap(177, Short.MAX_VALUE))
+                .addContainerGap(432, Short.MAX_VALUE))
         );
 
         jSplitPane1.setRightComponent(jPanel2);
