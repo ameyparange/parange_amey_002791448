@@ -4,9 +4,10 @@
  */
 package userinterface.admin;
 
-import userinterface.retail.RetailPage;
-import userinterface.supplier.SupplierPage;
-import userinterface.delivery.DeliveryPage;
+import userinterface.enterprise.ManageEnterprise;
+import userinterface.enterprise.organization.ManageOrganization;
+import userinterface.enterprise.role.ManageRole;
+
 /**
  *
  * @author amey8
@@ -18,6 +19,8 @@ public class AdminPage extends javax.swing.JFrame {
      */
     public AdminPage() {
         initComponents();
+                Dashboard ds = new Dashboard();
+        jSplitPane1.setRightComponent(ds);
     }
 
     /**
@@ -30,65 +33,30 @@ public class AdminPage extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        btnsupplier = new javax.swing.JButton();
-        btnretail = new javax.swing.JButton();
-        btnhospital = new javax.swing.JButton();
-        btndelivery = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         btnlogout = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jSplitPane1 = new javax.swing.JSplitPane();
+        jPanel2 = new javax.swing.JPanel();
+        btnManageEnterprise = new javax.swing.JButton();
+        btnManageRoles = new javax.swing.JButton();
+        btnManageOrg = new javax.swing.JButton();
+        btnDashboard = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1050, 607));
 
         jPanel1.setBackground(new java.awt.Color(219, 247, 252));
-        jPanel1.setMinimumSize(new java.awt.Dimension(1050, 702));
-        jPanel1.setPreferredSize(new java.awt.Dimension(1050, 702));
-
-        btnsupplier.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        btnsupplier.setText("Supplier");
-        btnsupplier.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnsupplierActionPerformed(evt);
-            }
-        });
-
-        btnretail.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        btnretail.setText("Retail");
-        btnretail.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnretailActionPerformed(evt);
-            }
-        });
-
-        btnhospital.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        btnhospital.setText("Hospital");
-        btnhospital.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnhospitalActionPerformed(evt);
-            }
-        });
-
-        btndelivery.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        btndelivery.setText("Delivery");
-        btndelivery.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btndeliveryActionPerformed(evt);
-            }
-        });
-
-        jLabel3.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Manage All the Enterprises");
-
-        jLabel4.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Click any of the Features");
 
         btnlogout.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         btnlogout.setText("Logout");
+        btnlogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnlogoutActionPerformed(evt);
+            }
+        });
 
+        jLabel2.setBackground(new java.awt.Color(219, 247, 252));
         jLabel2.setFont(new java.awt.Font("SansSerif", 0, 36)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Welcome System Admin");
@@ -98,53 +66,107 @@ public class AdminPage extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(251, 251, 251)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnsupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnhospital, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(91, 91, 91)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btndelivery, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnretail, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(85, 272, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(166, 166, 166)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 787, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnlogout, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 853, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnlogout, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnlogout, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnlogout, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(74, 74, 74))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)))
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
-                .addGap(53, 53, 53)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnsupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnretail, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(68, 68, 68)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnhospital, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btndelivery, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jSplitPane1.setDividerLocation(200);
+
+        jPanel2.setBackground(new java.awt.Color(219, 247, 252));
+
+        btnManageEnterprise.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btnManageEnterprise.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/supplier/inventory.png"))); // NOI18N
+        btnManageEnterprise.setText("Manage Enterprise");
+        btnManageEnterprise.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageEnterpriseActionPerformed(evt);
+            }
+        });
+
+        btnManageRoles.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btnManageRoles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/supplier/inventory.png"))); // NOI18N
+        btnManageRoles.setText("Manage Roles");
+        btnManageRoles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageRolesActionPerformed(evt);
+            }
+        });
+
+        btnManageOrg.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btnManageOrg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/supplier/inventory.png"))); // NOI18N
+        btnManageOrg.setText("Manage Organization");
+        btnManageOrg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageOrgActionPerformed(evt);
+            }
+        });
+
+        btnDashboard.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btnDashboard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/supplier/inventory.png"))); // NOI18N
+        btnDashboard.setText("Dashbord");
+        btnDashboard.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDashboardActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnManageEnterprise, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
+                    .addComponent(btnManageRoles, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnManageOrg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnDashboard, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(btnDashboard)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnManageEnterprise)
+                .addGap(23, 23, 23)
+                .addComponent(btnManageOrg)
+                .addGap(18, 18, 18)
+                .addComponent(btnManageRoles)
+                .addContainerGap(327, Short.MAX_VALUE))
+        );
+
+        jSplitPane1.setLeftComponent(jPanel2);
+
+        jPanel3.setBackground(new java.awt.Color(219, 247, 252));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 825, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 503, Short.MAX_VALUE)
+        );
+
+        jSplitPane1.setRightComponent(jPanel3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -152,44 +174,54 @@ public class AdminPage extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1030, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 8, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 682, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jSplitPane1)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnsupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsupplierActionPerformed
+    private void btnlogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlogoutActionPerformed
         // TODO add your handling code here:
-SupplierPage supint = new SupplierPage( );
-        supint.setVisible(true);
-//        SupplierPage supint = new SupplierPage( );
-//        supint.setVisible(true);
+    }//GEN-LAST:event_btnlogoutActionPerformed
 
-    }//GEN-LAST:event_btnsupplierActionPerformed
-
-    private void btnretailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnretailActionPerformed
-        RetailPage retailpg = new RetailPage( );
-        retailpg.setVisible(true);
-
-    }//GEN-LAST:event_btnretailActionPerformed
-
-    private void btndeliveryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndeliveryActionPerformed
+    private void btnManageEnterpriseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageEnterpriseActionPerformed
         // TODO add your handling code here:
-        DeliveryPage deliverypg = new DeliveryPage( );
-        deliverypg.setVisible(true);
-    }//GEN-LAST:event_btndeliveryActionPerformed
+        ManageEnterprise mgent = new ManageEnterprise( );
+        jSplitPane1.setRightComponent(mgent); 
+    }//GEN-LAST:event_btnManageEnterpriseActionPerformed
 
-    private void btnhospitalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnhospitalActionPerformed
+    private void btnManageRolesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageRolesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnhospitalActionPerformed
+        ManageRole mgrole = new ManageRole( );
+        jSplitPane1.setRightComponent(mgrole);
+                
+    }//GEN-LAST:event_btnManageRolesActionPerformed
+
+    private void btnManageOrgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageOrgActionPerformed
+        // TODO add your handling code here:
+        ManageOrganization mgorg = new ManageOrganization( );
+        jSplitPane1.setRightComponent(mgorg);
+    }//GEN-LAST:event_btnManageOrgActionPerformed
+
+    private void btnDashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDashboardActionPerformed
+        // TODO add your handling code here:
+        Dashboard ds = new Dashboard();
+        jSplitPane1.setRightComponent(ds);
+    }//GEN-LAST:event_btnDashboardActionPerformed
 
     /**
      * @param args the command line arguments
@@ -228,14 +260,15 @@ SupplierPage supint = new SupplierPage( );
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btndelivery;
-    private javax.swing.JButton btnhospital;
+    private javax.swing.JButton btnDashboard;
+    private javax.swing.JButton btnManageEnterprise;
+    private javax.swing.JButton btnManageOrg;
+    private javax.swing.JButton btnManageRoles;
     private javax.swing.JButton btnlogout;
-    private javax.swing.JButton btnretail;
-    private javax.swing.JButton btnsupplier;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JSplitPane jSplitPane1;
     // End of variables declaration//GEN-END:variables
 }

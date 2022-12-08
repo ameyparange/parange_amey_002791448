@@ -13,7 +13,7 @@ import javax.swing.table.DefaultTableModel;
 import model.Address;
 import model.enterprise.Enterprise;
 import model.enterprise.EnterpriseCatalog;
-import userinterface.admin.AdminPage1;
+import userinterface.admin.AdminPage;
 
 /**
  *
@@ -648,9 +648,9 @@ public class ManageOrganization extends javax.swing.JPanel {
     }//GEN-LAST:event_btnupdateActionPerformed
 
     private void btnsregisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsregisterActionPerformed
-        EnterpriseReg entreg = new EnterpriseReg();
+        OrganizationRegistration orgreg = new OrganizationRegistration();
         //adminpage.setPreferredSize(new Dimension(1070, 600));
-        entreg.setVisible(true);
+        orgreg.setVisible(true);
         populatetable();
     }//GEN-LAST:event_btnsregisterActionPerformed
 
