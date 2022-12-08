@@ -13,7 +13,7 @@ import javax.swing.table.DefaultTableModel;
 import model.Address;
 import model.enterprise.Enterprise;
 import model.enterprise.EnterpriseCatalog;
-import userinterface.admin.AdminPage1;
+import userinterface.admin.AdminPage;
 
 /**
  *
