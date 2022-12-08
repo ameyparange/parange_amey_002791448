@@ -5,12 +5,13 @@
 package userinterface.enterprise;
 
 import dbconnection.JdbcConnect;
+import javax.swing.JOptionPane;
 import model.Address;
 import model.enterprise.Enterprise;
 
 /**
  *
- * @author amey8
+ * @author nehajoisher
  */
 public class EnterpriseReg extends javax.swing.JFrame {
 
@@ -298,9 +299,24 @@ public class EnterpriseReg extends javax.swing.JFrame {
     private void tfenterprisenameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfenterprisenameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfenterprisenameActionPerformed
-
+    
+    private Boolean checkBlankInput() {
+        if (tfenterprisename.getText().length() == 0 || tfenterpriseemail.getText().length() == 0
+                || tfstreet.getText().length() == 0
+                || tfstreet.getText().length() == 0
+                || tfunit.getText().length() == 0
+                || tfstate.getText().length() == 0 || tfcity.getText().length() == 0
+                || tfzipcode.getText().length() == 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    
+    
     private void btnsubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsubmitActionPerformed
         // TODO add your handling code here:
+        if (checkBlankInput()) {
         int add_id;
         JdbcConnect jdbc = new JdbcConnect();
         Enterprise ent;
@@ -310,6 +326,10 @@ public class EnterpriseReg extends javax.swing.JFrame {
         ent = new Enterprise(jCtype.getSelectedItem().toString(), tfenterprisename.getText(), tfenterpriseemail.getText(), add_id);
         jdbc.insertenterprise(ent);
         this.dispose();
+        }
+        else{
+             JOptionPane.showMessageDialog(this, "Please Fill the fields");
+         }
     }//GEN-LAST:event_btnsubmitActionPerformed
 
     private void btnclearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnclearActionPerformed
