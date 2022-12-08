@@ -58,7 +58,7 @@ public class JdbcConnect {
         try {
             Class.forName("com.mysql.jdbc.Driver");
 
-            this.con = DriverManager.getConnection("jdbc:mysql://localhost/expressmeddb", "root", "amey@1105");
+            this.con = DriverManager.getConnection("jdbc:mysql://localhost/expressmeddb", "root", "Neh*sonu_US2022");
 
             this.con.setAutoCommit(false);
         } catch (Exception e) {

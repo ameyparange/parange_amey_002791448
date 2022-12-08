@@ -39,6 +39,23 @@ public class CustomerRegistration extends javax.swing.JPanel {
 
     }
     
+    private Boolean checkBlankInput() {
+        if (tffirstname.getText().length() == 0 || tflastname.getText().length() == 0 || tfage.getText().length() == 0 || tfmobileno.getText().length() == 0 || tfstreet.getText().length() == 0 || tfemailid.getText().length() == 0 || tfunit.getText().length() == 0 || tfage.getText().length() == 0 || tfstate.getText().length() == 0 || tfcountry.getText().length() == 0 || tfzipcode.getText().length() == 0 || tfusername.getText().length() == 0 || tfpassword.getText().length() == 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private Boolean checkNumberInput() {
+        int x = Integer.parseInt(tfage.getText());
+        if (x == (int) x) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
     
 //    private void loadPanels()
 //    {
@@ -137,6 +154,11 @@ public class CustomerRegistration extends javax.swing.JPanel {
                 tfageActionPerformed(evt);
             }
         });
+        tfage.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfageKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -173,7 +195,7 @@ public class CustomerRegistration extends javax.swing.JPanel {
                     .addComponent(jLabel3)
                     .addComponent(tflastname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(204, 204, 204));
@@ -234,6 +256,12 @@ public class CustomerRegistration extends javax.swing.JPanel {
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setText("Country");
 
+        tfunit.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfunitKeyPressed(evt);
+            }
+        });
+
         jLabel11.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("State");
@@ -251,6 +279,11 @@ public class CustomerRegistration extends javax.swing.JPanel {
         tfzipcode.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfzipcodeActionPerformed(evt);
+            }
+        });
+        tfzipcode.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfzipcodeKeyPressed(evt);
             }
         });
 
@@ -278,7 +311,7 @@ public class CustomerRegistration extends javax.swing.JPanel {
                         .addComponent(tfunit, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
                         .addComponent(tfstreet, javax.swing.GroupLayout.Alignment.LEADING))
                     .addComponent(tfcity, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -389,12 +422,10 @@ public class CustomerRegistration extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 679, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(50, 50, 50))
         );
         jPanel2Layout.setVerticalGroup(
@@ -402,13 +433,13 @@ public class CustomerRegistration extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addGap(28, 28, 28)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnsubmit)
                     .addComponent(btnclear))
@@ -462,12 +493,12 @@ public class CustomerRegistration extends javax.swing.JPanel {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 561, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(151, 151, 151))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jRadioGender2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jRadioGender3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jRadioGender1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(178, 178, 178))))
+                        .addComponent(jRadioGender1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jRadioGender2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jRadioGender3, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(127, 127, 127))))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -480,13 +511,12 @@ public class CustomerRegistration extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnback))
-                .addGap(72, 72, 72)
-                .addComponent(jRadioGender1, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioGender2, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioGender3, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 415, Short.MAX_VALUE))
+                .addGap(76, 76, 76)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jRadioGender1, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jRadioGender2, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jRadioGender3, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 451, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                     .addGap(0, 55, Short.MAX_VALUE)
@@ -537,7 +567,7 @@ public class CustomerRegistration extends javax.swing.JPanel {
 
     private void btnsubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsubmitActionPerformed
         // TODO add your handling code here:
-
+             if (checkBlankInput()) {
         String firstName = tffirstname.getText();
         String lastName = tflastname.getText();
         int age = Integer.parseInt(tfage.getText());
@@ -586,7 +616,7 @@ public class CustomerRegistration extends javax.swing.JPanel {
             System.out.println(session);
             Message message = new MimeMessage(session);
             message.setSubject("Welcome to ExpressMed");
-            message.setContent("Welcome to" + "", "text/plain");
+            message.setContent("Hi " +firstName +"."+" Welcome to ExpressMed" , "text/plain");
             message.setFrom(new InternetAddress("expressmedoriginal@gmail.com"));
             message.setRecipient(RecipientType.TO, new InternetAddress(email));
             message.setSentDate(new Date());
@@ -595,6 +625,12 @@ public class CustomerRegistration extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Email Sent");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+         
+        } else {
+
+            JOptionPane.showMessageDialog(this, "Please Fill the fields");
+
         }
 
 
@@ -662,6 +698,39 @@ public class CustomerRegistration extends javax.swing.JPanel {
 
 
     }//GEN-LAST:event_btnbackActionPerformed
+
+    private void tfageKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfageKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyChar() >= '0' && evt.getKeyChar() <= '9') {
+            {
+                //JOptionPane.showMessageDialog(this, "");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Please enter only numeric values");
+        }
+    }//GEN-LAST:event_tfageKeyPressed
+
+    private void tfzipcodeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfzipcodeKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyChar() >= '0' && evt.getKeyChar() <= '9') {
+            {
+                //JOptionPane.showMessageDialog(this, "");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Please enter only numeric values");
+        }
+    }//GEN-LAST:event_tfzipcodeKeyPressed
+
+    private void tfunitKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfunitKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyChar() >= '0' && evt.getKeyChar() <= '9') {
+            {
+                //JOptionPane.showMessageDialog(this, "");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Please enter only numeric values");
+        }
+    }//GEN-LAST:event_tfunitKeyPressed
     
 
 
