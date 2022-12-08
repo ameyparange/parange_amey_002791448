@@ -4,6 +4,8 @@
  */
 package userinterface.enterprise.organization;
 
+import dbconnection.JdbcConnect;
+
 /**
  *
  * @author nehajoisher
@@ -13,8 +15,12 @@ public class OrganizationRegistration extends javax.swing.JFrame {
     /**
      * Creates new form OrganizationRegistration
      */
+    JdbcConnect connect;
     public OrganizationRegistration() {
         initComponents();
+        connect = new JdbcConnect();
+        loadentname();
+        loadorgtype();
     }
 
     /**
@@ -28,12 +34,14 @@ public class OrganizationRegistration extends javax.swing.JFrame {
 
         jPanel2 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
-        jCtype = new javax.swing.JComboBox<>();
-        tfenterprisename = new javax.swing.JTextField();
+        jCenttype = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        tfenterpriseemail = new javax.swing.JTextField();
+        tforgemail = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jCentname = new javax.swing.JComboBox<>();
+        jLabel10 = new javax.swing.JLabel();
+        jCorgtype = new javax.swing.JComboBox<>();
         btnclear = new javax.swing.JButton();
         btnsubmit = new javax.swing.JButton();
 
@@ -44,11 +52,10 @@ public class OrganizationRegistration extends javax.swing.JFrame {
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(51, 51, 51)), "Basic Information", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Historic", 3, 14))); // NOI18N
 
-        jCtype.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Supplier", "Retails", "Hospital" }));
-
-        tfenterprisename.addActionListener(new java.awt.event.ActionListener() {
+        jCenttype.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Supplier", "Retails", "Hospital", "Doordash" }));
+        jCenttype.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfenterprisenameActionPerformed(evt);
+                jCenttypeActionPerformed(evt);
             }
         });
 
@@ -56,40 +63,47 @@ public class OrganizationRegistration extends javax.swing.JFrame {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Enterprise Type");
 
-        jLabel8.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("Name");
-
         jLabel7.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Email");
 
-        tfenterpriseemail.addActionListener(new java.awt.event.ActionListener() {
+        tforgemail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfenterpriseemailActionPerformed(evt);
+                tforgemailActionPerformed(evt);
             }
         });
+
+        jLabel9.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("Enterprise");
+
+        jLabel10.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText("OrganizationType");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jCenttype, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(28, 28, 28))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(tfenterpriseemail)
-                    .addComponent(tfenterprisename, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCtype, javax.swing.GroupLayout.Alignment.LEADING, 0, 180, Short.MAX_VALUE))
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                        .addComponent(jCentname, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tforgemail)
+                            .addComponent(jCorgtype, 0, 180, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
@@ -98,16 +112,20 @@ public class OrganizationRegistration extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jCtype, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(jCenttype, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(tfenterprisename, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(19, 19, 19)
+                    .addComponent(jLabel9)
+                    .addComponent(jCentname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(jCorgtype, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(tfenterpriseemail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(56, Short.MAX_VALUE))
+                    .addComponent(tforgemail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -115,15 +133,15 @@ public class OrganizationRegistration extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
+                .addGap(57, 57, 57)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(371, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 18, Short.MAX_VALUE))
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 17, Short.MAX_VALUE))
         );
 
         btnclear.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -148,13 +166,16 @@ public class OrganizationRegistration extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(248, Short.MAX_VALUE)
                 .addComponent(btnsubmit)
                 .addGap(33, 33, 33)
                 .addComponent(btnclear)
                 .addGap(100, 100, 100))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,19 +186,15 @@ public class OrganizationRegistration extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnclear)
                     .addComponent(btnsubmit))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tfenterprisenameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfenterprisenameActionPerformed
+    private void tforgemailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tforgemailActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tfenterprisenameActionPerformed
-
-    private void tfenterpriseemailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfenterpriseemailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfenterpriseemailActionPerformed
+    }//GEN-LAST:event_tforgemailActionPerformed
 
     private void btnclearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnclearActionPerformed
         // TODO add your handling code here:
@@ -202,6 +219,14 @@ public class OrganizationRegistration extends javax.swing.JFrame {
 //        jdbc.insertenterprise(ent);
 //        this.dispose();
     }//GEN-LAST:event_btnsubmitActionPerformed
+
+    private void jCenttypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCenttypeActionPerformed
+        // TODO add your handling code here:
+        jCorgtype.removeAllItems();
+        jCentname.removeAllItems();
+        loadentname();
+        loadorgtype();
+    }//GEN-LAST:event_jCenttypeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -241,13 +266,63 @@ public class OrganizationRegistration extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnclear;
     private javax.swing.JButton btnsubmit;
-    private javax.swing.JComboBox<String> jCtype;
+    private javax.swing.JComboBox<String> jCentname;
+    private javax.swing.JComboBox<String> jCenttype;
+    private javax.swing.JComboBox<String> jCorgtype;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JTextField tfenterpriseemail;
-    private javax.swing.JTextField tfenterprisename;
+    private javax.swing.JTextField tforgemail;
     // End of variables declaration//GEN-END:variables
+
+void loadentname(){
+    String ent_type =jCenttype.getSelectedItem().toString();
+    //String s;
+    
+    try{
+    connect.connect();
+            // Prepare Statement
+
+            connect.pet = connect.con.prepareStatement("Select * from enterprise e where e.ent_type=?");
+           connect.pet.setString(1, ent_type);
+           
+            connect.myRs = connect.pet.executeQuery();
+            while (connect.myRs.next()) {
+                jCentname.addItem(connect.myRs.getString("name"));
+                
+            }
+            
+    }
+     catch (Exception et) {
+            System.out.println(et.toString());
+
+        }
+}
+
+void loadorgtype(){
+    String ent_type =jCenttype.getSelectedItem().toString();
+    //String s;
+    
+    try{
+    connect.connect();
+            // Prepare Statement
+
+            connect.pet = connect.con.prepareStatement("Select * from organizationtypes o where o.ent_type=?");
+           connect.pet.setString(1, ent_type);
+           
+            connect.myRs = connect.pet.executeQuery();
+            while (connect.myRs.next()) {
+                jCorgtype.addItem(connect.myRs.getString("org_type"));
+                
+            }
+            
+    }
+     catch (Exception et) {
+            System.out.println(et.toString());
+
+        }
+}
 }
