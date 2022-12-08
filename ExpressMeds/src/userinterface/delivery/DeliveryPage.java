@@ -220,7 +220,7 @@ public class DeliveryPage extends javax.swing.JFrame {
 
     private void btngrievmngtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btngrievmngtActionPerformed
         // TODO add your handling code here:
-        xyz mangriev = new xyz( );
+        ManageGrievances mangriev = new ManageGrievances( );
         jSplitPane1.setRightComponent(mangriev);
 
     }//GEN-LAST:event_btngrievmngtActionPerformed
