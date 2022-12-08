@@ -2,7 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package userinterface.enterprise.organization.role;
+package userinterface.enterprise.role;
+
+import dbconnection.JdbcConnect;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import model.Address;
+import model.enterprise.Enterprise;
+import userinterface.enterprise.EnterpriseReg;
 
 /**
  *
@@ -13,8 +22,14 @@ public class ManageRole extends javax.swing.JPanel {
     /**
      * Creates new form ManageRole
      */
+    JdbcConnect connect;
     public ManageRole() {
         initComponents();
+                connect = new JdbcConnect();
+        populatetable();
+        disablefields();
+        btnupdate.setEnabled(false);
+        btnedit.setEnabled(true);
     }
 
     /**
@@ -706,4 +721,281 @@ public class ManageRole extends javax.swing.JPanel {
     private javax.swing.JTextField tfunit;
     private javax.swing.JTextField tfzipcode;
     // End of variables declaration//GEN-END:variables
+    void populatetable() {
+
+        DefaultTableModel model = (DefaultTableModel) jTenterprise.getModel();
+        model.setRowCount(0);
+
+        try {
+            connect.connect();
+            // Prepare Statement
+
+            String query = "Select e.ent_id,e.name,e.ent_type,e.email,a.street ,a.unit,a.city,a.state,a.zipcode from enterprise e "
+                    + " join address a on e.add_id = a.add_id";
+            PreparedStatement myStmt = connect.con.prepareStatement(query);
+
+            ResultSet myRs = myStmt.executeQuery();
+            //System.out.println("5");
+            while (myRs.next()) {
+
+                Object[] row = new Object[6];
+                row[0] = myRs.getInt("ent_id");
+                row[1] = myRs.getString("name");//username
+                row[2] = myRs.getString("ent_type");
+                row[3] = myRs.getString("email");
+                row[4] = myRs.getString("city");
+                model.addRow(row);
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.toString());
+
+        }
+
+    }
+
+    void populatetable(Enterprise e) {
+
+        DefaultTableModel model = (DefaultTableModel) jTenterprise.getModel();
+        model.setRowCount(0);
+
+        try {
+            connect.connect();
+            // Prepare Statement
+
+            connect.pet = connect.con.prepareStatement("Select e.ent_id,e.name,e.ent_type,e.email,a.street ,a.unit,a.city,a.state,a.zipcode from enterprise e "
+                    + " join address a on e.add_id = a.add_id where e.ent_id=?");
+           connect.pet.setInt(1, e.getEnt_id());
+            connect.myRs = connect.pet.executeQuery();
+
+            //System.out.println("5");
+            while (connect.myRs.next()) {
+
+                Object[] row = new Object[6];
+                row[0] = connect.myRs.getInt("ent_id");
+                row[1] = connect.myRs.getString("name");//username
+                row[2] = connect.myRs.getString("ent_type");
+                row[3] = connect.myRs.getString("email");
+                row[4] = connect.myRs.getString("city");
+                model.addRow(row);
+            }
+
+        } catch (Exception et) {
+            System.out.println(et.toString());
+
+        }
+
+    } 
+    
+  void populatetable(int ent_id) {
+
+        DefaultTableModel model = (DefaultTableModel) jTenterprise.getModel();
+        model.setRowCount(0);
+           int i=0;
+        try {
+            connect.connect();
+            // Prepare Statement
+
+            connect.pet = connect.con.prepareStatement("Select e.ent_id,e.name,e.ent_type,e.email,a.street ,a.unit,a.city,a.state,a.zipcode from enterprise e "
+                    + " join address a on e.add_id = a.add_id where e.ent_id=?");
+           connect.pet.setInt(1, ent_id);
+            connect.myRs = connect.pet.executeQuery();
+            
+            //System.out.println("5");
+            while (connect.myRs.next()) {
+                i=i+1;
+                Object[] row = new Object[6];
+                row[0] = connect.myRs.getInt("ent_id");
+                row[1] = connect.myRs.getString("name");//username
+                row[2] = connect.myRs.getString("ent_type");
+                row[3] = connect.myRs.getString("email");
+                row[4] = connect.myRs.getString("city");
+                model.addRow(row);
+            }
+
+        } catch (Exception et) {
+            System.out.println(et.toString());
+
+        }
+        if (i!=0){
+            JOptionPane.showMessageDialog(this,
+                    "Enterprise Found!!!");
+        }
+        else {
+        JOptionPane.showMessageDialog(this,
+                    "Enterprise does not exist!!!");
+        }
+
+    } 
+  
+  void populatetableon_name(String name) {
+
+        DefaultTableModel model = (DefaultTableModel) jTenterprise.getModel();
+        model.setRowCount(0);
+           int i=0;
+        try {
+            connect.connect();
+            // Prepare Statement
+
+            connect.pet = connect.con.prepareStatement("Select e.ent_id,e.name,e.ent_type,e.email,a.street ,a.unit,a.city,a.state,a.zipcode from enterprise e "
+                    + " join address a on e.add_id = a.add_id where e.name= ?");
+           connect.pet.setString(1, name);
+            connect.myRs = connect.pet.executeQuery();
+            
+            System.out.println(connect.pet);
+            while (connect.myRs.next()) {
+                i=i+1;
+                Object[] row = new Object[6];
+                row[0] = connect.myRs.getInt("ent_id");
+                row[1] = connect.myRs.getString("name");//username
+                row[2] = connect.myRs.getString("ent_type");
+                row[3] = connect.myRs.getString("email");
+                row[4] = connect.myRs.getString("city");
+                model.addRow(row);
+            }
+
+        } catch (Exception et) {
+            System.out.println(et.toString());
+
+        }
+        if (i!=0){
+            JOptionPane.showMessageDialog(this,
+                    "Enterprise Found!!!");
+        }
+        else {
+        JOptionPane.showMessageDialog(this,
+                    "Enterprise does not exist!!!");
+        }
+
+    }
+
+  
+    void populatetableon_type(String type) {
+
+        DefaultTableModel model = (DefaultTableModel) jTenterprise.getModel();
+        model.setRowCount(0);
+           int i=0;
+        try {
+            connect.connect();
+            // Prepare Statement
+
+            connect.pet = connect.con.prepareStatement("Select e.ent_id,e.name,e.ent_type,e.email,a.street ,a.unit,a.city,a.state,a.zipcode from enterprise e "
+                    + " join address a on e.add_id = a.add_id where e.ent_type=?");
+           connect.pet.setString(1, type);
+            connect.myRs = connect.pet.executeQuery();
+            
+            //System.out.println("5");
+            while (connect.myRs.next()) {
+                i=i+1;
+                Object[] row = new Object[6];
+                row[0] = connect.myRs.getInt("ent_id");
+                row[1] = connect.myRs.getString("name");//username
+                row[2] = connect.myRs.getString("ent_type");
+                row[3] = connect.myRs.getString("email");
+                row[4] = connect.myRs.getString("city");
+                model.addRow(row);
+            }
+
+        } catch (Exception et) {
+            System.out.println(et.toString());
+
+        }
+        if (i!=0){
+            JOptionPane.showMessageDialog(this,
+                    "Enterprise Found!!!");
+        }
+        else {
+        JOptionPane.showMessageDialog(this,
+                    "Enterprise does not exist!!!");
+        }
+
+    }
+    
+    
+    void populatetableon_city(String city) {
+
+        DefaultTableModel model = (DefaultTableModel) jTenterprise.getModel();
+        model.setRowCount(0);
+           int i=0;
+        try {
+            connect.connect();
+            // Prepare Statement
+
+            connect.pet = connect.con.prepareStatement("Select e.ent_id,e.name,e.ent_type,e.email,a.street ,a.unit,a.city,a.state,a.zipcode from enterprise e "
+                    + " join address a on e.add_id = a.add_id where a.city = ? ");
+           connect.pet.setString(1, city);
+            connect.myRs = connect.pet.executeQuery();
+            
+            //System.out.println("5");
+            while (connect.myRs.next()) {
+                i=i+1;
+                Object[] row = new Object[6];
+                row[0] = connect.myRs.getInt("ent_id");
+                row[1] = connect.myRs.getString("name");//username
+                row[2] = connect.myRs.getString("ent_type");
+                row[3] = connect.myRs.getString("email");
+                row[4] = connect.myRs.getString("city");
+                model.addRow(row);
+            }
+
+        } catch (Exception et) {
+            System.out.println(et.toString());
+
+        }
+        if (i!=0){
+            JOptionPane.showMessageDialog(this,
+                    "Enterprise Found!!!");
+        }
+        else {
+        JOptionPane.showMessageDialog(this,
+                    "Enterprise does not exist!!!");
+        }
+
+    }
+    
+    void enablefields() {
+        tfstreet.setEnabled(true);
+        tfunit.setEnabled(true);
+        tfcity.setEnabled(true);
+        tfstate.setEnabled(true);
+        tfzipcode.setEnabled(true);
+        tfname.setEnabled(true);
+        tfemailid.setEnabled(true);
+        tftype.setEnabled(true);
+        tfid.setEnabled(false);
+    }
+
+    void disablefields() {
+        tfstreet.setEnabled(false);
+        tfunit.setEnabled(false);
+        tfcity.setEnabled(false);
+        tfstate.setEnabled(false);
+        tfzipcode.setEnabled(false);
+        tfname.setEnabled(false);
+        tfemailid.setEnabled(false);
+        tftype.setEnabled(false);
+        tfid.setEnabled(false);
+    }
+
+    void refresh() {
+        tfscity.setText("");
+        tfsname.setText("");
+        tfstype.setText("");
+        tfsid.setText("");
+        tfstreet.setText("");
+        tfunit.setText("");
+        tfcity.setText("");
+        tfstate.setText("");
+        tfzipcode.setText("");
+        tfname.setText("");
+        tfemailid.setText("");
+        tftype.setText("");
+        tfid.setText("");
+        populatetable();
+        disablefields();
+        btnupdate.setEnabled(false);
+        btnedit.setEnabled(true);
+        btnsearch.setEnabled(true);
+        btnsregister.setEnabled(true);
+    }
 }

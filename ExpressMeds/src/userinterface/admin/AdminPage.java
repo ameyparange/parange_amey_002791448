@@ -5,6 +5,8 @@
 package userinterface.admin;
 
 import userinterface.enterprise.ManageEnterprise;
+import userinterface.enterprise.organization.ManageOrganization;
+import userinterface.enterprise.role.ManageRole;
 
 /**
  *
@@ -199,15 +201,20 @@ public class AdminPage extends javax.swing.JFrame {
     private void btnManageEnterpriseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageEnterpriseActionPerformed
         // TODO add your handling code here:
         ManageEnterprise mgent = new ManageEnterprise( );
-        jSplitPane1.setRightComponent(mgent);
+        jSplitPane1.setRightComponent(mgent); 
     }//GEN-LAST:event_btnManageEnterpriseActionPerformed
 
     private void btnManageRolesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageRolesActionPerformed
         // TODO add your handling code here:
+        ManageRole mgrole = new ManageRole( );
+        jSplitPane1.setRightComponent(mgrole);
+                
     }//GEN-LAST:event_btnManageRolesActionPerformed
 
     private void btnManageOrgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageOrgActionPerformed
         // TODO add your handling code here:
+        ManageOrganization mgorg = new ManageOrganization( );
+        jSplitPane1.setRightComponent(mgorg);
     }//GEN-LAST:event_btnManageOrgActionPerformed
 
     private void btnDashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDashboardActionPerformed
