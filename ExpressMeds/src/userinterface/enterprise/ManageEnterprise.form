@@ -156,6 +156,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="tfsname">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfsnameActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnsearch">
           <Properties>

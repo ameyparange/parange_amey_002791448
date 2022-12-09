@@ -5,6 +5,8 @@
 package userinterface.enterprise.organization;
 
 import dbconnection.JdbcConnect;
+import model.enterprise.Enterprise;
+import model.enterprise.organization.Organization;
 
 /**
  *
@@ -44,6 +46,7 @@ public class OrganizationRegistration extends javax.swing.JFrame {
         jCorgtype = new javax.swing.JComboBox<>();
         btnclear = new javax.swing.JButton();
         btnsubmit = new javax.swing.JButton();
+        btnsback = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -76,6 +79,12 @@ public class OrganizationRegistration extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("Enterprise");
+
+        jCentname.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCentnameActionPerformed(evt);
+            }
+        });
 
         jLabel10.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -162,31 +171,44 @@ public class OrganizationRegistration extends javax.swing.JFrame {
             }
         });
 
+        btnsback.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btnsback.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/customer/search.png"))); // NOI18N
+        btnsback.setText("Back");
+        btnsback.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnsbackActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(248, Short.MAX_VALUE)
-                .addComponent(btnsubmit)
-                .addGap(33, 33, 33)
-                .addComponent(btnclear)
-                .addGap(100, 100, 100))
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnsback)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnsubmit)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnclear))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnclear)
-                    .addComponent(btnsubmit))
-                .addContainerGap(20, Short.MAX_VALUE))
+                    .addComponent(btnsubmit)
+                    .addComponent(btnsback))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         pack();
@@ -197,27 +219,22 @@ public class OrganizationRegistration extends javax.swing.JFrame {
     }//GEN-LAST:event_tforgemailActionPerformed
 
     private void btnclearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnclearActionPerformed
-        // TODO add your handling code here:
-//        tfstreet.setText("");
-//        tfunit.setText("");
-//        tfcity.setText("");
-//        tfstate.setText("");
-//        tfzipcode.setText("");
-//        tfenterprisename.setText("");
-//        tfenterpriseemail.setText("");
+                jCorgtype.removeAllItems();
+        jCentname.removeAllItems();
+        tforgemail.setText("");
     }//GEN-LAST:event_btnclearActionPerformed
 
     private void btnsubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsubmitActionPerformed
-        // TODO add your handling code here:
-//        int add_id;
-//        JdbcConnect jdbc = new JdbcConnect();
-//        Enterprise ent;
-//        Address add = new Address(tfstreet.getText(), tfunit.getText(), tfcity.getText(), tfstate.getText(), tfzipcode.getText());
-//        add_id = jdbc.insertaddress(add);
-//        System.out.println("here"+add_id);
-//        ent = new Enterprise(jCtype.getSelectedItem().toString(), tfenterprisename.getText(), tfenterpriseemail.getText(), add_id);
-//        jdbc.insertenterprise(ent);
-//        this.dispose();
+        
+       
+        JdbcConnect jdbc = new JdbcConnect();
+       
+       Organization org;
+       int tent_id= jdbc.searchenterpriseent_id(jCentname.getSelectedItem().toString());
+        org = new Organization(tent_id,jCorgtype.getSelectedItem().toString(),  tforgemail.getText());
+       jdbc.insertorganization(org);
+       
+       this.dispose();
     }//GEN-LAST:event_btnsubmitActionPerformed
 
     private void jCenttypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCenttypeActionPerformed
@@ -227,6 +244,15 @@ public class OrganizationRegistration extends javax.swing.JFrame {
         loadentname();
         loadorgtype();
     }//GEN-LAST:event_jCenttypeActionPerformed
+
+    private void jCentnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCentnameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCentnameActionPerformed
+
+    private void btnsbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsbackActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnsbackActionPerformed
 
     /**
      * @param args the command line arguments
@@ -265,6 +291,7 @@ public class OrganizationRegistration extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnclear;
+    private javax.swing.JButton btnsback;
     private javax.swing.JButton btnsubmit;
     private javax.swing.JComboBox<String> jCentname;
     private javax.swing.JComboBox<String> jCenttype;
