@@ -4,6 +4,7 @@
  */
 package userinterface.supplier;
 
+import dbconnection.JdbcConnect;
 import userinterface.employee.EmployeeRegistration;
 
 
@@ -16,8 +17,12 @@ public class SupplierPage extends javax.swing.JFrame {
     /**
      * Creates new form SupplierPage1
      */
+    JdbcConnect connect;
+    String supp_name;
     public SupplierPage() {
         initComponents();
+        connect = new JdbcConnect();
+        loadentname();
     }
 
     /**
@@ -39,7 +44,7 @@ public class SupplierPage extends javax.swing.JFrame {
         btnwarecata = new javax.swing.JButton();
         btnOrderCata = new javax.swing.JButton();
         btnEmployeecatalog = new javax.swing.JButton();
-        jCorgtype = new javax.swing.JComboBox<>();
+        jCentname = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -121,6 +126,12 @@ public class SupplierPage extends javax.swing.JFrame {
             }
         });
 
+        jCentname.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCentnameActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -139,7 +150,7 @@ public class SupplierPage extends javax.swing.JFrame {
                         .addComponent(btnManageOrganization, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnOrderMgmt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnwarecata, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jCorgtype, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jCentname, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -148,7 +159,7 @@ public class SupplierPage extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(btnback)
                 .addGap(7, 7, 7)
-                .addComponent(jCorgtype, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jCentname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnManageOrganization)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -263,7 +274,7 @@ public class SupplierPage extends javax.swing.JFrame {
     private void btnManageOrganizationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageOrganizationActionPerformed
         // TODO add your handling code here:
         
-        ManageOrganization mgorg = new ManageOrganization( );
+        ManageSupOrg mgorg = new ManageSupOrg( );
         jSplitPane1.setRightComponent(mgorg);
     }//GEN-LAST:event_btnManageOrganizationActionPerformed
 
@@ -282,6 +293,11 @@ public class SupplierPage extends javax.swing.JFrame {
     private void btnEmployeecatalogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmployeecatalogActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEmployeecatalogActionPerformed
+
+    private void jCentnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCentnameActionPerformed
+        // TODO add your handling code here:
+        supp_name = jCentname.getSelectedItem().toString();
+    }//GEN-LAST:event_jCentnameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -329,7 +345,7 @@ public class SupplierPage extends javax.swing.JFrame {
     private javax.swing.JButton btnlogout;
     private javax.swing.JButton btnwarecata;
     private javax.swing.JButton btnwaremgt;
-    private javax.swing.JComboBox<String> jCorgtype;
+    private javax.swing.JComboBox<String> jCentname;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
@@ -337,4 +353,29 @@ public class SupplierPage extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JSplitPane jSplitPane1;
     // End of variables declaration//GEN-END:variables
+
+void loadentname(){
+    //String ent_type =jCentname.getSelectedItem().toString();
+    //String s;
+    
+    try{
+    connect.connect();
+            // Prepare Statement
+               
+            connect.pet = connect.con.prepareStatement("Select * from enterprise e where e.ent_type='Supplier'");
+           //connect.pet.setString(1, ent_type);
+           System.out.println("pet");
+            connect.myRs = connect.pet.executeQuery();
+            while (connect.myRs.next()) {
+                jCentname.addItem(connect.myRs.getString("name"));
+                
+            }
+            
+    }
+     catch (Exception et) {
+            System.out.println(et.toString());
+
+        }
+}
+
 }

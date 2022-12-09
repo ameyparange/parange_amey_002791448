@@ -8,12 +8,12 @@ package userinterface.supplier;
  *
  * @author amey8
  */
-public class ManageOrganization extends javax.swing.JPanel {
+public class ManageSupOrg extends javax.swing.JPanel {
 
     /**
      * Creates new form ManageOrganization
      */
-    public ManageOrganization() {
+    public ManageSupOrg() {
         initComponents();
     }
 
