@@ -548,6 +548,8 @@ public class ManageOrganization extends javax.swing.JPanel {
         btnedit.setEnabled(false);
         btnsearch.setEnabled(false);
         btnsregister.setEnabled(false);
+        btndelete.setEnabled(false);
+        
     }//GEN-LAST:event_btneditActionPerformed
 
     private void btnupdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnupdateActionPerformed
@@ -792,5 +794,6 @@ public class ManageOrganization extends javax.swing.JPanel {
         btnedit.setEnabled(true);
         btnsearch.setEnabled(true);
         btnsregister.setEnabled(true);
+        btndelete.setEnabled(true);
     }
 }

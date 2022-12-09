@@ -13,6 +13,7 @@ import model.Address;
 import model.enterprise.Enterprise;
 import model.enterprise.EnterpriseCatalog;
 import model.enterprise.organization.Organization;
+import model.enterprise.role.Role;
 
 /**
  *
@@ -472,6 +473,64 @@ public class JdbcConnect {
     }
 
     public int searchorganization(int ent_id) {
+        this.connect();
+        try {
+            pet = con.prepareStatement("select add_id from enterprise where ent_id=?");
+            pet.setInt(1, ent_id);
+            myRs = pet.executeQuery();
+
+            if (myRs.next()) {
+
+                return myRs.getInt("add_id");
+
+            }
+        } catch (Exception e) {
+            System.out.println("9999");
+            System.out.println(e.toString());
+            return 9999;
+        }
+        return 9999;
+    }
+    
+    public int insertrole(Role ro) {
+        try {
+            this.connect();
+            pet = con.prepareStatement("insert into role(ent_id,role_type) values (?,?)");
+            pet.setInt(1, ro.getEnt_id());
+            pet.setString(2, ro.getRole_type());
+
+            int k = pet.executeUpdate();
+            con.commit();
+            return k;
+
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            return 0;
+        }
+    }
+
+    public int updaterole(Organization org) {
+        try {
+            this.connect();
+
+            pet = con.prepareStatement("update organization set"
+                    + "email=? where org_id= ? ");
+
+            pet.setString(1, org.getEmail());
+            pet.setInt(2, org.getOrg_id());
+            System.out.println(pet.toString());
+            int k = pet.executeUpdate();
+            con.commit();
+            return k;
+
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            return 0;
+        }
+
+    }
+
+    public int searchrole(int ent_id) {
         this.connect();
         try {
             pet = con.prepareStatement("select add_id from enterprise where ent_id=?");
