@@ -96,6 +96,12 @@ public class ManageEnterprise extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
         jLabel1.setText("Name");
 
+        tfsname.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfsnameActionPerformed(evt);
+            }
+        });
+
         btnsearch.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
         btnsearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/supplier/loupe.png"))); // NOI18N
         btnsearch.setText("Search");
@@ -680,6 +686,10 @@ public class ManageEnterprise extends javax.swing.JPanel {
         
 
     }//GEN-LAST:event_btnsearchActionPerformed
+
+    private void tfsnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfsnameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfsnameActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

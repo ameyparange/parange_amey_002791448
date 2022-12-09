@@ -13,6 +13,7 @@ import javax.swing.table.DefaultTableModel;
 import model.Address;
 import model.enterprise.Enterprise;
 import model.enterprise.EnterpriseCatalog;
+import model.enterprise.organization.Organization;
 import userinterface.admin.AdminPage;
 
 /**
@@ -47,16 +48,12 @@ public class ManageOrganization extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        tfsname = new javax.swing.JTextField();
+        tfsentname = new javax.swing.JTextField();
         btnsearch = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        tfstype = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        tfscity = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
-        tfsid = new javax.swing.JTextField();
+        tfsorgid = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTenterprise = new javax.swing.JTable();
+        jTorganization = new javax.swing.JTable();
         btndelete = new javax.swing.JButton();
         btnview = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
@@ -65,21 +62,15 @@ public class ManageOrganization extends javax.swing.JPanel {
         tfname = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         tftype = new javax.swing.JTextField();
-        tfemailid = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         tfid = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
-        labelname1 = new javax.swing.JLabel();
-        tfstreet = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        tfunit = new javax.swing.JTextField();
-        tfcity = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        tfstate = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        tfzipcode = new javax.swing.JTextField();
+        tforgemail = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        tforgtype = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        tforgid = new javax.swing.JTextField();
         jPanel6 = new javax.swing.JPanel();
         btnedit = new javax.swing.JButton();
         btnupdate = new javax.swing.JButton();
@@ -95,7 +86,13 @@ public class ManageOrganization extends javax.swing.JPanel {
         jPanel1.setOpaque(false);
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        jLabel1.setText("Name");
+        jLabel1.setText("Ent Name");
+
+        tfsentname.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfsentnameActionPerformed(evt);
+            }
+        });
 
         btnsearch.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
         btnsearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/supplier/loupe.png"))); // NOI18N
@@ -106,14 +103,14 @@ public class ManageOrganization extends javax.swing.JPanel {
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        jLabel5.setText("Type");
-
         jLabel11.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        jLabel11.setText("City");
+        jLabel11.setText("OrgId");
 
-        jLabel12.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        jLabel12.setText("Ent_id");
+        tfsorgid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfsorgidActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -121,22 +118,14 @@ public class ManageOrganization extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfsid, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfsname, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22)
-                .addComponent(jLabel5)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tfstype, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addComponent(tfsentname, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tfscity, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tfsorgid, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(258, 258, 258)
                 .addComponent(btnsearch)
                 .addContainerGap())
         );
@@ -144,43 +133,38 @@ public class ManageOrganization extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(13, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnsearch)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(tfsid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel12)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(tfstype, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel5)
-                        .addComponent(tfsname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(tfscity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tfsorgid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel11)
-                        .addComponent(btnsearch)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(tfsentname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(13, 13, 13))
         );
 
-        jTenterprise.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        jTenterprise.setModel(new javax.swing.table.DefaultTableModel(
+        jTorganization.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        jTorganization.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Name", "Type", "Email id", "Location"
+                "EntID", "EnterpriseName", "EnterpriseType", "OrgID", "OrganizationType", "Email id"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                true, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTenterprise);
+        jScrollPane1.setViewportView(jTorganization);
 
         btndelete.setBackground(new java.awt.Color(204, 204, 204));
         btndelete.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -207,29 +191,23 @@ public class ManageOrganization extends javax.swing.JPanel {
         jPanel3.setBackground(new java.awt.Color(204, 204, 204));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED), "View Organization", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 3, 14))); // NOI18N
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(51, 51, 51)), "General Information", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Segoe UI Historic", 3, 14), new java.awt.Color(51, 51, 51))); // NOI18N
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(51, 51, 51)), "Enterprise Details", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Segoe UI Historic", 3, 14), new java.awt.Color(51, 51, 51))); // NOI18N
 
         labelname.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         labelname.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelname.setText("Name");
+        labelname.setText("Enterprise Name");
 
         tfname.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Type");
+        jLabel3.setText("EnterpriseType");
 
         tftype.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        tfemailid.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        jLabel4.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Email id");
-
         jLabel10.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setText("ID");
+        jLabel10.setText("EnterpriseID");
 
         tfid.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -237,30 +215,27 @@ public class ManageOrganization extends javax.swing.JPanel {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31)
-                        .addComponent(tfemailid, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(19, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(31, 31, 31)
                         .addComponent(tftype, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelname, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(labelname, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(31, 31, 31)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(tfid, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tfname, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addGap(40, 40, 40))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfid))
@@ -269,103 +244,68 @@ public class ManageOrganization extends javax.swing.JPanel {
                     .addComponent(tfname, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(3, 3, 3)
-                        .addComponent(labelname, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(labelname)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(tftype)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(tfemailid)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(34, 34, 34))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40))
         );
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(51, 51, 51)), "Address", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Historic", 3, 14))); // NOI18N
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(51, 51, 51)), "Organization Details", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Historic", 3, 14))); // NOI18N
 
-        labelname1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        labelname1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelname1.setText("Street");
+        tforgemail.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        tfstreet.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jLabel12.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel12.setText("Organization Type");
 
-        jLabel6.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Unit");
+        tforgtype.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        tfunit.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jLabel13.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel13.setText("Email id");
 
-        tfcity.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jLabel14.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel14.setText("Organization ID");
 
-        jLabel7.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("City");
-
-        jLabel8.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("State");
-
-        tfstate.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        jLabel9.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("Zipcode");
-
-        tfzipcode.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        tforgid.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap(28, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31)
-                        .addComponent(tfzipcode, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31)
-                        .addComponent(tfstate, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31)
-                        .addComponent(tfcity, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31)
-                        .addComponent(tfunit, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(labelname1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31)
-                        .addComponent(tfstreet, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(49, Short.MAX_VALUE))
+                    .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.LEADING)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tforgemail, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tforgid, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tforgtype, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tforgid))
+                .addGap(5, 5, 5)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(tfstreet, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(labelname1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(tforgtype)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(tfunit)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(tfcity)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(tfstate)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(tfzipcode)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(tforgemail)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(44, 44, 44))
         );
 
         jPanel6.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -531,7 +471,7 @@ public class ManageOrganization extends javax.swing.JPanel {
     private void btndeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndeleteActionPerformed
         // TODO add your handling code here:
 
-        int row = jTenterprise.getSelectedRow();
+        int row = jTorganization.getSelectedRow();
         btnrefresh.setEnabled(true);
         if (row < 0) {
             JOptionPane.showMessageDialog(this,
@@ -539,13 +479,13 @@ public class ManageOrganization extends javax.swing.JPanel {
                     "Select row",
                     JOptionPane.ERROR_MESSAGE);
         } else {
-            DefaultTableModel model = (DefaultTableModel) jTenterprise.getModel();
+            DefaultTableModel model = (DefaultTableModel) jTorganization.getModel();
 
-            int selected_hosid = (int) model.getValueAt(row, 0);
+            int selected_hosid = (int) model.getValueAt(row, 3);
             try {
                 connect.connect();
 
-                connect.pet = connect.con.prepareStatement("DELETE FROM enterprise where ent_id=?");
+                connect.pet = connect.con.prepareStatement("DELETE FROM organization where org_id=?");
                 connect.pet.setInt(1, selected_hosid);
                 connect.pet.executeUpdate();
                 connect.con.commit();
@@ -560,7 +500,7 @@ public class ManageOrganization extends javax.swing.JPanel {
 
     private void btnviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnviewActionPerformed
         // TODO add your handling code here:
-        int row = jTenterprise.getSelectedRow();
+        int row = jTorganization.getSelectedRow();
         btnrefresh.setEnabled(true);
         if (row < 0) {
             JOptionPane.showMessageDialog(this,
@@ -568,16 +508,15 @@ public class ManageOrganization extends javax.swing.JPanel {
                     "Select row",
                     JOptionPane.ERROR_MESSAGE);
         } else {
-            DefaultTableModel model = (DefaultTableModel) jTenterprise.getModel();
+            DefaultTableModel model = (DefaultTableModel) jTorganization.getModel();
 
             int selected_hosid = (int) model.getValueAt(row, 0);
             try {
                 connect.connect();
                 // Prepare Statement
 
-                String query = "Select e.ent_id,e.name,e.ent_type,e.email,a.street ,a.unit,a.city,a.state,a.zipcode from enterprise e "
-                        + " join address a on e.add_id = a.add_id"
-                        + " where ent_id=?";
+                String query = "Select e.ent_id,e.name,e.ent_type,o.org_id,o.org_type,o.email from enterprise e "
+                    + " join organization o on e.ent_id = o.ent_id where e.ent_id=?";
                 connect.pet = connect.con.prepareStatement(query);
                 connect.pet.setInt(1, selected_hosid);
 
@@ -588,13 +527,10 @@ public class ManageOrganization extends javax.swing.JPanel {
                     tfid.setText(String.valueOf(connect.myRs.getInt("ent_id")));
                     tfname.setText(String.valueOf(connect.myRs.getString("name")));
                     tftype.setText(String.valueOf(connect.myRs.getString("ent_type")));
-                    tfemailid.setText(String.valueOf(connect.myRs.getString("email")));
+                    tforgid.setText(String.valueOf(connect.myRs.getString("org_id")));
 
-                    tfstreet.setText(String.valueOf(connect.myRs.getString("street")));
-                    tfunit.setText(String.valueOf(connect.myRs.getString("unit")));
-                    tfcity.setText(String.valueOf(connect.myRs.getString("city")));
-                    tfstate.setText(String.valueOf(connect.myRs.getString("state")));
-                    tfzipcode.setText(String.valueOf(connect.myRs.getString("zipcode")));
+                    tforgtype.setText(String.valueOf(connect.myRs.getString("org_type")));
+                    tforgemail.setText(String.valueOf(connect.myRs.getString("email")));
 
                 }
 
@@ -606,18 +542,7 @@ public class ManageOrganization extends javax.swing.JPanel {
     }//GEN-LAST:event_btnviewActionPerformed
 
     private void btneditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditActionPerformed
-//        tfstreet.setText("");
-//        tfunit.setText("");
-//        tfcity.setText("");
-//        tfstate.setText("");
-//        tfzipcode.setText("");
-//        tfname.setText("");
-//        tfemailid.setText("");
-//        tftype.setText("");
-//        tfid.setText("");
-//        enablefields();
-//        btnupdate.setEnabled(true);
-//        btnedit.setEnabled(false);
+
         enablefields();
         btnupdate.setEnabled(true);
         btnedit.setEnabled(false);
@@ -629,20 +554,12 @@ public class ManageOrganization extends javax.swing.JPanel {
         int add_id;
         int i;
         JdbcConnect jdbc = new JdbcConnect();
-        Enterprise ent;
-        Address add;
-        //Address add = new Address(tfstreet.getText(), tfunit.getText(), tfcity.getText(), tfstate.getText(), tfzipcode.getText());
+        Organization org;
+        //Address add = new Address(tfstreet.getText(), tfunit.getText(), tfcity.getText(), tforgemail.getText(), tfzipcode.getText());
         add_id = jdbc.searchenterpriseadd_id(Integer.valueOf(tfid.getText()));
-        System.out.println("here" + add_id);
-        ent = new Enterprise(Integer.valueOf(tfid.getText()), tftype.getText(), tfname.getText(), tfemailid.getText(), add_id);
-        i = jdbc.updateenterprise(ent);
-        add = jdbc.searchAddress(add_id);
-        add.setStreet(tfstreet.getText());
-        add.setUnit(tfunit.getText());
-        add.setCity(tfcity.getText());
-        add.setState(tfstate.getText());
-        add.setZipcode(tfzipcode.getText());
-        i = jdbc.updateAddress(add);
+        System.out.println("here" + add_id); 
+        org = new Organization(Integer.valueOf(tfid.getText()), Integer.valueOf(tforgid.getText()), tforgtype.getText(), tforgemail.getText());
+        i = jdbc.updateorganization(org);
         refresh();
 
     }//GEN-LAST:event_btnupdateActionPerformed
@@ -662,25 +579,30 @@ public class ManageOrganization extends javax.swing.JPanel {
         // TODO add your handling code here:\
         
         JdbcConnect jdbc = new JdbcConnect();
-        if (!tfsid.getText().isEmpty()) {
-            populatetable(Integer.valueOf(tfsid.getText()) );
-        } else if (!tfsname.getText().isEmpty()) {
-            this.populatetableon_name(tfsname.getText());
-            
-        } else if (!tfstype.getText().isEmpty()) {
-            this.populatetableon_type(tfstype.getText());
+        if (!tfsentname.getText().isEmpty() ) {
+            this.populatetableon_name(tfsentname.getText());
+         
+       } else if (!tfsorgid.getText().isEmpty()) {
+           this.populatetable(Integer.valueOf(tfsorgid.getText()));
             
             //e = jdbc.searchenterpriseon_type(tfstype.getText());
-        } else if (!tfscity.getText().isEmpty()) {
-            this.populatetableon_city(tfscity.getText());
-            
-        } else {
+       } else {
             JOptionPane.showMessageDialog(this,
                     "Search on Id or Name or City or Type");
         }
         
 
     }//GEN-LAST:event_btnsearchActionPerformed
+
+    private void tfsorgidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfsorgidActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_tfsorgidActionPerformed
+
+    private void tfsentnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfsentnameActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_tfsentnameActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -695,14 +617,10 @@ public class ManageOrganization extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -710,47 +628,42 @@ public class ManageOrganization extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTenterprise;
+    private javax.swing.JTable jTorganization;
     private javax.swing.JLabel labelname;
-    private javax.swing.JLabel labelname1;
-    private javax.swing.JTextField tfcity;
-    private javax.swing.JTextField tfemailid;
     private javax.swing.JTextField tfid;
     private javax.swing.JTextField tfname;
-    private javax.swing.JTextField tfscity;
-    private javax.swing.JTextField tfsid;
-    private javax.swing.JTextField tfsname;
-    private javax.swing.JTextField tfstate;
-    private javax.swing.JTextField tfstreet;
-    private javax.swing.JTextField tfstype;
+    private javax.swing.JTextField tforgemail;
+    private javax.swing.JTextField tforgid;
+    private javax.swing.JTextField tforgtype;
+    private javax.swing.JTextField tfsentname;
+    private javax.swing.JTextField tfsorgid;
     private javax.swing.JTextField tftype;
-    private javax.swing.JTextField tfunit;
-    private javax.swing.JTextField tfzipcode;
     // End of variables declaration//GEN-END:variables
 
     void populatetable() {
 
-        DefaultTableModel model = (DefaultTableModel) jTenterprise.getModel();
+        DefaultTableModel model = (DefaultTableModel) jTorganization.getModel();
         model.setRowCount(0);
 
         try {
             connect.connect();
             // Prepare Statement
 
-            String query = "Select e.ent_id,e.name,e.ent_type,e.email,a.street ,a.unit,a.city,a.state,a.zipcode from enterprise e "
-                    + " join address a on e.add_id = a.add_id";
+            String query = "Select e.ent_id,e.name,e.ent_type,o.org_id,o.org_type,o.email from enterprise e "
+                    + " join organization o on e.ent_id = o.ent_id";
             PreparedStatement myStmt = connect.con.prepareStatement(query);
 
             ResultSet myRs = myStmt.executeQuery();
             //System.out.println("5");
             while (myRs.next()) {
 
-                Object[] row = new Object[6];
+                Object[] row = new Object[7];
                 row[0] = myRs.getInt("ent_id");
                 row[1] = myRs.getString("name");//username
                 row[2] = myRs.getString("ent_type");
-                row[3] = myRs.getString("email");
-                row[4] = myRs.getString("city");
+                row[3] = myRs.getInt("org_id");
+                row[4] = myRs.getString("org_type");
+                row[5] = myRs.getString("email");
                 model.addRow(row);
             }
 
@@ -761,62 +674,32 @@ public class ManageOrganization extends javax.swing.JPanel {
 
     }
 
-    void populatetable(Enterprise e) {
-
-        DefaultTableModel model = (DefaultTableModel) jTenterprise.getModel();
-        model.setRowCount(0);
-
-        try {
-            connect.connect();
-            // Prepare Statement
-
-            connect.pet = connect.con.prepareStatement("Select e.ent_id,e.name,e.ent_type,e.email,a.street ,a.unit,a.city,a.state,a.zipcode from enterprise e "
-                    + " join address a on e.add_id = a.add_id where e.ent_id=?");
-           connect.pet.setInt(1, e.getEnt_id());
-            connect.myRs = connect.pet.executeQuery();
-
-            //System.out.println("5");
-            while (connect.myRs.next()) {
-
-                Object[] row = new Object[6];
-                row[0] = connect.myRs.getInt("ent_id");
-                row[1] = connect.myRs.getString("name");//username
-                row[2] = connect.myRs.getString("ent_type");
-                row[3] = connect.myRs.getString("email");
-                row[4] = connect.myRs.getString("city");
-                model.addRow(row);
-            }
-
-        } catch (Exception et) {
-            System.out.println(et.toString());
-
-        }
-
-    } 
+ 
     
-  void populatetable(int ent_id) {
+  void populatetable(int org_id) {
 
-        DefaultTableModel model = (DefaultTableModel) jTenterprise.getModel();
+        DefaultTableModel model = (DefaultTableModel) jTorganization.getModel();
         model.setRowCount(0);
            int i=0;
         try {
             connect.connect();
             // Prepare Statement
 
-            connect.pet = connect.con.prepareStatement("Select e.ent_id,e.name,e.ent_type,e.email,a.street ,a.unit,a.city,a.state,a.zipcode from enterprise e "
-                    + " join address a on e.add_id = a.add_id where e.ent_id=?");
-           connect.pet.setInt(1, ent_id);
+            connect.pet = connect.con.prepareStatement("Select e.ent_id,e.name,e.ent_type,o.org_id,o.org_type,o.email from enterprise e "
+                    + " join organization o on e.ent_id = o.ent_id where o.org_id=?");
+           connect.pet.setInt(1, org_id);
             connect.myRs = connect.pet.executeQuery();
             
             //System.out.println("5");
             while (connect.myRs.next()) {
                 i=i+1;
-                Object[] row = new Object[6];
+                Object[] row = new Object[7];
                 row[0] = connect.myRs.getInt("ent_id");
                 row[1] = connect.myRs.getString("name");//username
                 row[2] = connect.myRs.getString("ent_type");
-                row[3] = connect.myRs.getString("email");
-                row[4] = connect.myRs.getString("city");
+                row[3] = connect.myRs.getInt("org_id");
+                row[4] = connect.myRs.getString("org_type");
+                row[5] = connect.myRs.getString("email");
                 model.addRow(row);
             }
 
@@ -826,38 +709,39 @@ public class ManageOrganization extends javax.swing.JPanel {
         }
         if (i!=0){
             JOptionPane.showMessageDialog(this,
-                    "Enterprise Found!!!");
+                    "Organization Found!!!");
         }
         else {
         JOptionPane.showMessageDialog(this,
-                    "Enterprise does not exist!!!");
+                    "Organization does not exist!!!");
         }
 
     } 
   
   void populatetableon_name(String name) {
 
-        DefaultTableModel model = (DefaultTableModel) jTenterprise.getModel();
+        DefaultTableModel model = (DefaultTableModel) jTorganization.getModel();
         model.setRowCount(0);
            int i=0;
         try {
             connect.connect();
             // Prepare Statement
 
-            connect.pet = connect.con.prepareStatement("Select e.ent_id,e.name,e.ent_type,e.email,a.street ,a.unit,a.city,a.state,a.zipcode from enterprise e "
-                    + " join address a on e.add_id = a.add_id where e.name= ?");
+            connect.pet = connect.con.prepareStatement("Select e.ent_id,e.name,e.ent_type,o.org_id,o.org_type,o.email from enterprise e "
+                    + " join organization o on e.ent_id = o.ent_id where e.name= ?");
            connect.pet.setString(1, name);
             connect.myRs = connect.pet.executeQuery();
             
             System.out.println(connect.pet);
             while (connect.myRs.next()) {
                 i=i+1;
-                Object[] row = new Object[6];
+                Object[] row = new Object[7];
                 row[0] = connect.myRs.getInt("ent_id");
                 row[1] = connect.myRs.getString("name");//username
                 row[2] = connect.myRs.getString("ent_type");
-                row[3] = connect.myRs.getString("email");
-                row[4] = connect.myRs.getString("city");
+                row[3] = connect.myRs.getInt("org_id");
+                row[4] = connect.myRs.getString("org_type");
+                row[5] = connect.myRs.getString("email");
                 model.addRow(row);
             }
 
@@ -867,135 +751,39 @@ public class ManageOrganization extends javax.swing.JPanel {
         }
         if (i!=0){
             JOptionPane.showMessageDialog(this,
-                    "Enterprise Found!!!");
+                    "Organization Found!!!");
         }
         else {
         JOptionPane.showMessageDialog(this,
-                    "Enterprise does not exist!!!");
+                    "Organization does not exist!!!");
         }
 
     }
 
   
-    void populatetableon_type(String type) {
-
-        DefaultTableModel model = (DefaultTableModel) jTenterprise.getModel();
-        model.setRowCount(0);
-           int i=0;
-        try {
-            connect.connect();
-            // Prepare Statement
-
-            connect.pet = connect.con.prepareStatement("Select e.ent_id,e.name,e.ent_type,e.email,a.street ,a.unit,a.city,a.state,a.zipcode from enterprise e "
-                    + " join address a on e.add_id = a.add_id where e.ent_type=?");
-           connect.pet.setString(1, type);
-            connect.myRs = connect.pet.executeQuery();
-            
-            //System.out.println("5");
-            while (connect.myRs.next()) {
-                i=i+1;
-                Object[] row = new Object[6];
-                row[0] = connect.myRs.getInt("ent_id");
-                row[1] = connect.myRs.getString("name");//username
-                row[2] = connect.myRs.getString("ent_type");
-                row[3] = connect.myRs.getString("email");
-                row[4] = connect.myRs.getString("city");
-                model.addRow(row);
-            }
-
-        } catch (Exception et) {
-            System.out.println(et.toString());
-
-        }
-        if (i!=0){
-            JOptionPane.showMessageDialog(this,
-                    "Enterprise Found!!!");
-        }
-        else {
-        JOptionPane.showMessageDialog(this,
-                    "Enterprise does not exist!!!");
-        }
-
-    }
-    
-    
-    void populatetableon_city(String city) {
-
-        DefaultTableModel model = (DefaultTableModel) jTenterprise.getModel();
-        model.setRowCount(0);
-           int i=0;
-        try {
-            connect.connect();
-            // Prepare Statement
-
-            connect.pet = connect.con.prepareStatement("Select e.ent_id,e.name,e.ent_type,e.email,a.street ,a.unit,a.city,a.state,a.zipcode from enterprise e "
-                    + " join address a on e.add_id = a.add_id where a.city = ? ");
-           connect.pet.setString(1, city);
-            connect.myRs = connect.pet.executeQuery();
-            
-            //System.out.println("5");
-            while (connect.myRs.next()) {
-                i=i+1;
-                Object[] row = new Object[6];
-                row[0] = connect.myRs.getInt("ent_id");
-                row[1] = connect.myRs.getString("name");//username
-                row[2] = connect.myRs.getString("ent_type");
-                row[3] = connect.myRs.getString("email");
-                row[4] = connect.myRs.getString("city");
-                model.addRow(row);
-            }
-
-        } catch (Exception et) {
-            System.out.println(et.toString());
-
-        }
-        if (i!=0){
-            JOptionPane.showMessageDialog(this,
-                    "Enterprise Found!!!");
-        }
-        else {
-        JOptionPane.showMessageDialog(this,
-                    "Enterprise does not exist!!!");
-        }
-
-    }
     
     void enablefields() {
-        tfstreet.setEnabled(true);
-        tfunit.setEnabled(true);
-        tfcity.setEnabled(true);
-        tfstate.setEnabled(true);
-        tfzipcode.setEnabled(true);
-        tfname.setEnabled(true);
-        tfemailid.setEnabled(true);
-        tftype.setEnabled(true);
-        tfid.setEnabled(false);
+        tforgemail.setEnabled(true);
     }
 
     void disablefields() {
-        tfstreet.setEnabled(false);
-        tfunit.setEnabled(false);
-        tfcity.setEnabled(false);
-        tfstate.setEnabled(false);
-        tfzipcode.setEnabled(false);
+
+        tforgemail.setEnabled(false);
+        tforgid.setEnabled(false);
         tfname.setEnabled(false);
-        tfemailid.setEnabled(false);
+        tforgtype.setEnabled(false);
         tftype.setEnabled(false);
         tfid.setEnabled(false);
     }
 
     void refresh() {
-        tfscity.setText("");
-        tfsname.setText("");
-        tfstype.setText("");
-        tfsid.setText("");
-        tfstreet.setText("");
-        tfunit.setText("");
-        tfcity.setText("");
-        tfstate.setText("");
-        tfzipcode.setText("");
+        tforgemail.setText("");
+        tfsentname.setText("");
+        //tfsorgtype.setText("");
+        tforgid.setText("");
+        tfsorgid.setText("");
         tfname.setText("");
-        tfemailid.setText("");
+        tforgtype.setText("");
         tftype.setText("");
         tfid.setText("");
         populatetable();

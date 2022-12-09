@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import model.Address;
 import model.enterprise.Enterprise;
 import model.enterprise.EnterpriseCatalog;
+import model.enterprise.organization.Organization;
 
 /**
  *
@@ -244,6 +245,26 @@ public class JdbcConnect {
         }
         return 9999;
     }
+    
+        public int searchenterpriseent_id (String name) {
+        this.connect();
+        try {
+            pet = con.prepareStatement("select ent_id from enterprise where name=?");
+            pet.setString(1, name);
+            myRs = pet.executeQuery();
+
+            if (myRs.next()) {
+
+                return myRs.getInt("ent_id");
+
+            }
+        } catch (Exception e) {
+            System.out.println("9999");
+            System.out.println(e.toString());
+            return 9999;
+        }
+        return 9999;
+    }
 
     public Enterprise searchenterpriseon_entid(int ent_id) {
         Enterprise e;
@@ -409,7 +430,66 @@ public class JdbcConnect {
         }
         return new Address();
     }
+    
 
+    public int insertorganization(Organization org) {
+        try {
+            this.connect();
+            pet = con.prepareStatement("insert into organization(ent_id,org_type,email) values (?,?,?)");
+            pet.setInt(1, org.getEnt_id());
+            pet.setString(2, org.getOrg_type());
+            pet.setString(3, org.getEmail());
+
+            int k = pet.executeUpdate();
+            con.commit();
+            return k;
+
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            return 0;
+        }
+    }
+
+    public int updateorganization(Organization org) {
+        try {
+            this.connect();
+
+            pet = con.prepareStatement("update organization set"
+                    + "email=? where org_id= ? ");
+
+            pet.setString(1, org.getEmail());
+            pet.setInt(2, org.getOrg_id());
+            System.out.println(pet.toString());
+            int k = pet.executeUpdate();
+            con.commit();
+            return k;
+
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            return 0;
+        }
+
+    }
+
+    public int searchorganization(int ent_id) {
+        this.connect();
+        try {
+            pet = con.prepareStatement("select add_id from enterprise where ent_id=?");
+            pet.setInt(1, ent_id);
+            myRs = pet.executeQuery();
+
+            if (myRs.next()) {
+
+                return myRs.getInt("add_id");
+
+            }
+        } catch (Exception e) {
+            System.out.println("9999");
+            System.out.println(e.toString());
+            return 9999;
+        }
+        return 9999;
+    }
 //        public Address searchAddresson_city(String city) {
 //        this.connect();
 //        Address add;
