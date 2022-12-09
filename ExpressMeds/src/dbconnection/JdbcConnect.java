@@ -77,16 +77,17 @@ public class JdbcConnect {
         return con;
     }
 
-    public void insertuseraccount(String username, String password, String role) {
+    public void insertuseraccount(String username, String password, String role, int per_id) {
         try {
 
             this.connect();
 
-            pet = con.prepareStatement("insert into useraccount(username,password,role_name) values (?,?,?)");
+            pet = con.prepareStatement("insert into useraccount(username,password,role_name,per_id) values (?,?,?,?)");
             pet.setString(1, username);
 
             pet.setString(2, password);
             pet.setString(3, role);
+            pet.setInt(4,per_id);
 
             pet.executeUpdate();
             con.commit();
@@ -97,6 +98,8 @@ public class JdbcConnect {
 
         }
     }
+    
+    
 
     public void displayuseraccountData() {
         try {
@@ -715,7 +718,7 @@ public class JdbcConnect {
 
     }
 
-    public void insertPerson(int add_id, String firstName, String lastName, String emailId, String phoneno, String gender, int age, String role_name) {
+    public int insertPerson(int add_id, String firstName, String lastName, String emailId, String phoneno, String gender, int age, String role_name) {
 
         try {
             this.connect();
@@ -731,13 +734,24 @@ public class JdbcConnect {
 
             int k = pet.executeUpdate();
             con.commit();
+            pet = con.prepareStatement("select max(per_id) per_id from person");
+//
+            myRs = pet.executeQuery();
+//
+            if (myRs.next()) {
+                System.out.println(myRs.getInt("per_id"));
+                return myRs.getInt("per_id");
+//
+           }
 
         } catch (Exception e) {
             System.out.println(e.toString());
 
         }
-
+        return 0;
     }
+
+    
 
     public int searchPersonId(String username) {
         int per_id = 0;
@@ -1003,6 +1017,51 @@ public int updatedeliverycomplete(int order_id, String sts) {
                 System.out.println(e.toString());
 
             }
+        }
+    }
+    
+    public void insertemployee(int personId,String enterprise, String organisation, String ent_type) {
+       // throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+         this.connect();
+         try {
+            this.connect();
+            pet = con.prepareStatement("insert into employee(per_id,ent_name,org_name,ent_type) values (?,?,?,?)");
+            pet.setInt(1, personId);
+            pet.setString(2, enterprise);
+            pet.setString(3,  organisation);
+            pet.setString(4, "Supplier");
+           
+
+            int k = pet.executeUpdate();
+            con.commit();
+
+        } catch (Exception e) {
+            System.out.println(e.toString());
+
+        }
+        
+        
+    }
+    
+    public void insertuseraccount1(String username, String password, String role) {
+        try {
+
+            this.connect();
+
+            pet = con.prepareStatement("insert into useraccount(username,password,role_name) values (?,?,?)");
+            pet.setString(1, username);
+
+            pet.setString(2, password);
+            pet.setString(3, role);
+           
+
+            pet.executeUpdate();
+            con.commit();
+
+            System.out.println("Completed");
+        } catch (Exception e) {
+            System.out.println(e.toString());
+
         }
     }
 

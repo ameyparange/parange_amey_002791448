@@ -595,7 +595,7 @@ public class CustomerRegistration extends javax.swing.JPanel {
         int add_id = connect.insertaddress(add);
 
         connect.insertPerson(add_id, firstName, lastName, emailId, phoneno, gender, age, role_name);
-        connect.insertuseraccount(username, pass, role_name);
+        connect.insertuseraccount1(username, pass, role_name);
 
         //To send email
         String email = tfemailid.getText();
