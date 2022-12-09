@@ -44,7 +44,9 @@ public class SupplierPage extends javax.swing.JFrame {
         btnwarecata = new javax.swing.JButton();
         btnOrderCata = new javax.swing.JButton();
         btnEmployeecatalog = new javax.swing.JButton();
-        jCentname = new javax.swing.JComboBox<>();
+
+        jcentname = new javax.swing.JComboBox<>();
+
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -150,7 +152,9 @@ public class SupplierPage extends javax.swing.JFrame {
                         .addComponent(btnManageOrganization, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnOrderMgmt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnwarecata, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jCentname, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+
+                        .addComponent(jcentname, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -159,7 +163,9 @@ public class SupplierPage extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(btnback)
                 .addGap(7, 7, 7)
-                .addComponent(jCentname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+
+                .addComponent(jcentname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnManageOrganization)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -345,13 +351,16 @@ public class SupplierPage extends javax.swing.JFrame {
     private javax.swing.JButton btnlogout;
     private javax.swing.JButton btnwarecata;
     private javax.swing.JButton btnwaremgt;
+
     private javax.swing.JComboBox<String> jCentname;
+
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JComboBox<String> jcentname;
     // End of variables declaration//GEN-END:variables
 
 void loadentname(){

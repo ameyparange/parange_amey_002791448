@@ -3,7 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package userinterface.customer;
-
+import javax.mail.*;
+import javax.mail.internet.*;
+import java.util.*;
+import java.io.*;
+import javax.mail.Message.RecipientType;
+import javax.swing.JOptionPane;
 /**
  *
  * @author amey8
@@ -463,6 +468,40 @@ public class CustomerRegistration extends javax.swing.JPanel {
 
     private void btnsubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsubmitActionPerformed
         // TODO add your handling code here:
+       String email = tfemailid.getText();
+               try {
+            Properties properties = new Properties();
+            properties.put("mail.smtp.auth", "true");
+            properties.put("mail.smtp.starttls.enable", "true");
+            properties.put("mail.smtp.host", "smtp.gmail.com");
+            properties.put("mail.smtp.port", "587");
+            Session session = Session.getDefaultInstance(properties,
+                    new Authenticator() {
+                @Override
+                protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication("expressmedoriginal@gmail.com", "zhbgmahzmzkuagbi");
+
+
+
+               }
+            });
+            System.out.println(session);
+            Message message = new MimeMessage(session);
+            message.setSubject("Welcome to" );
+            message.setContent("Welcome to" + "", "text/plain");
+            message.setFrom(new InternetAddress("expressmedoriginal@gmail.com"));
+            message.setRecipient(RecipientType.TO, new InternetAddress(email));
+            message.setSentDate(new Date());
+
+
+
+           Transport.send(message);
+            JOptionPane.showMessageDialog(this, "Email Sent");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+       
+        
 
     }//GEN-LAST:event_btnsubmitActionPerformed
 
