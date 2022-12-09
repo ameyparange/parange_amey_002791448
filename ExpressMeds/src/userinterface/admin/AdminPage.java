@@ -41,7 +41,6 @@ public class AdminPage extends javax.swing.JFrame {
         btnManageRoles = new javax.swing.JButton();
         btnManageOrg = new javax.swing.JButton();
         btnDashboard = new javax.swing.JButton();
-        btnback = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -125,10 +124,6 @@ public class AdminPage extends javax.swing.JFrame {
             }
         });
 
-        btnback.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        btnback.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/supplier/back.png"))); // NOI18N
-        btnback.setText("Back");
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -139,18 +134,13 @@ public class AdminPage extends javax.swing.JFrame {
                     .addComponent(btnManageEnterprise, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
                     .addComponent(btnManageRoles, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnManageOrg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnDashboard, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnback)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                    .addComponent(btnDashboard, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnback)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addContainerGap(87, Short.MAX_VALUE)
                 .addComponent(btnDashboard)
                 .addGap(70, 70, 70)
                 .addComponent(btnManageEnterprise)
@@ -275,7 +265,6 @@ public class AdminPage extends javax.swing.JFrame {
     private javax.swing.JButton btnManageEnterprise;
     private javax.swing.JButton btnManageOrg;
     private javax.swing.JButton btnManageRoles;
-    private javax.swing.JButton btnback;
     private javax.swing.JButton btnlogout;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

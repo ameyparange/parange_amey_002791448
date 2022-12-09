@@ -51,6 +51,7 @@ public class EnterpriseReg extends javax.swing.JFrame {
         tfenterpriseemail = new javax.swing.JTextField();
         btnclear = new javax.swing.JButton();
         btnsubmit = new javax.swing.JButton();
+        btnsback = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -251,6 +252,15 @@ public class EnterpriseReg extends javax.swing.JFrame {
             }
         });
 
+        btnsback.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btnsback.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/customer/search.png"))); // NOI18N
+        btnsback.setText("Back");
+        btnsback.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnsbackActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -258,6 +268,8 @@ public class EnterpriseReg extends javax.swing.JFrame {
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnsback)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnsubmit)
                 .addGap(33, 33, 33)
                 .addComponent(btnclear)
@@ -271,7 +283,8 @@ public class EnterpriseReg extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnclear)
-                    .addComponent(btnsubmit))
+                    .addComponent(btnsubmit)
+                    .addComponent(btnsback))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -310,6 +323,11 @@ public class EnterpriseReg extends javax.swing.JFrame {
         tfenterpriseemail.setText("");
     }//GEN-LAST:event_btnclearActionPerformed
 
+    private void btnsbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsbackActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnsbackActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -347,6 +365,7 @@ public class EnterpriseReg extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnclear;
+    private javax.swing.JButton btnsback;
     private javax.swing.JButton btnsubmit;
     private javax.swing.JComboBox<String> jCtype;
     private javax.swing.JLabel jLabel10;

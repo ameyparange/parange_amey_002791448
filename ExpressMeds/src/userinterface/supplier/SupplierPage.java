@@ -31,11 +31,15 @@ public class SupplierPage extends javax.swing.JFrame {
 
         jSplitPane1 = new javax.swing.JSplitPane();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        btnManageEnterprise = new javax.swing.JButton();
+        btnwaremgt = new javax.swing.JButton();
+        btnEmployeemgt = new javax.swing.JButton();
+        btnManageOrganization = new javax.swing.JButton();
         btnback = new javax.swing.JButton();
+        btnOrderMgmt = new javax.swing.JButton();
+        btnwarecata = new javax.swing.JButton();
+        btnOrderCata = new javax.swing.JButton();
+        btnEmployeecatalog = new javax.swing.JButton();
+        jCorgtype = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -50,39 +54,30 @@ public class SupplierPage extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(219, 247, 252));
 
-        jButton1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/supplier/inventory.png"))); // NOI18N
-        jButton1.setText("Inventory Management");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnwaremgt.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btnwaremgt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/supplier/inventory.png"))); // NOI18N
+        btnwaremgt.setText("Warehouse Management");
+        btnwaremgt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnwaremgtActionPerformed(evt);
             }
         });
 
-        jButton3.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/supplier/cargo.png"))); // NOI18N
-        jButton3.setText("Supplier Order Catalog");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnEmployeemgt.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btnEmployeemgt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/supplier/employee.png"))); // NOI18N
+        btnEmployeemgt.setText("Employees Management");
+        btnEmployeemgt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnEmployeemgtActionPerformed(evt);
             }
         });
 
-        jButton4.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/supplier/employee.png"))); // NOI18N
-        jButton4.setText("Employees");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnManageOrganization.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btnManageOrganization.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/supplier/inventory.png"))); // NOI18N
+        btnManageOrganization.setText("Manage Organization");
+        btnManageOrganization.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-
-        btnManageEnterprise.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        btnManageEnterprise.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/supplier/inventory.png"))); // NOI18N
-        btnManageEnterprise.setText("Manage Enterprise");
-        btnManageEnterprise.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnManageEnterpriseActionPerformed(evt);
+                btnManageOrganizationActionPerformed(evt);
             }
         });
 
@@ -90,36 +85,85 @@ public class SupplierPage extends javax.swing.JFrame {
         btnback.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/supplier/back.png"))); // NOI18N
         btnback.setText("Back");
 
+        btnOrderMgmt.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btnOrderMgmt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/supplier/inventory.png"))); // NOI18N
+        btnOrderMgmt.setText("Order Management");
+        btnOrderMgmt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOrderMgmtActionPerformed(evt);
+            }
+        });
+
+        btnwarecata.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btnwarecata.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/supplier/inventory.png"))); // NOI18N
+        btnwarecata.setText("Warehouse Catalogue");
+        btnwarecata.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnwarecataActionPerformed(evt);
+            }
+        });
+
+        btnOrderCata.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btnOrderCata.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/supplier/inventory.png"))); // NOI18N
+        btnOrderCata.setText("Order Catalog");
+        btnOrderCata.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOrderCataActionPerformed(evt);
+            }
+        });
+
+        btnEmployeecatalog.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btnEmployeecatalog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/supplier/employee.png"))); // NOI18N
+        btnEmployeecatalog.setText("Employees ");
+        btnEmployeecatalog.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEmployeecatalogActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnManageEnterprise, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(38, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(btnback)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 218, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnEmployeemgt, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEmployeecatalog, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnOrderCata, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btnwaremgt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnManageOrganization, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnOrderMgmt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnwarecata, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jCorgtype, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnback)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
-                .addComponent(btnManageEnterprise)
-                .addGap(73, 73, 73)
-                .addComponent(jButton1)
-                .addGap(73, 73, 73)
-                .addComponent(jButton3)
-                .addGap(63, 63, 63)
-                .addComponent(jButton4)
-                .addGap(67, 67, 67))
+                .addGap(7, 7, 7)
+                .addComponent(jCorgtype, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnManageOrganization)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnwaremgt)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnwarecata)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnOrderMgmt)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnOrderCata)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnEmployeemgt)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnEmployeecatalog)
+                .addContainerGap(205, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(jPanel1);
@@ -187,7 +231,7 @@ public class SupplierPage extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jSplitPane1)
+                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 938, Short.MAX_VALUE)
                 .addContainerGap())
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -202,32 +246,42 @@ public class SupplierPage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnwaremgtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnwaremgtActionPerformed
         // TODO add your handling code here:
 
         SupplierInventoryPage supint = new SupplierInventoryPage( );
         jSplitPane1.setRightComponent(supint);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnwaremgtActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-
-        SupplierCatalog supcat = new SupplierCatalog( );
-        jSplitPane1.setRightComponent(supcat);
-
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btnEmployeemgtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmployeemgtActionPerformed
         // TODO add your handling code here:
         EmployeeRegistration supempreg = new EmployeeRegistration( );
         jSplitPane1.setRightComponent(supempreg);
 
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_btnEmployeemgtActionPerformed
 
-    private void btnManageEnterpriseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageEnterpriseActionPerformed
+    private void btnManageOrganizationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageOrganizationActionPerformed
         // TODO add your handling code here:
-//        EnterpriseRegistration entreg = new EnterpriseRegistration( );
-//        jSplitPane1.setRightComponent(entreg);
-    }//GEN-LAST:event_btnManageEnterpriseActionPerformed
+        
+        ManageOrganization mgorg = new ManageOrganization( );
+        jSplitPane1.setRightComponent(mgorg);
+    }//GEN-LAST:event_btnManageOrganizationActionPerformed
+
+    private void btnOrderMgmtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderMgmtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnOrderMgmtActionPerformed
+
+    private void btnwarecataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnwarecataActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnwarecataActionPerformed
+
+    private void btnOrderCataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderCataActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnOrderCataActionPerformed
+
+    private void btnEmployeecatalogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmployeecatalogActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEmployeecatalogActionPerformed
 
     /**
      * @param args the command line arguments
@@ -266,12 +320,16 @@ public class SupplierPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnManageEnterprise;
+    private javax.swing.JButton btnEmployeecatalog;
+    private javax.swing.JButton btnEmployeemgt;
+    private javax.swing.JButton btnManageOrganization;
+    private javax.swing.JButton btnOrderCata;
+    private javax.swing.JButton btnOrderMgmt;
     private javax.swing.JButton btnback;
     private javax.swing.JButton btnlogout;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton btnwarecata;
+    private javax.swing.JButton btnwaremgt;
+    private javax.swing.JComboBox<String> jCorgtype;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
