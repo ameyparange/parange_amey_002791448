@@ -86,6 +86,8 @@ public class ManageEnterprise extends javax.swing.JPanel {
         btnrefresh = new javax.swing.JButton();
         btnsregister = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(219, 247, 252));
+
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Manage Enterprise");
@@ -95,6 +97,12 @@ public class ManageEnterprise extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
         jLabel1.setText("Name");
+
+        tfsname.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfsnameActionPerformed(evt);
+            }
+        });
 
         btnsearch.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
         btnsearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/supplier/loupe.png"))); // NOI18N
@@ -113,6 +121,12 @@ public class ManageEnterprise extends javax.swing.JPanel {
 
         jLabel12.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
         jLabel12.setText("Ent_id");
+
+        tfsid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfsidActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -491,7 +505,10 @@ public class ManageEnterprise extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(88, 88, 88)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(91, 91, 91))
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -622,6 +639,7 @@ public class ManageEnterprise extends javax.swing.JPanel {
         btnedit.setEnabled(false);
         btnsearch.setEnabled(false);
         btnsregister.setEnabled(false);
+        btndelete.setEnabled(false);
     }//GEN-LAST:event_btneditActionPerformed
 
     private void btnupdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnupdateActionPerformed
@@ -680,6 +698,15 @@ public class ManageEnterprise extends javax.swing.JPanel {
         
 
     }//GEN-LAST:event_btnsearchActionPerformed
+
+    private void tfsidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfsidActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfsidActionPerformed
+
+    private void tfsnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfsnameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfsnameActionPerformed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1003,5 +1030,6 @@ public class ManageEnterprise extends javax.swing.JPanel {
         btnedit.setEnabled(true);
         btnsearch.setEnabled(true);
         btnsregister.setEnabled(true);
+        btndelete.setEnabled(true);
     }
 }

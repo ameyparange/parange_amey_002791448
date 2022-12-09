@@ -140,15 +140,15 @@ public class AdminPage extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addContainerGap(87, Short.MAX_VALUE)
                 .addComponent(btnDashboard)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(70, 70, 70)
                 .addComponent(btnManageEnterprise)
-                .addGap(23, 23, 23)
+                .addGap(73, 73, 73)
                 .addComponent(btnManageOrg)
-                .addGap(18, 18, 18)
+                .addGap(73, 73, 73)
                 .addComponent(btnManageRoles)
-                .addContainerGap(327, Short.MAX_VALUE))
+                .addGap(96, 96, 96))
         );
 
         jSplitPane1.setLeftComponent(jPanel2);
@@ -196,6 +196,7 @@ public class AdminPage extends javax.swing.JFrame {
 
     private void btnlogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlogoutActionPerformed
         // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_btnlogoutActionPerformed
 
     private void btnManageEnterpriseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageEnterpriseActionPerformed
