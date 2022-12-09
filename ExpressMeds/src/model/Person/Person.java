@@ -32,6 +32,12 @@ public class Person {
         this.age = age;
         this.role_name = role_name;
     }
+    
+    public Person(String fname, String lname){
+     this.fname = fname;
+        this.lname = lname;
+    
+    }
 
     public int getPer_id() {
         return per_id;

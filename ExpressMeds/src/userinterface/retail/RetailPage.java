@@ -12,7 +12,7 @@ import model.enterprise.EnterpriseCatalog;
 import userinterface.admin.AdminPage;
 import userinterface.admin.Dashboard;
 import userinterface.delivery.RetialSupplierOrder;
-import userinterface.employee.NewEmployeeRegistration;
+import userinterface.retail.ManageEmployee;
 
 
 /**
@@ -133,6 +133,11 @@ public class RetailPage extends javax.swing.JFrame {
         btnempmgmt.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         btnempmgmt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/retail/employee.png"))); // NOI18N
         btnempmgmt.setText("Employee Management");
+        btnempmgmt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnempmgmtActionPerformed(evt);
+            }
+        });
 
         btnManageOrganization.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         btnManageOrganization.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/supplier/inventory.png"))); // NOI18N
@@ -154,20 +159,21 @@ public class RetailPage extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(btnsupordercat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btncustordercata, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnemployees, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnplaceorder, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnintcat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnempmgmt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnManageOrganization, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jcentname, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(24, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(btnback)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnempmgmt, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(btnsupordercat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btncustordercata, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnemployees, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnplaceorder, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnintcat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnManageOrganization, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jcentname, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -176,7 +182,7 @@ public class RetailPage extends javax.swing.JFrame {
                 .addComponent(btnback)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jcentname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                 .addComponent(btnManageOrganization)
                 .addGap(18, 18, 18)
                 .addComponent(btnintcat)
@@ -186,11 +192,11 @@ public class RetailPage extends javax.swing.JFrame {
                 .addComponent(btnplaceorder)
                 .addGap(18, 18, 18)
                 .addComponent(btncustordercata)
-                .addGap(23, 23, 23)
-                .addComponent(btnempmgmt)
                 .addGap(18, 18, 18)
                 .addComponent(btnemployees)
-                .addGap(149, 149, 149))
+                .addGap(18, 18, 18)
+                .addComponent(btnempmgmt)
+                .addGap(154, 154, 154))
         );
 
         jSplitPane1.setLeftComponent(jPanel1);
@@ -318,7 +324,7 @@ public class RetailPage extends javax.swing.JFrame {
 
     private void btnemployeesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnemployeesActionPerformed
         // TODO add your handling code here:
-        NewEmployeeRegistration empRegister = new NewEmployeeRegistration();
+        EmployeeRegistration empRegister = new EmployeeRegistration();
         jSplitPane1.setRightComponent(empRegister);
         
     }//GEN-LAST:event_btnemployeesActionPerformed
@@ -336,6 +342,12 @@ public class RetailPage extends javax.swing.JFrame {
         jSplitPane1.setRightComponent(mgorg);
                 
     }//GEN-LAST:event_btnsupordercatActionPerformed
+
+    private void btnempmgmtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnempmgmtActionPerformed
+        // TODO add your handling code here:
+        ManageEmployee manageEmployee=new ManageEmployee(entp);
+         jSplitPane1.setRightComponent(manageEmployee);
+    }//GEN-LAST:event_btnempmgmtActionPerformed
 
 
     /**

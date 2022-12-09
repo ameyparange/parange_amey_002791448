@@ -17,6 +17,7 @@ import model.enterprise.role.Role;
 import model.product.Product;
 import model.useraccount.UserAccount;
 import model.Person.Person;
+import model.enterprise.employee.Employee;
 import model.order.OrderItem;
 import model.order.OrderitemCatalog;
 
@@ -77,16 +78,17 @@ public class JdbcConnect {
         return con;
     }
 
-    public void insertuseraccount(String username, String password, String role) {
+    public void insertuseraccount(String username, String password, String role, int per_id) {
         try {
 
             this.connect();
 
-            pet = con.prepareStatement("insert into useraccount(username,password,role_name) values (?,?,?)");
+            pet = con.prepareStatement("insert into useraccount(username,password,role_name,per_id) values (?,?,?,?)");
             pet.setString(1, username);
 
             pet.setString(2, password);
             pet.setString(3, role);
+            pet.setInt(4,per_id);
 
             pet.executeUpdate();
             con.commit();
@@ -97,6 +99,8 @@ public class JdbcConnect {
 
         }
     }
+    
+    
 
     public void displayuseraccountData() {
         try {
@@ -715,7 +719,7 @@ public class JdbcConnect {
 
     }
 
-    public void insertPerson(int add_id, String firstName, String lastName, String emailId, String phoneno, String gender, int age, String role_name) {
+    public int insertPerson(int add_id, String firstName, String lastName, String emailId, String phoneno, String gender, int age, String role_name) {
 
         try {
             this.connect();
@@ -731,19 +735,30 @@ public class JdbcConnect {
 
             int k = pet.executeUpdate();
             con.commit();
+            pet = con.prepareStatement("select max(per_id) per_id from person");
+//
+            myRs = pet.executeQuery();
+//
+            if (myRs.next()) {
+                System.out.println(myRs.getInt("per_id"));
+                return myRs.getInt("per_id");
+//
+           }
 
         } catch (Exception e) {
             System.out.println(e.toString());
 
         }
-
+        return 0;
     }
+
+    
 
     public int searchPersonId(String username) {
         int per_id = 0;
         try {
             this.connect();
-            pet = con.prepareStatement("select per_id from into useraccount where username = ?");
+            pet = con.prepareStatement("select per_id from useraccount where username = ?");
             pet.setString(1, username);
 
             myRs = pet.executeQuery();
@@ -764,17 +779,19 @@ public class JdbcConnect {
         }
         return 0;
     }
-
+   
     public Person personDetails(int per_id) {
-        per_id = 0;
+        
         try {
             this.connect();
-            pet = con.prepareStatement("select * from into person where per_id = ?");
+            pet = con.prepareStatement("select fname,lname from person where per_id = ?");
             pet.setInt(1, per_id);
             myRs = pet.executeQuery();
             if (myRs.next()) {
 
-                Person UserDetails = new Person(myRs.getInt("per_id"), myRs.getInt("add_id"), myRs.getString("fname"), myRs.getString("lname"), myRs.getString("email"), myRs.getString("mobileno"), myRs.getString("age"), myRs.getInt("mobileno"), myRs.getString("role"));
+                Person UserDetails = new Person(myRs.getString("fname"), myRs.getString("lname"));
+                System.out.println(UserDetails.getFname());
+                System.out.println(UserDetails.getLname());
                 return UserDetails;
             }
         } catch (Exception e) {
@@ -789,14 +806,15 @@ public class JdbcConnect {
         try {
             String name = firstname + " " + lastname;
             this.connect();
-            pet = con.prepareStatement("insert into customer_grievances(name, desc, date,status) values (?,?,?,?)");
+            pet = con.prepareStatement("insert into customer_grievances(name, description, date, status, emp_name) values (?,?,?,?,?)");
 
             pet.setString(1, name);
             pet.setString(2, desc);
             pet.setString(3, date);
             pet.setString(4, status);
+            pet.setString(5, "");
 
-            int k = pet.executeUpdate();
+            int k =  pet.executeUpdate();
             con.commit();
 
         } catch (Exception e) {
@@ -1004,6 +1022,79 @@ public int updatedeliverycomplete(int order_id, String sts) {
 
             }
         }
+    }
+    
+    public void insertemployee(int personId,String enterprise, String organisation, String ent_type) {
+       // throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+         this.connect();
+         try {
+            this.connect();
+            pet = con.prepareStatement("insert into employee(per_id,ent_name,org_name,ent_type) values (?,?,?,?)");
+            pet.setInt(1, personId);
+            pet.setString(2, enterprise);
+            pet.setString(3,  organisation);
+            pet.setString(4, "Supplier");
+           
+
+            int k = pet.executeUpdate();
+            con.commit();
+
+        } catch (Exception e) {
+            System.out.println(e.toString());
+
+        }
+        
+        
+    }
+    
+    public void insertuseraccount1(String username, String password, String role) {
+        try {
+
+            this.connect();
+
+            pet = con.prepareStatement("insert into useraccount(username,password,role_name) values (?,?,?)");
+            pet.setString(1, username);
+
+            pet.setString(2, password);
+            pet.setString(3, role);
+           
+
+            pet.executeUpdate();
+            con.commit();
+
+            System.out.println("Completed");
+        } catch (Exception e) {
+            System.out.println(e.toString());
+
+        }
+    }
+
+    public int updateEmployee(Employee emp) {
+        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            this.connect();
+//
+//            pet = con.prepareStatement("update employee set"
+//                    + "org_name=?,emp_id=? where emp_id=?") ;
+//
+//            pet.setString(1, emp.getOrg_name());
+//            pet.setInt(2, emp.getEmp_id());
+//            pet.setInt(3, p.getWeight());
+//            pet.setInt(4, p.getValidity());
+//            pet.setString(5, p.getDesc());
+//            pet.setInt(6, p.getProduct_id());
+//
+//            System.out.println(pet.toString());
+//            int k = pet.executeUpdate();
+//            con.commit();
+//            return k;
+
+        } 
+        catch (Exception e) {
+            System.out.println(e.toString());
+            return 0;
+        }
+        return 0;
     }
 
 }

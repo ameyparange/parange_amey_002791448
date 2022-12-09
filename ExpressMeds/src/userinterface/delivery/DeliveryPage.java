@@ -39,6 +39,7 @@ public class DeliveryPage extends javax.swing.JFrame {
         btnemployees = new javax.swing.JButton();
         btngrievmngt = new javax.swing.JButton();
         btnback = new javax.swing.JButton();
+        btncustordercat1 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -59,8 +60,7 @@ public class DeliveryPage extends javax.swing.JFrame {
         });
 
         btncustordercat.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        btncustordercat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/retail/checkout.png"))); // NOI18N
-        btncustordercat.setText("Customer Order Catalog");
+        btncustordercat.setText("Register Complaints");
         btncustordercat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btncustordercatActionPerformed(evt);
@@ -88,21 +88,31 @@ public class DeliveryPage extends javax.swing.JFrame {
         btnback.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/supplier/back.png"))); // NOI18N
         btnback.setText("Back");
 
+        btncustordercat1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btncustordercat1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/retail/checkout.png"))); // NOI18N
+        btncustordercat1.setText("Customer Order Catalog");
+        btncustordercat1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btncustordercat1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(btnback)
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(btnsupordercat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btncustordercat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnemployees, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btngrievmngt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(btnback)
-                .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(btngrievmngt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btncustordercat1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,11 +121,13 @@ public class DeliveryPage extends javax.swing.JFrame {
                 .addComponent(btnback)
                 .addGap(82, 82, 82)
                 .addComponent(btnsupordercat)
-                .addGap(104, 104, 104)
+                .addGap(18, 18, 18)
+                .addComponent(btncustordercat1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btncustordercat)
-                .addGap(109, 109, 109)
+                .addGap(18, 18, 18)
                 .addComponent(btngrievmngt)
-                .addGap(103, 103, 103)
+                .addGap(245, 245, 245)
                 .addComponent(btnemployees)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -205,7 +217,7 @@ public class DeliveryPage extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 961, Short.MAX_VALUE)
+            .addGap(0, 983, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -234,8 +246,8 @@ public class DeliveryPage extends javax.swing.JFrame {
 
     private void btncustordercatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncustordercatActionPerformed
         // TODO add your handling code here:
-        DeliveryCustomerOrderCatalog delcustord = new DeliveryCustomerOrderCatalog( );
-        jSplitPane1.setRightComponent(delcustord);
+        CustomerGrievanceSupport complaint = new CustomerGrievanceSupport(username );
+        jSplitPane1.setRightComponent(complaint );
 
     }//GEN-LAST:event_btncustordercatActionPerformed
 
@@ -258,6 +270,10 @@ public class DeliveryPage extends javax.swing.JFrame {
         
         this.dispose();
     }//GEN-LAST:event_btnlogoutActionPerformed
+
+    private void btncustordercat1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncustordercat1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btncustordercat1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -298,6 +314,7 @@ public class DeliveryPage extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnback;
     private javax.swing.JButton btncustordercat;
+    private javax.swing.JButton btncustordercat1;
     private javax.swing.JButton btnemployees;
     private javax.swing.JButton btngrievmngt;
     private javax.swing.JButton btnlogout;

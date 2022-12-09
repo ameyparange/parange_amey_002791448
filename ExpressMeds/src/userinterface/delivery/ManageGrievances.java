@@ -36,7 +36,6 @@ public class ManageGrievances extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         btnupdate = new javax.swing.JButton();
@@ -51,16 +50,12 @@ public class ManageGrievances extends javax.swing.JPanel {
         tfcomplaintdate = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         tfcustname = new javax.swing.JTextField();
-        tfstatus = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         tfdescription = new javax.swing.JTextField();
         cbassignedto = new javax.swing.JComboBox<>();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         jPanel1.setBackground(new java.awt.Color(219, 247, 252));
-
-        jLabel2.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Manage all the Delivery Grievances");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -82,6 +77,11 @@ public class ManageGrievances extends javax.swing.JPanel {
         btndelete.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         btndelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/delivery/bin.png"))); // NOI18N
         btndelete.setText("Delete");
+        btndelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btndeleteActionPerformed(evt);
+            }
+        });
 
         btnview.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         btnview.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/delivery/search.png"))); // NOI18N
@@ -129,12 +129,6 @@ public class ManageGrievances extends javax.swing.JPanel {
             }
         });
 
-        tfstatus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfstatusActionPerformed(evt);
-            }
-        });
-
         jLabel8.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("Description");
@@ -146,6 +140,8 @@ public class ManageGrievances extends javax.swing.JPanel {
         });
 
         cbassignedto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pending", "Closed" }));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -167,20 +163,21 @@ public class ManageGrievances extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(tfdescription, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
                                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(tfcomplaintdate, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tfstatus, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap())))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tfcomplaintdate)
+                            .addComponent(jComboBox1, 0, 190, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(30, 30, 30)
+                        .addComponent(tfdescription, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,7 +192,7 @@ public class ManageGrievances extends javax.swing.JPanel {
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel6)
                         .addComponent(tfcustname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(tfstatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -214,60 +211,54 @@ public class ManageGrievances extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnupdate)
+                .addGap(18, 18, 18)
+                .addComponent(btndelete)
+                .addGap(18, 18, 18)
+                .addComponent(btnview)
+                .addGap(213, 213, 213))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnupdate)
-                        .addGap(55, 55, 55)
-                        .addComponent(btndelete)
-                        .addGap(52, 52, 52)
-                        .addComponent(btnview)
-                        .addGap(48, 48, 48))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 698, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addContainerGap()
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                .addGap(0, 202, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
+                .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnupdate)
                     .addComponent(btndelete)
                     .addComponent(btnview))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addContainerGap(150, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 867, Short.MAX_VALUE)
+            .addGap(0, 900, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 584, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGap(0, 8, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -278,10 +269,6 @@ public class ManageGrievances extends javax.swing.JPanel {
     private void tfcustnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfcustnameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfcustnameActionPerformed
-
-    private void tfstatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfstatusActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfstatusActionPerformed
 
     private void tfdescriptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfdescriptionActionPerformed
         // TODO add your handling code here:
@@ -314,11 +301,11 @@ public class ManageGrievances extends javax.swing.JPanel {
                 
                 if (connect.myRs.next()) {
 
-                    tfcomplaintno.setText(connect.myRs.getString("desc1"));
-                    tfcomplaintdate.setText(String.valueOf(connect.myRs.getString("price")));
-                    tfcustname.setText(String.valueOf(connect.myRs.getInt("product_id")));
-                    tfstatus.setText(connect.myRs.getString("name"));
-                    tfdescription.setText(String.valueOf(connect.myRs.getString("validity")));
+                    tfcomplaintno.setText(connect.myRs.getString("comp_id"));
+                    tfcomplaintdate.setText(String.valueOf(connect.myRs.getString("date")));
+                    tfcustname.setText(String.valueOf(connect.myRs.getInt("name")));
+        //            tfstatus.setText(connect.myRs.getString("status"));
+                    tfdescription.setText(String.valueOf(connect.myRs.getString("description")));
 
                 }
 
@@ -331,13 +318,43 @@ public class ManageGrievances extends javax.swing.JPanel {
 
     }//GEN-LAST:event_btnviewActionPerformed
 
+    private void btndeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndeleteActionPerformed
+        // TODO add your handling code here:
+        
+        int row = jTable1.getSelectedRow();
+        
+        if (row < 0) {
+            JOptionPane.showMessageDialog(this,
+                    "No row is selected! Please select one row",
+                    "Select row",
+                    JOptionPane.ERROR_MESSAGE);
+        } else {
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
+            int selected_hosid = (int) model.getValueAt(row, 1);
+            try {
+                connect.connect();
+
+                connect.pet = connect.con.prepareStatement("DELETE FROM customer_grievances where comp_id=?");
+                connect.pet.setInt(1, selected_hosid);
+                connect.pet.executeUpdate();
+                connect.con.commit();
+                populatetable();
+            } catch (Exception e) {
+                System.out.println(e.toString());
+
+            }
+        }
+                 
+    }//GEN-LAST:event_btndeleteActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btndelete;
     private javax.swing.JButton btnupdate;
     private javax.swing.JButton btnview;
     private javax.swing.JComboBox<String> cbassignedto;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -352,7 +369,6 @@ public class ManageGrievances extends javax.swing.JPanel {
     private javax.swing.JTextField tfcomplaintno;
     private javax.swing.JTextField tfcustname;
     private javax.swing.JTextField tfdescription;
-    private javax.swing.JTextField tfstatus;
     // End of variables declaration//GEN-END:variables
 void populatetable() {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
@@ -371,7 +387,7 @@ void populatetable() {
                 row[0] = connect.myRs.getInt("comp_id");
                 row[1] = connect.myRs.getString("name");
                 row[2] = connect.myRs.getString("emp_name");
-                row[3] = connect.myRs.getString("desc");//username
+                row[3] = connect.myRs.getString("description");//username
                 row[4] = connect.myRs.getString("date");
                 row[5] = connect.myRs.getString("status");
 
@@ -389,7 +405,7 @@ void populatetable() {
         tfcomplaintno.setEnabled(true);
         tfcomplaintdate.setEnabled(true);
         tfcustname.setEnabled(true);
-        tfstatus.setEnabled(true);
+   //     tfstatus.setEnabled(true);
         cbassignedto.setEnabled(true);
         tfdescription.setEnabled(false);
 
@@ -399,51 +415,11 @@ void populatetable() {
         tfcomplaintno.setEnabled(false);
         tfcomplaintdate.setEnabled(false);
         tfcustname.setEnabled(false);
-        tfstatus.setEnabled(false);
+     //   tfstatus.setEnabled(false);
         cbassignedto.setEnabled(false);
         tfdescription.setEnabled(false);
 
     }
-// int row = jTInventory.getSelectedRow();
-//        btnrefresh.setEnabled(true);
-//        btnmanufacture.setEnabled(true);
-//        if (row < 0) {
-//            JOptionPane.showMessageDialog(this,
-//                    "No row is selected! Please select one row",
-//                    "Select row",
-//                    JOptionPane.ERROR_MESSAGE);
-//        } else {
-//            DefaultTableModel model = (DefaultTableModel) jTInventory.getModel();
-//
-//            int selected_hosid = (int) model.getValueAt(row, 1);
-//            try {
-//                connect.connect();
-//                // Prepare Statement
-//
-//                connect.pet = connect.con.prepareStatement("select i.inv_id,p.product_id,p.name,p.price,i.quantity,p.weight, p.validity, p.desc1 "
-//                    + "from enterprise e join product p on e.ent_id = p.ent_id join inventory i on p.product_id= i.product_id where e.ent_id=? and p.product_id=?");
-//            //String query = "select i.inv_id,p.product_id,p.name,p.price,i.quantity,p.weight, p.validity, p.desc from enterprise e join product p on e.ent_id = p.ent_id join inventory i on p.product_id= i.product_id where ent_id=?";
-//            connect.pet.setInt(1, ent.getEnt_id());
-//            connect.pet.setInt(2, selected_hosid);
-//
-//                connect.myRs = connect.pet.executeQuery();
-//                //System.out.println("5");
-//                if (connect.myRs.next()) {
-//                    tfavailqty.setText(connect.myRs.getString("quantity"));
-//        tfdescription.setText(connect.myRs.getString("desc1"));
-//        tfprice.setText(String.valueOf(connect.myRs.getString("price")));
-//        tfprodid.setText(String.valueOf(connect.myRs.getInt("product_id")));
-//        tfprodname.setText(connect.myRs.getString("name"));
-//        tfvalidity.setText(String.valueOf(connect.myRs.getString("validity")));
-//        tfweight.setText(String.valueOf(connect.myRs.getInt("weight")));
-//                    
-//           
-//                }
-//
-//            } catch (Exception e) {
-//                System.out.println(e.toString());
-//
-//            }
-//        }
+
 
 }
