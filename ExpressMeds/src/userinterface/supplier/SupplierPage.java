@@ -44,9 +44,7 @@ public class SupplierPage extends javax.swing.JFrame {
         btnwarecata = new javax.swing.JButton();
         btnOrderCata = new javax.swing.JButton();
         btnEmployeecatalog = new javax.swing.JButton();
-
         jcentname = new javax.swing.JComboBox<>();
-
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -128,7 +126,7 @@ public class SupplierPage extends javax.swing.JFrame {
             }
         });
 
-        jCentname.addActionListener(new java.awt.event.ActionListener() {
+        jcentname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCentnameActionPerformed(evt);
             }
@@ -152,9 +150,7 @@ public class SupplierPage extends javax.swing.JFrame {
                         .addComponent(btnManageOrganization, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnOrderMgmt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnwarecata, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-
                         .addComponent(jcentname, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -163,9 +159,7 @@ public class SupplierPage extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(btnback)
                 .addGap(7, 7, 7)
-
                 .addComponent(jcentname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnManageOrganization)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -280,7 +274,7 @@ public class SupplierPage extends javax.swing.JFrame {
     private void btnManageOrganizationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageOrganizationActionPerformed
         // TODO add your handling code here:
         
-        ManageSupOrg mgorg = new ManageSupOrg( );
+        ManageSupOrg mgorg = new ManageSupOrg(supp_name );
         jSplitPane1.setRightComponent(mgorg);
     }//GEN-LAST:event_btnManageOrganizationActionPerformed
 
@@ -302,7 +296,7 @@ public class SupplierPage extends javax.swing.JFrame {
 
     private void jCentnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCentnameActionPerformed
         // TODO add your handling code here:
-        supp_name = jCentname.getSelectedItem().toString();
+        supp_name = jcentname.getSelectedItem().toString();
     }//GEN-LAST:event_jCentnameActionPerformed
 
     /**
@@ -351,9 +345,6 @@ public class SupplierPage extends javax.swing.JFrame {
     private javax.swing.JButton btnlogout;
     private javax.swing.JButton btnwarecata;
     private javax.swing.JButton btnwaremgt;
-
-    private javax.swing.JComboBox<String> jCentname;
-
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
@@ -376,7 +367,7 @@ void loadentname(){
            System.out.println("pet");
             connect.myRs = connect.pet.executeQuery();
             while (connect.myRs.next()) {
-                jCentname.addItem(connect.myRs.getString("name"));
+                jcentname.addItem(connect.myRs.getString("name"));
                 
             }
             
