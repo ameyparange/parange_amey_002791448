@@ -28,7 +28,6 @@ public class VerificationPage extends javax.swing.JPanel {
 
         jTextField1 = new javax.swing.JTextField();
         jPanel7 = new javax.swing.JPanel();
-        btnlogout = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
@@ -54,24 +53,19 @@ public class VerificationPage extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         btnview = new javax.swing.JButton();
 
-        jPanel7.setBackground(new java.awt.Color(219, 247, 252));
+        setBackground(new java.awt.Color(219, 247, 252));
 
-        btnlogout.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        btnlogout.setText("Logout");
+        jPanel7.setBackground(new java.awt.Color(219, 247, 252));
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnlogout))
+            .addGap(0, 820, Short.MAX_VALUE)
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addComponent(btnlogout, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 17, Short.MAX_VALUE))
+            .addGap(0, 55, Short.MAX_VALUE)
         );
 
         jTable1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
@@ -383,7 +377,6 @@ public class VerificationPage extends javax.swing.JPanel {
     private javax.swing.JButton btnbrowse;
     private javax.swing.JButton btnclear;
     private javax.swing.JButton btnedit;
-    private javax.swing.JButton btnlogout;
     private javax.swing.JButton btnsearchcat;
     private javax.swing.JButton btnview;
     private javax.swing.JLabel jLabel1;
