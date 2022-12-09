@@ -8,12 +8,12 @@ package userinterface.retail;
  *
  * @author amey8
  */
-public class RetailInventory extends javax.swing.JPanel {
+public class RetailInventoryCatalog extends javax.swing.JPanel {
 
     /**
      * Creates new form RetailInventory1
      */
-    public RetailInventory() {
+    public RetailInventoryCatalog() {
         initComponents();
     }
 
@@ -76,13 +76,13 @@ public class RetailInventory extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "E_id", "E_name", "E_type", "Name", "Email id", "Location", "Org_id", "Org_type", "Role_id", "Role_type"
+                "Product id", "Enterprise id", "Name", "Price", "Weight", "Validity", "Manufacturer"
             }
         ));
         jScrollPane1.setViewportView(jTable1);

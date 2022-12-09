@@ -84,7 +84,7 @@
                               <Component id="btnManageOrganization" alignment="0" max="32767" attributes="0"/>
                               <Component id="btnOrderMgmt" alignment="1" min="-2" pref="218" max="-2" attributes="0"/>
                               <Component id="btnwarecata" alignment="0" min="-2" pref="218" max="-2" attributes="0"/>
-                              <Component id="jCorgtype" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jcentname" alignment="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
@@ -97,7 +97,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnback" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
-                      <Component id="jCorgtype" min="-2" max="-2" attributes="0"/>
+                      <Component id="jcentname" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="btnManageOrganization" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -227,7 +227,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEmployeecatalogActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JComboBox" name="jCorgtype">
+            <Component class="javax.swing.JComboBox" name="jcentname">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="0"/>
