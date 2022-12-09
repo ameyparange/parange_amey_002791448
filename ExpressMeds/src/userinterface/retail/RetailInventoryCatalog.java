@@ -35,7 +35,6 @@ public class RetailInventoryCatalog extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         btnview = new javax.swing.JButton();
-        btndelete = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(219, 247, 252));
@@ -96,10 +95,6 @@ public class RetailInventoryCatalog extends javax.swing.JPanel {
             }
         });
 
-        btndelete.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        btndelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/retail/bin.png"))); // NOI18N
-        btndelete.setText("Delete");
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -108,14 +103,12 @@ public class RetailInventoryCatalog extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 895, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnview)
-                        .addGap(61, 61, 61)
-                        .addComponent(btndelete)
-                        .addGap(59, 59, 59))))
+                        .addGap(212, 212, 212))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -123,15 +116,13 @@ public class RetailInventoryCatalog extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnview)
-                    .addComponent(btndelete))
+                .addComponent(btnview)
                 .addGap(164, 164, 164))
         );
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 0, 36)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Manage Retail Inventory");
+        jLabel2.setText("View Retail Inventory Catalog");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -191,7 +182,6 @@ public class RetailInventoryCatalog extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btndelete;
     private javax.swing.JButton btnsearch;
     private javax.swing.JButton btnview;
     private javax.swing.JLabel jLabel1;
