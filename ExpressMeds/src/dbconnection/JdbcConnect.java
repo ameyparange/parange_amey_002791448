@@ -266,7 +266,29 @@ public class JdbcConnect {
         }
         return 9999;
     }
+        
+                public int searchenterpriseent_id (String name,String type) {
+        this.connect();
+        try {
+            pet = con.prepareStatement("select ent_id from enterprise where name=? and ent_type=?");
+            pet.setString(1, name);
+            pet.setString(2, type);
+            
+            myRs = pet.executeQuery();
 
+            if (myRs.next()) {
+
+                return myRs.getInt("ent_id");
+
+            }
+        } catch (Exception e) {
+            System.out.println("9999");
+            System.out.println(e.toString());
+            return 9999;
+        }
+        return 9999;
+    }
+ 
     public Enterprise searchenterpriseon_entid(int ent_id) {
         Enterprise e;
         this.connect();

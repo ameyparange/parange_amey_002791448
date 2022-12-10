@@ -6,7 +6,7 @@ package userinterface.retail;
 
 import dbconnection.JdbcConnect;
 import model.enterprise.Enterprise;
-import userinterface.retail.ManageRetailOrganization;
+
 
 /**
  *
@@ -19,7 +19,7 @@ public class RetailPage extends javax.swing.JFrame {
      */
     JdbcConnect con;
     String retail_name;
-
+    
     public RetailPage() {
         initComponents();
         con = new JdbcConnect();
@@ -47,10 +47,10 @@ public class RetailPage extends javax.swing.JFrame {
         btnemployees = new javax.swing.JButton();
         btnplaceorder = new javax.swing.JButton();
         btnback = new javax.swing.JButton();
-        jIndividualRetail = new javax.swing.JComboBox<>();
         btnintcat = new javax.swing.JButton();
         btnempmgmt = new javax.swing.JButton();
         btnManageOrganization = new javax.swing.JButton();
+        jcentname = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         btnlogout = new javax.swing.JButton();
@@ -95,10 +95,9 @@ public class RetailPage extends javax.swing.JFrame {
         btnback.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         btnback.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/supplier/back.png"))); // NOI18N
         btnback.setText("Back");
-
-        jIndividualRetail.addActionListener(new java.awt.event.ActionListener() {
+        btnback.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jIndividualRetailActionPerformed(evt);
+                btnbackActionPerformed(evt);
             }
         });
 
@@ -124,6 +123,12 @@ public class RetailPage extends javax.swing.JFrame {
             }
         });
 
+        jcentname.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcentnamejCentnameActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -137,11 +142,11 @@ public class RetailPage extends javax.swing.JFrame {
                     .addComponent(btnemployees, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnplaceorder, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnsupcatalog, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jIndividualRetail, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnintcat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnempmgmt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnManageOrganization, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(71, Short.MAX_VALUE))
+                    .addComponent(btnManageOrganization, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jcentname, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(80, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(btnback)
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -151,9 +156,9 @@ public class RetailPage extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnback)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                .addComponent(jIndividualRetail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jcentname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addComponent(btnManageOrganization)
                 .addGap(18, 18, 18)
                 .addComponent(btnintcat)
@@ -266,17 +271,20 @@ public class RetailPage extends javax.swing.JFrame {
     private void btnManageOrganizationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageOrganizationActionPerformed
         // TODO add your handling code here:
 
-        ManageRetailOrganization mgorg = new ManageRetailOrganization(retail_name);
+        ManageRetOrg mgorg = new ManageRetOrg(retail_name);
         jSplitPane1.setRightComponent(mgorg);
     }//GEN-LAST:event_btnManageOrganizationActionPerformed
 
-    private void jIndividualRetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jIndividualRetailActionPerformed
+    private void jcentnamejCentnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcentnamejCentnameActionPerformed
         // TODO add your handling code here:
+        retail_name = jcentname.getSelectedItem().toString();
+        jSplitPane1.setRightComponent(null);
+    }//GEN-LAST:event_jcentnamejCentnameActionPerformed
 
-        retail_name = jIndividualRetail.getSelectedItem().toString();
-
-
-    }//GEN-LAST:event_jIndividualRetailActionPerformed
+    private void btnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbackActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnbackActionPerformed
 
     /**
      * @param args the command line arguments
@@ -327,13 +335,13 @@ public class RetailPage extends javax.swing.JFrame {
     private javax.swing.JButton btnplaceorder;
     private javax.swing.JButton btnsupcatalog;
     private javax.swing.JButton btnsupordercat;
-    private javax.swing.JComboBox<String> jIndividualRetail;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JComboBox<String> jcentname;
     // End of variables declaration//GEN-END:variables
 
     public void loadDataIndropdown() {
@@ -342,11 +350,11 @@ public class RetailPage extends javax.swing.JFrame {
             con.connect();
             // Prepare Statement
 
-            con.pet = con.con.prepareStatement("Select * from enterprise e where e.ent_type='retail'");
+            con.pet = con.con.prepareStatement("Select * from enterprise e where e.ent_type='Retails'");
             con.myRs = con.pet.executeQuery();
 
             while (con.myRs.next()) {
-                jIndividualRetail.addItem(con.myRs.getString("name"));
+                jcentname.addItem(con.myRs.getString("name"));
             }
 
         } catch (Exception et) {

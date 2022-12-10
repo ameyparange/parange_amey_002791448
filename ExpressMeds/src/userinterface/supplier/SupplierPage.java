@@ -5,6 +5,8 @@
 package userinterface.supplier;
 
 import dbconnection.JdbcConnect;
+import model.enterprise.Enterprise;
+import model.enterprise.EnterpriseCatalog;
 import userinterface.employee.EmployeeRegistration;
 
 
@@ -19,10 +21,14 @@ public class SupplierPage extends javax.swing.JFrame {
      */
     JdbcConnect connect;
     String supp_name;
+    Enterprise entp;
+    Enterprise supplier;
+    EnterpriseCatalog suppliercata;
     public SupplierPage() {
         initComponents();
         connect = new JdbcConnect();
         loadentname();
+
     }
 
     /**
@@ -89,6 +95,11 @@ public class SupplierPage extends javax.swing.JFrame {
         btnback.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         btnback.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/supplier/back.png"))); // NOI18N
         btnback.setText("Back");
+        btnback.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbackActionPerformed(evt);
+            }
+        });
 
         btnOrderMgmt.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         btnOrderMgmt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/supplier/inventory.png"))); // NOI18N
@@ -297,7 +308,13 @@ public class SupplierPage extends javax.swing.JFrame {
     private void jCentnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCentnameActionPerformed
         // TODO add your handling code here:
         supp_name = jcentname.getSelectedItem().toString();
+        jSplitPane1.setRightComponent(null);
     }//GEN-LAST:event_jCentnameActionPerformed
+
+    private void btnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbackActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnbackActionPerformed
 
     /**
      * @param args the command line arguments
@@ -364,12 +381,13 @@ void loadentname(){
                
             connect.pet = connect.con.prepareStatement("Select * from enterprise e where e.ent_type='Supplier'");
            //connect.pet.setString(1, ent_type);
-           System.out.println("pet");
+           //System.out.println("pet");
             connect.myRs = connect.pet.executeQuery();
             while (connect.myRs.next()) {
                 jcentname.addItem(connect.myRs.getString("name"));
                 
             }
+            
             
     }
      catch (Exception et) {
