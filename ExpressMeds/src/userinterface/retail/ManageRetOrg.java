@@ -2,39 +2,33 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package userinterface.supplier;
+package userinterface.retail;
 
 import dbconnection.JdbcConnect;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import model.enterprise.Enterprise;
 import model.enterprise.organization.Organization;
 import model.enterprise.organization.OrganizationCatalog;
-import userinterface.enterprise.organization.OrganizationRegistration;
 import userinterface.enterprise.organization.SpecificEntOrgReg;
 
 /**
  *
  * @author amey8
  */
-public class ManageSupOrg extends javax.swing.JPanel {
+public class ManageRetOrg extends javax.swing.JPanel {
 
     /**
-     * Creates new form ManageOrganization
+     * Creates new form ManageRetOrg
      */
     JdbcConnect connect;
-    String supp_name;
-    Enterprise ent;
-    Organization org;
-    OrganizationCatalog orgcat;
-    public ManageSupOrg(String supp_name) {
+    String retail_name;
+    public ManageRetOrg(String retail_name) {
         initComponents();
-        connect=new JdbcConnect();
-        this.supp_name=supp_name;
-        org=new Organization();
+                connect=new JdbcConnect();
+        this.retail_name=retail_name;
+        
          refresh();
-        populatetable(this.supp_name);
+        populatetable(this.retail_name);
     }
 
     /**
@@ -47,6 +41,7 @@ public class ManageSupOrg extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTorganization = new javax.swing.JTable();
@@ -74,7 +69,7 @@ public class ManageSupOrg extends javax.swing.JPanel {
         btnrefresh = new javax.swing.JButton();
         btnsregister = new javax.swing.JButton();
 
-        jPanel1.setBackground(new java.awt.Color(219, 247, 252));
+        jPanel2.setBackground(new java.awt.Color(219, 247, 252));
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -361,20 +356,20 @@ public class ManageSupOrg extends javax.swing.JPanel {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(88, 88, 88)
                         .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(91, 91, 91))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnsregister, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -385,15 +380,15 @@ public class ManageSupOrg extends javax.swing.JPanel {
                         .addComponent(btnview, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnview, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btndelete, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnrefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -401,6 +396,27 @@ public class ManageSupOrg extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(41, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 819, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 559, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -446,7 +462,7 @@ public class ManageSupOrg extends javax.swing.JPanel {
                 connect.pet.setInt(1, selected_hosid);
                 connect.pet.executeUpdate();
                 connect.con.commit();
-                populatetable(supp_name);
+                populatetable(retail_name);
             } catch (Exception e) {
                 System.out.println(e.toString());
 
@@ -503,10 +519,9 @@ public class ManageSupOrg extends javax.swing.JPanel {
         enablefields();
         btnupdate.setEnabled(true);
         btnedit.setEnabled(false);
-        
+
         btnsregister.setEnabled(false);
         btndelete.setEnabled(false);
-
     }//GEN-LAST:event_btneditActionPerformed
 
     private void btnupdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnupdateActionPerformed
@@ -528,10 +543,10 @@ public class ManageSupOrg extends javax.swing.JPanel {
 
     private void btnsregisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsregisterActionPerformed
         SpecificEntOrgReg orgreg = new SpecificEntOrgReg();
-        orgreg.intializeentname(supp_name,0);
+        orgreg.intializeentname(retail_name,1);
         //adminpage.setPreferredSize(new Dimension(1070, 600));
         orgreg.setVisible(true);
-        populatetable(supp_name);
+        populatetable(retail_name);
         refresh();
     }//GEN-LAST:event_btnsregisterActionPerformed
 
@@ -550,6 +565,7 @@ public class ManageSupOrg extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -566,7 +582,7 @@ public class ManageSupOrg extends javax.swing.JPanel {
     private javax.swing.JTextField tftype;
     // End of variables declaration//GEN-END:variables
 void populatetable(String name) {
-        orgcat=new OrganizationCatalog();
+        
         DefaultTableModel model = (DefaultTableModel) jTorganization.getModel();
         model.setRowCount(0);
            int i=0;
@@ -575,7 +591,7 @@ void populatetable(String name) {
             // Prepare Statement
 
             connect.pet = connect.con.prepareStatement("Select e.ent_id,e.name,e.ent_type,o.org_id,o.org_type,o.email from enterprise e "
-                    + " join organization o on e.ent_id = o.ent_id where e.name=? and e.ent_type='Supplier'");
+                    + " join organization o on e.ent_id = o.ent_id where e.name=? and e.ent_type='Retails'");
            connect.pet.setString(1, name);
             connect.myRs = connect.pet.executeQuery();
             
@@ -616,7 +632,7 @@ void populatetable(String name) {
         tforgtype.setText("");
         tftype.setText("");
         tfid.setText("");
-        populatetable(supp_name);
+        populatetable(retail_name);
         
         if(checkorgs()==1)
         {btnsregister.setEnabled(false); }
@@ -650,8 +666,8 @@ void populatetable(String name) {
             int i=0;
             int j=0;
             connect.pet = connect.con.prepareStatement("Select count(*) cnt1 from enterprise e "
-                    + " join organization o on e.ent_id = o.ent_id where e.ent_type='Supplier' and e.name = ? ");
-            connect.pet.setString(1, supp_name);
+                    + " join organization o on e.ent_id = o.ent_id where e.ent_type='Retails' and e.name = ? ");
+            connect.pet.setString(1, retail_name);
            
             connect.myRs = connect.pet.executeQuery();
                 
@@ -660,15 +676,15 @@ void populatetable(String name) {
                 i=connect.myRs.getInt("cnt1");
                 
             }
-            //System.out.println(i+" "+j);
+            System.out.println(connect.pet.toString()+i+" "+j);
             connect.pet = connect.con.prepareStatement("Select count(*) cnt from enterprise e "
-                    + " join organizationtypes o on e.ent_type = o.ent_type where e.ent_type='Supplier' and e.name = ? ");
-           connect.pet.setString(1, supp_name);
+                    + " join organizationtypes o on e.ent_type = o.ent_type where e.ent_type='Retails' and e.name = ? ");
+           connect.pet.setString(1, retail_name);
             connect.myRs = connect.pet.executeQuery();
                 
             //System.out.println("5");
             while (connect.myRs.next()) {
-                //System.out.println(i+" "+connect.myRs.getInt("cnt"));
+                System.out.println(i+" "+connect.myRs.getInt("cnt"));
                 if (connect.myRs.getInt("cnt")==i)
                 {
                     return 1;
@@ -684,6 +700,4 @@ void populatetable(String name) {
         }
        return 0;
       }
-      
-      
 }
