@@ -50,7 +50,7 @@ CREATE TABLE `expressmeddb`.`address` (
 
 <<<<<<< HEAD
 CREATE TABLE `expressmeddb`.`Inventory` (
-  `inv_id` INT NOT NULL,
+  `inv_id` INT NOT NULL AUTO_INCREMENT,
   `product_id` INT NULL,
   `quantity` INT NULL,
   
@@ -108,31 +108,33 @@ CREATE TABLE `expressmeddb`.`person` (
   PRIMARY KEY (`per_id`));
   
 CREATE TABLE `expressmeddb`.`customer` (
-  `cust_id` INT NOT NULL,
+  `cust_id` INT NOT NULL AUTO_INCREMENT,
   `per_id` INT NULL,
   PRIMARY KEY (`cust_id`));
   
 CREATE TABLE `expressmeddb`.`employee` (
-  `emp_id` INT NOT NULL,
+  `emp_id` INT NOT NULL AUTO_INCREMENT,
   `per_id` INT NULL,
   `ent_id` INT NULL,
   PRIMARY KEY (`emp_id`));
 
 CREATE TABLE `expressmeddb`.`doctor` (
-  `dr_id` INT NOT NULL,
+  `dr_id` INT NOT NULL AUTO_INCREMENT,
   `per_id` INT NULL,
   `ent_id` INT NULL,
   PRIMARY KEY (`dr_id`));
+select * from product;
+select * from inventory;
   
   
 CREATE TABLE `expressmeddb`.`Product` (
-  `product_id` INT NOT NULL,
+  `product_id` INT NOT NULL AUTO_INCREMENT,
   `ent_id` INT NULL,
   `name` VARCHAR(50) NOT NULL,
   `price` INT NULL,
   `weight` INT NULL,
   `validity` INT NULL,
-  `desc` VARCHAR(100) NULL,
+  `desc1` VARCHAR(100) NULL,
   
   PRIMARY KEY (`product_id`));
   

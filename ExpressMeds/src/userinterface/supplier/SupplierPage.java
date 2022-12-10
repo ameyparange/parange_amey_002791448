@@ -27,6 +27,7 @@ public class SupplierPage extends javax.swing.JFrame {
     public SupplierPage() {
         initComponents();
         connect = new JdbcConnect();
+        
         loadentname();
 
     }
@@ -271,7 +272,7 @@ public class SupplierPage extends javax.swing.JFrame {
     private void btnwaremgtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnwaremgtActionPerformed
         // TODO add your handling code here:
 
-        SupplierInventoryPage supint = new SupplierInventoryPage( );
+        SupplierWarehouseMgmt supint = new SupplierWarehouseMgmt( entp );
         jSplitPane1.setRightComponent(supint);
     }//GEN-LAST:event_btnwaremgtActionPerformed
 
@@ -308,6 +309,8 @@ public class SupplierPage extends javax.swing.JFrame {
     private void jCentnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCentnameActionPerformed
         // TODO add your handling code here:
         supp_name = jcentname.getSelectedItem().toString();
+        
+        entp =loadentname (supp_name);
         jSplitPane1.setRightComponent(null);
     }//GEN-LAST:event_jCentnameActionPerformed
 
@@ -382,6 +385,7 @@ void loadentname(){
             connect.pet = connect.con.prepareStatement("Select * from enterprise e where e.ent_type='Supplier'");
            //connect.pet.setString(1, ent_type);
            //System.out.println("pet");
+           //System.out.println(connect.pet.toString());
             connect.myRs = connect.pet.executeQuery();
             while (connect.myRs.next()) {
                 jcentname.addItem(connect.myRs.getString("name"));
@@ -395,5 +399,34 @@ void loadentname(){
 
         }
 }
+
+    Enterprise loadentname(String name){
+    //String ent_type =jCentname.getSelectedItem().toString();
+    //String s;
+    Enterprise t;
+    try{
+    connect.connect();
+            // Prepare Statement
+               
+            connect.pet = connect.con.prepareStatement("Select * from enterprise e where e.ent_type='Supplier' and name= ? ");
+           connect.pet.setString(1, name);
+           
+            connect.myRs = connect.pet.executeQuery();
+            if (connect.myRs.next()) {
+                jcentname.addItem(connect.myRs.getString("name"));
+                t = new Enterprise(connect.myRs.getInt("ent_id"), connect.myRs.getString("ent_type"),
+                        connect.myRs.getString("name"), connect.myRs.getString("email"), connect.myRs.getInt("add_id"));
+                return t;
+            }
+            
+            
+    }
+     catch (Exception et) {
+            System.out.println(et.toString());
+            return new Enterprise();
+        }
+    return new Enterprise();
+}
+
 
 }
