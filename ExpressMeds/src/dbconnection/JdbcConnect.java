@@ -806,14 +806,15 @@ public class JdbcConnect {
         try {
             String name = firstname + " " + lastname;
             this.connect();
-            pet = con.prepareStatement("insert into customer_grievances(name, desc, date,status) values (?,?,?,?)");
+            pet = con.prepareStatement("insert into customer_grievances(name, description, date, status, emp_name) values (?,?,?,?,?)");
 
             pet.setString(1, name);
             pet.setString(2, desc);
             pet.setString(3, date);
             pet.setString(4, status);
+            pet.setString(5, "");
 
-            int k = pet.executeUpdate();
+            int k =  pet.executeUpdate();
             con.commit();
 
         } catch (Exception e) {
