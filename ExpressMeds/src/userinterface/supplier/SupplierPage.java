@@ -4,6 +4,9 @@
  */
 package userinterface.supplier;
 
+import dbconnection.JdbcConnect;
+import model.enterprise.Enterprise;
+import model.enterprise.EnterpriseCatalog;
 import userinterface.employee.EmployeeRegistration;
 
 
@@ -16,8 +19,17 @@ public class SupplierPage extends javax.swing.JFrame {
     /**
      * Creates new form SupplierPage1
      */
+    JdbcConnect connect;
+    String supp_name;
+    Enterprise entp;
+    Enterprise supplier;
+    EnterpriseCatalog suppliercata;
     public SupplierPage() {
         initComponents();
+        connect = new JdbcConnect();
+        
+        loadentname();
+
     }
 
     /**
@@ -39,7 +51,7 @@ public class SupplierPage extends javax.swing.JFrame {
         btnwarecata = new javax.swing.JButton();
         btnOrderCata = new javax.swing.JButton();
         btnEmployeecatalog = new javax.swing.JButton();
-        jCorgtype = new javax.swing.JComboBox<>();
+        jcentname = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -84,6 +96,11 @@ public class SupplierPage extends javax.swing.JFrame {
         btnback.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         btnback.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/supplier/back.png"))); // NOI18N
         btnback.setText("Back");
+        btnback.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbackActionPerformed(evt);
+            }
+        });
 
         btnOrderMgmt.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         btnOrderMgmt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/supplier/inventory.png"))); // NOI18N
@@ -121,6 +138,12 @@ public class SupplierPage extends javax.swing.JFrame {
             }
         });
 
+        jcentname.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCentnameActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -139,7 +162,7 @@ public class SupplierPage extends javax.swing.JFrame {
                         .addComponent(btnManageOrganization, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnOrderMgmt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnwarecata, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jCorgtype, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jcentname, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -148,7 +171,7 @@ public class SupplierPage extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(btnback)
                 .addGap(7, 7, 7)
-                .addComponent(jCorgtype, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jcentname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnManageOrganization)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -249,7 +272,7 @@ public class SupplierPage extends javax.swing.JFrame {
     private void btnwaremgtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnwaremgtActionPerformed
         // TODO add your handling code here:
 
-        SupplierInventoryPage supint = new SupplierInventoryPage( );
+        SupplierWarehouseMgmt supint = new SupplierWarehouseMgmt( entp );
         jSplitPane1.setRightComponent(supint);
     }//GEN-LAST:event_btnwaremgtActionPerformed
 
@@ -263,7 +286,7 @@ public class SupplierPage extends javax.swing.JFrame {
     private void btnManageOrganizationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageOrganizationActionPerformed
         // TODO add your handling code here:
         
-        ManageOrganization mgorg = new ManageOrganization( );
+        ManageSupOrg mgorg = new ManageSupOrg(supp_name );
         jSplitPane1.setRightComponent(mgorg);
     }//GEN-LAST:event_btnManageOrganizationActionPerformed
 
@@ -282,6 +305,19 @@ public class SupplierPage extends javax.swing.JFrame {
     private void btnEmployeecatalogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmployeecatalogActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEmployeecatalogActionPerformed
+
+    private void jCentnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCentnameActionPerformed
+        // TODO add your handling code here:
+        supp_name = jcentname.getSelectedItem().toString();
+        
+        entp =loadentname (supp_name);
+        jSplitPane1.setRightComponent(null);
+    }//GEN-LAST:event_jCentnameActionPerformed
+
+    private void btnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbackActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnbackActionPerformed
 
     /**
      * @param args the command line arguments
@@ -329,12 +365,68 @@ public class SupplierPage extends javax.swing.JFrame {
     private javax.swing.JButton btnlogout;
     private javax.swing.JButton btnwarecata;
     private javax.swing.JButton btnwaremgt;
-    private javax.swing.JComboBox<String> jCorgtype;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JComboBox<String> jcentname;
     // End of variables declaration//GEN-END:variables
+
+void loadentname(){
+    //String ent_type =jCentname.getSelectedItem().toString();
+    //String s;
+    
+    try{
+    connect.connect();
+            // Prepare Statement
+               
+            connect.pet = connect.con.prepareStatement("Select * from enterprise e where e.ent_type='Supplier'");
+           //connect.pet.setString(1, ent_type);
+           //System.out.println("pet");
+           //System.out.println(connect.pet.toString());
+            connect.myRs = connect.pet.executeQuery();
+            while (connect.myRs.next()) {
+                jcentname.addItem(connect.myRs.getString("name"));
+                
+            }
+            
+            
+    }
+     catch (Exception et) {
+            System.out.println(et.toString());
+
+        }
+}
+
+    Enterprise loadentname(String name){
+    //String ent_type =jCentname.getSelectedItem().toString();
+    //String s;
+    Enterprise t;
+    try{
+    connect.connect();
+            // Prepare Statement
+               
+            connect.pet = connect.con.prepareStatement("Select * from enterprise e where e.ent_type='Supplier' and name= ? ");
+           connect.pet.setString(1, name);
+           
+            connect.myRs = connect.pet.executeQuery();
+            if (connect.myRs.next()) {
+                jcentname.addItem(connect.myRs.getString("name"));
+                t = new Enterprise(connect.myRs.getInt("ent_id"), connect.myRs.getString("ent_type"),
+                        connect.myRs.getString("name"), connect.myRs.getString("email"), connect.myRs.getInt("add_id"));
+                return t;
+            }
+            
+            
+    }
+     catch (Exception et) {
+            System.out.println(et.toString());
+            return new Enterprise();
+        }
+    return new Enterprise();
+}
+
+
 }

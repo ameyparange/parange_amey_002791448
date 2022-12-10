@@ -14,6 +14,7 @@ import model.enterprise.Enterprise;
 import model.enterprise.EnterpriseCatalog;
 import model.enterprise.organization.Organization;
 import model.enterprise.role.Role;
+import model.product.Product;
 
 /**
  *
@@ -266,7 +267,29 @@ public class JdbcConnect {
         }
         return 9999;
     }
+        
+                public int searchenterpriseent_id (String name,String type) {
+        this.connect();
+        try {
+            pet = con.prepareStatement("select ent_id from enterprise where name=? and ent_type=?");
+            pet.setString(1, name);
+            pet.setString(2, type);
+            
+            myRs = pet.executeQuery();
 
+            if (myRs.next()) {
+
+                return myRs.getInt("ent_id");
+
+            }
+        } catch (Exception e) {
+            System.out.println("9999");
+            System.out.println(e.toString());
+            return 9999;
+        }
+        return 9999;
+    }
+ 
     public Enterprise searchenterpriseon_entid(int ent_id) {
         Enterprise e;
         this.connect();
@@ -568,4 +591,96 @@ public class JdbcConnect {
 //        }
 //        return new Address();
 //    }
+    
+        public int insertproduct(int ent_id,Product p) {
+        try {
+            this.connect();
+            pet = con.prepareStatement("insert into product(ent_id,name,price,weight,validity, desc1) values (?,?,?,?,?,?)");
+            pet.setInt(1, ent_id);
+            pet.setString(2, p.getName());
+            pet.setInt(3, p.getPrice());
+            pet.setInt(4, p.getWeight());
+            pet.setInt(5, p.getValidity());
+            pet.setString(6, p.getDesc());
+            System.out.println(pet.toString());
+            int k = pet.executeUpdate();
+            con.commit();
+            
+            return k;
+
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            return 0;
+        }
+
+    }
+        
+        public int getlatestproductid()
+        {
+            this.connect();
+        try {
+            pet = con.prepareStatement("select max(product_id) product_id from product ");
+            
+            myRs = pet.executeQuery();
+
+            if (myRs.next()) {
+
+                return myRs.getInt("product_id");
+
+            }
+        } catch (Exception e) {
+            System.out.println("9999");
+            System.out.println(e.toString());
+            return 9999;
+        }
+        return 9999;
+        
+        }
+        
+        
+            public int insertupdate(Product p) {
+        try {
+            this.connect();
+
+            pet = con.prepareStatement("update product set"
+                    + "name=?,price=?,weight=?,validity=? ,desc1=? where product_id= ? ");
+
+            pet.setString(1, p.getName());
+            pet.setInt(2, p.getPrice());
+            pet.setInt(3, p.getWeight());
+            pet.setInt(4, p.getValidity());
+            pet.setString(5, p.getDesc());
+            pet.setInt(6, p.getProduct_id());
+            
+            System.out.println(pet.toString());
+            int k = pet.executeUpdate();
+            con.commit();
+            return k;
+
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            return 0;
+        }
+
+    }
+        public int insertinventory(int product_id,int qty) {
+        try {
+            this.connect();
+            pet = con.prepareStatement("insert into inventory(product_id,quantity) values (?,?)");
+            pet.setInt(1, product_id);
+            pet.setInt(2, qty);
+            int k = pet.executeUpdate();
+            con.commit();
+            
+            return k;
+
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            return 0;
+        }
+
+    }
+        
+        
+        
 }
