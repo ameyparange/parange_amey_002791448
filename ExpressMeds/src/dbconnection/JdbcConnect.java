@@ -274,9 +274,9 @@ public class JdbcConnect {
             pet = con.prepareStatement("select ent_id from enterprise where name=? and ent_type=?");
             pet.setString(1, name);
             pet.setString(2, type);
-
+            System.out.println(pet.toString());
             myRs = pet.executeQuery();
-
+            
             if (myRs.next()) {
 
                 return myRs.getInt("ent_id");
