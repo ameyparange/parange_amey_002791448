@@ -169,6 +169,7 @@ public class ManageGrievances extends javax.swing.JPanel {
                                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+<<<<<<< HEAD
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(tfcomplaintdate)
                             .addComponent(jComboBox1, 0, 190, Short.MAX_VALUE))
@@ -177,6 +178,16 @@ public class ManageGrievances extends javax.swing.JPanel {
                         .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(30, 30, 30)
                         .addComponent(tfdescription, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+=======
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tfcomplaintdate, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfstatus, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(tfdescription, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+>>>>>>> origin/neha
                         .addGap(38, 38, 38))))
         );
         jPanel4Layout.setVerticalGroup(
@@ -304,7 +315,11 @@ public class ManageGrievances extends javax.swing.JPanel {
                     tfcomplaintno.setText(connect.myRs.getString("comp_id"));
                     tfcomplaintdate.setText(String.valueOf(connect.myRs.getString("date")));
                     tfcustname.setText(String.valueOf(connect.myRs.getInt("name")));
+<<<<<<< HEAD
         //            tfstatus.setText(connect.myRs.getString("status"));
+=======
+                    tfstatus.setText(connect.myRs.getString("status"));
+>>>>>>> origin/neha
                     tfdescription.setText(String.valueOf(connect.myRs.getString("description")));
 
                 }
@@ -354,7 +369,10 @@ public class ManageGrievances extends javax.swing.JPanel {
     private javax.swing.JButton btnupdate;
     private javax.swing.JButton btnview;
     private javax.swing.JComboBox<String> cbassignedto;
+<<<<<<< HEAD
     private javax.swing.JComboBox<String> jComboBox1;
+=======
+>>>>>>> origin/neha
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
