@@ -40,6 +40,7 @@ public class OrderitemCatalog {
             if (o.product_id==prod_id)
             {
                 orditem.remove(i);
+                break;
             }
             i++;
         }

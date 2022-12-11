@@ -17,6 +17,8 @@ import model.enterprise.role.Role;
 import model.product.Product;
 import model.useraccount.UserAccount;
 import model.Person.Person;
+import model.order.OrderItem;
+import model.order.OrderitemCatalog;
 
 /**
  *
@@ -837,5 +839,66 @@ public class JdbcConnect {
     
     }
      
+    public void insertorder(int price)
+    {
+        
+        try {
+            this.connect();
+            pet = con.prepareStatement("INSERT INTO order1 (orderprice,ord_date)VALUES(?,sysdate())");
+            pet.setInt(1, price);
+           // pet.setString(2, mfg_date);
+            
+            //System.out.println(pet.toString());
+            int k = pet.executeUpdate();
+            con.commit();
+ 
+        } catch (Exception e) {
+            System.out.println(e.toString());
 
+        }
+       
+    }
+    public int getlatestorderid()
+    {
+        this.connect();
+        try {
+            pet = con.prepareStatement("select max(order_id) order_id from order1 ");
+
+            myRs = pet.executeQuery();
+
+            if (myRs.next()) {
+
+                return myRs.getInt("order_id");
+
+            }
+        } catch (Exception e) {
+            System.out.println("9999");
+            System.out.println(e.toString());
+            return 9999;
+        }
+        return 9999;
+    
+    }
+        public void insertorderitem(OrderitemCatalog oc,int order_id)
+    {this.connect();
+        for (OrderItem hos : oc.getOrditem()) {
+        try {
+            this.connect();
+            pet = con.prepareStatement("INSERT INTO order_item (order_id,product_id,qty,tot_item_price)VALUES(?,?,?,?)");
+            pet.setInt(1, order_id);
+            pet.setInt(2, hos.getProduct_id());
+            pet.setInt(3, hos.getQuantity());
+            pet.setInt(4, hos.getTotalitemprice());
+           // pet.setString(2, mfg_date);
+            
+            //System.out.println(pet.toString());
+            int k = pet.executeUpdate();
+            con.commit();
+ 
+        } catch (Exception e) {
+            System.out.println(e.toString());
+
+        }
+        }
+    }
 }
