@@ -1147,4 +1147,31 @@ public ProductCatalog getproductcata(Enterprise ent)
         }
     
         }
+
+public void updateCustomerGrievances(int compid,String custname, String complaintdate, String assignedto, String status,String description){
+    try {
+            this.connect();
+            pet = con.prepareStatement("update customer_grievances set name=?,date=?,description=?,status=?,emp_name=? where comp_id= ?");
+            pet.setString(1, custname);
+            pet.setString(2, complaintdate);
+            pet.setString(3, description);
+            pet.setString(4, status);
+            pet.setString(5, custname);
+            pet.setInt(6, compid);
+            
+            int k = pet.executeUpdate();
+            con.commit();
+
+           
+
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            
+        }
+    
+    }
+
+
+
+
 }

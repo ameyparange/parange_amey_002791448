@@ -10,6 +10,7 @@ import javax.swing.SwingUtilities;
 import model.enterprise.Enterprise;
 import userinterface.admin.AdminPage;
 import userinterface.admin.Dashboard;
+import userinterface.login.HomePageMainJF;
 import userinterface.supplier.SupplierPage;
 
 /**
@@ -297,11 +298,7 @@ public class HospitalPage extends javax.swing.JFrame {
     private void btnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbackActionPerformed
         // TODO add your handling code here:
         
-        HospitalPage frame = new HospitalPage();
-        Window w = SwingUtilities.getWindowAncestor(HospitalPage.this);
-        w.setVisible(false);  
-        Dashboard frame1 = new Dashboard();
-        frame1.setVisible(true);
+     this.dispose();
         
     }//GEN-LAST:event_btnbackActionPerformed
 
@@ -314,7 +311,9 @@ public class HospitalPage extends javax.swing.JFrame {
     private void btnlogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlogoutActionPerformed
         // TODO add your handling code here:
         
-       this.dispose();
+        dispose();
+        HomePageMainJF home = new HomePageMainJF();
+        home.setVisible(true);
         
         
     }//GEN-LAST:event_btnlogoutActionPerformed

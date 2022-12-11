@@ -13,6 +13,7 @@ import userinterface.admin.AdminPage;
 import userinterface.admin.Dashboard;
 import userinterface.supplier.EmployeeRegistration;
 import userinterface.hospital.HospitalPage;
+import userinterface.login.HomePageMainJF;
 import userinterface.retail.RetailPage;
 import userinterface.supplier.ManageEmployee;
 
@@ -358,7 +359,9 @@ public class SupplierPage extends javax.swing.JFrame {
     private void btnlogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlogoutActionPerformed
         // TODO add your handling code here:
 
-        this.dispose();
+        dispose();
+        HomePageMainJF home = new HomePageMainJF();
+        home.setVisible(true);
 
     }//GEN-LAST:event_btnlogoutActionPerformed
 

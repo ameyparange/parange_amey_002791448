@@ -2,6 +2,7 @@ package userinterface.delivery;
 
 import model.enterprise.Enterprise;
 import userinterface.employee.EmployeeRegistration;
+import userinterface.login.HomePageMainJF;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -90,6 +91,11 @@ public class DeliveryPage extends javax.swing.JFrame {
         btnback.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         btnback.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/supplier/back.png"))); // NOI18N
         btnback.setText("Back");
+        btnback.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbackActionPerformed(evt);
+            }
+        });
 
         btncustorder.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         btncustorder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/retail/checkout.png"))); // NOI18N
@@ -271,7 +277,9 @@ public class DeliveryPage extends javax.swing.JFrame {
     private void btnlogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlogoutActionPerformed
         // TODO add your handling code here:
         
-        this.dispose();
+        dispose();
+        HomePageMainJF home = new HomePageMainJF();
+        home.setVisible(true);
     }//GEN-LAST:event_btnlogoutActionPerformed
 
     private void btncustorderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncustorderActionPerformed
@@ -279,6 +287,11 @@ public class DeliveryPage extends javax.swing.JFrame {
         CustRetailOrder mangriev = new CustRetailOrder(entp,username);
         jSplitPane1.setRightComponent(mangriev);
     }//GEN-LAST:event_btncustorderActionPerformed
+
+    private void btnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbackActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnbackActionPerformed
 
     /**
      * @param args the command line arguments

@@ -148,7 +148,7 @@ public class ManageGrievances extends javax.swing.JPanel {
 
         cbassignedto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pending", "Closed" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Open", "Pending", "Closed" }));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -177,8 +177,8 @@ public class ManageGrievances extends javax.swing.JPanel {
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tfcomplaintdate)
-                            .addComponent(jComboBox1, 0, 190, Short.MAX_VALUE))
+                            .addComponent(tfcomplaintdate, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -312,11 +312,13 @@ public class ManageGrievances extends javax.swing.JPanel {
                     tfcomplaintdate.setText(String.valueOf(connect.myRs.getString("date")));
                     tfcustname.setText(String.valueOf(connect.myRs.getString("name")));
                     // tfstatus.setText(connect.myRs.getString("status"));
-                    String status = connect.myRs.getString("status");
+                     String status = connect.myRs.getString("status");
                     if (status.equalsIgnoreCase("Pending")) {
-                        jComboBox1.getModel().setSelectedItem(-1);
-                    } else if (status.equalsIgnoreCase("Clsed")) {
-                        jComboBox1.getModel().setSelectedItem(1);
+                        jComboBox1.getModel().setSelectedItem("Pending");
+                    } else if (status.equalsIgnoreCase("Closed")) {
+                        jComboBox1.getModel().setSelectedItem("Closed");
+                    }else if (status.equalsIgnoreCase("Open")) {
+                        jComboBox1.getModel().setSelectedItem("Open");
                     }
                     tfdescription.setText(String.valueOf(connect.myRs.getString("description")));
 
