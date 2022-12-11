@@ -7,6 +7,7 @@ package userinterface.retail;
 import dbconnection.JdbcConnect;
 import model.enterprise.Enterprise;
 import model.enterprise.EnterpriseCatalog;
+import userinterface.delivery.RetialSupplierOrder;
 
 
 /**
@@ -96,6 +97,11 @@ public class RetailPage extends javax.swing.JFrame {
         btnplaceorder.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         btnplaceorder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/retail/checkout.png"))); // NOI18N
         btnplaceorder.setText("Place an Order");
+        btnplaceorder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnplaceorderActionPerformed(evt);
+            }
+        });
 
         btnback.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         btnback.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/supplier/back.png"))); // NOI18N
@@ -295,6 +301,12 @@ public class RetailPage extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnbackActionPerformed
 
+    private void btnplaceorderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnplaceorderActionPerformed
+        // TODO add your handling code here:
+        RetialSupplierOrder mgorg = new RetialSupplierOrder();
+        jSplitPane1.setRightComponent(mgorg);
+    }//GEN-LAST:event_btnplaceorderActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -359,7 +371,7 @@ public class RetailPage extends javax.swing.JFrame {
             con.connect();
             // Prepare Statement
 
-            con.pet = con.con.prepareStatement("Select * from enterprise e where e.ent_type='Retails'");
+            con.pet = con.con.prepareStatement("Select e.name from enterprise e where e.ent_type='Retails'");
             con.myRs = con.pet.executeQuery();
 
             while (con.myRs.next()) {
