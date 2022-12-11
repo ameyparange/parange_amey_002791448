@@ -528,11 +528,11 @@ public class ManageSupOrg extends javax.swing.JPanel {
 
     private void btnsregisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsregisterActionPerformed
         SpecificEntOrgReg orgreg = new SpecificEntOrgReg();
-        orgreg.intializeentname(supp_name,0);
+        orgreg.intializeentname(supp_name,1);
         //adminpage.setPreferredSize(new Dimension(1070, 600));
         orgreg.setVisible(true);
-        populatetable(supp_name);
-        refresh();
+        //populatetable(supp_name);
+        //refresh();
     }//GEN-LAST:event_btnsregisterActionPerformed
 
 

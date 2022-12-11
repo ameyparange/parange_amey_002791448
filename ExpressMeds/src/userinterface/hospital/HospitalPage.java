@@ -5,6 +5,7 @@
 package userinterface.hospital;
 
 import dbconnection.JdbcConnect;
+import model.enterprise.Enterprise;
 
 /**
  *
@@ -16,6 +17,7 @@ public class HospitalPage extends javax.swing.JFrame {
      * Creates new form HospitalPage
      */
     JdbcConnect connect;
+    Enterprise entp;
     String hospital_name;
     public HospitalPage() {
         initComponents();
@@ -37,10 +39,11 @@ public class HospitalPage extends javax.swing.JFrame {
         btnmnghospital = new javax.swing.JButton();
         btnplaceorder = new javax.swing.JButton();
         btnmedstaff = new javax.swing.JButton();
-        btnhospitalint = new javax.swing.JButton();
+        btndrugstockmgmt = new javax.swing.JButton();
         btnback = new javax.swing.JButton();
         jcentname = new javax.swing.JComboBox<>();
         btnManageOrganization = new javax.swing.JButton();
+        btndrugstockcata = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -49,7 +52,7 @@ public class HospitalPage extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jSplitPane1.setDividerLocation(200);
+        jSplitPane1.setDividerLocation(300);
 
         jPanel2.setBackground(new java.awt.Color(219, 247, 252));
 
@@ -80,12 +83,12 @@ public class HospitalPage extends javax.swing.JFrame {
             }
         });
 
-        btnhospitalint.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        btnhospitalint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/hospital/inventory.png"))); // NOI18N
-        btnhospitalint.setText("Hospital Inventory");
-        btnhospitalint.addActionListener(new java.awt.event.ActionListener() {
+        btndrugstockmgmt.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btndrugstockmgmt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/hospital/inventory.png"))); // NOI18N
+        btndrugstockmgmt.setText("Drug Stock Management");
+        btndrugstockmgmt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnhospitalintActionPerformed(evt);
+                btndrugstockmgmtActionPerformed(evt);
             }
         });
 
@@ -113,49 +116,57 @@ public class HospitalPage extends javax.swing.JFrame {
             }
         });
 
+        btndrugstockcata.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btndrugstockcata.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/hospital/inventory.png"))); // NOI18N
+        btndrugstockcata.setText("Drug Stock Catalog");
+        btndrugstockcata.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btndrugstockcataActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnback)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(btnManageOrganization, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jcentname, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(btnplaceorder, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnmedstaff, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnhospitalint, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(btnmnghospital))))
-                .addContainerGap(7, Short.MAX_VALUE))
+                .addComponent(btnback)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(31, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(btndrugstockcata, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btndrugstockmgmt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnManageOrganization, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
+                    .addComponent(jcentname, 0, 215, Short.MAX_VALUE)
+                    .addComponent(btnplaceorder, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnmnghospital, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnmedstaff, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(54, 54, 54))
         );
 
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnManageOrganization, btnhospitalint, btnmedstaff, btnplaceorder, jcentname});
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnManageOrganization, jcentname});
 
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnback)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(btnManageOrganization))
-                    .addComponent(jcentname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(5, 5, 5)
+                .addComponent(jcentname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnhospitalint)
+                .addComponent(btnManageOrganization)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btndrugstockmgmt)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btndrugstockcata)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnplaceorder)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnmnghospital)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 186, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnmedstaff)
-                .addContainerGap())
+                .addContainerGap(142, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(jPanel2);
@@ -164,7 +175,7 @@ public class HospitalPage extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 924, Short.MAX_VALUE)
+            .addGap(0, 633, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -251,14 +262,16 @@ public class HospitalPage extends javax.swing.JFrame {
        
     }//GEN-LAST:event_btnmedstaffActionPerformed
 
-    private void btnhospitalintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnhospitalintActionPerformed
+    private void btndrugstockmgmtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndrugstockmgmtActionPerformed
         // TODO add your handling code here:
-       
-    }//GEN-LAST:event_btnhospitalintActionPerformed
+       DrugStorageMgmt supint = new DrugStorageMgmt( entp );
+        jSplitPane1.setRightComponent(supint);
+    }//GEN-LAST:event_btndrugstockmgmtActionPerformed
 
     private void jcentnamejCentnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcentnamejCentnameActionPerformed
         // TODO add your handling code here:
         hospital_name = jcentname.getSelectedItem().toString();
+        entp =loadentname (hospital_name);
         jSplitPane1.setRightComponent(null);
     }//GEN-LAST:event_jcentnamejCentnameActionPerformed
 
@@ -273,6 +286,12 @@ public class HospitalPage extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_btnbackActionPerformed
+
+    private void btndrugstockcataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndrugstockcataActionPerformed
+        // TODO add your handling code here:
+        DrugStorageCatalog supint = new DrugStorageCatalog( entp );
+        jSplitPane1.setRightComponent(supint);
+    }//GEN-LAST:event_btndrugstockcataActionPerformed
 
     /**
      * @param args the command line arguments
@@ -312,7 +331,8 @@ public class HospitalPage extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnManageOrganization;
     private javax.swing.JButton btnback;
-    private javax.swing.JButton btnhospitalint;
+    private javax.swing.JButton btndrugstockcata;
+    private javax.swing.JButton btndrugstockmgmt;
     private javax.swing.JButton btnlogout;
     private javax.swing.JButton btnmedstaff;
     private javax.swing.JButton btnmnghospital;
@@ -349,5 +369,32 @@ public class HospitalPage extends javax.swing.JFrame {
             System.out.println(et.toString());
 
         }
+}
+    Enterprise loadentname(String name){
+    //String ent_type =jCentname.getSelectedItem().toString();
+    //String s;
+    Enterprise t;
+    try{
+    connect.connect();
+            // Prepare Statement
+               
+            connect.pet = connect.con.prepareStatement("Select * from enterprise e where e.ent_type='Hospital' and name= ? ");
+           connect.pet.setString(1, name);
+           
+            connect.myRs = connect.pet.executeQuery();
+            if (connect.myRs.next()) {
+                //jcentname.addItem(connect.myRs.getString("name"));
+                t = new Enterprise(connect.myRs.getInt("ent_id"), connect.myRs.getString("ent_type"),
+                        connect.myRs.getString("name"), connect.myRs.getString("email"), connect.myRs.getInt("add_id"));
+                return t;
+            }
+            
+            
+    }
+     catch (Exception et) {
+            System.out.println(et.toString());
+            return new Enterprise();
+        }
+    return new Enterprise();
 }
 }

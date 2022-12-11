@@ -6,6 +6,7 @@ package userinterface.retail;
 
 import dbconnection.JdbcConnect;
 import model.enterprise.Enterprise;
+import model.enterprise.EnterpriseCatalog;
 
 
 /**
@@ -19,10 +20,14 @@ public class RetailPage extends javax.swing.JFrame {
      */
     JdbcConnect con;
     String retail_name;
-    
+     JdbcConnect connect;
+    Enterprise entp;
+    Enterprise supplier;
+    EnterpriseCatalog suppliercata;
     public RetailPage() {
         initComponents();
         con = new JdbcConnect();
+        connect = new JdbcConnect();
         loadDataIndropdown();
 
         ///dhfhfhfh
@@ -260,12 +265,15 @@ public class RetailPage extends javax.swing.JFrame {
     private void btnintmgmtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnintmgmtActionPerformed
         // TODO add your handling code here:
 
-        RetailInventoryCatalog retint = new RetailInventoryCatalog();
+        RetailinventoryManagement retint = new RetailinventoryManagement(entp);
         jSplitPane1.setRightComponent(retint);
     }//GEN-LAST:event_btnintmgmtActionPerformed
 
     private void btnintcatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnintcatActionPerformed
         // TODO add your handling code here:
+        RetailInventoryCatalog retint = new RetailInventoryCatalog(entp);
+        jSplitPane1.setRightComponent(retint);
+                
     }//GEN-LAST:event_btnintcatActionPerformed
 
     private void btnManageOrganizationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageOrganizationActionPerformed
@@ -278,6 +286,7 @@ public class RetailPage extends javax.swing.JFrame {
     private void jcentnamejCentnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcentnamejCentnameActionPerformed
         // TODO add your handling code here:
         retail_name = jcentname.getSelectedItem().toString();
+        entp =loadentname (retail_name);
         jSplitPane1.setRightComponent(null);
     }//GEN-LAST:event_jcentnamejCentnameActionPerformed
 
@@ -362,5 +371,33 @@ public class RetailPage extends javax.swing.JFrame {
 
         }
     }
+    
+        Enterprise loadentname(String name){
+    //String ent_type =jCentname.getSelectedItem().toString();
+    //String s;
+    Enterprise t;
+    try{
+    connect.connect();
+            // Prepare Statement
+               
+            connect.pet = connect.con.prepareStatement("Select * from enterprise e where e.ent_type='Retails' and name= ? ");
+           connect.pet.setString(1, name);
+           
+            connect.myRs = connect.pet.executeQuery();
+            if (connect.myRs.next()) {
+                //jcentname.addItem(connect.myRs.getString("name"));
+                t = new Enterprise(connect.myRs.getInt("ent_id"), connect.myRs.getString("ent_type"),
+                        connect.myRs.getString("name"), connect.myRs.getString("email"), connect.myRs.getInt("add_id"));
+                return t;
+            }
+            
+            
+    }
+     catch (Exception et) {
+            System.out.println(et.toString());
+            return new Enterprise();
+        }
+    return new Enterprise();
+}
 
 }

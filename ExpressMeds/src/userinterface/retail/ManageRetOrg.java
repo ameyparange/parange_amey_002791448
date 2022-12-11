@@ -542,12 +542,16 @@ public class ManageRetOrg extends javax.swing.JPanel {
     }//GEN-LAST:event_btnrefreshActionPerformed
 
     private void btnsregisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsregisterActionPerformed
-        SpecificEntOrgReg orgreg = new SpecificEntOrgReg();
-        orgreg.intializeentname(retail_name,1);
+       if(checkorgs()==1)
+        {btnsregister.setEnabled(false); }
+        else {btnsregister.setEnabled(true);
+                SpecificEntOrgReg orgreg = new SpecificEntOrgReg();
+        orgreg.intializeentname(retail_name,2);
         //adminpage.setPreferredSize(new Dimension(1070, 600));
         orgreg.setVisible(true);
         populatetable(retail_name);
-        refresh();
+        refresh();}
+        
     }//GEN-LAST:event_btnsregisterActionPerformed
 
 

@@ -466,7 +466,7 @@ public class ManageHosOrg extends javax.swing.JPanel {
                 // Prepare Statement
 
                 String query = "Select e.ent_id,e.name,e.ent_type,o.org_id,o.org_type,o.email from enterprise e "
-                + " join organization o on e.ent_id = o.ent_id where e.ent_id=? and  e.ent_type='Supplier'";
+                + " join organization o on e.ent_id = o.ent_id where e.ent_id=? and  e.ent_type='Hospital'";
                 connect.pet = connect.con.prepareStatement(query);
                 connect.pet.setInt(1, selected_hosid);
 
@@ -520,7 +520,7 @@ public class ManageHosOrg extends javax.swing.JPanel {
 
     private void btnsregisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsregisterActionPerformed
         SpecificEntOrgReg orgreg = new SpecificEntOrgReg();
-        orgreg.intializeentname(hos_name,2);
+        orgreg.intializeentname(hos_name,3);
         //adminpage.setPreferredSize(new Dimension(1070, 600));
         orgreg.setVisible(true);
         populatetable(hos_name);

@@ -5,6 +5,7 @@
 package userinterface.admin;
 
 import userinterface.delivery.DeliveryPage;
+import userinterface.hospital.HospitalPage;
 import userinterface.retail.RetailPage;
 import userinterface.supplier.SupplierPage;
 
@@ -72,6 +73,11 @@ public class Dashboard extends javax.swing.JPanel {
 
         btnhospital.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         btnhospital.setText("Hospital");
+        btnhospital.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnhospitalActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -152,6 +158,12 @@ public class Dashboard extends javax.swing.JPanel {
         DeliveryPage deliverypg = new DeliveryPage( );
         deliverypg.setVisible(true);
     }//GEN-LAST:event_btndeliveryActionPerformed
+
+    private void btnhospitalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnhospitalActionPerformed
+        // TODO add your handling code here:
+        HospitalPage deliverypg = new HospitalPage( );
+        deliverypg.setVisible(true);
+    }//GEN-LAST:event_btnhospitalActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
