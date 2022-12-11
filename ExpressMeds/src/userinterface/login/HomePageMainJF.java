@@ -188,12 +188,11 @@ public class HomePageMainJF extends javax.swing.JFrame {
 
             //code to check credentials from database
             try {
-                //System.out.println("USERNAMEEEE - HERE - " + username);
-                //System.out.println("USERNAMEEEE - HERE" + pass);
+
                 int ans = connect.checkCred(username, pass);
                 if (ans == 1) {
                     JOptionPane.showMessageDialog(this, "Login Successful!");
-                    AdminPage adminpage = new AdminPage();
+                    AdminPage adminpage = new AdminPage(username);
                     //adminpage.setPreferredSize(new Dimension(1070, 600));
                     adminpage.setVisible(true);
                 } else if (ans == 2) {
@@ -206,7 +205,7 @@ public class HomePageMainJF extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, e.getMessage());
             }
 
-            //new HomePageMainJF().setVisible(false);
+
         } else {
 
             JOptionPane.showMessageDialog(this, "Please Fill the fields");
@@ -219,7 +218,7 @@ public class HomePageMainJF extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         dispose();
-//        //new HomePageMainJF().setVisible(false);
+        new HomePageMainJF().setVisible(false);
         JFrame frame = new JFrame();
 //        frame.setPreferredSize(new Dimension(800, 500));
         CustomerRegistration frame1 = new CustomerRegistration();
@@ -228,7 +227,7 @@ public class HomePageMainJF extends javax.swing.JFrame {
 //        frame.setExtendedState(JFrame.MAXIMIZED_BOTH); //frame.setUndecorated(true); 
        frame.setVisible(true);
        frame.getContentPane().add(frame1);
-//        frame.setVisible(true);
+       frame.setVisible(true);
 //        //frame1.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
 

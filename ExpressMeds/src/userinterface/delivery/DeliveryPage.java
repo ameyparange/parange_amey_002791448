@@ -9,15 +9,17 @@ import userinterface.employee.EmployeeRegistration;
 
 /**
  *
- * @author amey8
+ * @author nehajoisher
  */
 public class DeliveryPage extends javax.swing.JFrame {
 
     /**
-     * Creates new form DeliveryPage1
+     * Creates new form DeliveryPage
      */
+    String username;
     public DeliveryPage() {
         initComponents();
+        this.username=username;
     }
 
     /**
@@ -243,7 +245,7 @@ public class DeliveryPage extends javax.swing.JFrame {
 
     private void btngrievmngtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btngrievmngtActionPerformed
         // TODO add your handling code here:
-        ManageGrievances mangriev = new ManageGrievances( );
+        ManageGrievances mangriev = new ManageGrievances(username);
         jSplitPane1.setRightComponent(mangriev);
 
     }//GEN-LAST:event_btngrievmngtActionPerformed
