@@ -137,10 +137,10 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="btnManageEnterprise" pref="188" max="32767" attributes="0"/>
+                          <Component id="btnManageEnterprise" max="32767" attributes="0"/>
                           <Component id="btnManageRoles" max="32767" attributes="0"/>
                           <Component id="btnManageOrg" alignment="0" max="32767" attributes="0"/>
-                          <Component id="btnDashboard" alignment="0" pref="188" max="32767" attributes="0"/>
+                          <Component id="btnDashboard" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
