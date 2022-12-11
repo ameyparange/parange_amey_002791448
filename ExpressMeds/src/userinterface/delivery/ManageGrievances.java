@@ -7,6 +7,7 @@ package userinterface.delivery;
 import dbconnection.JdbcConnect;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import model.product.Product;
 
 /**
  *
@@ -24,6 +25,7 @@ public class ManageGrievances extends javax.swing.JPanel {
         connect = new JdbcConnect();
         populatetable();
         disablefields();
+        populatedropdown();
     }
 
     /**
@@ -50,10 +52,10 @@ public class ManageGrievances extends javax.swing.JPanel {
         tfcomplaintdate = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         tfcustname = new javax.swing.JTextField();
-        tfstatus = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         tfdescription = new javax.swing.JTextField();
         cbassignedto = new javax.swing.JComboBox<>();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         jPanel1.setBackground(new java.awt.Color(219, 247, 252));
 
@@ -73,6 +75,11 @@ public class ManageGrievances extends javax.swing.JPanel {
         btnupdate.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         btnupdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/delivery/inventory.png"))); // NOI18N
         btnupdate.setText("Update");
+        btnupdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnupdateActionPerformed(evt);
+            }
+        });
 
         btndelete.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         btndelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/delivery/bin.png"))); // NOI18N
@@ -129,12 +136,6 @@ public class ManageGrievances extends javax.swing.JPanel {
             }
         });
 
-        tfstatus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfstatusActionPerformed(evt);
-            }
-        });
-
         jLabel8.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("Description");
@@ -145,7 +146,10 @@ public class ManageGrievances extends javax.swing.JPanel {
             }
         });
 
-        cbassignedto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbassignedto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pending", "Closed" }));
+        jComboBox1.setToolTipText("");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -173,14 +177,14 @@ public class ManageGrievances extends javax.swing.JPanel {
                                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfcomplaintdate, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tfstatus, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tfcomplaintdate)
+                            .addComponent(jComboBox1, 0, 190, Short.MAX_VALUE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(tfdescription, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(tfdescription, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(38, 38, 38))))
         );
         jPanel4Layout.setVerticalGroup(
@@ -196,7 +200,7 @@ public class ManageGrievances extends javax.swing.JPanel {
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel6)
                         .addComponent(tfcustname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(tfstatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -274,19 +278,16 @@ public class ManageGrievances extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfcustnameActionPerformed
 
-    private void tfstatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfstatusActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfstatusActionPerformed
-
     private void tfdescriptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfdescriptionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfdescriptionActionPerformed
 
     private void btnviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnviewActionPerformed
         // TODO add your handling code here:
+        enablefields();
+        tfcomplaintno.setEnabled(false);
         int row = jTable1.getSelectedRow();
-        //btnrefresh.setEnabled(true);
-        //btnmanufacture.setEnabled(true);
+
         if (row < 0) {
             JOptionPane.showMessageDialog(this,
                     "No row is selected! Please select one row",
@@ -295,24 +296,29 @@ public class ManageGrievances extends javax.swing.JPanel {
         } else {
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 
-            int selected_hosid = (int) model.getValueAt(row, 1);
+            int selected_hosid = (int) model.getValueAt(row, 0);
             try {
                 connect.connect();
                 // Prepare Statement
 
                 connect.pet = connect.con.prepareStatement("select * from customer_grievances where comp_id=?");
-                 
-            
+
                 connect.pet.setInt(1, selected_hosid);
 
                 connect.myRs = connect.pet.executeQuery();
-                
+
                 if (connect.myRs.next()) {
 
                     tfcomplaintno.setText(connect.myRs.getString("comp_id"));
                     tfcomplaintdate.setText(String.valueOf(connect.myRs.getString("date")));
-                    tfcustname.setText(String.valueOf(connect.myRs.getInt("name")));
-                    tfstatus.setText(connect.myRs.getString("status"));
+                    tfcustname.setText(String.valueOf(connect.myRs.getString("name")));
+                    // tfstatus.setText(connect.myRs.getString("status"));
+                    String status = connect.myRs.getString("status");
+                    if (status.equalsIgnoreCase("Pending")) {
+                        jComboBox1.getModel().setSelectedItem(-1);
+                    } else if (status.equalsIgnoreCase("Clsed")) {
+                        jComboBox1.getModel().setSelectedItem(1);
+                    }
                     tfdescription.setText(String.valueOf(connect.myRs.getString("description")));
 
                 }
@@ -328,9 +334,9 @@ public class ManageGrievances extends javax.swing.JPanel {
 
     private void btndeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndeleteActionPerformed
         // TODO add your handling code here:
-        
+
         int row = jTable1.getSelectedRow();
-        
+
         if (row < 0) {
             JOptionPane.showMessageDialog(this,
                     "No row is selected! Please select one row",
@@ -339,7 +345,7 @@ public class ManageGrievances extends javax.swing.JPanel {
         } else {
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 
-            int selected_hosid = (int) model.getValueAt(row, 1);
+            int selected_hosid = (int) model.getValueAt(row, 0);
             try {
                 connect.connect();
 
@@ -353,8 +359,20 @@ public class ManageGrievances extends javax.swing.JPanel {
 
             }
         }
-                 
+
     }//GEN-LAST:event_btndeleteActionPerformed
+
+    private void btnupdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnupdateActionPerformed
+        // TODO add your handling code here:
+        tfcomplaintno.setEnabled(false);
+        String value = cbassignedto.getSelectedItem().toString();
+        String value1 = jComboBox1.getSelectedItem().toString();
+        connect.updateCustomerGrievances(Integer.valueOf(tfcomplaintno.getText()), tfcustname.getText(), tfcomplaintdate.getText(), value, value1, tfdescription.getText());
+        populatetable();
+        clearFields();
+        disablefields();
+        JOptionPane.showMessageDialog(this, "Complaint Deatils Updated Successfully!");
+    }//GEN-LAST:event_btnupdateActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -362,6 +380,7 @@ public class ManageGrievances extends javax.swing.JPanel {
     private javax.swing.JButton btnupdate;
     private javax.swing.JButton btnview;
     private javax.swing.JComboBox<String> cbassignedto;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -376,7 +395,6 @@ public class ManageGrievances extends javax.swing.JPanel {
     private javax.swing.JTextField tfcomplaintno;
     private javax.swing.JTextField tfcustname;
     private javax.swing.JTextField tfdescription;
-    private javax.swing.JTextField tfstatus;
     // End of variables declaration//GEN-END:variables
 void populatetable() {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
@@ -395,9 +413,9 @@ void populatetable() {
                 row[0] = connect.myRs.getInt("comp_id");
                 row[1] = connect.myRs.getString("name");
                 row[2] = connect.myRs.getString("emp_name");
-                row[3] = connect.myRs.getString("description");//username
-                row[4] = connect.myRs.getString("date");
-                row[5] = connect.myRs.getString("status");
+                row[3] = connect.myRs.getString("date");//username
+                row[4] = connect.myRs.getString("status");
+                row[5] = connect.myRs.getString("description");
 
                 model.addRow(row);
             }
@@ -413,9 +431,9 @@ void populatetable() {
         tfcomplaintno.setEnabled(true);
         tfcomplaintdate.setEnabled(true);
         tfcustname.setEnabled(true);
-        tfstatus.setEnabled(true);
+        jComboBox1.setEnabled(true);
         cbassignedto.setEnabled(true);
-        tfdescription.setEnabled(false);
+        tfdescription.setEnabled(true);
 
     }
 
@@ -423,11 +441,39 @@ void populatetable() {
         tfcomplaintno.setEnabled(false);
         tfcomplaintdate.setEnabled(false);
         tfcustname.setEnabled(false);
-        tfstatus.setEnabled(false);
+        jComboBox1.setEnabled(false);
         cbassignedto.setEnabled(false);
         tfdescription.setEnabled(false);
 
     }
 
+    void populatedropdown() {
+        try {
+            connect.connect();
+
+            connect.pet = connect.con.prepareStatement("select fname from person where role_name=?");
+            connect.pet.setString(1, "DelyAgent");
+            connect.myRs = connect.pet.executeQuery();
+
+            while (connect.myRs.next()) {
+                cbassignedto.addItem(connect.myRs.getString("fname"));
+
+            }
+        } catch (Exception e) {
+            System.out.println(e.toString());
+
+        }
+
+    }
+
+    void clearFields() {
+        tfcomplaintno.setText("");
+        tfcomplaintdate.setText("");
+        tfcustname.setText("");
+        jComboBox1.setSelectedIndex(0);
+        cbassignedto.setSelectedIndex(-1);
+        tfdescription.setText("");
+
+    }
 
 }
