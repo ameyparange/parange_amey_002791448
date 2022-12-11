@@ -11,6 +11,7 @@ import model.enterprise.Enterprise;
 import model.enterprise.EnterpriseCatalog;
 import userinterface.admin.AdminPage;
 import userinterface.admin.Dashboard;
+import userinterface.customer.RetailOrdersCatalog;
 import userinterface.delivery.RetialSupplierOrder;
 import userinterface.retail.ManageEmployee;
 
@@ -67,6 +68,7 @@ public class RetailPage extends javax.swing.JFrame {
         btnempmgmt = new javax.swing.JButton();
         btnManageOrganization = new javax.swing.JButton();
         jcentname = new javax.swing.JComboBox<>();
+        btncustordermgmt = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         btnlogout = new javax.swing.JButton();
@@ -93,6 +95,11 @@ public class RetailPage extends javax.swing.JFrame {
         btncustordercata.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         btncustordercata.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/retail/checkout.png"))); // NOI18N
         btncustordercata.setText("Customer Order Catalog");
+        btncustordercata.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btncustordercataActionPerformed(evt);
+            }
+        });
 
         btnemployees.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         btnemployees.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/retail/employee.png"))); // NOI18N
@@ -154,6 +161,15 @@ public class RetailPage extends javax.swing.JFrame {
             }
         });
 
+        btncustordermgmt.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btncustordermgmt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/retail/checkout.png"))); // NOI18N
+        btncustordermgmt.setText("Customer Order Mgmt");
+        btncustordermgmt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btncustordermgmtActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -172,8 +188,9 @@ public class RetailPage extends javax.swing.JFrame {
                         .addComponent(btnplaceorder, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnintcat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnManageOrganization, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jcentname, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(12, Short.MAX_VALUE))
+                        .addComponent(jcentname, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btncustordermgmt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -182,7 +199,7 @@ public class RetailPage extends javax.swing.JFrame {
                 .addComponent(btnback)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jcentname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addComponent(btnManageOrganization)
                 .addGap(18, 18, 18)
                 .addComponent(btnintcat)
@@ -192,11 +209,13 @@ public class RetailPage extends javax.swing.JFrame {
                 .addComponent(btnplaceorder)
                 .addGap(18, 18, 18)
                 .addComponent(btncustordercata)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btncustordermgmt)
+                .addGap(9, 9, 9)
                 .addComponent(btnemployees)
                 .addGap(18, 18, 18)
                 .addComponent(btnempmgmt)
-                .addGap(154, 154, 154))
+                .addGap(125, 125, 125))
         );
 
         jSplitPane1.setLeftComponent(jPanel1);
@@ -349,6 +368,18 @@ public class RetailPage extends javax.swing.JFrame {
          jSplitPane1.setRightComponent(manageEmployee);
     }//GEN-LAST:event_btnempmgmtActionPerformed
 
+    private void btncustordercataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncustordercataActionPerformed
+        // TODO add your handling code here:
+        RetailOrdersCatalog manageEmployee=new RetailOrdersCatalog(entp,username);
+         jSplitPane1.setRightComponent(manageEmployee);
+    }//GEN-LAST:event_btncustordercataActionPerformed
+
+    private void btncustordermgmtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncustordermgmtActionPerformed
+        // TODO add your handling code here:
+        RetailOrderMgmt  manageEmployee=new RetailOrderMgmt(entp,username);
+         jSplitPane1.setRightComponent(manageEmployee);
+    }//GEN-LAST:event_btncustordermgmtActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -391,6 +422,7 @@ public class RetailPage extends javax.swing.JFrame {
     private javax.swing.JButton btnManageOrganization;
     private javax.swing.JButton btnback;
     private javax.swing.JButton btncustordercata;
+    private javax.swing.JButton btncustordermgmt;
     private javax.swing.JButton btnemployees;
     private javax.swing.JButton btnempmgmt;
     private javax.swing.JButton btnintcat;

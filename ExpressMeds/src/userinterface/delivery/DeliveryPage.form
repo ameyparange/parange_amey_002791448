@@ -102,7 +102,7 @@
                               <Component id="btncustordercat" alignment="1" max="32767" attributes="0"/>
                               <Component id="btnemployees" alignment="1" max="32767" attributes="0"/>
                               <Component id="btngrievmngt" alignment="0" max="32767" attributes="0"/>
-                              <Component id="btncustordercat1" alignment="0" pref="0" max="32767" attributes="0"/>
+                              <Component id="btncustorder" alignment="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace pref="26" max="32767" attributes="0"/>
                       </Group>
@@ -116,7 +116,7 @@
                           <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
                           <Component id="btnsupordercat" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="btncustordercat1" min="-2" max="-2" attributes="0"/>
+                          <Component id="btncustorder" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="btncustordercat" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -190,7 +190,7 @@
                     <Property name="text" type="java.lang.String" value="Back"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="btncustordercat1">
+                <Component class="javax.swing.JButton" name="btncustorder">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="SansSerif" size="14" style="0"/>
@@ -198,10 +198,10 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/userinterface/retail/checkout.png"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Customer Order Catalog"/>
+                    <Property name="text" type="java.lang.String" value="Customer Order"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btncustordercat1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btncustorderActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>

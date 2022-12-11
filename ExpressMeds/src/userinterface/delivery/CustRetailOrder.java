@@ -15,10 +15,10 @@ import model.order.OrderitemCatalog;
  *
  * @author amey8
  */
-public class RetialSupplierOrder extends javax.swing.JPanel {
+public class CustRetailOrder extends javax.swing.JPanel {
 
     /**
-     * Creates new form RetialSupplierOrder
+     * Creates new form CustRetailOrder
      */
     JdbcConnect connect;
     int itemno =0;
@@ -26,13 +26,12 @@ public class RetialSupplierOrder extends javax.swing.JPanel {
     String suppliername;
     Enterprise entp;
     String username;
-    public RetialSupplierOrder(Enterprise entp,String username) {
+    public CustRetailOrder(Enterprise entp,String username) {
         initComponents();
         connect = new JdbcConnect();
-        
-        this.username=username;
         ordcata = new OrderitemCatalog();
-        loadsupname();
+        this.username=username;
+        loadretname();
         this.entp=entp;
         btnplaceorder.setEnabled(false);
     }
@@ -46,7 +45,6 @@ public class RetialSupplierOrder extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
         tfsproductname = new javax.swing.JTextField();
@@ -56,23 +54,21 @@ public class RetialSupplierOrder extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         ProductCata = new javax.swing.JTable();
-        jPanel12 = new javax.swing.JPanel();
         btnview = new javax.swing.JButton();
         btnrefresh = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         tfquantity = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        tftotalorderprice = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         OrderItems = new javax.swing.JTable();
-        tftotalorderprice = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
         btnplaceorder = new javax.swing.JButton();
         btndeleteitem = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jcsupname = new javax.swing.JComboBox<>();
         btnapply = new javax.swing.JButton();
-
-        jPanel1.setBackground(new java.awt.Color(219, 247, 252));
 
         jPanel8.setBackground(new java.awt.Color(204, 204, 204));
         jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED), "Supplier Order Items", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 3, 14))); // NOI18N
@@ -103,7 +99,7 @@ public class RetialSupplierOrder extends javax.swing.JPanel {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Supplier Name", "Product_id", "Name", "ItemPrice", "Available Qty", "Weight", "Description"
+                "Retail Name", "Product_id", "Name", "ItemPrice", "Available Qty", "Weight", "Description"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -137,7 +133,7 @@ public class RetialSupplierOrder extends javax.swing.JPanel {
                         .addComponent(tfsid, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(32, 32, 32)
                         .addComponent(btnsearch)
-                        .addGap(0, 136, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel11Layout.setVerticalGroup(
@@ -151,22 +147,7 @@ public class RetialSupplierOrder extends javax.swing.JPanel {
                     .addComponent(tfsproductname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        jPanel12.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jPanel12.setOpaque(false);
-
-        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
-        jPanel12.setLayout(jPanel12Layout);
-        jPanel12Layout.setHorizontalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 114, Short.MAX_VALUE)
-        );
-        jPanel12Layout.setVerticalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 48, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         btnview.setBackground(new java.awt.Color(153, 153, 153));
@@ -199,17 +180,11 @@ public class RetialSupplierOrder extends javax.swing.JPanel {
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGap(319, 319, 319)
-                        .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap()
+                .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tfquantity, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -222,22 +197,45 @@ public class RetialSupplierOrder extends javax.swing.JPanel {
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(tfquantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel6))
                     .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnview)
-                        .addComponent(btnrefresh)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36))
+                        .addComponent(btnrefresh))))
         );
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED), "Retail Cart", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 3, 14))); // NOI18N
+
+        jPanel6.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jPanel6.setOpaque(false);
+
+        jLabel5.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
+        jLabel5.setText("Total Order Price");
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tftotalorderprice, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(18, Short.MAX_VALUE)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(tftotalorderprice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addContainerGap())
+        );
 
         OrderItems.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -259,9 +257,6 @@ public class RetialSupplierOrder extends javax.swing.JPanel {
             }
         });
         jScrollPane2.setViewportView(OrderItems);
-
-        jLabel5.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        jLabel5.setText("Total Order Price");
 
         btnplaceorder.setBackground(new java.awt.Color(153, 153, 153));
         btnplaceorder.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -292,13 +287,11 @@ public class RetialSupplierOrder extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(80, 80, 80)
                 .addComponent(btndeleteitem)
-                .addGap(122, 122, 122)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tftotalorderprice, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(136, 136, 136)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnplaceorder)
-                .addGap(20, 20, 20))
+                .addContainerGap(17, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addGap(15, 15, 15)
@@ -307,23 +300,27 @@ public class RetialSupplierOrder extends javax.swing.JPanel {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(151, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btndeleteitem)
-                    .addComponent(tftotalorderprice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(btnplaceorder))
-                .addGap(47, 47, 47))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(138, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(btndeleteitem)
+                        .addGap(47, 47, 47))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(btnplaceorder)
+                        .addGap(47, 47, 47))))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addGap(26, 26, 26)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(80, Short.MAX_VALUE)))
+                    .addContainerGap(79, Short.MAX_VALUE)))
         );
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        jLabel1.setText("Supplier");
+        jLabel1.setText("Retail");
 
         jcsupname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -342,17 +339,11 @@ public class RetialSupplierOrder extends javax.swing.JPanel {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
                 .addGap(227, 227, 227)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -360,58 +351,47 @@ public class RetialSupplierOrder extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnapply)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jcsupname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnapply))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jcsupname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnapply))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnsearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsearchActionPerformed
         // TODO add your handling code here:
-//        if (!tfsid.getText().isEmpty()) {
-//            populatetable(Integer.valueOf(tfsid.getText()) );
-//        } else if (!tfsproductname.getText().isEmpty()) {
-//            populatetableon_name(tfsproductname.getText());
-//
-//        } else {
-//            JOptionPane.showMessageDialog(this,
-//                "Search on Product Id or Product Name");
-//        }
+        //        if (!tfsid.getText().isEmpty()) {
+            //            populatetable(Integer.valueOf(tfsid.getText()) );
+            //        } else if (!tfsproductname.getText().isEmpty()) {
+            //            populatetableon_name(tfsproductname.getText());
+            //
+            //        } else {
+            //            JOptionPane.showMessageDialog(this,
+                //                "Search on Product Id or Product Name");
+            //        }
     }//GEN-LAST:event_btnsearchActionPerformed
 
     private void btnviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnviewActionPerformed
         // TODO add your handling code here:
         int row = ProductCata.getSelectedRow();
         btnrefresh.setEnabled(true);
-        
+
         if (row < 0) {
             JOptionPane.showMessageDialog(this,
                 "No row is selected! Please select one row",
@@ -419,32 +399,33 @@ public class RetialSupplierOrder extends javax.swing.JPanel {
                 JOptionPane.ERROR_MESSAGE);
         } else {
             
+
             if (  !tfquantity.getText().isEmpty()) {
-            OrderItem orderitem;
-            DefaultTableModel model = (DefaultTableModel) ProductCata.getModel();
-            //System.out.println();
-            int prod_id = Integer.valueOf( model.getValueAt(row, 1).toString());
-            btnplaceorder.setEnabled(true);
-            String name =  model.getValueAt(row, 2).toString();
-            int price = Integer.valueOf( model.getValueAt(row, 3).toString());
-           int avail_qty = Integer.valueOf( model.getValueAt(row, 4).toString());
-            int weight = Integer.valueOf( model.getValueAt(row, 5).toString());
-             String desc = (String ) model.getValueAt(row, 6).toString();
-             int order_qty = Integer.valueOf(tfquantity.getText());
-             itemno=itemno+1;
-             orderitem= new OrderItem(itemno,prod_id,name,price,order_qty,weight,desc,price*order_qty);
-             System.out.println(orderitem.toString());
-             ordcata.addOrderitem(orderitem);
-             populatetable();
+                OrderItem orderitem;
+                DefaultTableModel model = (DefaultTableModel) ProductCata.getModel();
+                //System.out.println();
+                int prod_id = Integer.valueOf( model.getValueAt(row, 1).toString());
+                btnplaceorder.setEnabled(true);
+                String name =  model.getValueAt(row, 2).toString();
+                int price = Integer.valueOf( model.getValueAt(row, 3).toString());
+                int avail_qty = Integer.valueOf( model.getValueAt(row, 4).toString());
+                int weight = Integer.valueOf( model.getValueAt(row, 5).toString());
+                String desc = (String ) model.getValueAt(row, 6).toString();
+                int order_qty = Integer.valueOf(tfquantity.getText());
+                itemno=itemno+1;
+                orderitem= new OrderItem(itemno,prod_id,name,price,order_qty,weight,desc,price*order_qty);
+                System.out.println(orderitem.toString());
+                ordcata.addOrderitem(orderitem);
+                populatetable();
             }
             else {
-            
-            JOptionPane.showMessageDialog(this,
-                "Quantity not provided",
-                "Enter Qauntity",
-                JOptionPane.ERROR_MESSAGE);
+
+                JOptionPane.showMessageDialog(this,
+                    "Quantity not provided",
+                    "Enter Qauntity",
+                    JOptionPane.ERROR_MESSAGE);
             }
-            
+
         }
     }//GEN-LAST:event_btnviewActionPerformed
 
@@ -453,39 +434,26 @@ public class RetialSupplierOrder extends javax.swing.JPanel {
         refresh();
     }//GEN-LAST:event_btnrefreshActionPerformed
 
-    private void jcsupnamejCentnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcsupnamejCentnameActionPerformed
-        // TODO add your handling code here:
-       
-    }//GEN-LAST:event_jcsupnamejCentnameActionPerformed
-
     private void btnplaceorderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnplaceorderActionPerformed
         // TODO add your handling code here:
 
         connect.insertorder(username,entp.getName(),suppliername,Integer.valueOf(tftotalorderprice.getText()));
-       connect.insertorderitem( ordcata,connect.getlatestorderid());
-       connect.insertdelivery(connect.getlatestorderid());
-       DefaultTableModel model = (DefaultTableModel) OrderItems.getModel();
+        connect.insertorderitem( ordcata,connect.getlatestorderid());
+        connect.insertdelivery(connect.getlatestorderid());
+        DefaultTableModel model = (DefaultTableModel) OrderItems.getModel();
         model.setRowCount(0);
-       btnplaceorder.setEnabled(false);
-
+        btnplaceorder.setEnabled(false);
     }//GEN-LAST:event_btnplaceorderActionPerformed
-
-    private void btnapplyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnapplyActionPerformed
-        // TODO add your handling code here:
-        suppliername= jcsupname.getSelectedItem().toString();
-        loadsupplierorderitems(suppliername);
-        btnapply.setEnabled(false);
-    }//GEN-LAST:event_btnapplyActionPerformed
 
     private void btndeleteitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndeleteitemActionPerformed
         // TODO add your handling code here:
-          int row = OrderItems.getSelectedRow();
-        
+        int row = OrderItems.getSelectedRow();
+
         if (row < 0) {
             JOptionPane.showMessageDialog(this,
-                    "No row is selected! Please select one row",
-                    "Select row",
-                    JOptionPane.ERROR_MESSAGE);
+                "No row is selected! Please select one row",
+                "Select row",
+                JOptionPane.ERROR_MESSAGE);
         } else {
             DefaultTableModel model = (DefaultTableModel) OrderItems.getModel();
 
@@ -494,6 +462,18 @@ public class RetialSupplierOrder extends javax.swing.JPanel {
             populatetable();
         }
     }//GEN-LAST:event_btndeleteitemActionPerformed
+
+    private void jcsupnamejCentnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcsupnamejCentnameActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jcsupnamejCentnameActionPerformed
+
+    private void btnapplyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnapplyActionPerformed
+        // TODO add your handling code here:
+        suppliername= jcsupname.getSelectedItem().toString();
+        loadsupplierorderitems(suppliername);
+        btnapply.setEnabled(false);
+    }//GEN-LAST:event_btnapplyActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -510,10 +490,9 @@ public class RetialSupplierOrder extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -523,8 +502,7 @@ public class RetialSupplierOrder extends javax.swing.JPanel {
     private javax.swing.JTextField tfsproductname;
     private javax.swing.JTextField tftotalorderprice;
     // End of variables declaration//GEN-END:variables
-
-    void loadsupname(){
+void loadretname(){
     //String ent_type =jCentname.getSelectedItem().toString();
     //String s;
     
@@ -532,7 +510,7 @@ public class RetialSupplierOrder extends javax.swing.JPanel {
     connect.connect();
             // Prepare Statement
                
-            connect.pet = connect.con.prepareStatement("Select * from enterprise e where e.ent_type='Supplier'");
+            connect.pet = connect.con.prepareStatement("Select * from enterprise e where e.ent_type='Retails'");
             connect.myRs = connect.pet.executeQuery();
             while (connect.myRs.next()) {
                 jcsupname.addItem(connect.myRs.getString("name"));
@@ -550,6 +528,7 @@ public class RetialSupplierOrder extends javax.swing.JPanel {
     
     void loadsupplierorderitems(String suppliername)
     {
+        
         DefaultTableModel model = (DefaultTableModel) ProductCata.getModel();
         model.setRowCount(0);
          try{
@@ -557,7 +536,7 @@ public class RetialSupplierOrder extends javax.swing.JPanel {
             // Prepare Statement
                
             connect.pet = connect.con.prepareStatement("Select p.product_id,p.name,p.price,i.quantity,p.weight, p.desc1 from enterprise e join product p on e.ent_id = p.ent_id"
-                    + " join inventory i on p.product_id = i.product_id  where e.ent_type='Supplier'"
+                    + " join inventory i on p.product_id = i.product_id  where e.ent_type='Retails'"
                     + " and e.name=? ");
             connect.pet.setString(1, suppliername);
             connect.myRs = connect.pet.executeQuery();
@@ -586,7 +565,7 @@ public class RetialSupplierOrder extends javax.swing.JPanel {
         
     }
     void refresh(){
-            ordcata = new OrderitemCatalog();
+        ordcata = new OrderitemCatalog();
         tfquantity.setText("");
     tfsid.setText("");
     tfsproductname.setText("");
@@ -626,6 +605,5 @@ public class RetialSupplierOrder extends javax.swing.JPanel {
     tftotalorderprice.setText(String.valueOf(tot_price));
  
     }
-    
-    
+
 }

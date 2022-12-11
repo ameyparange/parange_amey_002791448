@@ -1,5 +1,6 @@
 package userinterface.delivery;
 
+import model.enterprise.Enterprise;
 import userinterface.employee.EmployeeRegistration;
 
 /*
@@ -17,9 +18,11 @@ public class DeliveryPage extends javax.swing.JFrame {
      * Creates new form DeliveryPage
      */
     String username;
+    Enterprise entp;
     public DeliveryPage(String username) {
         initComponents();
         this.username=username;
+        entp = new Enterprise(1,"Delivery","Doordash","Enterprise",0);
     }
 
     /**
@@ -39,7 +42,7 @@ public class DeliveryPage extends javax.swing.JFrame {
         btnemployees = new javax.swing.JButton();
         btngrievmngt = new javax.swing.JButton();
         btnback = new javax.swing.JButton();
-        btncustordercat1 = new javax.swing.JButton();
+        btncustorder = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -88,12 +91,12 @@ public class DeliveryPage extends javax.swing.JFrame {
         btnback.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/supplier/back.png"))); // NOI18N
         btnback.setText("Back");
 
-        btncustordercat1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        btncustordercat1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/retail/checkout.png"))); // NOI18N
-        btncustordercat1.setText("Customer Order Catalog");
-        btncustordercat1.addActionListener(new java.awt.event.ActionListener() {
+        btncustorder.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btncustorder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/retail/checkout.png"))); // NOI18N
+        btncustorder.setText("Customer Order");
+        btncustorder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btncustordercat1ActionPerformed(evt);
+                btncustorderActionPerformed(evt);
             }
         });
 
@@ -111,7 +114,7 @@ public class DeliveryPage extends javax.swing.JFrame {
                     .addComponent(btncustordercat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnemployees, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btngrievmngt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btncustordercat1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(btncustorder, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -122,7 +125,7 @@ public class DeliveryPage extends javax.swing.JFrame {
                 .addGap(82, 82, 82)
                 .addComponent(btnsupordercat)
                 .addGap(18, 18, 18)
-                .addComponent(btncustordercat1)
+                .addComponent(btncustorder)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btncustordercat)
                 .addGap(18, 18, 18)
@@ -239,7 +242,7 @@ public class DeliveryPage extends javax.swing.JFrame {
 
     private void btnsupordercatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsupordercatActionPerformed
         // TODO add your handling code here:
-        DeliverySupplierOrderCatalog delsupord = new DeliverySupplierOrderCatalog( );
+        DeliveryCatalog delsupord = new DeliveryCatalog(entp,username );
         jSplitPane1.setRightComponent(delsupord);
 
     }//GEN-LAST:event_btnsupordercatActionPerformed
@@ -271,9 +274,11 @@ public class DeliveryPage extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnlogoutActionPerformed
 
-    private void btncustordercat1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncustordercat1ActionPerformed
+    private void btncustorderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncustorderActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btncustordercat1ActionPerformed
+        CustRetailOrder mangriev = new CustRetailOrder(entp,username);
+        jSplitPane1.setRightComponent(mangriev);
+    }//GEN-LAST:event_btncustorderActionPerformed
 
     /**
      * @param args the command line arguments
@@ -313,8 +318,8 @@ public class DeliveryPage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnback;
+    private javax.swing.JButton btncustorder;
     private javax.swing.JButton btncustordercat;
-    private javax.swing.JButton btncustordercat1;
     private javax.swing.JButton btnemployees;
     private javax.swing.JButton btngrievmngt;
     private javax.swing.JButton btnlogout;
