@@ -55,7 +55,7 @@ public class OrganizationRegistration extends javax.swing.JFrame {
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(51, 51, 51)), "Basic Information", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Historic", 3, 14))); // NOI18N
 
-        jCenttype.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Supplier", "Retails", "Hospital", "Doordash" }));
+        jCenttype.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Supplier", "Retails", "Hospital", "Delivery" }));
         jCenttype.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCenttypeActionPerformed(evt);
@@ -315,7 +315,7 @@ void loadentname(){
 
             connect.pet = connect.con.prepareStatement("Select * from enterprise e where e.ent_type=?");
            connect.pet.setString(1, ent_type);
-           
+           System.out.println(connect.pet.toString());
             connect.myRs = connect.pet.executeQuery();
             while (connect.myRs.next()) {
                 jCentname.addItem(connect.myRs.getString("name"));

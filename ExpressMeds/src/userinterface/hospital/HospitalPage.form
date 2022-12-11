@@ -73,8 +73,7 @@
                           <Component id="btnManageOrganization" linkSize="3" alignment="1" pref="209" max="32767" attributes="0"/>
                           <Component id="jcentname" linkSize="3" alignment="1" pref="215" max="32767" attributes="0"/>
                           <Component id="btnplaceorder" alignment="0" max="32767" attributes="0"/>
-                          <Component id="btnmnghospital" alignment="0" max="32767" attributes="0"/>
-                          <Component id="btnmedstaff" alignment="1" max="32767" attributes="0"/>
+                          <Component id="btnhospordermgmt" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                   </Group>
@@ -96,29 +95,13 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="btnplaceorder" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="btnmnghospital" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnmedstaff" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="142" max="32767" attributes="0"/>
+                      <Component id="btnhospordermgmt" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="174" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="btnmnghospital">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="SansSerif" size="14" style="0"/>
-                </Property>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/userinterface/hospital/Manage hospital.png"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Manage Hospital"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnmnghospitalActionPerformed"/>
-              </Events>
-            </Component>
             <Component class="javax.swing.JButton" name="btnplaceorder">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -131,20 +114,6 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnplaceorderActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JButton" name="btnmedstaff">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="SansSerif" size="14" style="0"/>
-                </Property>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/userinterface/retail/employee.png"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Medical Staff"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnmedstaffActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btndrugstockmgmt">
@@ -214,6 +183,20 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btndrugstockcataActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnhospordermgmt">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="SansSerif" size="14" style="0"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/userinterface/retail/checkout.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Hospital Order Catalog"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnhospordermgmtActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

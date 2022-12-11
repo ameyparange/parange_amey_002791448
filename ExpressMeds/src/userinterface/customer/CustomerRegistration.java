@@ -646,6 +646,7 @@ public class CustomerRegistration extends javax.swing.JPanel {
         tfemailid.setText("");
         tfunit.setText("");
         tfcountry.setText("");
+        tfcity.setText("");
         //listgender.clearSelection();
         tfstate.setText("");
         tfzipcode.setText("");

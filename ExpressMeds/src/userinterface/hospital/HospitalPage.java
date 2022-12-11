@@ -10,6 +10,7 @@ import javax.swing.SwingUtilities;
 import model.enterprise.Enterprise;
 import userinterface.admin.AdminPage;
 import userinterface.admin.Dashboard;
+import userinterface.delivery.HospRetailOrder;
 import userinterface.login.HomePageMainJF;
 import userinterface.supplier.SupplierPage;
 
@@ -44,14 +45,13 @@ public class HospitalPage extends javax.swing.JFrame {
 
         jSplitPane1 = new javax.swing.JSplitPane();
         jPanel2 = new javax.swing.JPanel();
-        btnmnghospital = new javax.swing.JButton();
         btnplaceorder = new javax.swing.JButton();
-        btnmedstaff = new javax.swing.JButton();
         btndrugstockmgmt = new javax.swing.JButton();
         btnback = new javax.swing.JButton();
         jcentname = new javax.swing.JComboBox<>();
         btnManageOrganization = new javax.swing.JButton();
         btndrugstockcata = new javax.swing.JButton();
+        btnhospordermgmt = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -64,30 +64,12 @@ public class HospitalPage extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(219, 247, 252));
 
-        btnmnghospital.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        btnmnghospital.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/hospital/Manage hospital.png"))); // NOI18N
-        btnmnghospital.setText("Manage Hospital");
-        btnmnghospital.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnmnghospitalActionPerformed(evt);
-            }
-        });
-
         btnplaceorder.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         btnplaceorder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/retail/checkout.png"))); // NOI18N
         btnplaceorder.setText("Place Order");
         btnplaceorder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnplaceorderActionPerformed(evt);
-            }
-        });
-
-        btnmedstaff.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        btnmedstaff.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/retail/employee.png"))); // NOI18N
-        btnmedstaff.setText("Medical Staff");
-        btnmedstaff.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnmedstaffActionPerformed(evt);
             }
         });
 
@@ -133,6 +115,15 @@ public class HospitalPage extends javax.swing.JFrame {
             }
         });
 
+        btnhospordermgmt.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btnhospordermgmt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/retail/checkout.png"))); // NOI18N
+        btnhospordermgmt.setText("Hospital Order Catalog");
+        btnhospordermgmt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnhospordermgmtActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -148,8 +139,7 @@ public class HospitalPage extends javax.swing.JFrame {
                     .addComponent(btnManageOrganization, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
                     .addComponent(jcentname, 0, 215, Short.MAX_VALUE)
                     .addComponent(btnplaceorder, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnmnghospital, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnmedstaff, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnhospordermgmt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(54, 54, 54))
         );
 
@@ -171,10 +161,8 @@ public class HospitalPage extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnplaceorder)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnmnghospital)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnmedstaff)
-                .addContainerGap(142, Short.MAX_VALUE))
+                .addComponent(btnhospordermgmt)
+                .addContainerGap(174, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(jPanel2);
@@ -259,21 +247,12 @@ public class HospitalPage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnmnghospitalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmnghospitalActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_btnmnghospitalActionPerformed
-
     private void btnplaceorderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnplaceorderActionPerformed
         // TODO add your handling code here:
         
+                 HospRetailOrder supint = new HospRetailOrder( entp,username );
+        jSplitPane1.setRightComponent(supint);
     }//GEN-LAST:event_btnplaceorderActionPerformed
-
-    private void btnmedstaffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmedstaffActionPerformed
-        // TODO add your handling code here:
-
-       
-    }//GEN-LAST:event_btnmedstaffActionPerformed
 
     private void btndrugstockmgmtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndrugstockmgmtActionPerformed
         // TODO add your handling code here:
@@ -318,6 +297,12 @@ public class HospitalPage extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnlogoutActionPerformed
 
+    private void btnhospordermgmtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnhospordermgmtActionPerformed
+        // TODO add your handling code here:
+        HospitalOrderCatalogR  manageEmployee=new HospitalOrderCatalogR(entp,username);
+        jSplitPane1.setRightComponent(manageEmployee);
+    }//GEN-LAST:event_btnhospordermgmtActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -358,9 +343,8 @@ public class HospitalPage extends javax.swing.JFrame {
     private javax.swing.JButton btnback;
     private javax.swing.JButton btndrugstockcata;
     private javax.swing.JButton btndrugstockmgmt;
+    private javax.swing.JButton btnhospordermgmt;
     private javax.swing.JButton btnlogout;
-    private javax.swing.JButton btnmedstaff;
-    private javax.swing.JButton btnmnghospital;
     private javax.swing.JButton btnplaceorder;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;

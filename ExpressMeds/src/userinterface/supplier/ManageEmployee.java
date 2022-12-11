@@ -81,7 +81,7 @@ public class ManageEmployee extends javax.swing.JPanel {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Organisation Name", "Employee ID", "Employee Name", "Gender", "Mobile No", "Email id"
+                "Organisation Name", "Employee ID", "Employee Name", "email", "Mobile No", "Gender"
             }
         ) {
             boolean[] canEdit = new boolean [] {

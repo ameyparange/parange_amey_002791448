@@ -13,6 +13,7 @@ import userinterface.admin.AdminPage;
 import userinterface.admin.Dashboard;
 import userinterface.customer.RetailOrdersCatalog;
 import userinterface.delivery.RetialSupplierOrder;
+import userinterface.hospital.HospitalOrderCatalogR;
 import userinterface.login.HomePageMainJF;
 import userinterface.retail.ManageEmployee;
 
@@ -70,6 +71,7 @@ public class RetailPage extends javax.swing.JFrame {
         btnManageOrganization = new javax.swing.JButton();
         jcentname = new javax.swing.JComboBox<>();
         btncustordermgmt = new javax.swing.JButton();
+        btnhospordermgmt = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         btnlogout = new javax.swing.JButton();
@@ -171,6 +173,15 @@ public class RetailPage extends javax.swing.JFrame {
             }
         });
 
+        btnhospordermgmt.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btnhospordermgmt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/retail/checkout.png"))); // NOI18N
+        btnhospordermgmt.setText("Hospital Order Mgmt");
+        btnhospordermgmt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnhospordermgmtActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -190,8 +201,9 @@ public class RetailPage extends javax.swing.JFrame {
                         .addComponent(btnintcat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnManageOrganization, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jcentname, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btncustordermgmt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(btncustordermgmt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnhospordermgmt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,11 +224,13 @@ public class RetailPage extends javax.swing.JFrame {
                 .addComponent(btncustordercata)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btncustordermgmt)
-                .addGap(9, 9, 9)
+                .addGap(13, 13, 13)
+                .addComponent(btnhospordermgmt)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnemployees)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnempmgmt)
-                .addGap(125, 125, 125))
+                .addGap(95, 95, 95))
         );
 
         jSplitPane1.setLeftComponent(jPanel1);
@@ -383,6 +397,12 @@ public class RetailPage extends javax.swing.JFrame {
          jSplitPane1.setRightComponent(manageEmployee);
     }//GEN-LAST:event_btncustordermgmtActionPerformed
 
+    private void btnhospordermgmtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnhospordermgmtActionPerformed
+        // TODO add your handling code here:
+        HospitalOrderMgmt  manageEmployee=new HospitalOrderMgmt(entp,username);
+         jSplitPane1.setRightComponent(manageEmployee);
+    }//GEN-LAST:event_btnhospordermgmtActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -428,6 +448,7 @@ public class RetailPage extends javax.swing.JFrame {
     private javax.swing.JButton btncustordermgmt;
     private javax.swing.JButton btnemployees;
     private javax.swing.JButton btnempmgmt;
+    private javax.swing.JButton btnhospordermgmt;
     private javax.swing.JButton btnintcat;
     private javax.swing.JButton btnlogout;
     private javax.swing.JButton btnplaceorder;

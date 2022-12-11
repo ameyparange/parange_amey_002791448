@@ -59,7 +59,6 @@ public class SupplierWarehouseCatalog extends javax.swing.JPanel {
         tfdescription = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
-        btnmanufacture = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         btnsearch = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -205,32 +204,15 @@ public class SupplierWarehouseCatalog extends javax.swing.JPanel {
         jPanel5.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jPanel5.setOpaque(false);
 
-        btnmanufacture.setBackground(new java.awt.Color(204, 204, 204));
-        btnmanufacture.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        btnmanufacture.setText("Manufacture Batches");
-        btnmanufacture.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnmanufacture.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnmanufacture.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnmanufactureActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(403, Short.MAX_VALUE)
-                .addComponent(btnmanufacture)
-                .addContainerGap())
+            .addGap(0, 551, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnmanufacture, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+            .addGap(0, 52, Short.MAX_VALUE)
         );
 
         jPanel6.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -440,18 +422,6 @@ public class SupplierWarehouseCatalog extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnmanufactureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmanufactureActionPerformed
-        // TODO add your handling code here:
-        Product p;
-        p = new Product (Integer.valueOf(tfprodid.getText()),ent.getEnt_id(),tfprodname.getText(),Integer.valueOf(tfprice.getText()),Integer.valueOf(tfweight.getText()),Integer.valueOf(tfvalidity.getText()),tfdescription.getText());
-        System.out.print("1 "+p.getProduct_id()+"asd");
-        ManageProduct crpr = new ManageProduct();
-        //adminpage.setPreferredSize(new Dimension(1070, 600));
-        crpr.inititalize(ent,p);
-        crpr.setVisible(true);
-        //populatetable();
-    }//GEN-LAST:event_btnmanufactureActionPerformed
-
     private void btnsearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsearchActionPerformed
         // TODO add your handling code here:
         if (!tfsid.getText().isEmpty()) {
@@ -469,7 +439,7 @@ public class SupplierWarehouseCatalog extends javax.swing.JPanel {
         // TODO add your handling code here:
         int row = jTInventory.getSelectedRow();
         btnrefresh.setEnabled(true);
-        btnmanufacture.setEnabled(true);
+//        btnmanufacture.setEnabled(true);
         if (row < 0) {
             JOptionPane.showMessageDialog(this,
                 "No row is selected! Please select one row",
@@ -516,7 +486,6 @@ public class SupplierWarehouseCatalog extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnmanufacture;
     private javax.swing.JButton btnrefresh;
     private javax.swing.JButton btnsearch;
     private javax.swing.JButton btnview;
@@ -718,7 +687,7 @@ void refresh()
        // btnedit.setEnabled(true);
         btnsearch.setEnabled(true);
         //btncreate.setEnabled(true);
-        btnmanufacture.setEnabled(false);
+//        btnmanufacture.setEnabled(false);
         btnview.setEnabled(true);
          //btnviewbatch.setEnabled(true);
 

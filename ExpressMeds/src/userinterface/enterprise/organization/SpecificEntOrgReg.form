@@ -180,7 +180,7 @@
                     <StringItem index="0" value="Supplier"/>
                     <StringItem index="1" value="Retails"/>
                     <StringItem index="2" value="Hospital"/>
-                    <StringItem index="3" value="Doordash"/>
+                    <StringItem index="3" value="Delivery"/>
                   </StringArray>
                 </Property>
               </Properties>

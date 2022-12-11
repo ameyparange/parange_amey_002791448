@@ -50,6 +50,12 @@ public class SpecificEntOrgReg extends javax.swing.JFrame {
          ent_type="Hospital";
          
      }
+     else if (i ==4)
+     { 
+         jCenttype.setSelectedIndex(3);
+         ent_type="Delivery";
+         
+     }
      
      jCentname.setEnabled(false);
      jCenttype.setEnabled(false);
@@ -85,7 +91,7 @@ public class SpecificEntOrgReg extends javax.swing.JFrame {
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(51, 51, 51)), "Basic Information", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Historic", 3, 14))); // NOI18N
 
-        jCenttype.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Supplier", "Retails", "Hospital", "Doordash" }));
+        jCenttype.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Supplier", "Retails", "Hospital", "Delivery" }));
         jCenttype.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCenttypeActionPerformed(evt);
