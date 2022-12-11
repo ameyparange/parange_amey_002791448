@@ -1097,7 +1097,7 @@ public int updatedeliverycomplete(int order_id, String sts) {
         }
         return 0;
     }
-<<<<<<< HEAD
+
     
     public ProductCatalog getproductcata(Enterprise ent)
     {
@@ -1125,7 +1125,6 @@ public int updatedeliverycomplete(int order_id, String sts) {
     
         }
     
-=======
->>>>>>> origin/neha
+
 
 }
