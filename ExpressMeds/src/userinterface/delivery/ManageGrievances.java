@@ -3,7 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package userinterface.delivery;
-
+import dbconnection.JdbcConnect;
+import model.Person.Person;
 /**
  *
  * @author nehajoisher
@@ -13,10 +14,16 @@ public class ManageGrievances extends javax.swing.JPanel {
     /**
      * Creates new form ManageGrievances
      */
+    JdbcConnect connect;
     String username;
     public ManageGrievances(String username) {
         initComponents();
         this.username = username;
+        connect = new JdbcConnect();
+        int person_id=connect.searchPersonId(username);
+        Person p=connect.personDetails(person_id);
+       // tffname.setText(p.getFname());
+        
     }
 
     /**
