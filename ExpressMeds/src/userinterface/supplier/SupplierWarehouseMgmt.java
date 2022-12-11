@@ -31,7 +31,7 @@ public class SupplierWarehouseMgmt extends javax.swing.JPanel {
         connect= new JdbcConnect();
         ent=e;
         populatetable();
-        disablefields();
+        refresh();
     }
 
     /**
@@ -319,6 +319,11 @@ public class SupplierWarehouseMgmt extends javax.swing.JPanel {
         btnsearch.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
         btnsearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/supplier/loupe.png"))); // NOI18N
         btnsearch.setText("Search");
+        btnsearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnsearchActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
         jLabel1.setText("Name");
@@ -488,7 +493,12 @@ public class SupplierWarehouseMgmt extends javax.swing.JPanel {
 
     private void btneditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditActionPerformed
         
-        disablefields();
+        enablefields();
+        btnupdate.setEnabled(true);
+        btnedit.setEnabled(false);
+        btnsearch.setEnabled(false);
+        btncreate.setEnabled(false);
+        btnview.setEnabled(false);
     }//GEN-LAST:event_btneditActionPerformed
 
     private void btnupdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnupdateActionPerformed
@@ -507,12 +517,12 @@ public class SupplierWarehouseMgmt extends javax.swing.JPanel {
         // TODO add your handling code here:
         Product p;  
         p = new Product (Integer.valueOf(tfprodid.getText()),ent.getEnt_id(),tfprodname.getText(),Integer.valueOf(tfprice.getText()),Integer.valueOf(tfweight.getText()),Integer.valueOf(tfvalidity.getText()),tfdescription.getText());
-       
+       System.out.print("1 "+p.getProduct_id()+"asd");
         ManageProduct crpr = new ManageProduct();
         //adminpage.setPreferredSize(new Dimension(1070, 600));
         crpr.inititalize(ent,p);
         crpr.setVisible(true);
-        populatetable();
+        //populatetable();
     }//GEN-LAST:event_btnmanufactureActionPerformed
 
     private void btncreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncreateActionPerformed
@@ -575,6 +585,19 @@ public class SupplierWarehouseMgmt extends javax.swing.JPanel {
             }
         }
     }//GEN-LAST:event_btnviewActionPerformed
+
+    private void btnsearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsearchActionPerformed
+        // TODO add your handling code here:
+        if (!tfsid.getText().isEmpty()) {
+            populatetable(Integer.valueOf(tfsid.getText()) );
+        } else if (!tfsproductname.getText().isEmpty()) {
+            populatetableon_name(tfsproductname.getText());
+            
+        } else {
+            JOptionPane.showMessageDialog(this,
+                    "Search on Product Id or Product Name");
+        }
+    }//GEN-LAST:event_btnsearchActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -651,6 +674,98 @@ void populatetable(){
 
         }
 }
+  void populatetable(int product_id) {
+
+        DefaultTableModel model = (DefaultTableModel) jTInventory.getModel();
+        model.setRowCount(0);
+           int i=0;
+        try {
+            connect.connect();
+            // Prepare Statement
+
+            connect.pet = connect.con.prepareStatement("select i.inv_id,p.product_id,p.name,p.price,i.quantity,p.weight, p.validity, p.desc1 "
+                    + "from enterprise e join product p on e.ent_id = p.ent_id join inventory i on p.product_id= i.product_id where e.ent_id=? "
+                    + " and p.product_id=? order by product_id desc");
+           connect.pet.setInt(1, ent.getEnt_id());
+           connect.pet.setInt(2, product_id);
+            connect.myRs = connect.pet.executeQuery();
+            
+            //System.out.println("5");
+            while (connect.myRs.next()) {
+                i=i+1;
+                Object[] row = new Object[9];
+                row[0] = connect.myRs.getInt("inv_id");
+                row[1] = connect.myRs.getInt("product_id");
+                row[2] = connect.myRs.getString("name");
+                row[3] = connect.myRs.getString("price");//username
+                row[4] = connect.myRs.getString("quantity");
+                row[5] = connect.myRs.getString("weight");
+                row[6] = connect.myRs.getString("validity");
+                row[7] = connect.myRs.getString("desc1");
+                model.addRow(row);
+            }
+
+        } catch (Exception et) {
+            System.out.println(et.toString());
+
+        }
+        if (i!=0){
+            JOptionPane.showMessageDialog(this,
+                    "Product Found!!!");
+        }
+        else {
+        JOptionPane.showMessageDialog(this,
+                    "Product does not exist!!!");
+        }
+
+    } 
+
+  void populatetableon_name(String productname) {
+
+        DefaultTableModel model = (DefaultTableModel) jTInventory.getModel();
+        model.setRowCount(0);
+           int i=0;
+        try {
+            connect.connect();
+            // Prepare Statement
+
+            connect.pet = connect.con.prepareStatement("select i.inv_id,p.product_id,p.name,p.price,i.quantity,p.weight, p.validity, p.desc1 "
+                    + "from enterprise e join product p on e.ent_id = p.ent_id join inventory i on p.product_id= i.product_id where e.ent_id=? "
+                    + " and p.name like concat('%',?,'%') order by product_id desc");
+           connect.pet.setInt(1, ent.getEnt_id());
+           connect.pet.setString(2, productname);
+            connect.myRs = connect.pet.executeQuery();
+            
+           System.out.println(connect.pet.toString());
+            while (connect.myRs.next()) {
+                i=i+1;
+                Object[] row = new Object[9];
+                row[0] = connect.myRs.getInt("inv_id");
+                row[1] = connect.myRs.getInt("product_id");
+                row[2] = connect.myRs.getString("name");
+                row[3] = connect.myRs.getString("price");//username
+                row[4] = connect.myRs.getString("quantity");
+                row[5] = connect.myRs.getString("weight");
+                row[6] = connect.myRs.getString("validity");
+                row[7] = connect.myRs.getString("desc1");
+                model.addRow(row);
+            }
+
+        } catch (Exception et) {
+            System.out.println(et.toString());
+
+        }
+        if (i!=0){
+            JOptionPane.showMessageDialog(this,
+                    "Product Found!!!");
+        }
+        else {
+        JOptionPane.showMessageDialog(this,
+                    "Product does not exist!!!");
+        }
+
+    }
+
   void enablefields() {
        tfavailqty.setEnabled(true);
       tfdescription.setEnabled(true);
@@ -667,10 +782,10 @@ void populatetable(){
       tfavailqty.setEnabled(false);
       tfdescription.setEnabled(false);
       tfprice.setEnabled(false);
-      tfsid.setEnabled(false);
+      //tfsid.setEnabled(false);
       tfprodname.setEnabled(false);
       tfprodid.setEnabled(false);
-      tfsproductname.setEnabled(false);
+      //tfsproductname.setEnabled(false);
       tfvalidity.setEnabled(false);
       tfweight.setEnabled(false);
   }
@@ -693,6 +808,7 @@ void refresh()
         btnsearch.setEnabled(true);
         btncreate.setEnabled(true);
         btnmanufacture.setEnabled(false);
+        btnview.setEnabled(true);
          //btnviewbatch.setEnabled(true);
 
 }
