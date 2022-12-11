@@ -196,7 +196,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/userinterface/supplier/inventory.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Warehouse Catalogue"/>
+                <Property name="text" type="java.lang.String" value="Warehouse Catalog"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnwarecataActionPerformed"/>

@@ -3,12 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package userinterface.product;
-
 import dbconnection.JdbcConnect;
 import javax.swing.table.DefaultTableModel;
 import model.enterprise.Enterprise;
 import model.product.Product;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
 
+//import org.jdesktop.swingx.JXDatePicker;
 /**
  *
  * @author amey8
@@ -23,13 +26,15 @@ public class ManageProduct extends javax.swing.JFrame {
     Enterprise ent;
     public ManageProduct() {
         initComponents();
-        initComponents();
         connect= new JdbcConnect();
+        
     }
         public void inititalize(Enterprise ent,Product p)
     {
+        
         this.ent = ent;
         this.p=p;
+        populatetable();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -48,8 +53,6 @@ public class ManageProduct extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         tfproductname = new javax.swing.JTextField();
-        tfmanfgdate = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         tfquantity = new javax.swing.JTextField();
         labelname2 = new javax.swing.JLabel();
@@ -88,6 +91,11 @@ public class ManageProduct extends javax.swing.JFrame {
 
         btnmanufg.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         btnmanufg.setText("Manufacture");
+        btnmanufg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnmanufgActionPerformed(evt);
+            }
+        });
 
         jTBatch.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -117,12 +125,6 @@ public class ManageProduct extends javax.swing.JFrame {
 
         tfproductname.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        tfmanfgdate.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        jLabel10.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setText("Manufacturing Date");
-
         jLabel11.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("Quantity");
@@ -147,19 +149,13 @@ public class ManageProduct extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(17, 17, 17)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(tfquantity, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel10)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                                .addComponent(tfmanfgdate, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(tfquantity, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                         .addComponent(tfproductname, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(26, 26, 26)
@@ -181,13 +177,9 @@ public class ManageProduct extends javax.swing.JFrame {
                     .addComponent(tfproductname))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfmanfgdate))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfquantity))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jPanel5.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -260,12 +252,13 @@ public class ManageProduct extends javax.swing.JFrame {
                         .addGap(319, 319, 319)
                         .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(138, 138, 138)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(175, 175, 175)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap(166, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(55, 55, 55))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -274,7 +267,7 @@ public class ManageProduct extends javax.swing.JFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
+                .addGap(41, 41, 41)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36))
         );
@@ -330,34 +323,50 @@ public class ManageProduct extends javax.swing.JFrame {
                 .addGap(38, 38, 38)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnmanufg)
-                    .addComponent(btnrefresh))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnrefresh)
+                    .addComponent(btnmanufg, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnsubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsubmitActionPerformed
+    
+        connect.insertbatch(Integer.valueOf(tfproductid.getText()),Integer.valueOf(tfquantity.getText()));
         
+        //System.out.println(connect.pet.toString());
+        //int batch_id = connect.getlatestbatchid();
+        
+        connect.updateinventory(Integer.valueOf(tfproductid.getText()),Integer.valueOf(tfquantity.getText()));
+        populatetable();
     }//GEN-LAST:event_btnsubmitActionPerformed
 
     private void btnclearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnclearActionPerformed
-
+           // tfmfgdate.setText("");
+        tfquantity.setText("");
     }//GEN-LAST:event_btnclearActionPerformed
 
     private void btnrefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnrefreshActionPerformed
         // TODO add your handling code here:
         refresh();
+        populatetable();
     }//GEN-LAST:event_btnrefreshActionPerformed
 
     private void btnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbackActionPerformed
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_btnbackActionPerformed
+
+    private void btnmanufgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmanufgActionPerformed
+        // TODO add your handling code here:
+        tfproductid.setText(String.valueOf(p.getProduct_id()));
+        tfproductname.setText(p.getName());
+        enablefields();
+    }//GEN-LAST:event_btnmanufgActionPerformed
 
     /**
      * @param args the command line arguments
@@ -401,7 +410,6 @@ public class ManageProduct extends javax.swing.JFrame {
     private javax.swing.JButton btnmanufg;
     private javax.swing.JButton btnrefresh;
     private javax.swing.JButton btnsubmit;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
@@ -413,7 +421,6 @@ public class ManageProduct extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTBatch;
     private javax.swing.JLabel labelname2;
-    private javax.swing.JTextField tfmanfgdate;
     private javax.swing.JTextField tfproductid;
     private javax.swing.JTextField tfproductname;
     private javax.swing.JTextField tfquantity;
@@ -426,25 +433,25 @@ public class ManageProduct extends javax.swing.JFrame {
             connect.connect();
             // Prepare Statement
             
-            connect.pet = connect.con.prepareStatement("select i.inv_id,p.product_id,p.name,p.price,i.quantity,p.weight, p.validity, p.desc1 "
+            connect.pet = connect.con.prepareStatement("select p.product_id,p.name,e.batch_id,DATE_FORMAT(e.mgf_date,'%d-%m-%Y %H:%i:%s') mgf_date,e.quantity  "
                     + "from batch e join product p on e.product_id = p.product_id join inventory i on p.product_id= i.product_id where e.product_id=? "
-                    + "order by product_id desc");
+                    + "order by batch_id desc");
             //String query = "select i.inv_id,p.product_id,p.name,p.price,i.quantity,p.weight, p.validity, p.desc from enterprise e join product p on e.ent_id = p.ent_id join inventory i on p.product_id= i.product_id where ent_id=?";
-            connect.pet.setInt(1, ent.getEnt_id());
             
+            connect.pet.setInt(1, p.getProduct_id());
+            
+            //System.out.println(connect.pet.toString());
             connect.myRs = connect.pet.executeQuery();
             //System.out.println("5");
             while (connect.myRs.next()) {
-
-                Object[] row = new Object[9];
-                row[0] = connect.myRs.getInt("inv_id");
-                row[1] = connect.myRs.getInt("product_id");
-                row[2] = connect.myRs.getString("name");
-                row[3] = connect.myRs.getString("price");//username
+                //STR_TO_DATE(string, format)
+                //SELECT STR_TO_DATE('17-09-2010 4:55:10','%d-%m-%Y %H:i%:s%');
+                Object[] row = new Object[6];
+                row[0] = connect.myRs.getInt("product_id");
+                row[1] = connect.myRs.getString("name");
+                row[2] = connect.myRs.getString("batch_id");//username
+                row[3] = connect.myRs.getString("mgf_date");
                 row[4] = connect.myRs.getString("quantity");
-                row[5] = connect.myRs.getString("weight");
-                row[6] = connect.myRs.getString("validity");
-                row[7] = connect.myRs.getString("desc1");
                 model.addRow(row);
             }
 
@@ -459,20 +466,22 @@ public class ManageProduct extends javax.swing.JFrame {
     void enablefields() {
        
        tfproductid.setEnabled(false);
-      tfmanfgdate.setEnabled(true);
+     // tfmfgdate.setEnabled(true);
       tfproductname.setEnabled(false);
       tfquantity.setEnabled(true);
+      btnsubmit.setEnabled(true);
   }
      void disablefields() {
       tfproductid.setEnabled(false);
-      tfmanfgdate.setEnabled(false);
+      //tfmfgdate.setEnabled(false);
       tfproductname.setEnabled(false);
       tfquantity.setEnabled(false);
+      btnsubmit.setEnabled(false);
   }
 void refresh()
 {
         tfproductid.setText("");
-        tfmanfgdate.setText("");
+       // tfmfgdate.setText("");
         tfproductname.setText("");
         tfquantity.setText("");
         
@@ -481,10 +490,5 @@ void refresh()
         btnrefresh.setEnabled(true);
         btnmanufg.setEnabled(true);
         btnclear.setEnabled(false);
-         //btnviewbatch.setEnabled(true);
-         tfproductid.setText("");
-        tfmanfgdate.setText("");
-        tfproductname.setText("");
-        tfquantity.setText("");
 }
 }

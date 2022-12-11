@@ -871,7 +871,7 @@ public class ManageEnterprise extends javax.swing.JPanel {
             // Prepare Statement
 
             connect.pet = connect.con.prepareStatement("Select e.ent_id,e.name,e.ent_type,e.email,a.street ,a.unit,a.city,a.state,a.zipcode from enterprise e "
-                    + " join address a on e.add_id = a.add_id where e.name= ?");
+                    + " join address a on e.add_id = a.add_id where e.name like concat('%',?,'%')");
            connect.pet.setString(1, name);
             connect.myRs = connect.pet.executeQuery();
             
@@ -955,7 +955,7 @@ public class ManageEnterprise extends javax.swing.JPanel {
             // Prepare Statement
 
             connect.pet = connect.con.prepareStatement("Select e.ent_id,e.name,e.ent_type,e.email,a.street ,a.unit,a.city,a.state,a.zipcode from enterprise e "
-                    + " join address a on e.add_id = a.add_id where a.city = ? ");
+                    + " join address a on e.add_id = a.add_id where a.city like concat('%',?,'%')");
            connect.pet.setString(1, city);
             connect.myRs = connect.pet.executeQuery();
             

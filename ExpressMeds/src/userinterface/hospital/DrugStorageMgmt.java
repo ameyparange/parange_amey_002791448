@@ -2,33 +2,31 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package userinterface.supplier;
+package userinterface.hospital;
 
 import dbconnection.JdbcConnect;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.enterprise.Enterprise;
 import model.product.Product;
 import userinterface.product.CreateProduct;
-import userinterface.product.*;
+import userinterface.product.ManageProduct;
+
 /**
  *
  * @author amey8
  */
-public class SupplierWarehouseMgmt extends javax.swing.JPanel {
+public class DrugStorageMgmt extends javax.swing.JPanel {
 
     /**
-     * Creates new form SupplierWarehouseMgmt
+     * Creates new form DrugStorageMgmt
      */
-    String supp_name;
+        String hos_name;
     Enterprise ent;
     JdbcConnect connect;
-    public SupplierWarehouseMgmt(Enterprise e) {
+    public DrugStorageMgmt(Enterprise e) {
         initComponents();
-        
-        connect= new JdbcConnect();
+         connect= new JdbcConnect();
         ent=e;
         populatetable();
         refresh();
@@ -482,7 +480,7 @@ public class SupplierWarehouseMgmt extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 510, Short.MAX_VALUE)
+            .addGap(0, 509, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -492,7 +490,7 @@ public class SupplierWarehouseMgmt extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btneditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditActionPerformed
-        
+
         enablefields();
         btnupdate.setEnabled(true);
         btnedit.setEnabled(false);
@@ -502,22 +500,21 @@ public class SupplierWarehouseMgmt extends javax.swing.JPanel {
     }//GEN-LAST:event_btneditActionPerformed
 
     private void btnupdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnupdateActionPerformed
-         int p_id;
-      Product p;  
+        int p_id;
+        Product p;
         p = new Product (Integer.valueOf(tfprodid.getText()),ent.getEnt_id(),tfprodname.getText(),Integer.valueOf(tfprice.getText()),Integer.valueOf(tfweight.getText()),Integer.valueOf(tfvalidity.getText()),tfdescription.getText());
-       // int ent_id, String name, int price, int validity, int weight, String desc
-        
+        // int ent_id, String name, int price, int validity, int weight, String desc
+
         connect.insertupdate(p);
-        
-        
+
         refresh();
     }//GEN-LAST:event_btnupdateActionPerformed
 
     private void btnmanufactureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmanufactureActionPerformed
         // TODO add your handling code here:
-        Product p;  
+        Product p;
         p = new Product (Integer.valueOf(tfprodid.getText()),ent.getEnt_id(),tfprodname.getText(),Integer.valueOf(tfprice.getText()),Integer.valueOf(tfweight.getText()),Integer.valueOf(tfvalidity.getText()),tfdescription.getText());
-       
+
         ManageProduct crpr = new ManageProduct();
         //adminpage.setPreferredSize(new Dimension(1070, 600));
         crpr.inititalize(ent,p);
@@ -525,20 +522,18 @@ public class SupplierWarehouseMgmt extends javax.swing.JPanel {
         //populatetable();
     }//GEN-LAST:event_btnmanufactureActionPerformed
 
-    private void btncreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncreateActionPerformed
+    private void btnsearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsearchActionPerformed
         // TODO add your handling code here:
-        
-                        CreateProduct crpr = new CreateProduct();
-        //adminpage.setPreferredSize(new Dimension(1070, 600));
-        crpr.inititalize(ent);
-        crpr.setVisible(true);
-        populatetable();
-    }//GEN-LAST:event_btncreateActionPerformed
+        if (!tfsid.getText().isEmpty()) {
+            populatetable(Integer.valueOf(tfsid.getText()) );
+        } else if (!tfsproductname.getText().isEmpty()) {
+            populatetableon_name(tfsproductname.getText());
 
-    private void btnrefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnrefreshActionPerformed
-        // TODO add your handling code here:
-        refresh();
-    }//GEN-LAST:event_btnrefreshActionPerformed
+        } else {
+            JOptionPane.showMessageDialog(this,
+                "Search on Product Id or Product Name");
+        }
+    }//GEN-LAST:event_btnsearchActionPerformed
 
     private void btnviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnviewActionPerformed
         // TODO add your handling code here:
@@ -547,9 +542,9 @@ public class SupplierWarehouseMgmt extends javax.swing.JPanel {
         btnmanufacture.setEnabled(true);
         if (row < 0) {
             JOptionPane.showMessageDialog(this,
-                    "No row is selected! Please select one row",
-                    "Select row",
-                    JOptionPane.ERROR_MESSAGE);
+                "No row is selected! Please select one row",
+                "Select row",
+                JOptionPane.ERROR_MESSAGE);
         } else {
             DefaultTableModel model = (DefaultTableModel) jTInventory.getModel();
 
@@ -560,22 +555,21 @@ public class SupplierWarehouseMgmt extends javax.swing.JPanel {
 
                 connect.pet = connect.con.prepareStatement("select i.inv_id,p.product_id,p.name,p.price,i.quantity,p.weight, p.validity, p.desc1 "
                     + "from enterprise e join product p on e.ent_id = p.ent_id join inventory i on p.product_id= i.product_id where e.ent_id=? and p.product_id=?");
-            //String query = "select i.inv_id,p.product_id,p.name,p.price,i.quantity,p.weight, p.validity, p.desc from enterprise e join product p on e.ent_id = p.ent_id join inventory i on p.product_id= i.product_id where ent_id=?";
-            connect.pet.setInt(1, ent.getEnt_id());
-            connect.pet.setInt(2, selected_hosid);
+                //String query = "select i.inv_id,p.product_id,p.name,p.price,i.quantity,p.weight, p.validity, p.desc from enterprise e join product p on e.ent_id = p.ent_id join inventory i on p.product_id= i.product_id where ent_id=?";
+                connect.pet.setInt(1, ent.getEnt_id());
+                connect.pet.setInt(2, selected_hosid);
 
                 connect.myRs = connect.pet.executeQuery();
                 //System.out.println("5");
                 if (connect.myRs.next()) {
                     tfavailqty.setText(connect.myRs.getString("quantity"));
-        tfdescription.setText(connect.myRs.getString("desc1"));
-        tfprice.setText(String.valueOf(connect.myRs.getString("price")));
-        tfprodid.setText(String.valueOf(connect.myRs.getInt("product_id")));
-        tfprodname.setText(connect.myRs.getString("name"));
-        tfvalidity.setText(String.valueOf(connect.myRs.getString("validity")));
-        tfweight.setText(String.valueOf(connect.myRs.getInt("weight")));
-                    
-           
+                    tfdescription.setText(connect.myRs.getString("desc1"));
+                    tfprice.setText(String.valueOf(connect.myRs.getString("price")));
+                    tfprodid.setText(String.valueOf(connect.myRs.getInt("product_id")));
+                    tfprodname.setText(connect.myRs.getString("name"));
+                    tfvalidity.setText(String.valueOf(connect.myRs.getString("validity")));
+                    tfweight.setText(String.valueOf(connect.myRs.getInt("weight")));
+
                 }
 
             } catch (Exception e) {
@@ -585,18 +579,20 @@ public class SupplierWarehouseMgmt extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnviewActionPerformed
 
-    private void btnsearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsearchActionPerformed
+    private void btncreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncreateActionPerformed
         // TODO add your handling code here:
-        if (!tfsid.getText().isEmpty()) {
-            populatetable(Integer.valueOf(tfsid.getText()) );
-        } else if (!tfsproductname.getText().isEmpty()) {
-            populatetableon_name(tfsproductname.getText());
-            
-        } else {
-            JOptionPane.showMessageDialog(this,
-                    "Search on Product Id or Product Name");
-        }
-    }//GEN-LAST:event_btnsearchActionPerformed
+
+        CreateProduct crpr = new CreateProduct();
+        //adminpage.setPreferredSize(new Dimension(1070, 600));
+        crpr.inititalize(ent);
+        crpr.setVisible(true);
+        populatetable();
+    }//GEN-LAST:event_btncreateActionPerformed
+
+    private void btnrefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnrefreshActionPerformed
+        // TODO add your handling code here:
+        refresh();
+    }//GEN-LAST:event_btnrefreshActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -636,7 +632,6 @@ public class SupplierWarehouseMgmt extends javax.swing.JPanel {
     private javax.swing.JTextField tfvalidity;
     private javax.swing.JTextField tfweight;
     // End of variables declaration//GEN-END:variables
-
 void populatetable(){
         DefaultTableModel model = (DefaultTableModel) jTInventory.getModel();
         model.setRowCount(0);
@@ -802,13 +797,15 @@ void refresh()
         tfweight.setText("");
         populatetable();
         disablefields();
-        btnupdate.setEnabled(false);
-        btnedit.setEnabled(true);
+       // btnupdate.setEnabled(false);
+       // btnedit.setEnabled(true);
         btnsearch.setEnabled(true);
-        btncreate.setEnabled(true);
+        //btncreate.setEnabled(true);
         btnmanufacture.setEnabled(false);
         btnview.setEnabled(true);
          //btnviewbatch.setEnabled(true);
 
 }
+
+
 }
