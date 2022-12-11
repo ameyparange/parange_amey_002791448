@@ -329,6 +329,7 @@ public class CreateProduct extends javax.swing.JFrame {
         p_id = connect.getlatestproductid();
         
         connect.insertinventory(p_id,0);
+        this.dispose();
          
     }//GEN-LAST:event_btncreateActionPerformed
 

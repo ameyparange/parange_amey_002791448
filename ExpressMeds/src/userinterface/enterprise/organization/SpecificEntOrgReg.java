@@ -24,33 +24,36 @@ public class SpecificEntOrgReg extends javax.swing.JFrame {
         connect = new JdbcConnect();
         //loadentname();
         
-        loadorgtype();
+        
         
     }
    public void intializeentname(String ent_name,int i)
    {
      this.ent_name=  ent_name ;
-     jCentname.addItem(ent_name);
-     if (i ==1)
+     jCentname.removeAllItems();
+     System.out.println(this.ent_name+":" +ent_name);
+     jCentname.addItem(this.ent_name);
+     
+     
+     if (i == 1 )
      {
          jCenttype.setSelectedIndex(0);
          ent_type="Supplier";
-     }
-     else
-         if (i ==2)
+     } else if (i ==2)
      { 
          jCenttype.setSelectedIndex(1);
          ent_type="Retails";
-     }
-     else
-             if (i ==3)
-     {
+         
+     } else if (i ==3)
+     { 
          jCenttype.setSelectedIndex(2);
          ent_type="Hospital";
+         
      }
      
      jCentname.setEnabled(false);
      jCenttype.setEnabled(false);
+     loadorgtype();
    }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -116,6 +119,12 @@ public class SpecificEntOrgReg extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setText("OrganizationType");
+
+        jCorgtype.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCorgtypeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -244,7 +253,7 @@ public class SpecificEntOrgReg extends javax.swing.JFrame {
     private void jCenttypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCenttypeActionPerformed
         // TODO add your handling code here:
        
-        loadorgtype();
+        //loadorgtype();
     }//GEN-LAST:event_jCenttypeActionPerformed
 
     private void tforgemailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tforgemailActionPerformed
@@ -263,9 +272,10 @@ public class SpecificEntOrgReg extends javax.swing.JFrame {
     private void btnsubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsubmitActionPerformed
 
         JdbcConnect jdbc = new JdbcConnect();
-
+        System.out.println("In Submit:\n"+jCentname.getSelectedItem().toString());
+        System.out.println(jCenttype.getSelectedItem().toString());
         Organization org;
-        int tent_id= jdbc.searchenterpriseent_id(jCentname.getSelectedItem().toString(), "Supplier");
+        int tent_id= jdbc.searchenterpriseent_id(jCentname.getSelectedItem().toString(), jCenttype.getSelectedItem().toString());
         org = new Organization(tent_id,jCorgtype.getSelectedItem().toString(),  tforgemail.getText());
         jdbc.insertorganization(org);
 
@@ -276,6 +286,10 @@ public class SpecificEntOrgReg extends javax.swing.JFrame {
        
         tforgemail.setText("");
     }//GEN-LAST:event_btnclearActionPerformed
+
+    private void jCorgtypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCorgtypeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCorgtypeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -334,14 +348,14 @@ public class SpecificEntOrgReg extends javax.swing.JFrame {
     void loadorgtype(){
     String ent_type =jCenttype.getSelectedItem().toString();
     //String s;
-    
+    System.out.println(jCenttype.getSelectedItem().toString());
     try{
     connect.connect();
             // Prepare Statement
 
             connect.pet = connect.con.prepareStatement("Select * from organizationtypes o where o.ent_type=?");
            connect.pet.setString(1, ent_type);
-           
+           System.out.println("5 "+connect.pet.toString());
             connect.myRs = connect.pet.executeQuery();
             while (connect.myRs.next()) {
                 jCorgtype.addItem(connect.myRs.getString("org_type"));

@@ -2,32 +2,27 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package userinterface.supplier;
-
+package userinterface.hospital;
 import dbconnection.JdbcConnect;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.enterprise.Enterprise;
 import model.product.Product;
-import userinterface.product.CreateProduct;
-import userinterface.product.*;
+import userinterface.product.ManageProduct;
 /**
  *
  * @author amey8
  */
-public class SupplierWarehouseMgmt extends javax.swing.JPanel {
+public class DrugStorageCatalog extends javax.swing.JPanel {
 
     /**
-     * Creates new form SupplierWarehouseMgmt
+     * Creates new form DrugStorageCatalog
      */
     String supp_name;
     Enterprise ent;
     JdbcConnect connect;
-    public SupplierWarehouseMgmt(Enterprise e) {
+    public DrugStorageCatalog(Enterprise e) {
         initComponents();
-        
         connect= new JdbcConnect();
         ent=e;
         populatetable();
@@ -62,8 +57,6 @@ public class SupplierWarehouseMgmt extends javax.swing.JPanel {
         tfdescription = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
-        btnedit = new javax.swing.JButton();
-        btnupdate = new javax.swing.JButton();
         btnmanufacture = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         btnsearch = new javax.swing.JButton();
@@ -76,13 +69,12 @@ public class SupplierWarehouseMgmt extends javax.swing.JPanel {
         jTInventory = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         tfsid = new javax.swing.JTextField();
-        btncreate = new javax.swing.JButton();
         btnrefresh = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(219, 247, 252));
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED), " View Product Details", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 3, 14))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED), " View Supplier Order", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 3, 14))); // NOI18N
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(51, 51, 51)), "", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Segoe UI Historic", 3, 14), new java.awt.Color(51, 51, 51))); // NOI18N
 
@@ -211,28 +203,6 @@ public class SupplierWarehouseMgmt extends javax.swing.JPanel {
         jPanel5.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jPanel5.setOpaque(false);
 
-        btnedit.setBackground(new java.awt.Color(204, 204, 204));
-        btnedit.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        btnedit.setText("Edit");
-        btnedit.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnedit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnedit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btneditActionPerformed(evt);
-            }
-        });
-
-        btnupdate.setBackground(new java.awt.Color(204, 204, 204));
-        btnupdate.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        btnupdate.setText("Update");
-        btnupdate.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnupdate.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnupdate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnupdateActionPerformed(evt);
-            }
-        });
-
         btnmanufacture.setBackground(new java.awt.Color(204, 204, 204));
         btnmanufacture.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         btnmanufacture.setText("Manufacture Batches");
@@ -248,23 +218,16 @@ public class SupplierWarehouseMgmt extends javax.swing.JPanel {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap(179, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap(403, Short.MAX_VALUE)
                 .addComponent(btnmanufacture)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnedit, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnupdate, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
+                .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnedit, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnupdate, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnmanufacture, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnmanufacture, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
@@ -332,7 +295,7 @@ public class SupplierWarehouseMgmt extends javax.swing.JPanel {
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Manage Warehouse ");
+        jLabel2.setText("Warehouse Catalog");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -385,17 +348,6 @@ public class SupplierWarehouseMgmt extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
         jLabel3.setText("ID");
 
-        btncreate.setBackground(new java.awt.Color(153, 153, 153));
-        btncreate.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        btncreate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/customer/search.png"))); // NOI18N
-        btncreate.setText("Create Product");
-        btncreate.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(242, 242, 242), null, null));
-        btncreate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btncreateActionPerformed(evt);
-            }
-        });
-
         btnrefresh.setBackground(new java.awt.Color(153, 153, 153));
         btnrefresh.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         btnrefresh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/customer/search.png"))); // NOI18N
@@ -436,8 +388,6 @@ public class SupplierWarehouseMgmt extends javax.swing.JPanel {
                         .addGap(33, 33, 33))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btncreate)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnview)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnrefresh)
@@ -462,7 +412,6 @@ public class SupplierWarehouseMgmt extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnview)
-                    .addComponent(btncreate)
                     .addComponent(btnrefresh))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -482,7 +431,7 @@ public class SupplierWarehouseMgmt extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 510, Short.MAX_VALUE)
+            .addGap(0, 509, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -491,33 +440,11 @@ public class SupplierWarehouseMgmt extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btneditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditActionPerformed
-        
-        enablefields();
-        btnupdate.setEnabled(true);
-        btnedit.setEnabled(false);
-        btnsearch.setEnabled(false);
-        btncreate.setEnabled(false);
-        btnview.setEnabled(false);
-    }//GEN-LAST:event_btneditActionPerformed
-
-    private void btnupdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnupdateActionPerformed
-         int p_id;
-      Product p;  
-        p = new Product (Integer.valueOf(tfprodid.getText()),ent.getEnt_id(),tfprodname.getText(),Integer.valueOf(tfprice.getText()),Integer.valueOf(tfweight.getText()),Integer.valueOf(tfvalidity.getText()),tfdescription.getText());
-       // int ent_id, String name, int price, int validity, int weight, String desc
-        
-        connect.insertupdate(p);
-        
-        
-        refresh();
-    }//GEN-LAST:event_btnupdateActionPerformed
-
     private void btnmanufactureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmanufactureActionPerformed
         // TODO add your handling code here:
-        Product p;  
+        Product p;
         p = new Product (Integer.valueOf(tfprodid.getText()),ent.getEnt_id(),tfprodname.getText(),Integer.valueOf(tfprice.getText()),Integer.valueOf(tfweight.getText()),Integer.valueOf(tfvalidity.getText()),tfdescription.getText());
-       
+        System.out.print("1 "+p.getProduct_id()+"asd");
         ManageProduct crpr = new ManageProduct();
         //adminpage.setPreferredSize(new Dimension(1070, 600));
         crpr.inititalize(ent,p);
@@ -525,20 +452,18 @@ public class SupplierWarehouseMgmt extends javax.swing.JPanel {
         //populatetable();
     }//GEN-LAST:event_btnmanufactureActionPerformed
 
-    private void btncreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncreateActionPerformed
+    private void btnsearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsearchActionPerformed
         // TODO add your handling code here:
-        
-                        CreateProduct crpr = new CreateProduct();
-        //adminpage.setPreferredSize(new Dimension(1070, 600));
-        crpr.inititalize(ent);
-        crpr.setVisible(true);
-        populatetable();
-    }//GEN-LAST:event_btncreateActionPerformed
+        if (!tfsid.getText().isEmpty()) {
+            populatetable(Integer.valueOf(tfsid.getText()) );
+        } else if (!tfsproductname.getText().isEmpty()) {
+            populatetableon_name(tfsproductname.getText());
 
-    private void btnrefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnrefreshActionPerformed
-        // TODO add your handling code here:
-        refresh();
-    }//GEN-LAST:event_btnrefreshActionPerformed
+        } else {
+            JOptionPane.showMessageDialog(this,
+                "Search on Product Id or Product Name");
+        }
+    }//GEN-LAST:event_btnsearchActionPerformed
 
     private void btnviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnviewActionPerformed
         // TODO add your handling code here:
@@ -547,9 +472,9 @@ public class SupplierWarehouseMgmt extends javax.swing.JPanel {
         btnmanufacture.setEnabled(true);
         if (row < 0) {
             JOptionPane.showMessageDialog(this,
-                    "No row is selected! Please select one row",
-                    "Select row",
-                    JOptionPane.ERROR_MESSAGE);
+                "No row is selected! Please select one row",
+                "Select row",
+                JOptionPane.ERROR_MESSAGE);
         } else {
             DefaultTableModel model = (DefaultTableModel) jTInventory.getModel();
 
@@ -560,22 +485,21 @@ public class SupplierWarehouseMgmt extends javax.swing.JPanel {
 
                 connect.pet = connect.con.prepareStatement("select i.inv_id,p.product_id,p.name,p.price,i.quantity,p.weight, p.validity, p.desc1 "
                     + "from enterprise e join product p on e.ent_id = p.ent_id join inventory i on p.product_id= i.product_id where e.ent_id=? and p.product_id=?");
-            //String query = "select i.inv_id,p.product_id,p.name,p.price,i.quantity,p.weight, p.validity, p.desc from enterprise e join product p on e.ent_id = p.ent_id join inventory i on p.product_id= i.product_id where ent_id=?";
-            connect.pet.setInt(1, ent.getEnt_id());
-            connect.pet.setInt(2, selected_hosid);
+                //String query = "select i.inv_id,p.product_id,p.name,p.price,i.quantity,p.weight, p.validity, p.desc from enterprise e join product p on e.ent_id = p.ent_id join inventory i on p.product_id= i.product_id where ent_id=?";
+                connect.pet.setInt(1, ent.getEnt_id());
+                connect.pet.setInt(2, selected_hosid);
 
                 connect.myRs = connect.pet.executeQuery();
                 //System.out.println("5");
                 if (connect.myRs.next()) {
                     tfavailqty.setText(connect.myRs.getString("quantity"));
-        tfdescription.setText(connect.myRs.getString("desc1"));
-        tfprice.setText(String.valueOf(connect.myRs.getString("price")));
-        tfprodid.setText(String.valueOf(connect.myRs.getInt("product_id")));
-        tfprodname.setText(connect.myRs.getString("name"));
-        tfvalidity.setText(String.valueOf(connect.myRs.getString("validity")));
-        tfweight.setText(String.valueOf(connect.myRs.getInt("weight")));
-                    
-           
+                    tfdescription.setText(connect.myRs.getString("desc1"));
+                    tfprice.setText(String.valueOf(connect.myRs.getString("price")));
+                    tfprodid.setText(String.valueOf(connect.myRs.getInt("product_id")));
+                    tfprodname.setText(connect.myRs.getString("name"));
+                    tfvalidity.setText(String.valueOf(connect.myRs.getString("validity")));
+                    tfweight.setText(String.valueOf(connect.myRs.getInt("weight")));
+
                 }
 
             } catch (Exception e) {
@@ -585,27 +509,16 @@ public class SupplierWarehouseMgmt extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnviewActionPerformed
 
-    private void btnsearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsearchActionPerformed
+    private void btnrefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnrefreshActionPerformed
         // TODO add your handling code here:
-        if (!tfsid.getText().isEmpty()) {
-            populatetable(Integer.valueOf(tfsid.getText()) );
-        } else if (!tfsproductname.getText().isEmpty()) {
-            populatetableon_name(tfsproductname.getText());
-            
-        } else {
-            JOptionPane.showMessageDialog(this,
-                    "Search on Product Id or Product Name");
-        }
-    }//GEN-LAST:event_btnsearchActionPerformed
+        refresh();
+    }//GEN-LAST:event_btnrefreshActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btncreate;
-    private javax.swing.JButton btnedit;
     private javax.swing.JButton btnmanufacture;
     private javax.swing.JButton btnrefresh;
     private javax.swing.JButton btnsearch;
-    private javax.swing.JButton btnupdate;
     private javax.swing.JButton btnview;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -636,7 +549,6 @@ public class SupplierWarehouseMgmt extends javax.swing.JPanel {
     private javax.swing.JTextField tfvalidity;
     private javax.swing.JTextField tfweight;
     // End of variables declaration//GEN-END:variables
-
 void populatetable(){
         DefaultTableModel model = (DefaultTableModel) jTInventory.getModel();
         model.setRowCount(0);
@@ -802,10 +714,10 @@ void refresh()
         tfweight.setText("");
         populatetable();
         disablefields();
-        btnupdate.setEnabled(false);
-        btnedit.setEnabled(true);
+       // btnupdate.setEnabled(false);
+       // btnedit.setEnabled(true);
         btnsearch.setEnabled(true);
-        btncreate.setEnabled(true);
+        //btncreate.setEnabled(true);
         btnmanufacture.setEnabled(false);
         btnview.setEnabled(true);
          //btnviewbatch.setEnabled(true);

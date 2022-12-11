@@ -10,17 +10,20 @@ import userinterface.enterprise.role.ManageRole;
 
 /**
  *
- * @author amey8
+ * @author nehajoisher
  */
 public class AdminPage extends javax.swing.JFrame {
 
     /**
      * Creates new form AdminPage1
      */
-    public AdminPage() {
+    String username;
+    public AdminPage(String username) {
         initComponents();
-                Dashboard ds = new Dashboard();
+        this.username=username;
+        Dashboard ds = new Dashboard();
         jSplitPane1.setRightComponent(ds);
+        System.out.println(username +"from admin");
     }
 
     /**
@@ -255,7 +258,7 @@ public class AdminPage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AdminPage().setVisible(true);
+                //new AdminPage(username).setVisible(true);
             }
         });
     }

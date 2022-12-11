@@ -15,6 +15,8 @@ import model.enterprise.EnterpriseCatalog;
 import model.enterprise.organization.Organization;
 import model.enterprise.role.Role;
 import model.product.Product;
+import model.useraccount.UserAccount;
+import model.Person.Person;
 
 /**
  *
@@ -53,7 +55,11 @@ public class JdbcConnect {
     public void connect() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
+
             this.con = DriverManager.getConnection("jdbc:mysql://localhost/expressmeddb", "root", "");
+
+            this.con = DriverManager.getConnection("jdbc:mysql://localhost/expressmeddb", "root", "");
+
             this.con.setAutoCommit(false);
         } catch (Exception e) {
             System.out.println(e.toString());
@@ -143,7 +149,6 @@ public class JdbcConnect {
 
             myRs = pet.executeQuery();
             if (myRs.next()) {
-
 
                 if (myRs.getString("password").equals(Pass)) {
 
@@ -269,9 +274,9 @@ public class JdbcConnect {
             pet = con.prepareStatement("select ent_id from enterprise where name=? and ent_type=?");
             pet.setString(1, name);
             pet.setString(2, type);
-
+            System.out.println(pet.toString());
             myRs = pet.executeQuery();
-
+            
             if (myRs.next()) {
 
                 return myRs.getInt("ent_id");
@@ -596,7 +601,7 @@ public class JdbcConnect {
             pet.setInt(4, p.getWeight());
             pet.setInt(5, p.getValidity());
             pet.setString(6, p.getDesc());
-            System.out.println(pet.toString());
+            //System.out.println(pet.toString());
             int k = pet.executeUpdate();
             con.commit();
 
@@ -635,7 +640,7 @@ public class JdbcConnect {
             this.connect();
 
             pet = con.prepareStatement("update product set"
-                    + "name=?,price=?,weight=?,validity=? ,desc1=? where product_id= ? ");
+                    + " name=?,price=?,weight=?,validity=? ,desc1=? where product_id= ? ");
 
             pet.setString(1, p.getName());
             pet.setInt(2, p.getPrice());
@@ -673,8 +678,30 @@ public class JdbcConnect {
         }
 
     }
+    
+        public int updateinventory(int product_id, int qty) {
+        try {
+            this.connect();
+            pet = con.prepareStatement("update inventory set quantity = quantity + ? where product_id= ?");
+            pet.setInt(1, qty);
+            pet.setInt(2, product_id);
+            int k = pet.executeUpdate();
+            con.commit();
+
+            return k;
+
+
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            return 0;
+        }
+
+    }
+
+    
 
     public void insertPerson(int add_id, String firstName, String lastName, String emailId, String phoneno, String gender, int age, String role_name) {
+
         try {
             this.connect();
             pet = con.prepareStatement("insert into person(add_id, fname,lname,email,mobileno,gender,age,role_name) values (?,?,?,?,?,?,?,?)");
@@ -697,5 +724,118 @@ public class JdbcConnect {
 
     }
 
-//     
+
+    public int searchPersonId(String username) {
+        int per_id = 0;
+        try {
+            this.connect();
+            pet = con.prepareStatement("select per_id from into useraccount where username = ?");
+            pet.setString(1, username);
+
+            myRs = pet.executeQuery();
+
+            if (myRs.next()) {
+
+                per_id = myRs.getInt("per_id");
+                System.out.println(per_id);
+
+                return per_id;
+
+            }
+
+        } catch (Exception e) {
+            // System.out.println(add_id);
+            System.out.println(e.toString());
+            return 0;
+        }
+        return 0;
+    }
+
+    public Person personDetails(int per_id) {
+        per_id = 0;
+        try {
+            this.connect();
+            pet = con.prepareStatement("select * from into person where per_id = ?");
+            pet.setInt(1, per_id);
+            myRs = pet.executeQuery();
+            if (myRs.next()) {
+                
+                Person UserDetails = new Person(myRs.getInt("per_id"), myRs.getInt("add_id"), myRs.getString("fname"), myRs.getString("lname"), myRs.getString("email"), myRs.getString("mobileno"), myRs.getString("age"), myRs.getInt("mobileno"), myRs.getString("role"));
+                return UserDetails;
+            }
+        } catch (Exception e) {
+            // System.out.println(add_id);
+            System.out.println(e.toString());
+            return null;
+        }
+        return null;
+    }
+    
+    
+    
+    public void insert_customer_grievances(String firstname, String lastname,String desc, String date, String status){
+     try {
+         String name=firstname+" " + lastname;
+            this.connect();
+            pet = con.prepareStatement("insert into customer_grievances(name, desc, date,status) values (?,?,?,?)");
+            
+            pet.setString(1, name);
+            pet.setString(2, desc);
+            pet.setString(3, date);
+            pet.setString(4, status);
+
+
+            int k = pet.executeUpdate();
+            con.commit();
+
+        } catch (Exception e) {
+            System.out.println(e.toString());
+
+        }
+
+    }
+
+    
+    public void insertbatch(int p_id, int quantity)
+    {
+        try {
+            this.connect();
+            pet = con.prepareStatement("insert into batch(product_id, mgf_date,quantity) values (?,sysdate(),?)");
+            pet.setInt(1, p_id);
+           // pet.setString(2, mfg_date);
+            pet.setInt(2, quantity);
+            
+            //System.out.println(pet.toString());
+            int k = pet.executeUpdate();
+            con.commit();
+ 
+        } catch (Exception e) {
+            System.out.println(e.toString());
+
+        }
+    }
+
+    public int getlatestbatchid()
+    {
+        this.connect();
+        try {
+            pet = con.prepareStatement("select max(batch_id) batch_id from batch ");
+
+            myRs = pet.executeQuery();
+
+            if (myRs.next()) {
+
+                return myRs.getInt("batch_id");
+
+            }
+        } catch (Exception e) {
+            System.out.println("9999");
+            System.out.println(e.toString());
+            return 9999;
+        }
+        return 9999;
+    
+    }
+     
+
 }

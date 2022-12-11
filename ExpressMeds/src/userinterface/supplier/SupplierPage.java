@@ -113,7 +113,7 @@ public class SupplierPage extends javax.swing.JFrame {
 
         btnwarecata.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         btnwarecata.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/supplier/inventory.png"))); // NOI18N
-        btnwarecata.setText("Warehouse Catalogue");
+        btnwarecata.setText("Warehouse Catalog");
         btnwarecata.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnwarecataActionPerformed(evt);
@@ -296,6 +296,9 @@ public class SupplierPage extends javax.swing.JFrame {
 
     private void btnwarecataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnwarecataActionPerformed
         // TODO add your handling code here:
+        
+                SupplierWarehouseCatalog supint = new SupplierWarehouseCatalog( entp );
+        jSplitPane1.setRightComponent(supint);
     }//GEN-LAST:event_btnwarecataActionPerformed
 
     private void btnOrderCataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderCataActionPerformed
@@ -413,7 +416,7 @@ void loadentname(){
            
             connect.myRs = connect.pet.executeQuery();
             if (connect.myRs.next()) {
-                jcentname.addItem(connect.myRs.getString("name"));
+                //jcentname.addItem(connect.myRs.getString("name"));
                 t = new Enterprise(connect.myRs.getInt("ent_id"), connect.myRs.getString("ent_type"),
                         connect.myRs.getString("name"), connect.myRs.getString("email"), connect.myRs.getInt("add_id"));
                 return t;
