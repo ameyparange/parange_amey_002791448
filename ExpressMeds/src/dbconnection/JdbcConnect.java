@@ -20,6 +20,7 @@ import model.Person.Person;
 import model.enterprise.employee.Employee;
 import model.order.OrderItem;
 import model.order.OrderitemCatalog;
+import model.product.ProductCatalog;
 
 /**
  *
@@ -1096,5 +1097,32 @@ public int updatedeliverycomplete(int order_id, String sts) {
         }
         return 0;
     }
+    
+    public ProductCatalog getproductcata(Enterprise ent)
+    {
+        ProductCatalog pc = new ProductCatalog();
+        Product p;
+        try {
+            this.connect();
+            pet = con.prepareStatement("select * from product where ent_id = ?");
+            pet.setInt(1, ent.getEnt_id());
+
+            myRs = pet.executeQuery();
+
+            while (myRs.next()) {
+                 p =new Product (myRs.getInt("product_id"),myRs.getInt("ent_id"),myRs.getString("name"),
+                         myRs.getInt("price"),myRs.getInt("weight"),myRs.getInt("validity"),myRs.getString("desc1"));
+                 pc.addproduct(p);
+                 
+            }
+            return pc;
+        } catch (Exception e) {
+            // System.out.println(add_id);
+            System.out.println(e.toString());
+            return new ProductCatalog();
+        }
+    
+        }
+    
 
 }

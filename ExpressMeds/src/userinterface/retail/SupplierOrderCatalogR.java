@@ -22,7 +22,7 @@ public class SupplierOrderCatalogR extends javax.swing.JPanel {
      * Creates new form SupplierOrderCatalogR
      */
     JdbcConnect connect;
-    int itemno =0;
+    int itemno = 0;
     OrderitemCatalog ordcata;
     String suppliername;
     Enterprise entp;
@@ -30,14 +30,17 @@ public class SupplierOrderCatalogR extends javax.swing.JPanel {
     String username;
     int corder_id;
     ProductCatalog pc;
-    public SupplierOrderCatalogR(Enterprise entp,String username) {
+    ProductCatalog pchist;
+
+    public SupplierOrderCatalogR(Enterprise entp, String username) {
         initComponents();
-         this.username=username;
-    connect = new JdbcConnect();
-        this.entp=entp;
-        delivery_status="none";
+        this.username = username;
+        connect = new JdbcConnect();
+        this.entp = entp;
+        delivery_status = "none";
         populateorder();
-        pc = new ProductCatalog();
+        
+        pchist = connect.getproductcata(this.entp);
     }
 
     /**
@@ -266,13 +269,13 @@ public class SupplierOrderCatalogR extends javax.swing.JPanel {
 
         if (row < 0) {
             JOptionPane.showMessageDialog(this,
-                "No row is selected! Please select one row",
-                "Select row",
-                JOptionPane.ERROR_MESSAGE);
+                    "No row is selected! Please select one row",
+                    "Select row",
+                    JOptionPane.ERROR_MESSAGE);
         } else {
             DefaultTableModel model = (DefaultTableModel) Ordertable.getModel();
             popuplateorderitem(Integer.valueOf(model.getValueAt(row, 0).toString()));
-            corder_id=Integer.valueOf(model.getValueAt(row, 0).toString());
+            corder_id = Integer.valueOf(model.getValueAt(row, 0).toString());
         }
     }//GEN-LAST:event_btnviewActionPerformed
 
@@ -285,24 +288,43 @@ public class SupplierOrderCatalogR extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnapprove1ActionPerformed
 
+    
+    public int check_exsiting_product(Product p)
+    {
+         
+        for (Product pt : pchist.getPcat()){
+            System.out.println(p.getName() +":::::" +pt.getName() );
+            if (p.getName().equalsIgnoreCase(pt.getName())){
+                return pt.getProduct_id();
+            }
+        }
+     return 0;
+    }
     private void btndeliveredActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndeliveredActionPerformed
         // TODO add your handling code here:
         int p_id;
-        if (delivery_status.equalsIgnoreCase("ORDER SHIPPED"))
-        {
-            connect.updatedelivery( corder_id,"DELIVERED");
+        if (delivery_status.equalsIgnoreCase("ORDER SHIPPED")) {
+            connect.updatedelivery(corder_id, "DELIVERED");
             
-       // int ent_id, String name, int price, int validity, int weight, String desc
-        for (Product p : pc.getPcat())
-                {
-        connect.insertproduct(entp.getEnt_id(),p);
-        
-        //System.out.println(connect.pet.toString());
-        p_id = connect.getlatestproductid();
-        
-        connect.insertinventory(p_id,p.getQuantity());}
-        }
-        else {JOptionPane.showMessageDialog(this,
+            // int ent_id, String name, int price, int validity, int weight, String desc
+            for (Product p : pc.getPcat()) {
+                 
+                    int k=check_exsiting_product(p);
+                    System.out.println(k );
+                    if (k!=0)
+                     {
+                        
+                        connect.updateinventory(k, p.getQuantity());
+                    } else {
+                        connect.insertproduct(entp.getEnt_id(), p);
+
+                        //System.out.println(connect.pet.toString());
+                        p_id = connect.getlatestproductid();
+
+                        connect.insertinventory(p_id, p.getQuantity());
+                    }
+                }}
+                else {JOptionPane.showMessageDialog(this,
                 "Delivery is not Approved",
                 "Send mail",
                 JOptionPane.ERROR_MESSAGE);
@@ -327,21 +349,21 @@ public class SupplierOrderCatalogR extends javax.swing.JPanel {
     private javax.swing.JTextField tftotalorderprice;
     // End of variables declaration//GEN-END:variables
 
-public void populateorder(){
-    DefaultTableModel model = (DefaultTableModel) Ordertable.getModel();
+    public void populateorder() {
+        DefaultTableModel model = (DefaultTableModel) Ordertable.getModel();
         model.setRowCount(0);
         
-         try{
-    connect.connect();
+        try {
+            connect.connect();
             // Prepare Statement
-               
+
             connect.pet = connect.con.prepareStatement("Select o.order_id,o.ent_name,o.f_ent_name,o.orderprice, "
                     + "DATE_FORMAT(o.ord_date, '%d/%m/%y %T') orddate ,o.status "
                     + "from order1 o where o.status like concat('%',?,'%') and o.ent_name=? order by o.ord_date desc");
             connect.pet.setString(1, jcstatus.getSelectedItem().toString());
             connect.pet.setString(2, entp.getName());
-            
-            System.out.println(connect.pet.toString());
+
+            //System.out.println(connect.pet.toString());
             connect.myRs = connect.pet.executeQuery();
             while (connect.myRs.next()) {
                 Object[] row = new Object[7];
@@ -355,36 +377,34 @@ public void populateorder(){
                 model.addRow(row);
                 
             }
-            
-            
-    }
-     catch (Exception et) {
+
+        } catch (Exception et) {
             System.out.println(et.toString());
 
         }
 
-}
+    }
 
-
-        public void popuplateorderitem(int order_idd){
-    DefaultTableModel model = (DefaultTableModel) OrderItems.getModel();
+    public void popuplateorderitem(int order_idd) {
+        pc = new ProductCatalog();
+        DefaultTableModel model = (DefaultTableModel) OrderItems.getModel();
         model.setRowCount(0);
-        int or_p=0;
-        int i=0;
+        int or_p = 0;
+        int i = 0;
         Product p;
-         try{
-    connect.connect();
+        try {
+            connect.connect();
             // Prepare Statement
-               
+
             connect.pet = connect.con.prepareStatement("Select p.validity, p.product_id,p.name,p.price,i.qty,p.weight, p.desc1,i.tot_item_price,d.status "
                     + "from order1 o join order_item i on o.order_id=i.order_id  "
                     + " join product p on p.product_id = i.product_id join delivery d on d.order_id=o.order_id where o.order_id=?");
             connect.pet.setInt(1, order_idd);
             connect.myRs = connect.pet.executeQuery();
-            
-            System.out.println(connect.pet.toString());
+
+            //System.out.println(connect.pet.toString());
             while (connect.myRs.next()) {
-                i=i+1;
+                i = i + 1;
                 Object[] row = new Object[10];
                 row[0] = i;
                 row[1] = connect.myRs.getInt("product_id");
@@ -396,22 +416,20 @@ public void populateorder(){
                 row[6] = connect.myRs.getString("desc1");
                 row[7] = connect.myRs.getString("tot_item_price");
                 row[8] = connect.myRs.getString("status");
-                or_p=or_p+ connect.myRs.getInt("tot_item_price");
-                delivery_status=connect.myRs.getString("status");
+                or_p = or_p + connect.myRs.getInt("tot_item_price");
+                delivery_status = connect.myRs.getString("status");
                 model.addRow(row);
-                model.addRow(row);
-                p = new Product (entp.getEnt_id(),connect.myRs.getString("name"),connect.myRs.getInt("price"),
-                        connect.myRs.getInt("validity"),connect.myRs.getInt("weight"),connect.myRs.getString("desc1"),connect.myRs.getInt("qty"));
+                p = new Product(entp.getEnt_id(), connect.myRs.getString("name"), connect.myRs.getInt("price"),
+                        connect.myRs.getInt("validity"), connect.myRs.getInt("weight"), connect.myRs.getString("desc1"), connect.myRs.getInt("qty"));
                 pc.addproduct(p);
             }
-            
-       tftotalorderprice.setText(String.valueOf(or_p));
-            
-    }
-     catch (Exception et) {
+
+            tftotalorderprice.setText(String.valueOf(or_p));
+
+        } catch (Exception et) {
             System.out.println(et.toString());
 
         }
 
-}
+    }
 }

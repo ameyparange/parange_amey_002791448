@@ -267,7 +267,7 @@ public class SupplierOrderCatalog extends javax.swing.JPanel {
             connect.pet.setString(1, jcstatus.getSelectedItem().toString());
             connect.pet.setString(2, entp.getName());
             
-            System.out.println(connect.pet.toString());
+            //System.out.println(connect.pet.toString());
             connect.myRs = connect.pet.executeQuery();
             while (connect.myRs.next()) {
                 Object[] row = new Object[7];
@@ -305,7 +305,7 @@ public class SupplierOrderCatalog extends javax.swing.JPanel {
             connect.pet.setInt(1, order_idd);
             connect.myRs = connect.pet.executeQuery();
             
-            System.out.println(connect.pet.toString());
+            //System.out.println(connect.pet.toString());
             while (connect.myRs.next()) {
                 i=i+1;
                 Object[] row = new Object[9];
