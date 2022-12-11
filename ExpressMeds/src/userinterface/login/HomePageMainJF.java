@@ -219,17 +219,17 @@ public class HomePageMainJF extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         dispose();
-        new HomePageMainJF().setVisible(false);
+//        //new HomePageMainJF().setVisible(false);
         JFrame frame = new JFrame();
-        frame.setPreferredSize(new Dimension(800, 500));
+//        frame.setPreferredSize(new Dimension(800, 500));
         CustomerRegistration frame1 = new CustomerRegistration();
         frame1.setVisible(true);
-        frame1.setSize(800, 500);
-        frame.setExtendedState(JFrame.MAXIMIZED_BOTH); //frame.setUndecorated(true); 
-        frame.setVisible(true);
-        frame.getContentPane().add(frame1);
-        frame.setVisible(true);
-        //frame1.setExtendedState(JFrame.MAXIMIZED_BOTH);
+//        frame1.setSize(800, 500);
+//        frame.setExtendedState(JFrame.MAXIMIZED_BOTH); //frame.setUndecorated(true); 
+       frame.setVisible(true);
+       frame.getContentPane().add(frame1);
+//        frame.setVisible(true);
+//        //frame1.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
 
     }//GEN-LAST:event_btnNewUserActionPerformed
