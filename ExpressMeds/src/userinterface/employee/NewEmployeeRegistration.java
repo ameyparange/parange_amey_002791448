@@ -515,7 +515,7 @@ public class NewEmployeeRegistration extends javax.swing.JPanel {
         String phoneno = tfmobileno.getText();
         String username = tfusername.getText();
         String pass = tfpassword.getText();
-        String role = "Customer";
+        String role_name = "Customer";
         String emailId = tfemailid.getText();
         String gender = null;
         if (jRadioGender1.isSelected()) {
@@ -530,16 +530,15 @@ public class NewEmployeeRegistration extends javax.swing.JPanel {
         String city=tfcity.getText();
         String country=tfcountry.getText();
         String unit=tfunit.getText();
-        int zipcode=Integer.parseInt(tfzipcode.getText());
-//        
-//        Address add= new Address(street, unit,  city, state, zipcode);
-//        connect.insertaddress(add) ;
-//
-//            pet = con.prepareStatement("insert into address(street,unit,city,state,zipcode) values (?,?,?,?,?)");
-//        connect.insertaddress(street,city,zipcode,state,country);
-//        
-//        
-//       connect.insertPerson(firstName, lastName,emailId, phoneno,gender,age, role);
+        String zipcode=tfzipcode.getText();
+
+        
+        
+        Address add = new Address(street, unit, city, state, zipcode);
+        int add_id = connect.insertaddress(add);
+
+        connect.insertPerson(add_id, firstName, lastName, emailId, phoneno, gender, age, role_name);
+        connect.insertuseraccount(username, pass, role_name);
        
 
     }//GEN-LAST:event_btnsubmitActionPerformed
@@ -554,8 +553,11 @@ public class NewEmployeeRegistration extends javax.swing.JPanel {
         tforganisation.setText("");
         tfunit.setText("");
         tfcountry.setText("");
-       // listgender.clearSelection();
+        jRadioGender2.setSelected(false);
+        jRadioGender1.setSelected(false);
+        jRadioGender3.setSelected(false);
         tfstate.setText("");
+        tfcity.setText("");
         tfzipcode.setText("");
         tfusername.setText("");
         tfpassword.setText("");

@@ -71,30 +71,28 @@ public class JdbcConnect {
         return con;
     }
 
-    public void insertrec() {
+    public void insertuseraccount(String username, String password, String role) {
         try {
-            this.connect();
-            String name = "admin";
-            int id = 1;
-            String pass = "admin";
-            String role = "admin";
 
-            pet = con.prepareStatement("insert into useraccount(username,per_id,password,role_name) values (?,?,?,?)");
-            pet.setString(1, name);
-            pet.setInt(2, id);
-            pet.setString(3, pass);
-            pet.setString(4, role);
+            this.connect();
+
+            pet = con.prepareStatement("insert into useraccount(username,password,role_name) values (?,?,?)");
+            pet.setString(1, username);
+
+            pet.setString(2, password);
+            pet.setString(3, role);
 
             pet.executeUpdate();
-            displayData();
+            con.commit();
 
+            System.out.println("Completed");
         } catch (Exception e) {
             System.out.println(e.toString());
 
         }
     }
 
-    public void displayData() {
+    public void displayuseraccountData() {
         try {
             this.connect();
             // Prepare Statement
@@ -119,7 +117,7 @@ public class JdbcConnect {
 
     }
 
-    public void deleteData() {
+    public void deleteuseraccountData() {
 
         try {
             this.connect();
@@ -127,7 +125,7 @@ public class JdbcConnect {
             pet = con.prepareStatement("DELETE FROM useraccount");
             pet.executeUpdate();
 
-            displayData();
+            displayuseraccountData();
 
         } catch (Exception e) {
             System.out.println(e.toString());
@@ -146,12 +144,9 @@ public class JdbcConnect {
             myRs = pet.executeQuery();
             if (myRs.next()) {
 
-                //System.out.println("UsER entered - " + Pass);
-                //System.out.println((myRs.getString("password")));
-                if (myRs.getString("password").equals(Pass)) {
-                    //     System.out.println((Pass));
 
-                    //  System.out.println(myRs.getString(password));
+                if (myRs.getString("password").equals(Pass)) {
+
                     return 1;
 
                 } else {
@@ -690,6 +685,7 @@ public class JdbcConnect {
 
             return k;
 
+
         } catch (Exception e) {
             System.out.println(e.toString());
             return 0;
@@ -698,28 +694,31 @@ public class JdbcConnect {
     }
 
     
-    public void insertPerson(String firstName, String lastName, String emailId, String phoneno, String gender, int age, String role_name) {
+
+    public void insertPerson(int add_id, String firstName, String lastName, String emailId, String phoneno, String gender, int age, String role_name) {
+
         try {
             this.connect();
-            pet = con.prepareStatement("insert into person(fname,lname,email,mobileno,gender,age,role_name) values (?,?,?,?,?,?,?)");
-            pet.setString(1, firstName);
-            pet.setString(2, lastName);
-            pet.setString(3, emailId);
-            pet.setString(4, phoneno);
-            pet.setString(5, gender);
-            pet.setInt(6, age);
-            pet.setString(7,role_name);
-            
+            pet = con.prepareStatement("insert into person(add_id, fname,lname,email,mobileno,gender,age,role_name) values (?,?,?,?,?,?,?,?)");
+            pet.setInt(1, add_id);
+            pet.setString(2, firstName);
+            pet.setString(3, lastName);
+            pet.setString(4, emailId);
+            pet.setString(5, phoneno);
+            pet.setString(6, gender);
+            pet.setInt(7, age);
+            pet.setString(8, role_name);
 
             int k = pet.executeUpdate();
             con.commit();
- 
+
         } catch (Exception e) {
             System.out.println(e.toString());
 
         }
 
     }
+
     
     public void insertbatch(int p_id, int quantity)
     {
@@ -761,5 +760,5 @@ public class JdbcConnect {
         return 9999;
     
     }
-
+     
 }

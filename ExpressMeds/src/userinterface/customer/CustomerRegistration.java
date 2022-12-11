@@ -12,12 +12,12 @@ import java.io.*;
 import javax.mail.Message.RecipientType;
 import javax.swing.JOptionPane;
 import model.enterprise.customer.Customer;
+import model.Address;
 
 /**
  *
  * @author nehajoisher
  */
-
 public class CustomerRegistration extends javax.swing.JPanel {
 
     JdbcConnect connect;
@@ -66,7 +66,7 @@ public class CustomerRegistration extends javax.swing.JPanel {
         jLabel12 = new javax.swing.JLabel();
         tfzipcode = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
-        tfcity1 = new javax.swing.JTextField();
+        tfcity = new javax.swing.JTextField();
         javax.swing.JButton btnsubmit = new javax.swing.JButton();
         javax.swing.JButton btnclear = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
@@ -256,7 +256,7 @@ public class CustomerRegistration extends javax.swing.JPanel {
                     .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(tfunit, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
                         .addComponent(tfstreet, javax.swing.GroupLayout.Alignment.LEADING))
-                    .addComponent(tfcity1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfcity, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel5Layout.createSequentialGroup()
@@ -298,7 +298,7 @@ public class CustomerRegistration extends javax.swing.JPanel {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(tfcountry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfcity1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfcity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15)))
         );
 
@@ -517,11 +517,21 @@ public class CustomerRegistration extends javax.swing.JPanel {
         } else {
             gender = "Other";
         }
+        String state = tfstate.getText();
+        String street = tfstreet.getText();
+        String city = tfcity.getText();
+        String country = tfcountry.getText();
+        String unit = tfunit.getText();
+        String zipcode = tfzipcode.getText();
 
-        connect.insertPerson(firstName, lastName,emailId, phoneno,gender,age, role_name);
+        Address add = new Address(street, unit, city, state, zipcode);
+        int add_id = connect.insertaddress(add);
+
+        connect.insertPerson(add_id, firstName, lastName, emailId, phoneno, gender, age, role_name);
+        connect.insertuseraccount(username, pass, role_name);
 
         //To send email
-       String email = tfemailid.getText();
+        String email = tfemailid.getText();
         try {
             Properties properties = new Properties();
             properties.put("mail.smtp.auth", "true");
@@ -534,13 +544,11 @@ public class CustomerRegistration extends javax.swing.JPanel {
                 protected PasswordAuthentication getPasswordAuthentication() {
                     return new PasswordAuthentication("expressmedoriginal@gmail.com", "vswluugbzlrckhxn");
 
-
-
-               }
+                }
             });
             System.out.println(session);
             Message message = new MimeMessage(session);
-            message.setSubject("Welcome to" );
+            message.setSubject("Welcome to ExpressMed");
             message.setContent("Welcome to" + "", "text/plain");
             message.setFrom(new InternetAddress("expressmedoriginal@gmail.com"));
             message.setRecipient(RecipientType.TO, new InternetAddress(email));
@@ -570,6 +578,9 @@ public class CustomerRegistration extends javax.swing.JPanel {
         tfzipcode.setText("");
         tfusername.setText("");
         tfpassword.setText("");
+        jRadioGender2.setSelected(false);
+        jRadioGender1.setSelected(false);
+        jRadioGender3.setSelected(false);
     }//GEN-LAST:event_btnclearActionPerformed
 
     private void jRadioGender1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioGender1ActionPerformed
@@ -628,7 +639,7 @@ public class CustomerRegistration extends javax.swing.JPanel {
     private javax.swing.JRadioButton jRadioGender2;
     private javax.swing.JRadioButton jRadioGender3;
     private javax.swing.JTextField tfage;
-    private javax.swing.JTextField tfcity1;
+    private javax.swing.JTextField tfcity;
     private javax.swing.JTextField tfcountry;
     private javax.swing.JTextField tfemailid;
     private javax.swing.JTextField tffirstname;
