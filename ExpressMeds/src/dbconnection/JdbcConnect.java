@@ -53,7 +53,7 @@ public class JdbcConnect {
     public void connect() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            this.con = DriverManager.getConnection("jdbc:mysql://localhost/expressmeddb", "root", "amey@1105");
+            this.con = DriverManager.getConnection("jdbc:mysql://localhost/expressmeddb", "root", "");
             this.con.setAutoCommit(false);
         } catch (Exception e) {
             System.out.println(e.toString());
@@ -63,7 +63,7 @@ public class JdbcConnect {
     public Connection connect(int i) {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            this.con = DriverManager.getConnection("jdbc:mysql://localhost/expressmeddb", "root", "amey@1105");
+            this.con = DriverManager.getConnection("jdbc:mysql://localhost/expressmeddb", "root", "");
             return con;
         } catch (Exception e) {
             System.out.println(e.toString());
@@ -247,8 +247,8 @@ public class JdbcConnect {
         }
         return 9999;
     }
-    
-        public int searchenterpriseent_id (String name) {
+
+    public int searchenterpriseent_id(String name) {
         this.connect();
         try {
             pet = con.prepareStatement("select ent_id from enterprise where name=?");
@@ -267,14 +267,14 @@ public class JdbcConnect {
         }
         return 9999;
     }
-        
-                public int searchenterpriseent_id (String name,String type) {
+
+    public int searchenterpriseent_id(String name, String type) {
         this.connect();
         try {
             pet = con.prepareStatement("select ent_id from enterprise where name=? and ent_type=?");
             pet.setString(1, name);
             pet.setString(2, type);
-            
+
             myRs = pet.executeQuery();
 
             if (myRs.next()) {
@@ -289,7 +289,7 @@ public class JdbcConnect {
         }
         return 9999;
     }
- 
+
     public Enterprise searchenterpriseon_entid(int ent_id) {
         Enterprise e;
         this.connect();
@@ -454,7 +454,6 @@ public class JdbcConnect {
         }
         return new Address();
     }
-    
 
     public int insertorganization(Organization org) {
         try {
@@ -514,7 +513,7 @@ public class JdbcConnect {
         }
         return 9999;
     }
-    
+
     public int insertrole(Role ro) {
         try {
             this.connect();
@@ -591,8 +590,8 @@ public class JdbcConnect {
 //        }
 //        return new Address();
 //    }
-    
-        public int insertproduct(int ent_id,Product p) {
+
+    public int insertproduct(int ent_id, Product p) {
         try {
             this.connect();
             pet = con.prepareStatement("insert into product(ent_id,name,price,weight,validity, desc1) values (?,?,?,?,?,?)");
@@ -605,7 +604,7 @@ public class JdbcConnect {
             System.out.println(pet.toString());
             int k = pet.executeUpdate();
             con.commit();
-            
+
             return k;
 
         } catch (Exception e) {
@@ -614,13 +613,12 @@ public class JdbcConnect {
         }
 
     }
-        
-        public int getlatestproductid()
-        {
-            this.connect();
+
+    public int getlatestproductid() {
+        this.connect();
         try {
             pet = con.prepareStatement("select max(product_id) product_id from product ");
-            
+
             myRs = pet.executeQuery();
 
             if (myRs.next()) {
@@ -634,11 +632,10 @@ public class JdbcConnect {
             return 9999;
         }
         return 9999;
-        
-        }
-        
-        
-            public int insertupdate(Product p) {
+
+    }
+
+    public int insertupdate(Product p) {
         try {
             this.connect();
 
@@ -651,7 +648,7 @@ public class JdbcConnect {
             pet.setInt(4, p.getValidity());
             pet.setString(5, p.getDesc());
             pet.setInt(6, p.getProduct_id());
-            
+
             System.out.println(pet.toString());
             int k = pet.executeUpdate();
             con.commit();
@@ -663,7 +660,8 @@ public class JdbcConnect {
         }
 
     }
-        public int insertinventory(int product_id,int qty) {
+
+    public int insertinventory(int product_id, int qty) {
         try {
             this.connect();
             pet = con.prepareStatement("insert into inventory(product_id,quantity) values (?,?)");
@@ -671,7 +669,7 @@ public class JdbcConnect {
             pet.setInt(2, qty);
             int k = pet.executeUpdate();
             con.commit();
-            
+
             return k;
 
         } catch (Exception e) {
@@ -680,7 +678,31 @@ public class JdbcConnect {
         }
 
     }
-        
-        
-        
+
+    public void insertPerson(String firstName, String lastName, String emailId, String phoneno, String gender, int age, String role_name) {
+        try {
+            this.connect();
+            pet = con.prepareStatement("insert into person(fname,lname,email,mobileno,gender,age,role_name) values (?,?,?,?,?,?,?)");
+            pet.setString(1, firstName);
+            pet.setString(2, lastName);
+            pet.setString(3, emailId);
+            pet.setString(4, phoneno);
+            pet.setString(5, gender);
+            pet.setInt(6, age);
+            pet.setString(7,role_name);
+            
+
+            int k = pet.executeUpdate();
+            con.commit();
+ 
+        } catch (Exception e) {
+            System.out.println(e.toString());
+
+        }
+
+    }
+    
+    
+
+
 }
