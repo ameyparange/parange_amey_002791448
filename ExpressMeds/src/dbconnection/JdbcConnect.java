@@ -60,7 +60,7 @@ public class JdbcConnect {
         try {
             Class.forName("com.mysql.jdbc.Driver");
 
-            this.con = DriverManager.getConnection("jdbc:mysql://localhost/expressmeddb", "root", "Neh*sonu_US2022");
+            this.con = DriverManager.getConnection("jdbc:mysql://localhost/expressmeddb", "root", "amey@1105");
 
             this.con.setAutoCommit(false);
         } catch (Exception e) {
@@ -1075,18 +1075,20 @@ public int updatedeliverycomplete(int order_id, String sts) {
         try {
             this.connect();
 //
-//            pet = con.prepareStatement("update employee set"
-//                    + "org_name=?,emp_id=? where emp_id=?") ;
-//
-//            pet.setString(1, emp.getOrg_name());
-//            pet.setInt(2, emp.getEmp_id());
-//            pet.setInt(3, p.getWeight());
-//            pet.setInt(4, p.getValidity());
-//            pet.setString(5, p.getDesc());
-//            pet.setInt(6, p.getProduct_id());
-//
-//            System.out.println(pet.toString());
-//            int k = pet.executeUpdate();
+            pet = con.prepareStatement("update employee set org_name=? where emp_id=?") ;
+            pet.setString(1, emp.getOrg_name());
+            pet.setInt(2, emp.getEmp_id());
+            pet.executeUpdate();
+            con.commit();
+            
+//            int per_id=searchPersonId(emp.getEmp_id());
+//            pet = con.prepareStatement("update person set fname=?, gender=?, mobileno=?, email=? where per_id=?") ;
+//            pet.setInt(1, emp.fname());
+//            pet.setInt(2, emp.gender());
+//            pet.setString(3, p.getDesc());
+//            pet.setInt(4, p.getProduct_id());
+           
+//           int k = pet.executeUpdate();
 //            con.commit();
 //            return k;
 
@@ -1097,9 +1099,30 @@ public int updatedeliverycomplete(int order_id, String sts) {
         }
         return 0;
     }
-
     
-    public ProductCatalog getproductcata(Enterprise ent)
+    
+    public int searchPersonId(int empid){
+      this.connect();
+        try {
+            pet = con.prepareStatement("select per_id from from employee where emp_id=?");
+            pet.setInt(1, empid);
+            myRs = pet.executeQuery();
+
+            if (myRs.next()) {
+
+                return myRs.getInt("per_id");
+
+            }
+        } catch (Exception e) {
+            
+            System.out.println(e.toString());
+            return 0;
+        }
+        return 0;
+    
+
+    }
+public ProductCatalog getproductcata(Enterprise ent)
     {
         ProductCatalog pc = new ProductCatalog();
         Product p;
@@ -1124,7 +1147,4 @@ public int updatedeliverycomplete(int order_id, String sts) {
         }
     
         }
-    
-
-
 }

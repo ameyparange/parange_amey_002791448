@@ -67,13 +67,14 @@ public class ManageEmployee extends javax.swing.JPanel {
         btnupdate = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         btnrefresh = new javax.swing.JButton();
-        btnsregister = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(219, 247, 252));
 
         jEmployee.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jEmployee.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -340,17 +341,6 @@ public class ManageEmployee extends javax.swing.JPanel {
             }
         });
 
-        btnsregister.setBackground(new java.awt.Color(204, 204, 204));
-        btnsregister.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        btnsregister.setText("Register");
-        btnsregister.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnsregister.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnsregister.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnsregisterActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -364,8 +354,6 @@ public class ManageEmployee extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 757, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnsregister, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
                         .addComponent(btndelete, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnrefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -380,7 +368,6 @@ public class ManageEmployee extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnsregister, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btndelete, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnrefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnview, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -483,7 +470,6 @@ public class ManageEmployee extends javax.swing.JPanel {
         enablefields();
         btnupdate.setEnabled(true);
         btnedit.setEnabled(false);
-        btnsregister.setEnabled(false);
         btndelete.setEnabled(false);
     }//GEN-LAST:event_btneditActionPerformed
 
@@ -504,19 +490,12 @@ public class ManageEmployee extends javax.swing.JPanel {
         refresh();
     }//GEN-LAST:event_btnrefreshActionPerformed
 
-    private void btnsregisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsregisterActionPerformed
-        EmployeeRegistration newEmp = new EmployeeRegistration();
-        newEmp.setVisible(true);
-        populatetable();
-    }//GEN-LAST:event_btnsregisterActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Gender;
     private javax.swing.JButton btndelete;
     private javax.swing.JButton btnedit;
     private javax.swing.JButton btnrefresh;
-    private javax.swing.JButton btnsregister;
     private javax.swing.JButton btnupdate;
     private javax.swing.JButton btnview;
     private javax.swing.JTable jEmployee;

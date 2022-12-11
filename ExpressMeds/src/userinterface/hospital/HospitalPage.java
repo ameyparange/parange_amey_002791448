@@ -297,7 +297,11 @@ public class HospitalPage extends javax.swing.JFrame {
     private void btnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbackActionPerformed
         // TODO add your handling code here:
         
-        this.dispose();
+        HospitalPage frame = new HospitalPage();
+        Window w = SwingUtilities.getWindowAncestor(HospitalPage.this);
+        w.setVisible(false);  
+        Dashboard frame1 = new Dashboard();
+        frame1.setVisible(true);
         
     }//GEN-LAST:event_btnbackActionPerformed
 

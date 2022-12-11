@@ -22,7 +22,7 @@ public class SupplierOrderCatalogR extends javax.swing.JPanel {
      * Creates new form SupplierOrderCatalogR
      */
     JdbcConnect connect;
-    int itemno = 0;
+    int itemno =0;
     OrderitemCatalog ordcata;
     String suppliername;
     Enterprise entp;
@@ -31,15 +31,13 @@ public class SupplierOrderCatalogR extends javax.swing.JPanel {
     int corder_id;
     ProductCatalog pc;
     ProductCatalog pchist;
-
-    public SupplierOrderCatalogR(Enterprise entp, String username) {
+    public SupplierOrderCatalogR(Enterprise entp,String username) {
         initComponents();
-        this.username = username;
-        connect = new JdbcConnect();
-        this.entp = entp;
-        delivery_status = "none";
+         this.username=username;
+    connect = new JdbcConnect();
+        this.entp=entp;
+        delivery_status="none";
         populateorder();
-        
         pchist = connect.getproductcata(this.entp);
     }
 
@@ -64,7 +62,6 @@ public class SupplierOrderCatalogR extends javax.swing.JPanel {
         tftotalorderprice = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         btndelivered = new javax.swing.JButton();
-        btnapprove1 = new javax.swing.JButton();
 
         jPanel3.setBackground(new java.awt.Color(204, 204, 204));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED), "Supplier Orders", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 3, 14))); // NOI18N
@@ -219,17 +216,6 @@ public class SupplierOrderCatalogR extends javax.swing.JPanel {
                     .addContainerGap(49, Short.MAX_VALUE)))
         );
 
-        btnapprove1.setBackground(new java.awt.Color(153, 153, 153));
-        btnapprove1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        btnapprove1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/customer/search.png"))); // NOI18N
-        btnapprove1.setText("Approve Order");
-        btnapprove1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(242, 242, 242), null, null));
-        btnapprove1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnapprove1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -240,11 +226,6 @@ public class SupplierOrderCatalogR extends javax.swing.JPanel {
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(313, 313, 313)
-                    .addComponent(btnapprove1)
-                    .addContainerGap(314, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -254,11 +235,6 @@ public class SupplierOrderCatalogR extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(278, 278, 278)
-                    .addComponent(btnapprove1)
-                    .addContainerGap(164, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -269,13 +245,13 @@ public class SupplierOrderCatalogR extends javax.swing.JPanel {
 
         if (row < 0) {
             JOptionPane.showMessageDialog(this,
-                    "No row is selected! Please select one row",
-                    "Select row",
-                    JOptionPane.ERROR_MESSAGE);
+                "No row is selected! Please select one row",
+                "Select row",
+                JOptionPane.ERROR_MESSAGE);
         } else {
             DefaultTableModel model = (DefaultTableModel) Ordertable.getModel();
             popuplateorderitem(Integer.valueOf(model.getValueAt(row, 0).toString()));
-            corder_id = Integer.valueOf(model.getValueAt(row, 0).toString());
+            corder_id=Integer.valueOf(model.getValueAt(row, 0).toString());
         }
     }//GEN-LAST:event_btnviewActionPerformed
 
@@ -283,13 +259,7 @@ public class SupplierOrderCatalogR extends javax.swing.JPanel {
         // TODO add your handling code here:
         populateorder();
     }//GEN-LAST:event_jcstatusActionPerformed
-
-    private void btnapprove1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnapprove1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnapprove1ActionPerformed
-
-    
-    public int check_exsiting_product(Product p)
+ public int check_exsiting_product(Product p)
     {
          
         for (Product pt : pchist.getPcat()){
@@ -336,7 +306,6 @@ public class SupplierOrderCatalogR extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable OrderItems;
     private javax.swing.JTable Ordertable;
-    private javax.swing.JButton btnapprove1;
     private javax.swing.JButton btndelivered;
     private javax.swing.JButton btnview;
     private javax.swing.JLabel jLabel1;
@@ -349,21 +318,21 @@ public class SupplierOrderCatalogR extends javax.swing.JPanel {
     private javax.swing.JTextField tftotalorderprice;
     // End of variables declaration//GEN-END:variables
 
-    public void populateorder() {
-        DefaultTableModel model = (DefaultTableModel) Ordertable.getModel();
+public void populateorder(){
+    DefaultTableModel model = (DefaultTableModel) Ordertable.getModel();
         model.setRowCount(0);
         
-        try {
-            connect.connect();
+         try{
+    connect.connect();
             // Prepare Statement
-
+               
             connect.pet = connect.con.prepareStatement("Select o.order_id,o.ent_name,o.f_ent_name,o.orderprice, "
                     + "DATE_FORMAT(o.ord_date, '%d/%m/%y %T') orddate ,o.status "
                     + "from order1 o where o.status like concat('%',?,'%') and o.ent_name=? order by o.ord_date desc");
             connect.pet.setString(1, jcstatus.getSelectedItem().toString());
             connect.pet.setString(2, entp.getName());
-
-            //System.out.println(connect.pet.toString());
+            
+            System.out.println(connect.pet.toString());
             connect.myRs = connect.pet.executeQuery();
             while (connect.myRs.next()) {
                 Object[] row = new Object[7];
@@ -377,34 +346,37 @@ public class SupplierOrderCatalogR extends javax.swing.JPanel {
                 model.addRow(row);
                 
             }
-
-        } catch (Exception et) {
+            
+            
+    }
+     catch (Exception et) {
             System.out.println(et.toString());
 
         }
 
-    }
+}
 
-    public void popuplateorderitem(int order_idd) {
-        pc = new ProductCatalog();
-        DefaultTableModel model = (DefaultTableModel) OrderItems.getModel();
+
+        public void popuplateorderitem(int order_idd){
+            pc = new ProductCatalog();
+    DefaultTableModel model = (DefaultTableModel) OrderItems.getModel();
         model.setRowCount(0);
-        int or_p = 0;
-        int i = 0;
+        int or_p=0;
+        int i=0;
         Product p;
-        try {
-            connect.connect();
+         try{
+    connect.connect();
             // Prepare Statement
-
+               
             connect.pet = connect.con.prepareStatement("Select p.validity, p.product_id,p.name,p.price,i.qty,p.weight, p.desc1,i.tot_item_price,d.status "
                     + "from order1 o join order_item i on o.order_id=i.order_id  "
                     + " join product p on p.product_id = i.product_id join delivery d on d.order_id=o.order_id where o.order_id=?");
             connect.pet.setInt(1, order_idd);
             connect.myRs = connect.pet.executeQuery();
-
-            //System.out.println(connect.pet.toString());
+            
+            System.out.println(connect.pet.toString());
             while (connect.myRs.next()) {
-                i = i + 1;
+                i=i+1;
                 Object[] row = new Object[10];
                 row[0] = i;
                 row[1] = connect.myRs.getInt("product_id");
@@ -416,20 +388,22 @@ public class SupplierOrderCatalogR extends javax.swing.JPanel {
                 row[6] = connect.myRs.getString("desc1");
                 row[7] = connect.myRs.getString("tot_item_price");
                 row[8] = connect.myRs.getString("status");
-                or_p = or_p + connect.myRs.getInt("tot_item_price");
-                delivery_status = connect.myRs.getString("status");
+                or_p=or_p+ connect.myRs.getInt("tot_item_price");
+                delivery_status=connect.myRs.getString("status");
                 model.addRow(row);
-                p = new Product(entp.getEnt_id(), connect.myRs.getString("name"), connect.myRs.getInt("price"),
-                        connect.myRs.getInt("validity"), connect.myRs.getInt("weight"), connect.myRs.getString("desc1"), connect.myRs.getInt("qty"));
+                
+                p = new Product (entp.getEnt_id(),connect.myRs.getString("name"),connect.myRs.getInt("price"),
+                        connect.myRs.getInt("validity"),connect.myRs.getInt("weight"),connect.myRs.getString("desc1"),connect.myRs.getInt("qty"));
                 pc.addproduct(p);
             }
-
-            tftotalorderprice.setText(String.valueOf(or_p));
-
-        } catch (Exception et) {
+            
+       tftotalorderprice.setText(String.valueOf(or_p));
+            
+    }
+     catch (Exception et) {
             System.out.println(et.toString());
 
         }
 
-    }
+}
 }
