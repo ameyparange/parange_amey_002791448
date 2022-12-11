@@ -53,7 +53,7 @@ public class JdbcConnect {
     public void connect() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            this.con = DriverManager.getConnection("jdbc:mysql://localhost/expressmeddb", "root", "");
+            this.con = DriverManager.getConnection("jdbc:mysql://localhost/expressmeddb", "root", "amey@1105");
             this.con.setAutoCommit(false);
         } catch (Exception e) {
             System.out.println(e.toString());
@@ -601,7 +601,7 @@ public class JdbcConnect {
             pet.setInt(4, p.getWeight());
             pet.setInt(5, p.getValidity());
             pet.setString(6, p.getDesc());
-            System.out.println(pet.toString());
+            //System.out.println(pet.toString());
             int k = pet.executeUpdate();
             con.commit();
 
@@ -640,7 +640,7 @@ public class JdbcConnect {
             this.connect();
 
             pet = con.prepareStatement("update product set"
-                    + "name=?,price=?,weight=?,validity=? ,desc1=? where product_id= ? ");
+                    + " name=?,price=?,weight=?,validity=? ,desc1=? where product_id= ? ");
 
             pet.setString(1, p.getName());
             pet.setInt(2, p.getPrice());
@@ -678,7 +678,26 @@ public class JdbcConnect {
         }
 
     }
+    
+        public int updateinventory(int product_id, int qty) {
+        try {
+            this.connect();
+            pet = con.prepareStatement("update inventory set quantity = quantity + ? where product_id= ?");
+            pet.setInt(1, qty);
+            pet.setInt(2, product_id);
+            int k = pet.executeUpdate();
+            con.commit();
 
+            return k;
+
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            return 0;
+        }
+
+    }
+
+    
     public void insertPerson(String firstName, String lastName, String emailId, String phoneno, String gender, int age, String role_name) {
         try {
             this.connect();
@@ -702,7 +721,45 @@ public class JdbcConnect {
 
     }
     
-    
+    public void insertbatch(int p_id, int quantity)
+    {
+        try {
+            this.connect();
+            pet = con.prepareStatement("insert into batch(product_id, mgf_date,quantity) values (?,sysdate(),?)");
+            pet.setInt(1, p_id);
+           // pet.setString(2, mfg_date);
+            pet.setInt(2, quantity);
+            
+            //System.out.println(pet.toString());
+            int k = pet.executeUpdate();
+            con.commit();
+ 
+        } catch (Exception e) {
+            System.out.println(e.toString());
 
+        }
+    }
+
+    public int getlatestbatchid()
+    {
+        this.connect();
+        try {
+            pet = con.prepareStatement("select max(batch_id) batch_id from batch ");
+
+            myRs = pet.executeQuery();
+
+            if (myRs.next()) {
+
+                return myRs.getInt("batch_id");
+
+            }
+        } catch (Exception e) {
+            System.out.println("9999");
+            System.out.println(e.toString());
+            return 9999;
+        }
+        return 9999;
+    
+    }
 
 }
