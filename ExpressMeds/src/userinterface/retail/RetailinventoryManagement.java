@@ -343,7 +343,6 @@ public class RetailinventoryManagement extends javax.swing.JPanel {
             .addGap(0, 55, Short.MAX_VALUE)
         );
 
-        btnview.setBackground(new java.awt.Color(153, 153, 153));
         btnview.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         btnview.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/customer/search.png"))); // NOI18N
         btnview.setText("View Product");
@@ -378,7 +377,6 @@ public class RetailinventoryManagement extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
         jLabel3.setText("ID");
 
-        btncreate.setBackground(new java.awt.Color(153, 153, 153));
         btncreate.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         btncreate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/customer/search.png"))); // NOI18N
         btncreate.setText("Create Product");
@@ -389,7 +387,6 @@ public class RetailinventoryManagement extends javax.swing.JPanel {
             }
         });
 
-        btnrefresh.setBackground(new java.awt.Color(153, 153, 153));
         btnrefresh.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         btnrefresh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/customer/search.png"))); // NOI18N
         btnrefresh.setText("Refresh");

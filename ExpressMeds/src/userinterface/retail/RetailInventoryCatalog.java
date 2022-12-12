@@ -315,7 +315,6 @@ public class RetailInventoryCatalog extends javax.swing.JPanel {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        btnview.setBackground(new java.awt.Color(153, 153, 153));
         btnview.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         btnview.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/customer/search.png"))); // NOI18N
         btnview.setText("View Product");
@@ -350,7 +349,6 @@ public class RetailInventoryCatalog extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
         jLabel3.setText("ID");
 
-        btnrefresh.setBackground(new java.awt.Color(153, 153, 153));
         btnrefresh.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         btnrefresh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/customer/search.png"))); // NOI18N
         btnrefresh.setText("Refresh");

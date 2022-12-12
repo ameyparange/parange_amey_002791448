@@ -5,8 +5,12 @@
 package userinterface.retail;
 
 import dbconnection.JdbcConnect;
+import java.awt.Window;
+import javax.swing.SwingUtilities;
 import model.enterprise.Enterprise;
 import model.enterprise.EnterpriseCatalog;
+import userinterface.admin.AdminPage;
+import userinterface.admin.Dashboard;
 import userinterface.delivery.RetialSupplierOrder;
 
 
@@ -24,6 +28,7 @@ public class RetailPage extends javax.swing.JFrame {
      JdbcConnect connect;
     Enterprise entp;
     Enterprise supplier;
+    String username="";
     EnterpriseCatalog suppliercata;
     public RetailPage() {
         initComponents();
@@ -213,6 +218,11 @@ public class RetailPage extends javax.swing.JFrame {
 
         btnlogout.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         btnlogout.setText("Logout");
+        btnlogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnlogoutActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 0, 36)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -304,7 +314,14 @@ public class RetailPage extends javax.swing.JFrame {
 
     private void btnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbackActionPerformed
         // TODO add your handling code here:
-        this.dispose();
+        
+        RetailPage frame = new RetailPage();
+        Window w = SwingUtilities.getWindowAncestor(RetailPage.this);
+        w.setVisible(false);  
+        Dashboard frame1 = new Dashboard();
+        frame1.setVisible(true);
+        
+        
     }//GEN-LAST:event_btnbackActionPerformed
 
     private void btnplaceorderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnplaceorderActionPerformed
@@ -312,6 +329,13 @@ public class RetailPage extends javax.swing.JFrame {
         RetialSupplierOrder mgorg = new RetialSupplierOrder();
         jSplitPane1.setRightComponent(mgorg);
     }//GEN-LAST:event_btnplaceorderActionPerformed
+
+    private void btnlogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlogoutActionPerformed
+        // TODO add your handling code here:
+        
+        this.dispose();
+        
+    }//GEN-LAST:event_btnlogoutActionPerformed
 
     /**
      * @param args the command line arguments
