@@ -17,7 +17,7 @@ public class DeliveryPage extends javax.swing.JFrame {
      * Creates new form DeliveryPage
      */
     String username;
-    public DeliveryPage() {
+    public DeliveryPage(String username) {
         initComponents();
         this.username=username;
     }
@@ -281,7 +281,7 @@ public class DeliveryPage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DeliveryPage().setVisible(true);
+                //new DeliveryPage(username).setVisible(true);
             }
         });
     }

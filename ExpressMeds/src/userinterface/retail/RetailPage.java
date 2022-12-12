@@ -8,6 +8,7 @@ import dbconnection.JdbcConnect;
 import model.enterprise.Enterprise;
 import model.enterprise.EnterpriseCatalog;
 import userinterface.delivery.RetialSupplierOrder;
+import userinterface.employee.NewEmployeeRegistration;
 
 
 /**
@@ -93,6 +94,11 @@ public class RetailPage extends javax.swing.JFrame {
         btnemployees.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         btnemployees.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/retail/employee.png"))); // NOI18N
         btnemployees.setText("Employees");
+        btnemployees.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnemployeesActionPerformed(evt);
+            }
+        });
 
         btnplaceorder.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         btnplaceorder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/retail/checkout.png"))); // NOI18N
@@ -306,6 +312,13 @@ public class RetailPage extends javax.swing.JFrame {
         RetialSupplierOrder mgorg = new RetialSupplierOrder();
         jSplitPane1.setRightComponent(mgorg);
     }//GEN-LAST:event_btnplaceorderActionPerformed
+
+    private void btnemployeesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnemployeesActionPerformed
+        // TODO add your handling code here:
+        NewEmployeeRegistration empRegister = new NewEmployeeRegistration();
+        jSplitPane1.setRightComponent(empRegister);
+        
+    }//GEN-LAST:event_btnemployeesActionPerformed
 
     /**
      * @param args the command line arguments

@@ -86,6 +86,11 @@ public class ManageGrievances extends javax.swing.JPanel {
         btnview.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         btnview.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/delivery/search.png"))); // NOI18N
         btnview.setText("View");
+        btnview.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnviewActionPerformed(evt);
+            }
+        });
 
         jPanel4.setBackground(new java.awt.Color(204, 204, 204));
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), "Complaint Details", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 3, 18))); // NOI18N

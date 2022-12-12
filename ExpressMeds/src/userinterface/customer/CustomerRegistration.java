@@ -5,14 +5,20 @@
 package userinterface.customer;
 
 import dbconnection.JdbcConnect;
+import java.awt.Dimension;
+import java.awt.Window;
 import javax.mail.*;
 import javax.mail.internet.*;
 import java.util.*;
 import java.io.*;
 import javax.mail.Message.RecipientType;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import model.enterprise.customer.Customer;
 import model.Address;
+import userinterface.login.HomePageMainJF;
 
 /**
  *
@@ -25,10 +31,24 @@ public class CustomerRegistration extends javax.swing.JPanel {
     /**
      * Creates new form CustomerRegistration1
      */
+
     public CustomerRegistration() {
         initComponents();
         connect = new JdbcConnect();
+       
+
     }
+    
+    
+//    private void loadPanels()
+//    {
+//        // Add New Login        
+//        loginPanel = new AddNewLogin();
+//        backbonePanel.add(loginPanel);
+//        loginPanel.setSize(1349, 675);
+//        
+//        hidePanels();
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -78,6 +98,7 @@ public class CustomerRegistration extends javax.swing.JPanel {
         jRadioGender1 = new javax.swing.JRadioButton();
         jRadioGender2 = new javax.swing.JRadioButton();
         jRadioGender3 = new javax.swing.JRadioButton();
+        btnback = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(219, 247, 252));
 
@@ -360,9 +381,9 @@ public class CustomerRegistration extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(274, 274, 274)
                 .addComponent(btnsubmit)
-                .addGap(72, 72, 72)
+                .addGap(36, 36, 36)
                 .addComponent(btnclear)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(319, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -417,14 +438,25 @@ public class CustomerRegistration extends javax.swing.JPanel {
             }
         });
 
+        btnback.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btnback.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/supplier/back.png"))); // NOI18N
+        btnback.setText("Back");
+        btnback.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbackActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(94, Short.MAX_VALUE)
+                .addContainerGap(38, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnback)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 561, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(151, 151, 151))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -443,7 +475,9 @@ public class CustomerRegistration extends javax.swing.JPanel {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnback))
                 .addGap(72, 72, 72)
                 .addComponent(jRadioGender1, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -461,7 +495,7 @@ public class CustomerRegistration extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 806, Short.MAX_VALUE)
+            .addGap(0, 849, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -613,8 +647,24 @@ public class CustomerRegistration extends javax.swing.JPanel {
 
     }//GEN-LAST:event_jRadioGender3ActionPerformed
 
+  
+
+
+    private void btnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbackActionPerformed
+        // TODO add your handling code here:
+        CustomerRegistration frame = new CustomerRegistration();
+        Window w = SwingUtilities.getWindowAncestor(CustomerRegistration.this);
+        w.setVisible(false);  
+        HomePageMainJF frame1 = new HomePageMainJF();
+        frame1.setVisible(true);
+
+
+    }//GEN-LAST:event_btnbackActionPerformed
+    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnback;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

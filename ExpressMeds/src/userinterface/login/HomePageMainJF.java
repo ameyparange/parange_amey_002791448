@@ -14,6 +14,8 @@ import javax.swing.JOptionPane;
 import userinterface.admin.AdminPage;
 import userinterface.admin.AdminPage;
 import userinterface.customer.CustomerRegistration;
+import userinterface.delivery.DeliveryPage;
+import userinterface.hospital.HospitalPage;
 
 /**
  *
@@ -31,13 +33,13 @@ public class HomePageMainJF extends javax.swing.JFrame {
 
     public HomePageMainJF() {
         initComponents();
+
         //--------------------Test--------------
         txtuname.setText("admin");
         txtpassword.setText("admin");
         //--------------
         JdbcConnect connect = new JdbcConnect();
-        //connect.deleteData();
-        //connect.insertrec();
+
     }
 
     private Boolean checkBlankInput() {
@@ -192,9 +194,35 @@ public class HomePageMainJF extends javax.swing.JFrame {
                 int ans = connect.checkCred(username, pass);
                 if (ans == 1) {
                     JOptionPane.showMessageDialog(this, "Login Successful!");
+                   String user_role=connect.checkrole(username);
+                    if (user_role.equalsIgnoreCase("admin")||connect.checkrole(username).equalsIgnoreCase("Enterprise admin")||connect.checkrole(username).equalsIgnoreCase("organization admin")){
                     AdminPage adminpage = new AdminPage(username);
-                    //adminpage.setPreferredSize(new Dimension(1070, 600));
+                    adminpage.setPreferredSize(new Dimension(800, 600));
                     adminpage.setVisible(true);
+                    }
+                    
+                    else if (connect.checkrole(username).equalsIgnoreCase("Customer")|| connect.checkrole(username).equalsIgnoreCase("Customer Support")){
+                    DeliveryPage deliveryPage = new DeliveryPage(username);
+                    deliveryPage.setPreferredSize(new Dimension(800, 600));
+                    deliveryPage.setVisible(true);
+                    }
+                    else if (connect.checkrole(username).equalsIgnoreCase("doctor")){
+                    HospitalPage hospage = new HospitalPage(username);
+                    hospage.setPreferredSize(new Dimension(800, 600));
+                    hospage.setVisible(true);
+                    }
+                    else if (connect.checkrole(username).equalsIgnoreCase("Inventory Manager"))
+                    {
+//                    InventoryManager Inventorymanager= new InventoryManager (username);
+//                    Inventorymanager.setPreferredSize(new Dimension(800, 600));
+//                    Inventorymanager.setVisible(true);
+                    }
+                    else if (connect.checkrole(username).equalsIgnoreCase("Role Manager")){
+                    AdminPage adminpage = new AdminPage(username);
+                    adminpage.setPreferredSize(new Dimension(800, 600));
+                    adminpage.setVisible(true);
+                    }
+                    
                 } else if (ans == 2) {
                     JOptionPane.showMessageDialog(this, "Password Incorrect!");
                 } else {
@@ -204,7 +232,6 @@ public class HomePageMainJF extends javax.swing.JFrame {
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, e.getMessage());
             }
-
 
         } else {
 
@@ -216,19 +243,19 @@ public class HomePageMainJF extends javax.swing.JFrame {
 
     private void btnNewUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewUserActionPerformed
         // TODO add your handling code here:
-
+        
         dispose();
         new HomePageMainJF().setVisible(false);
         JFrame frame = new JFrame();
-//        frame.setPreferredSize(new Dimension(800, 500));
+        frame.setPreferredSize(new Dimension(700, 500));
         CustomerRegistration frame1 = new CustomerRegistration();
         frame1.setVisible(true);
-//        frame1.setSize(800, 500);
-//        frame.setExtendedState(JFrame.MAXIMIZED_BOTH); //frame.setUndecorated(true); 
-       frame.setVisible(true);
-       frame.getContentPane().add(frame1);
-       frame.setVisible(true);
-//        //frame1.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        frame1.setSize(700, 500);
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH); //frame.setUndecorated(true); 
+        frame.setVisible(true);
+        frame.getContentPane().add(frame1);
+        frame.setVisible(true);
+        //frame1.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
 
     }//GEN-LAST:event_btnNewUserActionPerformed
