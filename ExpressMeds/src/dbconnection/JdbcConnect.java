@@ -856,16 +856,20 @@ public class JdbcConnect {
     
     }
      
+
     public void insertorder(String username,String name, String ord_name ,int price)
+
     {
         
         try {
             this.connect();
+
             pet = con.prepareStatement("INSERT INTO order1 (username,ent_name,f_ent_name,orderprice)VALUES(?,?,?,?)");
             pet.setString(1, username);
             pet.setString(2, name);
             pet.setString(3, ord_name);
             pet.setInt(4, price);
+
            // pet.setString(2, mfg_date);
             
             //System.out.println(pet.toString());
@@ -874,6 +878,7 @@ public class JdbcConnect {
  
         } catch (Exception e) {
             System.out.println(e.toString());
+
 
         }
        
@@ -895,6 +900,7 @@ public class JdbcConnect {
             System.out.println(e.toString());
             return 0;
         }
+
 
     }
     public int getlatestorderid()
@@ -940,6 +946,5 @@ public class JdbcConnect {
         }
         }
     }
-        
-        
+
 }

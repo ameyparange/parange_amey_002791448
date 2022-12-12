@@ -4,6 +4,10 @@
  */
 package userinterface.hospital;
 
+import java.awt.Window;
+import javax.swing.SwingUtilities;
+import userinterface.login.HomePageMainJF;
+
 /**
  *
  * @author Dell
@@ -30,7 +34,6 @@ public class DoctorPage extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         btnverification = new javax.swing.JButton();
         btnviewprof = new javax.swing.JButton();
-        btnback = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         btnlogout = new javax.swing.JButton();
@@ -59,10 +62,6 @@ public class DoctorPage extends javax.swing.JPanel {
             }
         });
 
-        btnback.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        btnback.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/supplier/back.png"))); // NOI18N
-        btnback.setText("Back");
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -75,16 +74,11 @@ public class DoctorPage extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnviewprof, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(btnback)
-                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnback)
-                .addGap(131, 131, 131)
+                .addGap(163, 163, 163)
                 .addComponent(btnviewprof)
                 .addGap(146, 146, 146)
                 .addComponent(btnverification)
@@ -112,6 +106,11 @@ public class DoctorPage extends javax.swing.JPanel {
 
         btnlogout.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         btnlogout.setText("Logout");
+        btnlogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnlogoutActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 0, 36)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -174,9 +173,19 @@ public class DoctorPage extends javax.swing.JPanel {
 
     }//GEN-LAST:event_btnviewprofActionPerformed
 
+    private void btnlogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlogoutActionPerformed
+        // TODO add your handling code here:
+        
+        DoctorPage frame = new DoctorPage();
+        Window w = SwingUtilities.getWindowAncestor(DoctorPage.this);
+        w.setVisible(false);  
+        HomePageMainJF frame1 = new HomePageMainJF();
+        frame1.setVisible(true);
+        
+    }//GEN-LAST:event_btnlogoutActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnback;
     private javax.swing.JButton btnlogout;
     private javax.swing.JButton btnverification;
     private javax.swing.JButton btnviewprof;

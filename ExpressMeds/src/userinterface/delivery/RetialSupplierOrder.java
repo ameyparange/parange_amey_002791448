@@ -487,11 +487,13 @@ public class RetialSupplierOrder extends javax.swing.JPanel {
 
     private void btnplaceorderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnplaceorderActionPerformed
         // TODO add your handling code here:
+
         connect.insertorder(username,entp.getName(),suppliername,Integer.valueOf(tftotalorderprice.getText()));
        connect.insertorderitem( ordcata,connect.getlatestorderid());
        DefaultTableModel model = (DefaultTableModel) OrderItems.getModel();
         model.setRowCount(0);
        btnplaceorder.setEnabled(false);
+
     }//GEN-LAST:event_btnplaceorderActionPerformed
 
     private void btnapplyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnapplyActionPerformed
