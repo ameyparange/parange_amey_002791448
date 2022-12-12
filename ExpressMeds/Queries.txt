@@ -17,7 +17,7 @@ CREATE TABLE `expressmeddb`.`useraccount` (
 
 CREATE TABLE `expressmeddb`.`organization` (
   `org_id` INT NOT NULL AUTO_INCREMENT,
-  `ent_id` INT NULL,
+  `ent_id` INT NULL ,
   `org_type` VARCHAR(50) NULL,
   `email` VARCHAR(50) NULL,
   PRIMARY KEY (`org_id`));
