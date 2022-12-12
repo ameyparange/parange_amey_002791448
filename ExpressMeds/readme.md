@@ -39,5 +39,7 @@ Functionality :
 7. Admin can perform Visualization on order purchase history and product sale 
 
 
+For UML diagram - https://lucid.app/lucidchart/a52c86bc-5bed-4bce-8612-c660c71cdea1/edit?beaconFlowId=92D645547093E747&page=0_0&invitationId=inv_09b0ca90-f4b9-4ab8-9068-15ac4d1a6404#
+
 Thank you
 
