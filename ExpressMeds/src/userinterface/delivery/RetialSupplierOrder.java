@@ -7,6 +7,7 @@ package userinterface.delivery;
 import dbconnection.JdbcConnect;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import model.enterprise.Enterprise;
 import model.order.OrderItem;
 import model.order.OrderitemCatalog;
 
@@ -23,11 +24,16 @@ public class RetialSupplierOrder extends javax.swing.JPanel {
     int itemno =0;
     OrderitemCatalog ordcata;
     String suppliername;
-    public RetialSupplierOrder() {
+    Enterprise entp;
+    String username;
+    public RetialSupplierOrder(Enterprise entp,String username) {
         initComponents();
         connect = new JdbcConnect();
         ordcata = new OrderitemCatalog();
+        this.username=username;
         loadsupname();
+        this.entp=entp;
+        btnplaceorder.setEnabled(false);
     }
 
     /**
@@ -439,11 +445,13 @@ public class RetialSupplierOrder extends javax.swing.JPanel {
                 "Select row",
                 JOptionPane.ERROR_MESSAGE);
         } else {
+            
             if (  !tfquantity.getText().isEmpty()) {
             OrderItem orderitem;
             DefaultTableModel model = (DefaultTableModel) ProductCata.getModel();
             //System.out.println();
             int prod_id = Integer.valueOf( model.getValueAt(row, 1).toString());
+            btnplaceorder.setEnabled(true);
             String name =  model.getValueAt(row, 2).toString();
             int price = Integer.valueOf( model.getValueAt(row, 3).toString());
            int avail_qty = Integer.valueOf( model.getValueAt(row, 4).toString());
@@ -479,12 +487,18 @@ public class RetialSupplierOrder extends javax.swing.JPanel {
 
     private void btnplaceorderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnplaceorderActionPerformed
         // TODO add your handling code here:
-        connect.insertorder(Integer.valueOf(tftotalorderprice.getText()));
+
+        connect.insertorder(username,entp.getName(),suppliername,Integer.valueOf(tftotalorderprice.getText()));
        connect.insertorderitem( ordcata,connect.getlatestorderid());
+       DefaultTableModel model = (DefaultTableModel) OrderItems.getModel();
+        model.setRowCount(0);
+       btnplaceorder.setEnabled(false);
+
     }//GEN-LAST:event_btnplaceorderActionPerformed
 
     private void btnapplyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnapplyActionPerformed
         // TODO add your handling code here:
+        suppliername= jcsupname.getSelectedItem().toString();
         loadsupplierorderitems(suppliername);
         btnapply.setEnabled(false);
     }//GEN-LAST:event_btnapplyActionPerformed
@@ -573,6 +587,8 @@ public class RetialSupplierOrder extends javax.swing.JPanel {
                     + " and e.name=? ");
             connect.pet.setString(1, suppliername);
             connect.myRs = connect.pet.executeQuery();
+            
+            //System.out.println(connect.pet.toString());
             while (connect.myRs.next()) {
                 
                 Object[] row = new Object[8];

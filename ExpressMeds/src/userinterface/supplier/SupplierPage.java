@@ -31,6 +31,7 @@ public class SupplierPage extends javax.swing.JFrame {
     Enterprise supplier;
     String username="";
     EnterpriseCatalog suppliercata;
+    String username;
     public SupplierPage() {
         initComponents();
         connect = new JdbcConnect();
@@ -38,7 +39,10 @@ public class SupplierPage extends javax.swing.JFrame {
         loadentname();
 
     }
-
+ void init(String username)
+    {
+    this.username=username;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -304,6 +308,9 @@ public class SupplierPage extends javax.swing.JFrame {
 
     private void btnOrderMgmtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderMgmtActionPerformed
         // TODO add your handling code here:
+        
+        SupplierOrderMgmt supint = new SupplierOrderMgmt( entp,username );
+        jSplitPane1.setRightComponent(supint);
     }//GEN-LAST:event_btnOrderMgmtActionPerformed
 
     private void btnwarecataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnwarecataActionPerformed
