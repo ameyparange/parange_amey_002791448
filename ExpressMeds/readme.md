@@ -31,9 +31,13 @@ Work-flow Requests:
 
 Functionality : 
 1. Customers can order the medicines online and this order will be validated by the doctor and only after approval, the order will be placed and it will be delivered to the customer.
-2.  It provides easy to use interface for Inventory Stock Management so that Retailers and Suppliers can look up and keep a track the stock available in their inventory. This would eliminate the manual process and help to keep track in real time.
-3.  Retailer can look up their stock and place an order to the supplier through this application.
-4.  Order will be updated in real - time by delivery agents.
-5.  Hospital can place an order to Retailer.
+2. It provides easy to use interface for Inventory Stock Management so that Retailers and Suppliers can look up and keep a track the stock available in their inventory. This would eliminate the manual process and help to keep track in real time.
+3. Retailer can look up their stock and place an order to the supplier through this application.
+4. Order will be updated in real - time by delivery agents.
+5. Hospital can place an order to Retailer.
+6. Customers gets notified through email once they register.
+7. Admin can perform Visualization on order purchase history and product sale 
 
+
+Thank you
 
