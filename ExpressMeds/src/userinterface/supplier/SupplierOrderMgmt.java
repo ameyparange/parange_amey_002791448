@@ -278,7 +278,7 @@ public class SupplierOrderMgmt extends javax.swing.JPanel {
         //connect.insertorder(Integer.valueOf(tftotalorderprice.getText()));
         
         connect.updateorder( corder_id,"APPROVED");
-        connect.updatedelivery( corder_id,"ORDER SHIPPED");
+        connect.updatedeliverycomplete( corder_id,"ORDER SHIPPED");
         int or_p=0;
         int i=0;
          try{

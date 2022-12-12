@@ -17,6 +17,7 @@ public class Product {
     int validity;
     int weight;
     String desc;
+    int quantity;
 
     public Product() {
         this.product_id = 0;
@@ -36,6 +37,16 @@ public class Product {
         this.validity = validity;
         this.weight = weight;
         this.desc = desc;
+    }
+
+    public Product(int ent_id, String name, int price, int validity, int weight, String desc, int quantity) {
+        this.ent_id = ent_id;
+        this.name = name;
+        this.price = price;
+        this.validity = validity;
+        this.weight = weight;
+        this.desc = desc;
+        this.quantity = quantity;
     }
 
     public Product(int ent_id, String name, int price, int validity, int weight, String desc) {
@@ -58,6 +69,14 @@ public class Product {
 
     public int getEnt_id() {
         return ent_id;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public void setEnt_id(int ent_id) {

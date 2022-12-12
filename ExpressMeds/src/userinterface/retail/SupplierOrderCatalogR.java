@@ -9,6 +9,8 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.enterprise.Enterprise;
 import model.order.OrderitemCatalog;
+import model.product.Product;
+import model.product.ProductCatalog;
 
 /**
  *
@@ -27,6 +29,7 @@ public class SupplierOrderCatalogR extends javax.swing.JPanel {
     String delivery_status;
     String username;
     int corder_id;
+    ProductCatalog pc;
     public SupplierOrderCatalogR(Enterprise entp,String username) {
         initComponents();
          this.username=username;
@@ -34,6 +37,7 @@ public class SupplierOrderCatalogR extends javax.swing.JPanel {
         this.entp=entp;
         delivery_status="none";
         populateorder();
+        pc = new ProductCatalog();
     }
 
     /**
@@ -283,10 +287,20 @@ public class SupplierOrderCatalogR extends javax.swing.JPanel {
 
     private void btndeliveredActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndeliveredActionPerformed
         // TODO add your handling code here:
+        int p_id;
         if (delivery_status.equalsIgnoreCase("ORDER SHIPPED"))
         {
             connect.updatedelivery( corder_id,"DELIVERED");
             
+       // int ent_id, String name, int price, int validity, int weight, String desc
+        for (Product p : pc.getPcat())
+                {
+        connect.insertproduct(entp.getEnt_id(),p);
+        
+        //System.out.println(connect.pet.toString());
+        p_id = connect.getlatestproductid();
+        
+        connect.insertinventory(p_id,p.getQuantity());}
         }
         else {JOptionPane.showMessageDialog(this,
                 "Delivery is not Approved",
@@ -316,6 +330,7 @@ public class SupplierOrderCatalogR extends javax.swing.JPanel {
 public void populateorder(){
     DefaultTableModel model = (DefaultTableModel) Ordertable.getModel();
         model.setRowCount(0);
+        
          try{
     connect.connect();
             // Prepare Statement
@@ -336,7 +351,9 @@ public void populateorder(){
                 row[3] = connect.myRs.getInt("orderprice");
                 row[4] = connect.myRs.getString("orddate");
                 row[5] = connect.myRs.getString("status");
+                
                 model.addRow(row);
+                
             }
             
             
@@ -354,11 +371,12 @@ public void populateorder(){
         model.setRowCount(0);
         int or_p=0;
         int i=0;
+        Product p;
          try{
     connect.connect();
             // Prepare Statement
                
-            connect.pet = connect.con.prepareStatement("Select p.product_id,p.name,p.price,i.qty,p.weight, p.desc1,i.tot_item_price,d.status "
+            connect.pet = connect.con.prepareStatement("Select p.validity, p.product_id,p.name,p.price,i.qty,p.weight, p.desc1,i.tot_item_price,d.status "
                     + "from order1 o join order_item i on o.order_id=i.order_id  "
                     + " join product p on p.product_id = i.product_id join delivery d on d.order_id=o.order_id where o.order_id=?");
             connect.pet.setInt(1, order_idd);
@@ -381,6 +399,10 @@ public void populateorder(){
                 or_p=or_p+ connect.myRs.getInt("tot_item_price");
                 delivery_status=connect.myRs.getString("status");
                 model.addRow(row);
+                model.addRow(row);
+                p = new Product (entp.getEnt_id(),connect.myRs.getString("name"),connect.myRs.getInt("price"),
+                        connect.myRs.getInt("validity"),connect.myRs.getInt("weight"),connect.myRs.getString("desc1"),connect.myRs.getInt("qty"));
+                pc.addproduct(p);
             }
             
        tftotalorderprice.setText(String.valueOf(or_p));
