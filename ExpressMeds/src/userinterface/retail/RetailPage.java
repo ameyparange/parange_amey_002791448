@@ -58,10 +58,8 @@ public class RetailPage extends javax.swing.JFrame {
 
         jSplitPane1 = new javax.swing.JSplitPane();
         jPanel1 = new javax.swing.JPanel();
-        btnintmgmt = new javax.swing.JButton();
-        btnsupcatalog = new javax.swing.JButton();
         btnsupordercat = new javax.swing.JButton();
-        btncustorder = new javax.swing.JButton();
+        btncustordercata = new javax.swing.JButton();
         btnemployees = new javax.swing.JButton();
         btnplaceorder = new javax.swing.JButton();
         btnback = new javax.swing.JButton();
@@ -83,26 +81,18 @@ public class RetailPage extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(219, 247, 252));
 
-        btnintmgmt.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        btnintmgmt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/retail/inventory.png"))); // NOI18N
-        btnintmgmt.setText("Inventory Management");
-        btnintmgmt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnintmgmtActionPerformed(evt);
-            }
-        });
-
-        btnsupcatalog.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        btnsupcatalog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/retail/checkout.png"))); // NOI18N
-        btnsupcatalog.setText("Supplier Catalog");
-
         btnsupordercat.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         btnsupordercat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/retail/fast-delivery.png"))); // NOI18N
         btnsupordercat.setText("Supplier Order Catalog");
+        btnsupordercat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnsupordercatActionPerformed(evt);
+            }
+        });
 
-        btncustorder.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        btncustorder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/retail/checkout.png"))); // NOI18N
-        btncustorder.setText("Customer Order");
+        btncustordercata.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btncustordercata.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/retail/checkout.png"))); // NOI18N
+        btncustordercata.setText("Customer Order Catalog");
 
         btnemployees.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         btnemployees.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/retail/employee.png"))); // NOI18N
@@ -166,17 +156,15 @@ public class RetailPage extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(btnintmgmt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnsupordercat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btncustorder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btncustordercata, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnemployees, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnplaceorder, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnsupcatalog, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnintcat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnempmgmt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnManageOrganization, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jcentname, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(btnback)
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -192,21 +180,17 @@ public class RetailPage extends javax.swing.JFrame {
                 .addComponent(btnManageOrganization)
                 .addGap(18, 18, 18)
                 .addComponent(btnintcat)
-                .addGap(18, 18, 18)
-                .addComponent(btnintmgmt)
-                .addGap(18, 18, 18)
-                .addComponent(btnsupcatalog)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnsupordercat)
                 .addGap(18, 18, 18)
                 .addComponent(btnplaceorder)
                 .addGap(18, 18, 18)
-                .addComponent(btncustorder)
+                .addComponent(btncustordercata)
                 .addGap(23, 23, 23)
                 .addComponent(btnempmgmt)
                 .addGap(18, 18, 18)
                 .addComponent(btnemployees)
-                .addGap(55, 55, 55))
+                .addGap(149, 149, 149))
         );
 
         jSplitPane1.setLeftComponent(jPanel1);
@@ -296,13 +280,6 @@ public class RetailPage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnintmgmtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnintmgmtActionPerformed
-        // TODO add your handling code here:
-
-        RetailinventoryManagement retint = new RetailinventoryManagement(entp);
-        jSplitPane1.setRightComponent(retint);
-    }//GEN-LAST:event_btnintmgmtActionPerformed
-
     private void btnintcatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnintcatActionPerformed
         // TODO add your handling code here:
         RetailInventoryCatalog retint = new RetailInventoryCatalog(entp);
@@ -353,6 +330,13 @@ public class RetailPage extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnlogoutActionPerformed
 
+    private void btnsupordercatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsupordercatActionPerformed
+        // TODO add your handling code here:
+        SupplierOrderCatalogR mgorg = new SupplierOrderCatalogR(entp,username);
+        jSplitPane1.setRightComponent(mgorg);
+                
+    }//GEN-LAST:event_btnsupordercatActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -394,14 +378,12 @@ public class RetailPage extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnManageOrganization;
     private javax.swing.JButton btnback;
-    private javax.swing.JButton btncustorder;
+    private javax.swing.JButton btncustordercata;
     private javax.swing.JButton btnemployees;
     private javax.swing.JButton btnempmgmt;
     private javax.swing.JButton btnintcat;
-    private javax.swing.JButton btnintmgmt;
     private javax.swing.JButton btnlogout;
     private javax.swing.JButton btnplaceorder;
-    private javax.swing.JButton btnsupcatalog;
     private javax.swing.JButton btnsupordercat;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;

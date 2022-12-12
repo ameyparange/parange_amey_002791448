@@ -58,9 +58,7 @@ public class JdbcConnect {
         try {
             Class.forName("com.mysql.jdbc.Driver");
 
-
             this.con = DriverManager.getConnection("jdbc:mysql://localhost/expressmeddb", "root", "amey@1105");
-
 
             this.con.setAutoCommit(false);
         } catch (Exception e) {
@@ -699,7 +697,6 @@ public class JdbcConnect {
 
     }
 
-
     public int updateinventory_minus(int product_id, int qty) {
         try {
             this.connect();
@@ -711,14 +708,12 @@ public class JdbcConnect {
 
             return k;
 
-
         } catch (Exception e) {
             System.out.println(e.toString());
             return 0;
         }
 
     }
-
 
     public void insertPerson(int add_id, String firstName, String lastName, String emailId, String phoneno, String gender, int age, String role_name) {
 
@@ -851,29 +846,27 @@ public class JdbcConnect {
     }
 
     public String checkrole(String username) {
-        String role="";
+        String role = "";
         this.connect();
         try {
             pet = con.prepareStatement("select role_name from useraccount where username = ?");
-             pet.setString(1, username);
-             myRs = pet.executeQuery();
+            pet.setString(1, username);
+            myRs = pet.executeQuery();
             if (myRs.next()) {
                 System.out.println(myRs.getString("role_name"));
                 return myRs.getString("role_name");
             }
         } catch (Exception e) {
-           
+
             System.out.println(e.toString());
-            
+
         }
 
         return role;
     }
 
-    public void insertorder(String username,String name, String ord_name ,int price)
+    public void insertorder(String username, String name, String ord_name, int price) {
 
-    {
-        
         try {
             this.connect();
 
@@ -883,21 +876,73 @@ public class JdbcConnect {
             pet.setString(3, ord_name);
             pet.setInt(4, price);
 
-           // pet.setString(2, mfg_date);
-            
+            // pet.setString(2, mfg_date);
             //System.out.println(pet.toString());
             int k = pet.executeUpdate();
             con.commit();
- 
+
         } catch (Exception e) {
             System.out.println(e.toString());
 
+        }
+
+    }
+public void insertdelivery(int order_id) {
+
+        try {
+            this.connect();
+
+            pet = con.prepareStatement("INSERT INTO delivery (order_id,Modified_date)VALUES(?,  now())");
+            
+            pet.setInt(1, order_id);
+
+            // pet.setString(2, mfg_date);
+            //System.out.println(pet.toString());
+            int k = pet.executeUpdate();
+            con.commit();
+
+        } catch (Exception e) {
+            System.out.println(e.toString());
 
         }
-       
+
     }
-    
-             public int updateorder(int order_id, String sts) {
+public int updatedelivery(int order_id, String sts) {
+        try {
+            this.connect();
+            pet = con.prepareStatement("update delivery set status =  ? , Modified_date= now() where order_id= ?");
+            pet.setString(1, sts);
+            pet.setInt(2, order_id);
+            int k = pet.executeUpdate();
+            con.commit();
+
+            return k;
+
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            return 0;
+        }
+
+    }
+
+public int updatedeliverycomplete(int order_id, String sts) {
+        try {
+            this.connect();
+            pet = con.prepareStatement("update delivery set status =  ? , Modified_date= now(), Delivery_date= now() where order_id= ?");
+            pet.setString(1, sts);
+            pet.setInt(2, order_id);
+            int k = pet.executeUpdate();
+            con.commit();
+
+            return k;
+
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            return 0;
+        }
+
+    }
+    public int updateorder(int order_id, String sts) {
         try {
             this.connect();
             pet = con.prepareStatement("update order1 set status =  ? where order_id= ?");
@@ -908,16 +953,16 @@ public class JdbcConnect {
 
             return k;
 
-
         } catch (Exception e) {
             System.out.println(e.toString());
             return 0;
         }
 
-
     }
-    public int getlatestorderid()
-    {
+
+
+
+    public int getlatestorderid() {
         this.connect();
         try {
             pet = con.prepareStatement("select max(order_id) order_id from order1 ");
@@ -935,28 +980,29 @@ public class JdbcConnect {
             return 9999;
         }
         return 9999;
-    
-    }
-        public void insertorderitem(OrderitemCatalog oc,int order_id)
-    {this.connect();
-        for (OrderItem hos : oc.getOrditem()) {
-        try {
-            this.connect();
-            pet = con.prepareStatement("INSERT INTO order_item (order_id,product_id,qty,tot_item_price)VALUES(?,?,?,?)");
-            pet.setInt(1, order_id);
-            pet.setInt(2, hos.getProduct_id());
-            pet.setInt(3, hos.getQuantity());
-            pet.setInt(4, hos.getTotalitemprice());
-           // pet.setString(2, mfg_date);
-            
-            //System.out.println(pet.toString());
-            int k = pet.executeUpdate();
-            con.commit();
- 
-        } catch (Exception e) {
-            System.out.println(e.toString());
 
-        }
+    }
+
+    public void insertorderitem(OrderitemCatalog oc, int order_id) {
+        this.connect();
+        for (OrderItem hos : oc.getOrditem()) {
+            try {
+                this.connect();
+                pet = con.prepareStatement("INSERT INTO order_item (order_id,product_id,qty,tot_item_price)VALUES(?,?,?,?)");
+                pet.setInt(1, order_id);
+                pet.setInt(2, hos.getProduct_id());
+                pet.setInt(3, hos.getQuantity());
+                pet.setInt(4, hos.getTotalitemprice());
+                // pet.setString(2, mfg_date);
+
+                //System.out.println(pet.toString());
+                int k = pet.executeUpdate();
+                con.commit();
+
+            } catch (Exception e) {
+                System.out.println(e.toString());
+
+            }
         }
     }
 

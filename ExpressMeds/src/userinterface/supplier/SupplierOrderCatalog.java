@@ -8,17 +8,16 @@ import dbconnection.JdbcConnect;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.enterprise.Enterprise;
-import model.order.OrderItem;
 import model.order.OrderitemCatalog;
 
 /**
  *
  * @author amey8
  */
-public class SupplierOrderMgmt extends javax.swing.JPanel {
+public class SupplierOrderCatalog extends javax.swing.JPanel {
 
     /**
-     * Creates new form SupplierOrderMgmt
+     * Creates new form SupplierOrderCatalog
      */
     JdbcConnect connect;
     int itemno =0;
@@ -27,9 +26,9 @@ public class SupplierOrderMgmt extends javax.swing.JPanel {
     Enterprise entp;
     String username;
     int corder_id;
-    public SupplierOrderMgmt(Enterprise entp,String username) {
+    public SupplierOrderCatalog(Enterprise entp,String username) {
         initComponents();
-        this.username=username;
+           this.username=username;
     connect = new JdbcConnect();
         this.entp=entp;
         populateorder();
@@ -44,109 +43,17 @@ public class SupplierOrderMgmt extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        OrderItems = new javax.swing.JTable();
-        tftotalorderprice = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        btnapprove = new javax.swing.JButton();
-        btnreject = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         btnview = new javax.swing.JButton();
         jcstatus = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         Ordertable = new javax.swing.JTable();
-
-        jPanel2.setBackground(new java.awt.Color(204, 204, 204));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED), "Retail Cart", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 3, 14))); // NOI18N
-
-        OrderItems.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Item No", "Product_id", "Name", "ItemPrice", "Quantity", "Weight", "Description", "Total_ItemPrice"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane2.setViewportView(OrderItems);
-
-        jLabel5.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
-        jLabel5.setText("Total Order Price");
-
-        btnapprove.setBackground(new java.awt.Color(153, 153, 153));
-        btnapprove.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        btnapprove.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/customer/search.png"))); // NOI18N
-        btnapprove.setText("Approve Order");
-        btnapprove.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(242, 242, 242), null, null));
-        btnapprove.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnapproveActionPerformed(evt);
-            }
-        });
-
-        btnreject.setBackground(new java.awt.Color(153, 153, 153));
-        btnreject.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        btnreject.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/customer/search.png"))); // NOI18N
-        btnreject.setText("Reject Order");
-        btnreject.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(242, 242, 242), null, null));
-        btnreject.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnrejectActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnreject)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnapprove))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tftotalorderprice, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(15, 15, 15)
-                    .addComponent(jScrollPane2)
-                    .addGap(15, 15, 15)))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(159, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tftotalorderprice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnapprove)
-                    .addComponent(btnreject))
-                .addContainerGap())
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(26, 26, 26)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(81, Short.MAX_VALUE)))
-        );
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        OrderItems = new javax.swing.JTable();
+        tftotalorderprice = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
 
         jPanel3.setBackground(new java.awt.Color(204, 204, 204));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED), "Supplier Orders", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 3, 14))); // NOI18N
@@ -204,7 +111,7 @@ public class SupplierOrderMgmt extends javax.swing.JPanel {
                         .addComponent(jScrollPane3)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGap(0, 220, Short.MAX_VALUE)
+                        .addGap(0, 167, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                 .addComponent(btnview)
@@ -229,6 +136,64 @@ public class SupplierOrderMgmt extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        jPanel2.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED), "Retail Cart", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 3, 14))); // NOI18N
+
+        OrderItems.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Item No", "Product_id", "Name", "ItemPrice", "Quantity", "Weight", "Description", "Total_ItemPrice"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(OrderItems);
+
+        jLabel5.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
+        jLabel5.setText("Total Order Price");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tftotalorderprice, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(202, 202, 202))
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(15, 15, 15)
+                    .addComponent(jScrollPane2)
+                    .addGap(15, 15, 15)))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(164, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tftotalorderprice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addContainerGap())
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(26, 26, 26)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(49, Short.MAX_VALUE)))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -242,21 +207,20 @@ public class SupplierOrderMgmt extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnviewActionPerformed
         // TODO add your handling code here:
-        
+
         int row = Ordertable.getSelectedRow();
-        
-        
+
         if (row < 0) {
             JOptionPane.showMessageDialog(this,
                 "No row is selected! Please select one row",
@@ -266,56 +230,9 @@ public class SupplierOrderMgmt extends javax.swing.JPanel {
             DefaultTableModel model = (DefaultTableModel) Ordertable.getModel();
             popuplateorderitem(Integer.valueOf(model.getValueAt(row, 0).toString()));
             corder_id=Integer.valueOf(model.getValueAt(row, 0).toString());
-            }
-            
-        
-        
-        
-    }//GEN-LAST:event_btnviewActionPerformed
-
-    private void btnapproveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnapproveActionPerformed
-        // TODO add your handling code here:
-        //connect.insertorder(Integer.valueOf(tftotalorderprice.getText()));
-        
-        connect.updateorder( corder_id,"APPROVED");
-        connect.updatedelivery( corder_id,"ORDER SHIPPED");
-        int or_p=0;
-        int i=0;
-         try{
-    connect.connect();
-            // Prepare Statement
-               
-            connect.pet = connect.con.prepareStatement("Select p.product_id,p.name,p.price,i.qty,p.weight, p.desc1,i.tot_item_price "
-                    + "from order1 o join order_item i on o.order_id=i.order_id  "
-                    + " join product p on p.product_id = i.product_id  where o.order_id=?");
-            connect.pet.setInt(1, corder_id);
-            connect.myRs = connect.pet.executeQuery();
-            
-            //System.out.println(connect.pet.toString());
-            while (connect.myRs.next()) {
-                 
-                connect.updateinventory_minus(connect.myRs.getInt("product_id"), connect.myRs.getInt("qty"));
-            }
-            
-      populateorder();
-      DefaultTableModel model = (DefaultTableModel) OrderItems.getModel();
-        model.setRowCount(0);
-            
-    }
-     catch (Exception et) {
-            System.out.println(et.toString());
-
         }
-        
-    }//GEN-LAST:event_btnapproveActionPerformed
 
-    private void btnrejectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnrejectActionPerformed
-        // TODO add your handling code here:
-        connect.updateorder( corder_id,"REJECTED");
-        populateorder();
-        DefaultTableModel model = (DefaultTableModel) OrderItems.getModel();
-        model.setRowCount(0);
-    }//GEN-LAST:event_btnrejectActionPerformed
+    }//GEN-LAST:event_btnviewActionPerformed
 
     private void jcstatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcstatusActionPerformed
         // TODO add your handling code here:
@@ -326,8 +243,6 @@ public class SupplierOrderMgmt extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable OrderItems;
     private javax.swing.JTable Ordertable;
-    private javax.swing.JButton btnapprove;
-    private javax.swing.JButton btnreject;
     private javax.swing.JButton btnview;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
@@ -339,7 +254,7 @@ public class SupplierOrderMgmt extends javax.swing.JPanel {
     private javax.swing.JTextField tftotalorderprice;
     // End of variables declaration//GEN-END:variables
 
-public void populateorder(){
+    public void populateorder(){
     DefaultTableModel model = (DefaultTableModel) Ordertable.getModel();
         model.setRowCount(0);
          try{

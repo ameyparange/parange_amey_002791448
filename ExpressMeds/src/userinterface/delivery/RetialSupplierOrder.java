@@ -490,6 +490,7 @@ public class RetialSupplierOrder extends javax.swing.JPanel {
 
         connect.insertorder(username,entp.getName(),suppliername,Integer.valueOf(tftotalorderprice.getText()));
        connect.insertorderitem( ordcata,connect.getlatestorderid());
+       connect.insertdelivery(connect.getlatestorderid());
        DefaultTableModel model = (DefaultTableModel) OrderItems.getModel();
         model.setRowCount(0);
        btnplaceorder.setEnabled(false);

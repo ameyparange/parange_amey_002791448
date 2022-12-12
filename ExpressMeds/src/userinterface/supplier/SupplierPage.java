@@ -321,6 +321,8 @@ public class SupplierPage extends javax.swing.JFrame {
 
     private void btnOrderCataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderCataActionPerformed
         // TODO add your handling code here:
+        SupplierOrderCatalog supint = new SupplierOrderCatalog( entp,username );
+        jSplitPane1.setRightComponent(supint);
     }//GEN-LAST:event_btnOrderCataActionPerformed
 
     private void btnEmployeecatalogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmployeecatalogActionPerformed
