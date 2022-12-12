@@ -18,8 +18,10 @@ public class Dashboard extends javax.swing.JPanel {
     /**
      * Creates new form Dashboard
      */
-    public Dashboard() {
+    String username;
+    public Dashboard(String username ) {
         initComponents();
+        this.username=username;
     }
 
     /**
@@ -155,13 +157,13 @@ public class Dashboard extends javax.swing.JPanel {
 
     private void btndeliveryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndeliveryActionPerformed
         // TODO add your handling code here:
-        DeliveryPage deliverypg = new DeliveryPage( );
+        DeliveryPage deliverypg = new DeliveryPage(username );
         deliverypg.setVisible(true);
     }//GEN-LAST:event_btndeliveryActionPerformed
 
     private void btnhospitalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnhospitalActionPerformed
         // TODO add your handling code here:
-        HospitalPage deliverypg = new HospitalPage( );
+        HospitalPage deliverypg = new HospitalPage(username );
         deliverypg.setVisible(true);
     }//GEN-LAST:event_btnhospitalActionPerformed
 

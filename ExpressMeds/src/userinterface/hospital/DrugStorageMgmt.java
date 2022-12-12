@@ -348,7 +348,6 @@ public class DrugStorageMgmt extends javax.swing.JPanel {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        btnview.setBackground(new java.awt.Color(153, 153, 153));
         btnview.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         btnview.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/customer/search.png"))); // NOI18N
         btnview.setText("View Product");
@@ -383,9 +382,8 @@ public class DrugStorageMgmt extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
         jLabel3.setText("ID");
 
-        btncreate.setBackground(new java.awt.Color(153, 153, 153));
         btncreate.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        btncreate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/customer/search.png"))); // NOI18N
+        btncreate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/customer/add.png"))); // NOI18N
         btncreate.setText("Create Product");
         btncreate.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(242, 242, 242), null, null));
         btncreate.addActionListener(new java.awt.event.ActionListener() {
@@ -394,9 +392,8 @@ public class DrugStorageMgmt extends javax.swing.JPanel {
             }
         });
 
-        btnrefresh.setBackground(new java.awt.Color(153, 153, 153));
         btnrefresh.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        btnrefresh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/customer/search.png"))); // NOI18N
+        btnrefresh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/customer/refresh-page-option.png"))); // NOI18N
         btnrefresh.setText("Refresh");
         btnrefresh.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(242, 242, 242), null, null));
         btnrefresh.addActionListener(new java.awt.event.ActionListener() {

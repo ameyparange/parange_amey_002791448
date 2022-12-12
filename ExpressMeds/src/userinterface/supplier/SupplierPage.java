@@ -5,9 +5,15 @@
 package userinterface.supplier;
 
 import dbconnection.JdbcConnect;
+import java.awt.Window;
+import javax.swing.SwingUtilities;
 import model.enterprise.Enterprise;
 import model.enterprise.EnterpriseCatalog;
+import userinterface.admin.AdminPage;
+import userinterface.admin.Dashboard;
 import userinterface.employee.EmployeeRegistration;
+import userinterface.hospital.HospitalPage;
+import userinterface.retail.RetailPage;
 
 
 /**
@@ -24,6 +30,7 @@ public class SupplierPage extends javax.swing.JFrame {
     Enterprise entp;
     Enterprise supplier;
     EnterpriseCatalog suppliercata;
+    String username;
     public SupplierPage() {
         initComponents();
         connect = new JdbcConnect();
@@ -31,7 +38,10 @@ public class SupplierPage extends javax.swing.JFrame {
         loadentname();
 
     }
-
+ void init(String username)
+    {
+    this.username=username;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -215,6 +225,11 @@ public class SupplierPage extends javax.swing.JFrame {
 
         btnlogout.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         btnlogout.setText("Logout");
+        btnlogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnlogoutActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -292,6 +307,9 @@ public class SupplierPage extends javax.swing.JFrame {
 
     private void btnOrderMgmtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderMgmtActionPerformed
         // TODO add your handling code here:
+        
+        SupplierOrderMgmt supint = new SupplierOrderMgmt( entp,username );
+        jSplitPane1.setRightComponent(supint);
     }//GEN-LAST:event_btnOrderMgmtActionPerformed
 
     private void btnwarecataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnwarecataActionPerformed
@@ -303,6 +321,8 @@ public class SupplierPage extends javax.swing.JFrame {
 
     private void btnOrderCataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderCataActionPerformed
         // TODO add your handling code here:
+        SupplierOrderCatalog supint = new SupplierOrderCatalog( entp,username );
+        jSplitPane1.setRightComponent(supint);
     }//GEN-LAST:event_btnOrderCataActionPerformed
 
     private void btnEmployeecatalogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmployeecatalogActionPerformed
@@ -319,8 +339,17 @@ public class SupplierPage extends javax.swing.JFrame {
 
     private void btnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbackActionPerformed
         // TODO add your handling code here:
+        
         this.dispose();
+        
     }//GEN-LAST:event_btnbackActionPerformed
+
+    private void btnlogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlogoutActionPerformed
+        // TODO add your handling code here:
+        
+        this.dispose();
+        
+    }//GEN-LAST:event_btnlogoutActionPerformed
 
     /**
      * @param args the command line arguments

@@ -58,7 +58,7 @@ public class JdbcConnect {
         try {
             Class.forName("com.mysql.jdbc.Driver");
 
-            this.con = DriverManager.getConnection("jdbc:mysql://localhost/expressmeddb", "root", "");
+            this.con = DriverManager.getConnection("jdbc:mysql://localhost/expressmeddb", "root", "amey@1105");
 
             this.con.setAutoCommit(false);
         } catch (Exception e) {
@@ -76,8 +76,6 @@ public class JdbcConnect {
         }
         return con;
     }
-    
-    
 
     public void insertuseraccount(String username, String password, String role) {
         try {
@@ -278,7 +276,7 @@ public class JdbcConnect {
             pet.setString(2, type);
             System.out.println(pet.toString());
             myRs = pet.executeQuery();
-            
+
             if (myRs.next()) {
 
                 return myRs.getInt("ent_id");
@@ -680,8 +678,8 @@ public class JdbcConnect {
         }
 
     }
-    
-        public int updateinventory(int product_id, int qty) {
+
+    public int updateinventory(int product_id, int qty) {
         try {
             this.connect();
             pet = con.prepareStatement("update inventory set quantity = quantity + ? where product_id= ?");
@@ -692,7 +690,6 @@ public class JdbcConnect {
 
             return k;
 
-
         } catch (Exception e) {
             System.out.println(e.toString());
             return 0;
@@ -700,7 +697,23 @@ public class JdbcConnect {
 
     }
 
-    
+    public int updateinventory_minus(int product_id, int qty) {
+        try {
+            this.connect();
+            pet = con.prepareStatement("update inventory set quantity = quantity - ? where product_id= ?");
+            pet.setInt(1, qty);
+            pet.setInt(2, product_id);
+            int k = pet.executeUpdate();
+            con.commit();
+
+            return k;
+
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            return 0;
+        }
+
+    }
 
     public void insertPerson(int add_id, String firstName, String lastName, String emailId, String phoneno, String gender, int age, String role_name) {
 
@@ -725,7 +738,6 @@ public class JdbcConnect {
         }
 
     }
-
 
     public int searchPersonId(String username) {
         int per_id = 0;
@@ -761,7 +773,7 @@ public class JdbcConnect {
             pet.setInt(1, per_id);
             myRs = pet.executeQuery();
             if (myRs.next()) {
-                
+
                 Person UserDetails = new Person(myRs.getInt("per_id"), myRs.getInt("add_id"), myRs.getString("fname"), myRs.getString("lname"), myRs.getString("email"), myRs.getString("mobileno"), myRs.getString("age"), myRs.getInt("mobileno"), myRs.getString("role"));
                 return UserDetails;
             }
@@ -772,21 +784,18 @@ public class JdbcConnect {
         }
         return null;
     }
-    
-    
-    
-    public void insert_customer_grievances(String firstname, String lastname,String desc, String date, String status){
-     try {
-         String name=firstname+" " + lastname;
+
+    public void insert_customer_grievances(String firstname, String lastname, String desc, String date, String status) {
+        try {
+            String name = firstname + " " + lastname;
             this.connect();
             pet = con.prepareStatement("insert into customer_grievances(name, desc, date,status) values (?,?,?,?)");
-            
+
             pet.setString(1, name);
             pet.setString(2, desc);
             pet.setString(3, date);
             pet.setString(4, status);
 
-
             int k = pet.executeUpdate();
             con.commit();
 
@@ -797,28 +806,25 @@ public class JdbcConnect {
 
     }
 
-    
-    public void insertbatch(int p_id, int quantity)
-    {
+    public void insertbatch(int p_id, int quantity) {
         try {
             this.connect();
             pet = con.prepareStatement("insert into batch(product_id, mgf_date,quantity) values (?,sysdate(),?)");
             pet.setInt(1, p_id);
-           // pet.setString(2, mfg_date);
+            // pet.setString(2, mfg_date);
             pet.setInt(2, quantity);
-            
+
             //System.out.println(pet.toString());
             int k = pet.executeUpdate();
             con.commit();
- 
+
         } catch (Exception e) {
             System.out.println(e.toString());
 
         }
     }
 
-    public int getlatestbatchid()
-    {
+    public int getlatestbatchid() {
         this.connect();
         try {
             pet = con.prepareStatement("select max(batch_id) batch_id from batch ");
@@ -836,30 +842,127 @@ public class JdbcConnect {
             return 9999;
         }
         return 9999;
-    
+
     }
-     
-    public void insertorder(int price)
-    {
-        
+
+    public String checkrole(String username) {
+        String role = "";
+        this.connect();
+        try {
+            pet = con.prepareStatement("select role_name from useraccount where username = ?");
+            pet.setString(1, username);
+            myRs = pet.executeQuery();
+            if (myRs.next()) {
+                System.out.println(myRs.getString("role_name"));
+                return myRs.getString("role_name");
+            }
+        } catch (Exception e) {
+
+            System.out.println(e.toString());
+
+        }
+
+        return role;
+    }
+
+    public void insertorder(String username, String name, String ord_name, int price) {
+
         try {
             this.connect();
-            pet = con.prepareStatement("INSERT INTO order1 (orderprice,ord_date)VALUES(?,sysdate())");
-            pet.setInt(1, price);
-           // pet.setString(2, mfg_date);
-            
+
+            pet = con.prepareStatement("INSERT INTO order1 (username,ent_name,f_ent_name,orderprice)VALUES(?,?,?,?)");
+            pet.setString(1, username);
+            pet.setString(2, name);
+            pet.setString(3, ord_name);
+            pet.setInt(4, price);
+
+            // pet.setString(2, mfg_date);
             //System.out.println(pet.toString());
             int k = pet.executeUpdate();
             con.commit();
- 
+
         } catch (Exception e) {
             System.out.println(e.toString());
 
         }
-       
+
     }
-    public int getlatestorderid()
-    {
+public void insertdelivery(int order_id) {
+
+        try {
+            this.connect();
+
+            pet = con.prepareStatement("INSERT INTO delivery (order_id,Modified_date)VALUES(?,  now())");
+            
+            pet.setInt(1, order_id);
+
+            // pet.setString(2, mfg_date);
+            //System.out.println(pet.toString());
+            int k = pet.executeUpdate();
+            con.commit();
+
+        } catch (Exception e) {
+            System.out.println(e.toString());
+
+        }
+
+    }
+public int updatedelivery(int order_id, String sts) {
+        try {
+            this.connect();
+            pet = con.prepareStatement("update delivery set status =  ? , Modified_date= now() where order_id= ?");
+            pet.setString(1, sts);
+            pet.setInt(2, order_id);
+            int k = pet.executeUpdate();
+            con.commit();
+
+            return k;
+
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            return 0;
+        }
+
+    }
+
+public int updatedeliverycomplete(int order_id, String sts) {
+        try {
+            this.connect();
+            pet = con.prepareStatement("update delivery set status =  ? , Modified_date= now(), Delivery_date= now() where order_id= ?");
+            pet.setString(1, sts);
+            pet.setInt(2, order_id);
+            int k = pet.executeUpdate();
+            con.commit();
+
+            return k;
+
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            return 0;
+        }
+
+    }
+    public int updateorder(int order_id, String sts) {
+        try {
+            this.connect();
+            pet = con.prepareStatement("update order1 set status =  ? where order_id= ?");
+            pet.setString(1, sts);
+            pet.setInt(2, order_id);
+            int k = pet.executeUpdate();
+            con.commit();
+
+            return k;
+
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            return 0;
+        }
+
+    }
+
+
+
+    public int getlatestorderid() {
         this.connect();
         try {
             pet = con.prepareStatement("select max(order_id) order_id from order1 ");
@@ -877,28 +980,30 @@ public class JdbcConnect {
             return 9999;
         }
         return 9999;
-    
-    }
-        public void insertorderitem(OrderitemCatalog oc,int order_id)
-    {this.connect();
-        for (OrderItem hos : oc.getOrditem()) {
-        try {
-            this.connect();
-            pet = con.prepareStatement("INSERT INTO order_item (order_id,product_id,qty,tot_item_price)VALUES(?,?,?,?)");
-            pet.setInt(1, order_id);
-            pet.setInt(2, hos.getProduct_id());
-            pet.setInt(3, hos.getQuantity());
-            pet.setInt(4, hos.getTotalitemprice());
-           // pet.setString(2, mfg_date);
-            
-            //System.out.println(pet.toString());
-            int k = pet.executeUpdate();
-            con.commit();
- 
-        } catch (Exception e) {
-            System.out.println(e.toString());
 
-        }
+    }
+
+    public void insertorderitem(OrderitemCatalog oc, int order_id) {
+        this.connect();
+        for (OrderItem hos : oc.getOrditem()) {
+            try {
+                this.connect();
+                pet = con.prepareStatement("INSERT INTO order_item (order_id,product_id,qty,tot_item_price)VALUES(?,?,?,?)");
+                pet.setInt(1, order_id);
+                pet.setInt(2, hos.getProduct_id());
+                pet.setInt(3, hos.getQuantity());
+                pet.setInt(4, hos.getTotalitemprice());
+                // pet.setString(2, mfg_date);
+
+                //System.out.println(pet.toString());
+                int k = pet.executeUpdate();
+                con.commit();
+
+            } catch (Exception e) {
+                System.out.println(e.toString());
+
+            }
         }
     }
+
 }

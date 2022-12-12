@@ -321,6 +321,7 @@ public class ViewDoctorProfile extends javax.swing.JPanel {
         );
 
         btnsubmit.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btnsubmit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/hospital/upload.png"))); // NOI18N
         btnsubmit.setText("Submit");
         btnsubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -329,6 +330,7 @@ public class ViewDoctorProfile extends javax.swing.JPanel {
         });
 
         btnclear.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btnclear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/hospital/eraser.png"))); // NOI18N
         btnclear.setText("Clear");
         btnclear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

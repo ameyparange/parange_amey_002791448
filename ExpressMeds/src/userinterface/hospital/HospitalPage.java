@@ -5,7 +5,12 @@
 package userinterface.hospital;
 
 import dbconnection.JdbcConnect;
+import java.awt.Window;
+import javax.swing.SwingUtilities;
 import model.enterprise.Enterprise;
+import userinterface.admin.AdminPage;
+import userinterface.admin.Dashboard;
+import userinterface.supplier.SupplierPage;
 
 /**
  *
@@ -19,10 +24,12 @@ public class HospitalPage extends javax.swing.JFrame {
     JdbcConnect connect;
     Enterprise entp;
     String hospital_name;
-    public HospitalPage() {
+    String username;
+    public HospitalPage(String username) {
         initComponents();
         connect = new JdbcConnect();
         loadentname();
+        this.username=username;
     }
 
     /**
@@ -192,6 +199,11 @@ public class HospitalPage extends javax.swing.JFrame {
 
         btnlogout.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         btnlogout.setText("Logout");
+        btnlogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnlogoutActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -284,7 +296,13 @@ public class HospitalPage extends javax.swing.JFrame {
 
     private void btnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbackActionPerformed
         // TODO add your handling code here:
-        this.dispose();
+        
+        HospitalPage frame = new HospitalPage();
+        Window w = SwingUtilities.getWindowAncestor(HospitalPage.this);
+        w.setVisible(false);  
+        Dashboard frame1 = new Dashboard();
+        frame1.setVisible(true);
+        
     }//GEN-LAST:event_btnbackActionPerformed
 
     private void btndrugstockcataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndrugstockcataActionPerformed
@@ -292,6 +310,14 @@ public class HospitalPage extends javax.swing.JFrame {
         DrugStorageCatalog supint = new DrugStorageCatalog( entp );
         jSplitPane1.setRightComponent(supint);
     }//GEN-LAST:event_btndrugstockcataActionPerformed
+
+    private void btnlogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlogoutActionPerformed
+        // TODO add your handling code here:
+        
+       this.dispose();
+        
+        
+    }//GEN-LAST:event_btnlogoutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -323,7 +349,7 @@ public class HospitalPage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new HospitalPage().setVisible(true);
+                //new HospitalPage().setVisible(true);
             }
         });
     }
