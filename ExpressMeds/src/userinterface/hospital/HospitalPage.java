@@ -24,10 +24,12 @@ public class HospitalPage extends javax.swing.JFrame {
     JdbcConnect connect;
     Enterprise entp;
     String hospital_name;
-    public HospitalPage() {
+    String username;
+    public HospitalPage(String username) {
         initComponents();
         connect = new JdbcConnect();
         loadentname();
+        this.username=username;
     }
 
     /**
@@ -347,7 +349,7 @@ public class HospitalPage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new HospitalPage().setVisible(true);
+                //new HospitalPage().setVisible(true);
             }
         });
     }
