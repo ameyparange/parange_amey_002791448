@@ -58,7 +58,7 @@ public class JdbcConnect {
         try {
             Class.forName("com.mysql.jdbc.Driver");
 
-            this.con = DriverManager.getConnection("jdbc:mysql://localhost/expressmeddb", "root", "");
+            this.con = DriverManager.getConnection("jdbc:mysql://localhost/expressmeddb", "root", "amey@1105");
 
             this.con.setAutoCommit(false);
         } catch (Exception e) {
@@ -700,7 +700,24 @@ public class JdbcConnect {
 
     }
 
-    
+    public int updateinventory_minus(int product_id, int qty) {
+        try {
+            this.connect();
+            pet = con.prepareStatement("update inventory set quantity = quantity - ? where product_id= ?");
+            pet.setInt(1, qty);
+            pet.setInt(2, product_id);
+            int k = pet.executeUpdate();
+            con.commit();
+
+            return k;
+
+
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            return 0;
+        }
+
+    }
 
     public void insertPerson(int add_id, String firstName, String lastName, String emailId, String phoneno, String gender, int age, String role_name) {
 
@@ -839,13 +856,16 @@ public class JdbcConnect {
     
     }
      
-    public void insertorder(int price)
+    public void insertorder(String username,String name, String ord_name ,int price)
     {
         
         try {
             this.connect();
-            pet = con.prepareStatement("INSERT INTO order1 (orderprice,ord_date)VALUES(?,sysdate())");
-            pet.setInt(1, price);
+            pet = con.prepareStatement("INSERT INTO order1 (username,ent_name,f_ent_name,orderprice)VALUES(?,?,?,?)");
+            pet.setString(1, username);
+            pet.setString(2, name);
+            pet.setString(3, ord_name);
+            pet.setInt(4, price);
            // pet.setString(2, mfg_date);
             
             //System.out.println(pet.toString());
@@ -857,6 +877,25 @@ public class JdbcConnect {
 
         }
        
+    }
+    
+             public int updateorder(int order_id, String sts) {
+        try {
+            this.connect();
+            pet = con.prepareStatement("update order1 set status =  ? where order_id= ?");
+            pet.setString(1, sts);
+            pet.setInt(2, order_id);
+            int k = pet.executeUpdate();
+            con.commit();
+
+            return k;
+
+
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            return 0;
+        }
+
     }
     public int getlatestorderid()
     {
@@ -901,4 +940,6 @@ public class JdbcConnect {
         }
         }
     }
+        
+        
 }

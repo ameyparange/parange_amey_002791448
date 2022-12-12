@@ -24,15 +24,20 @@ public class RetailPage extends javax.swing.JFrame {
      JdbcConnect connect;
     Enterprise entp;
     Enterprise supplier;
+    String username;
     EnterpriseCatalog suppliercata;
     public RetailPage() {
         initComponents();
         con = new JdbcConnect();
         connect = new JdbcConnect();
         loadDataIndropdown();
-
+        
         ///dhfhfhfh
         ///asfasf
+    }
+    void init(String username)
+    {
+    this.username=username;
     }
 
     /**
@@ -309,7 +314,7 @@ public class RetailPage extends javax.swing.JFrame {
 
     private void btnplaceorderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnplaceorderActionPerformed
         // TODO add your handling code here:
-        RetialSupplierOrder mgorg = new RetialSupplierOrder();
+        RetialSupplierOrder mgorg = new RetialSupplierOrder(entp,username);
         jSplitPane1.setRightComponent(mgorg);
     }//GEN-LAST:event_btnplaceorderActionPerformed
 
