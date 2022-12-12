@@ -330,7 +330,19 @@ public class NewEmployeeRegistration extends javax.swing.JPanel {
                     .addComponent(jLabel15)))
         );
 
+
+        btnsubmit.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btnsubmit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/employee/upload.png"))); // NOI18N
+        btnsubmit.setText("Submit");
+        btnsubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnsubmitActionPerformed(evt);
+            }
+        });
+
+
         btnclear.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btnclear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/employee/eraser.png"))); // NOI18N
         btnclear.setText("Clear");
         btnclear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

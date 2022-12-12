@@ -90,6 +90,7 @@ public class ManageProduct extends javax.swing.JFrame {
         );
 
         btnmanufg.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btnmanufg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/product/inventory.png"))); // NOI18N
         btnmanufg.setText("Manufacture");
         btnmanufg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -273,6 +274,7 @@ public class ManageProduct extends javax.swing.JFrame {
         );
 
         btnrefresh.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btnrefresh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/product/refresh-page-option.png"))); // NOI18N
         btnrefresh.setText("Refresh");
         btnrefresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
