@@ -22,7 +22,7 @@ public class AdminPage extends javax.swing.JFrame {
     public AdminPage(String username) {
         initComponents();
         this.username=username;
-        Dashboard ds = new Dashboard();
+        Dashboard ds = new Dashboard( this.username);
         jSplitPane1.setRightComponent(ds);
         System.out.println(username +"from admin");
     }
@@ -240,7 +240,7 @@ public class AdminPage extends javax.swing.JFrame {
 
     private void btnDashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDashboardActionPerformed
         // TODO add your handling code here:
-        Dashboard ds = new Dashboard();
+        Dashboard ds = new Dashboard( this.username);
         jSplitPane1.setRightComponent(ds);
     }//GEN-LAST:event_btnDashboardActionPerformed
 

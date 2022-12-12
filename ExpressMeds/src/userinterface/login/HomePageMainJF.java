@@ -195,7 +195,7 @@ public class HomePageMainJF extends javax.swing.JFrame {
                 if (ans == 1) {
                     JOptionPane.showMessageDialog(this, "Login Successful!");
                    String user_role=connect.checkrole(username);
-                    if (user_role.equalsIgnoreCase("admin")||connect.checkrole(username).equalsIgnoreCase("Enterprise admin")||connect.checkrole(username).equalsIgnoreCase("organization admin")){
+                    if (user_role.equalsIgnoreCase("System Admin")||connect.checkrole(username).equalsIgnoreCase("Enterprise admin")||connect.checkrole(username).equalsIgnoreCase("organization admin")){
                     AdminPage adminpage = new AdminPage(username);
                     adminpage.setPreferredSize(new Dimension(800, 600));
                     adminpage.setVisible(true);

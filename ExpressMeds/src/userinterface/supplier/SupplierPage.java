@@ -29,7 +29,6 @@ public class SupplierPage extends javax.swing.JFrame {
     String supp_name;
     Enterprise entp;
     Enterprise supplier;
-    String username="";
     EnterpriseCatalog suppliercata;
     String username;
     public SupplierPage() {
@@ -339,11 +338,7 @@ public class SupplierPage extends javax.swing.JFrame {
     private void btnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbackActionPerformed
         // TODO add your handling code here:
         
-         SupplierPage frame = new SupplierPage();
-        Window w = SwingUtilities.getWindowAncestor(SupplierPage.this);
-        w.setVisible(false);  
-        Dashboard frame1 = new Dashboard();
-        frame1.setVisible(true);
+        this.dispose();
         
     }//GEN-LAST:event_btnbackActionPerformed
 

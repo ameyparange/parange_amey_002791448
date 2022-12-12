@@ -327,11 +327,7 @@ public class RetailPage extends javax.swing.JFrame {
     private void btnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbackActionPerformed
         // TODO add your handling code here:
         
-        RetailPage frame = new RetailPage();
-        Window w = SwingUtilities.getWindowAncestor(RetailPage.this);
-        w.setVisible(false);  
-        Dashboard frame1 = new Dashboard();
-        frame1.setVisible(true);
+        this.dispose();
         
         
     }//GEN-LAST:event_btnbackActionPerformed
