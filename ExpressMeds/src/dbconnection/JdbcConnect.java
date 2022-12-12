@@ -17,6 +17,8 @@ import model.enterprise.role.Role;
 import model.product.Product;
 import model.useraccount.UserAccount;
 import model.Person.Person;
+import model.order.OrderItem;
+import model.order.OrderitemCatalog;
 
 /**
  *
@@ -698,7 +700,24 @@ public class JdbcConnect {
 
     }
 
-    
+    public int updateinventory_minus(int product_id, int qty) {
+        try {
+            this.connect();
+            pet = con.prepareStatement("update inventory set quantity = quantity - ? where product_id= ?");
+            pet.setInt(1, qty);
+            pet.setInt(2, product_id);
+            int k = pet.executeUpdate();
+            con.commit();
+
+            return k;
+
+
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            return 0;
+        }
+
+    }
 
     public void insertPerson(int add_id, String firstName, String lastName, String emailId, String phoneno, String gender, int age, String role_name) {
 
@@ -837,5 +856,90 @@ public class JdbcConnect {
     
     }
      
+    public void insertorder(String username,String name, String ord_name ,int price)
+    {
+        
+        try {
+            this.connect();
+            pet = con.prepareStatement("INSERT INTO order1 (username,ent_name,f_ent_name,orderprice)VALUES(?,?,?,?)");
+            pet.setString(1, username);
+            pet.setString(2, name);
+            pet.setString(3, ord_name);
+            pet.setInt(4, price);
+           // pet.setString(2, mfg_date);
+            
+            //System.out.println(pet.toString());
+            int k = pet.executeUpdate();
+            con.commit();
+ 
+        } catch (Exception e) {
+            System.out.println(e.toString());
 
+        }
+       
+    }
+    
+             public int updateorder(int order_id, String sts) {
+        try {
+            this.connect();
+            pet = con.prepareStatement("update order1 set status =  ? where order_id= ?");
+            pet.setString(1, sts);
+            pet.setInt(2, order_id);
+            int k = pet.executeUpdate();
+            con.commit();
+
+            return k;
+
+
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            return 0;
+        }
+
+    }
+    public int getlatestorderid()
+    {
+        this.connect();
+        try {
+            pet = con.prepareStatement("select max(order_id) order_id from order1 ");
+
+            myRs = pet.executeQuery();
+
+            if (myRs.next()) {
+
+                return myRs.getInt("order_id");
+
+            }
+        } catch (Exception e) {
+            System.out.println("9999");
+            System.out.println(e.toString());
+            return 9999;
+        }
+        return 9999;
+    
+    }
+        public void insertorderitem(OrderitemCatalog oc,int order_id)
+    {this.connect();
+        for (OrderItem hos : oc.getOrditem()) {
+        try {
+            this.connect();
+            pet = con.prepareStatement("INSERT INTO order_item (order_id,product_id,qty,tot_item_price)VALUES(?,?,?,?)");
+            pet.setInt(1, order_id);
+            pet.setInt(2, hos.getProduct_id());
+            pet.setInt(3, hos.getQuantity());
+            pet.setInt(4, hos.getTotalitemprice());
+           // pet.setString(2, mfg_date);
+            
+            //System.out.println(pet.toString());
+            int k = pet.executeUpdate();
+            con.commit();
+ 
+        } catch (Exception e) {
+            System.out.println(e.toString());
+
+        }
+        }
+    }
+        
+        
 }
